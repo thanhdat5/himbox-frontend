@@ -1,0 +1,203 @@
+.hb-network {
+  .hb-network-sharing {
+    @media (min-width: 1200px) {
+      margin-left: -20px;
+    }
+    .hb-network-sharing-card {
+      background-color: $hb-background-secondary;
+      padding: 16px 24px;
+      border-radius: 20px;
+      font-size: 15px;
+      .hb-network-sharing-url {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        border-radius: 10px;
+        background-color: $hb-background;
+        cursor: pointer;
+        font-size: 14px;
+        input {
+          background-color: transparent;
+          border: 0;
+          outline: 0;
+          color: $hb-text-color;
+          cursor: pointer;
+        }
+        button {
+          background-color: transparent;
+          outline: 0;
+          border: 0;
+          padding: 0;
+          color: $hb-text-color;
+          transition: all ease-in-out 0.3s;
+          &:hover {
+            color: $hb-white-color;
+          }
+        }
+      }
+      .btn-group {
+        margin-bottom: 4px;
+        .btn {
+          background-color: transparent !important;
+          border: 0 !important;
+          border-radius: 10px;
+          color: #b1afcd;
+          font-size: 15px;
+          padding: 8px 16px;
+          outline: 0;
+          box-shadow: none !important;
+          display: inline-flex;
+          align-items: center;
+          svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+          }
+        }
+        .btn-check:checked + .btn-outline-primary {
+          background-color: $hb-background !important;
+          color: #fff;
+        }
+      }
+      .hb-network-sharing-action {
+        margin-top: 12px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        .hb-network-sharing-btn {
+          text-decoration: none;
+          background: $hb-primary-gradient;
+          border: 0;
+          padding: 6px 20px;
+          border-radius: 16px;
+          font-size: 15px;
+          font-weight: 500;
+          transition: all ease-in-out 0.3s;
+          color: $hb-white-color;
+          &.outline {
+            background: transparent;
+            color: $hb-text-color;
+            &:hover {
+              background: $hb-primary-gradient;
+              color: $hb-white-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  .hb-network-member-card {
+    @media (min-width: 1024px) {
+      min-height: calc(100% - 28px);
+    }
+  }
+  .hb-network-levels-wrap {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 100%;
+      background: $hb-background-secondary;
+      background: linear-gradient(
+        90deg,
+        rgba(20, 20, 50, 0) 25%,
+        $hb-background-card 100%
+      );
+    }
+  }
+  .hb-network-levels {
+    padding-right: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 10px;
+    overflow-x: auto;
+    .hb-network-level {
+      width: 200px;
+      min-width: 200px;
+      height: 100%;
+      padding-bottom: 20px;
+      min-height: 220px;
+      @media (max-width: 767px) {
+        width: 150px;
+        min-width: 150px;
+      }
+      .hb-network-level-heading {
+        padding: 10px 16px;
+        border-radius: 10px;
+        background-color: $hb-background;
+        text-transform: uppercase;
+        color: $hb-white-color;
+        font-size: 15px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        b {
+          display: block;
+          position: relative;
+          padding-right: 12px;
+          font-size: 14px;
+          color: $hb-text-color;
+          font-weight: 500;
+          &::before {
+            width: 10px;
+            height: 10px;
+            content: "";
+            position: absolute;
+            right: -2px;
+            margin-top: -1px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url(/assets/images/user-icon-2.svg);
+            background-size: cover;
+          }
+        }
+      }
+      .hb-network-level-members {
+        padding: 5px 0;
+        ul {
+          list-style: none;
+          padding-left: 0;
+          margin-bottom: 0;
+          li {
+            margin-bottom: 4px;
+            cursor: pointer;
+            transition: all ease-in-out 0.3s;
+            padding: 8px 16px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            &.active {
+              color: $hb-white-color;
+              font-weight: 500;
+              background: $hb-primary-gradient;
+            }
+            &:hover {
+              background-color: $hb-background;
+            }
+            i {
+              font-size: 12px;
+              transform: scaleX(0.6) scaleY(1.1);
+            }
+          }
+        }
+      }
+    }
+  }
+  .hb-network-members-list {
+    background-color: $hb-background-secondary;
+    padding: 16px;
+    border-radius: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}

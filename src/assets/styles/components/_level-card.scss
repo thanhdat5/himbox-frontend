@@ -1,0 +1,52 @@
+.hb-dashboard-level {
+    min-width: 120px;
+    height: 64px;
+    flex: 1;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: $hb-background-secondary;
+    opacity: 0.4;
+    &.active {
+      opacity: 1;
+      .hb-dashboard-level-header {
+        b {
+          display: block;
+          position: relative;
+          padding-right: 12px;
+          &::before {
+            width: 10px;
+            height: 10px;
+            content: "";
+            position: absolute;
+            right: -3px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url(/assets/images/user-icon.svg);
+            background-size: cover;
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+    .hb-dashboard-level-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 3px;
+      b {
+        display: none;
+      }
+    }
+    .hb-dashboard-level-value {
+      color: $hb-white-color;
+      font-size: 16px;
+      font-weight: 500;
+      white-space: nowrap;
+      small {
+        font-size: 10px;
+        font-weight: 400;
+        color: $hb-text-color;
+        margin-left: 3px;
+      }
+    }
+  }

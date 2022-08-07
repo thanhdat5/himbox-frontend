@@ -1,0 +1,63 @@
+.hb-auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 0;
+  background: url(/assets/images/decor-1.png) left top / contain no-repeat,
+    url(/assets/images/decor-2.png) right top;
+  background-position: left top, right top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  .hb-auth-form {
+    width: 450px;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 32px 40px;
+    border-radius: 20px;
+    background-color: $hb-background-card;
+    @media (max-width: 767px) {
+      padding: 32px 24px 20px 24px;
+    }
+    .hb-auth-form-logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .hb-auth-form-title {
+      text-align: center;
+      font-weight: 500;
+      font-size: 30px;
+      color: $hb-white-color;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    .form-label,
+    .form-check-label {
+      font-size: 15px;
+    }
+    .hb-auth-form-note {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 14px;
+    }
+    .hb-auth-form-link {
+      color: $hb-primary-color;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all ease-in-out 0.3s;
+      font-size: 15px;
+      &:hover {
+        text-decoration: underline;
+        color: #ef589d;
+      }
+    }
+    .form-check-input {
+      outline: 0 !important;
+      box-shadow: none !important;
+      &:checked {
+        background-color: $hb-primary-color;
+        border-color: $hb-primary-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+.hb-rank {
+  padding: 0;
+  margin-bottom: 0;
+  margin-left: 1rem;
+  list-style: none;
+
+  // hb-rank Item
+  .hb-rank-item {
+    position: relative;
+    padding-left: 24px;
+    // border-left: 1px solid #3b4253;
+    opacity: 0.3;
+    &.active {
+      opacity: 1;
+      &::after {
+        background: rgba($color: $hb-primary-color, $alpha: .8) !important;
+      }
+      // border-left: 1px solid #13b4e552;
+      .hb-rank-point {
+        &.hb-rank-point-indicator {
+            background-color: $hb-primary-color;
+            &::before{
+              background: rgba($color: $hb-primary-color, $alpha: 0.3);
+            }
+        }
+      }
+      .hb-rank-content {
+        h6 {
+          color: $hb-white-color;
+        }
+      }
+    }
+    &:not(:last-child) {
+      padding-bottom: 16px;
+      &:after{
+        position: absolute;
+        content: '';
+        width: 1px;
+        height: 100%;
+        top: 18px;
+        left: -1px;
+        background-color: $hb-background-secondary;
+      }
+    }
+
+    // hb-rank Point
+    .hb-rank-point {
+      position: absolute;
+      left: -0.85rem;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 1.75rem;
+      width: 1.75rem;
+      text-align: center;
+      border-radius: 50%;
+      border: 1px solid $hb-primary-color;
+      background-color: $hb-white-color;
+
+      // hb-rank Point Indicator
+      &.hb-rank-point-indicator {
+        left: -0.412rem;
+        top: 18px;
+        height: 12px;
+        width: 12px;
+        border: 0;
+        background-color: #39396c;
+
+        &:before {
+          content: "";
+          background: rgba($color: $hb-background-secondary, $alpha: 0.3);
+          height: 20px;
+          width: 20px;
+          display: block;
+          position: absolute;
+          top: -4px;
+          left: -4px;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .hb-rank-content {
+      position: relative;
+      width: 100%;
+      min-height: 4rem;
+      background-color: $hb-background-secondary;
+      padding: 14px 16px;
+      border-radius: 20px;
+      h6 {
+        text-transform: uppercase;
+      }
+
+      .hb-rank-description {
+        margin-bottom: 2px;
+        font-size: 13px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        span {
+          &:first-child {
+            width: 75px;
+            min-width: 75px;
+            font-weight: 500;
+            color: rgba($color: $hb-white-color, $alpha: .8);
+          }
+        }
+      }
+    }
+
+    &:last-of-type {
+      border-left-color: transparent !important;
+      &:after {
+        content: "";
+        position: absolute;
+        left: -1px;
+        bottom: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(#3b4253, transparent);
+      }
+    }
+  }
+}

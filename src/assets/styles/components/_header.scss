@@ -1,0 +1,124 @@
+.hb-header {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: all ease-in-out 0.3s;
+  &.sticky {
+    background-color: $hb-background;
+    background-color: #10101eeb;
+    backdrop-filter: blur(10px);
+  }
+  .hb-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 24px;
+    @media (max-width: 991px) {
+      padding: 16px;
+    }
+    .hb-header-heading {
+      display: flex;
+      align-items: center;
+      .hb-logo {
+        width: 206px;
+        text-decoration: none;
+        font-size: 28px;
+        color: $hb-white-color;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        @media (max-width: 991px) {
+          width: auto;
+          img {
+            height: 42px;
+            margin-right: 12px;
+          }
+          span {
+            display: none;
+          }
+        }
+        img {
+          height: 48px;
+          margin-right: 10px;
+        }
+      }
+      .breadcrumb {
+        padding-left: 24px;
+        margin-bottom: 0;
+        @media (max-width: 991px) {
+          display: none;
+        }
+        .breadcrumb-item {
+          font-weight: 500;
+          display: inline-flex;
+          align-items: center;
+          color: $hb-white-color;
+          &.active {
+            color: $hb-text-color;
+          }
+          a {
+            color: $hb-white-color;
+            text-decoration: none;
+          }
+        }
+      }
+      .hb-header-title {
+        margin-bottom: 0;
+        font-size: 16px;
+        padding-left: 24px;
+        @media (max-width: 991px) {
+          display: none;
+        }
+      }
+    }
+    .hb-header-menu {
+      display: inline-flex;
+      align-items: center;
+
+      @media (max-width: 767px) {
+        .hb-user-logged {
+          display: none;
+        }
+      }
+      .hb-header-btn {
+        padding: 8px 24px;
+        border-radius: 16px;
+        box-shadow: none;
+        outline: 0;
+        @media (max-width: 767px) {
+          padding: 6px 15px;
+          font-size: 14px;
+          margin-right: 10px;
+          svg {
+            display: none;
+          }
+        }
+        min-width: auto;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        margin-right: 24px;
+        svg {
+          width: 20px;
+          min-width: 20px;
+          height: 20px;
+          margin-right: 6px;
+        }
+        &.hb-btn-deposit {
+          margin-right: 10px;
+        }
+        &.hb-btn-withdraw {
+          background-color: $hb-background-secondary;
+          border-color: $hb-background-secondary;
+          color: $hb-white-color;
+          &:hover {
+            background-color: $hb-primary-color;
+            border-color: $hb-primary-color;
+          }
+        }
+      }
+    }
+  }
+}

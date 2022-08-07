@@ -1,0 +1,8 @@
+.hb-profile{
+    .hb-card{
+        padding: 32px 40px;
+        @media(max-width:767px){
+            padding: 16px;
+        }
+    }
+}

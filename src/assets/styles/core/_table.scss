@@ -1,0 +1,15 @@
+.table {
+  color: $hb-text-color;
+  border-color: rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+  > :not(:last-child) > :last-child > * {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  tr {
+    th {
+      font-weight: 400;
+      color: $hb-white-color;
+      white-space: nowrap;
+    }
+  }
+}

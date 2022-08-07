@@ -1,0 +1,104 @@
+.hb-package-note {
+  font-size: 15px;
+}
+.hb-badge {
+  background-color: $hb-background-secondary;
+  padding: 3px 10px 5px;
+  border-radius: 8px;
+  font-style: italic;
+  font-weight: 500;
+  color: $hb-white-color;
+  white-space: nowrap;
+}
+.hb-package-items {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  @media (max-width: 1199px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  @media (max-width: 767px){
+    gap: 6px;
+  }
+  .hb-package-percent {
+    border: 0 !important;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 24px;
+    color: $hb-text-color;
+    background-color: $hb-background-secondary !important;
+    flex: 1;
+    transition: all ease-in-out 0.3s;
+    @media (max-width: 1399px) {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    @media (max-width: 767px) {
+      width: calc((100% - 24px) / 5);
+      flex: none;
+    }
+    &:hover {
+      color: $hb-white-color;
+    }
+    &.active {
+      color: $hb-white-color;
+      background: $hb-primary-gradient;
+    }
+  }
+}
+.hb-packages-list {
+  .hb-package-item {
+    padding: 20px 24px 24px;
+    border-radius: 20px;
+    background-color: $hb-background-secondary;
+    &.disabled {
+      .hb-package-item-line {
+        .hb-package-item-value {
+          b {
+            color: $hb-text-color;
+          }
+        }
+      }
+    }
+    .hb-package-item-action {
+      padding-top: 16px;
+      .btn {
+        border-radius: 16px;
+        padding: 10px 20px;
+        font-size: 15px;
+        &:disabled {
+          background: rgba($color: $hb-white-color, $alpha: 0.1);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+.hb-package-item-line {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    .hb-package-item-label {
+      font-size: 14px;
+      width: 70px;
+      min-width: 70px;
+    }
+    .hb-package-item-value {
+      text-align: left;
+      b {
+        display: block;
+        color: $hb-white-color;
+      }
+      span {
+        display: block;
+        font-size: 12px;
+      }
+    }
+    &.hb-package-item-price {
+      border-top: 1px rgba($color: $hb-white-color, $alpha: 0.08) solid;
+      padding-top: 10px;
+    }
+  }

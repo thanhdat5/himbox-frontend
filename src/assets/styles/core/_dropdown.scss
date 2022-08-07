@@ -1,0 +1,30 @@
+.hb-dropdown {
+  .hb-dropdown-toggle {
+    background-color: transparent;
+    padding: 10px 0;
+    outline: 0;
+    border: 0;
+    color: $hb-text-color;
+    transition: all ease-in-out 0.3s;
+    &:after {
+      display: none;
+    }
+    &:hover,
+    &:active {
+      color: $hb-white-color;
+    }
+  }
+  .hb-dropdown-menu {
+    background: $hb-background-secondary !important;
+    padding: 16px 20px;
+    min-width: 270px;
+    .hb-dropdown-menu-heading {
+      color: $hb-heading-text-color;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    .hb-dropdown-menu-content {
+      font-size: 13px;
+    }
+  }
+}
