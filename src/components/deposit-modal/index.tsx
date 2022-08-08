@@ -3,7 +3,7 @@ import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bo
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { depositRequest } from "../../redux/actions/depositActions";
-import { getDepositErrorSelector, getDepositLoadingSelector, getDepositSuccessSelector } from "../../redux/selectors/depositSelectors";
+import { getDepositLoadingSelector, getDepositSuccessSelector } from "../../redux/selectors/depositSelectors";
 import PasswordControl from "../password-control";
 
 interface DepositModalProps {
@@ -16,7 +16,6 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
     const dispatch = useDispatch();
     const loading = useSelector(getDepositLoadingSelector);
     const success = useSelector(getDepositSuccessSelector);
-    const error = useSelector(getDepositErrorSelector);
 
     useEffect(() => {
         if (success) {
@@ -24,12 +23,6 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
             onHide(true);
         }
     }, [success]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
-    }, [error]);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();

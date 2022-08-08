@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ShowErrorMessage } from "../../services/appService";
 import {
   recoverPasswordFailure,
   recoverPasswordSuccess,
@@ -21,7 +22,8 @@ function* fetchVerifyCodeSaga(action: any) {
     );
     yield put(sendVerifyCodeSuccess());
   } catch (e: any) {
-    yield put(sendVerifyCodeFailure(e.message));
+    yield put(sendVerifyCodeFailure());
+    ShowErrorMessage(e);
   }
 }
 function* fetchRecoverPasswordSaga(action: any) {
@@ -34,7 +36,8 @@ function* fetchRecoverPasswordSaga(action: any) {
     );
     yield put(recoverPasswordSuccess());
   } catch (e: any) {
-    yield put(recoverPasswordFailure(e.message));
+    yield put(recoverPasswordFailure());
+    ShowErrorMessage(e);
   }
 }
 

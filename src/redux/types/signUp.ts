@@ -7,7 +7,6 @@ export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 export interface SignUpState {
   loading: boolean;
   success: boolean;
-  error: string | null;
 }
 
 export interface SignUpRequest {
@@ -21,7 +20,6 @@ export type SignUpSuccess = {
 
 export type SignUpFailure = {
   type: typeof SIGN_UP_FAILURE;
-  payload: string | null;
 };
 
 export type SignUpActions = SignUpRequest | SignUpSuccess | SignUpFailure;

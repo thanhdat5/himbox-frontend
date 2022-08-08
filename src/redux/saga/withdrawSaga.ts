@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ShowErrorMessage } from "../../services/appService";
 import { withdrawFailure, withdrawSuccess } from "../actions/withdrawActions";
 import { WITHDRAW_REQUEST } from "../types/withdraw";
 import { apiCall } from "./api";
@@ -13,7 +14,8 @@ function* fetchWithdrawSaga(action: any) {
     );
     yield put(withdrawSuccess());
   } catch (e: any) {
-    yield put(withdrawFailure(e.message));
+    yield put(withdrawFailure());
+    ShowErrorMessage(e);
   }
 }
 

@@ -3,18 +3,18 @@ import {
   VerifyCodeRequestModel
 } from "../../models";
 import {
-  SendVerifyCodeFailure,
-  SendVerifyCodeRequest,
-  SendVerifyCodeSuccess,
-  SEND_VERIFY_CODE_FAILURE,
-  SEND_VERIFY_CODE_REQUEST,
-  SEND_VERIFY_CODE_SUCCESS,
   RecoverPasswordFailure,
   RecoverPasswordRequest,
   RecoverPasswordSuccess,
   RECOVER_PASSWORD_FAILURE,
   RECOVER_PASSWORD_REQUEST,
-  RECOVER_PASSWORD_SUCCESS
+  RECOVER_PASSWORD_SUCCESS,
+  SendVerifyCodeFailure,
+  SendVerifyCodeRequest,
+  SendVerifyCodeSuccess,
+  SEND_VERIFY_CODE_FAILURE,
+  SEND_VERIFY_CODE_REQUEST,
+  SEND_VERIFY_CODE_SUCCESS
 } from "../types/forgotPassword";
 
 export const sendVerifyCodeRequest = (
@@ -28,11 +28,8 @@ export const sendVerifyCodeSuccess = (): SendVerifyCodeSuccess => ({
   type: SEND_VERIFY_CODE_SUCCESS,
 });
 
-export const sendVerifyCodeFailure = (
-  payload: string | null
-): SendVerifyCodeFailure => ({
+export const sendVerifyCodeFailure = (): SendVerifyCodeFailure => ({
   type: SEND_VERIFY_CODE_FAILURE,
-  payload,
 });
 
 export const recoverPasswordRequest = (
@@ -46,9 +43,6 @@ export const recoverPasswordSuccess = (): RecoverPasswordSuccess => ({
   type: RECOVER_PASSWORD_SUCCESS,
 });
 
-export const recoverPasswordFailure = (
-  payload: string | null
-): RecoverPasswordFailure => ({
+export const recoverPasswordFailure = (): RecoverPasswordFailure => ({
   type: RECOVER_PASSWORD_FAILURE,
-  payload,
 });

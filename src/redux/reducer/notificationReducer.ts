@@ -12,7 +12,6 @@ import {
 const initialState: NotificationsState = {
   loading: false,
   success: false,
-  error: null,
   notifications: null,
 };
 
@@ -32,14 +31,12 @@ const notificationReducer = (
         ...state,
         loading: false,
         notifications: action.payload,
-        error: null,
       };
     case GET_NOTIFICATIONS_FAILURE:
       return {
         ...state,
         loading: false,
         notifications: [],
-        error: action.payload,
       };
 
     case MARK_NOTIFICATION_AS_READ_REQUEST:
@@ -52,14 +49,12 @@ const notificationReducer = (
         ...state,
         loading: false,
         success: true,
-        error: null,
       };
     case MARK_NOTIFICATION_AS_READ_FAILURE:
       return {
         ...state,
         loading: false,
         success: false,
-        error: action.payload,
       };
     default:
       return {

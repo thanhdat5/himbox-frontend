@@ -6,13 +6,12 @@ import { toast } from 'react-toastify';
 import PasswordControl from "../../../components/password-control";
 import { ROUTES } from "../../../constants";
 import { signUpRequest } from "../../../redux/actions/signUpActions";
-import { getSignUpErrorSelector, getSignUpLoadingSelector, getSignUpSuccessSelector } from "../../../redux/selectors/signUpSelectors";
+import { getSignUpLoadingSelector, getSignUpSuccessSelector } from "../../../redux/selectors/signUpSelectors";
 
 const SignUp = () => {
     const dispatch = useDispatch();
     const loading = useSelector(getSignUpLoadingSelector);
     const success = useSelector(getSignUpSuccessSelector);
-    const error = useSelector(getSignUpErrorSelector);
 
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
@@ -32,12 +31,6 @@ const SignUp = () => {
             navigate(ROUTES.LOGIN);
         }
     }, [success]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
-    }, [error]);
 
     return <>
         <div className="hb-auth-form-title">Create an account</div>

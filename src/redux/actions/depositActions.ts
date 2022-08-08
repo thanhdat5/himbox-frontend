@@ -19,7 +19,6 @@ export const depositSuccess = (): DepositSuccess => ({
   type: DEPOSIT_SUCCESS,
 });
 
-export const depositFailure = (payload: string | null): DepositFailure => ({
+export const depositFailure = (): DepositFailure => ({
   type: DEPOSIT_FAILURE,
-  payload,
 });

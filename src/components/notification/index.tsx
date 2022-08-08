@@ -2,16 +2,14 @@ import { useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from 'react-toastify';
 import { NotificationResponseModel } from "../../models";
 import { getNotificationsRequest, markNotificationsAsReadRequest } from "../../redux/actions/notificationActions";
-import { getNotificationErrorSelector, getNotificationLoadingSelector, getNotificationsSelector, getNotificationSuccessSelector } from "../../redux/selectors/notificationSelectors";
+import { getNotificationLoadingSelector, getNotificationsSelector, getNotificationSuccessSelector } from "../../redux/selectors/notificationSelectors";
 
 const HBNotification = () => {
   const dispatch = useDispatch();
   const loading = useSelector(getNotificationLoadingSelector);
   const success = useSelector(getNotificationSuccessSelector);
-  const error = useSelector(getNotificationErrorSelector);
   const notifications = useSelector(getNotificationsSelector);
 
   useEffect(() => {
@@ -23,12 +21,6 @@ const HBNotification = () => {
       dispatch(getNotificationsRequest({ userId: '2222' }))
     }
   }, [success]);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
 
   const maskAsRead = (notificationId: string) => {
     dispatch(markNotificationsAsReadRequest({ userId: '2222', notificationIds: [notificationId] }))

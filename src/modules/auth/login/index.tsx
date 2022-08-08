@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
 import PasswordControl from "../../../components/password-control";
 import { HIMBOX_ACCESS_TOKEN, ROUTES } from "../../../constants";
 import { loginRequest } from "../../../redux/actions/loginActions";
-import { getLoginErrorSelector, getLoginLoadingSelector, getLoginSuccessSelector } from "../../../redux/selectors/loginSelectors";
+import { getLoginLoadingSelector, getLoginSuccessSelector } from "../../../redux/selectors/loginSelectors";
 
 const Login = () => {
     const dispatch = useDispatch();
     const loading = useSelector(getLoginLoadingSelector);
     const success = useSelector(getLoginSuccessSelector);
-    const error = useSelector(getLoginErrorSelector);
 
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
@@ -31,12 +29,6 @@ const Login = () => {
             navigate(ROUTES.DASHBOARD);
         }
     }, [success]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
-    }, [error]);
 
     return <>
         <div className="hb-auth-form-title">Login</div>

@@ -6,6 +6,9 @@ import notificationReducer from "./notificationReducer";
 import signUpReducer from "./signUpReducer";
 import todoReducer from "./todoReducer";
 import withdrawReducer from "./withdrawReducer";
+import userReducer from "./userReducer";
+import packageReducer from "./packageReducer";
+import dashboardReducer from "./dashboardReducer";
 
 const rootReducer = combineReducers({
   todo: todoReducer,
@@ -15,6 +18,9 @@ const rootReducer = combineReducers({
   deposit: depositReducer,
   withdraw: withdrawReducer,
   notification: notificationReducer,
+  user: userReducer,
+  package: packageReducer,
+  dashboard: dashboardReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

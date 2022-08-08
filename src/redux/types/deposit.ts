@@ -7,7 +7,6 @@ export const DEPOSIT_FAILURE = "DEPOSIT_FAILURE";
 export interface DepositState {
   loading: boolean;
   success: boolean;
-  error: string | null;
 }
 
 export interface DepositRequest {
@@ -21,7 +20,6 @@ export type DepositSuccess = {
 
 export type DepositFailure = {
   type: typeof DEPOSIT_FAILURE;
-  payload: string | null;
 };
 
 export type DepositActions = DepositRequest | DepositSuccess | DepositFailure;

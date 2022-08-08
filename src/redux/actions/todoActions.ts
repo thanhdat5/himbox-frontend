@@ -1,7 +1,5 @@
 import {
-  FetchTodoFailure,
-  FetchTodoFailurePayload,
-  FetchTodoRequest,
+  FetchTodoFailure, FetchTodoRequest,
   FetchTodoSuccess,
   FetchTodoSuccessPayload,
   FETCH_TODO_FAILURE,
@@ -20,9 +18,6 @@ export const fetchTodoSuccess = (
   payload,
 });
 
-export const fetchTodoFailure = (
-  payload: FetchTodoFailurePayload
-): FetchTodoFailure => ({
-  type: FETCH_TODO_FAILURE,
-  payload,
+export const fetchTodoFailure = (): FetchTodoFailure => ({
+  type: FETCH_TODO_FAILURE, 
 });

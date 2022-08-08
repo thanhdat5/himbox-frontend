@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getWithdrawErrorSelector, getWithdrawLoadingSelector, getWithdrawSuccessSelector } from "../../redux/selectors/withdrawSelectors";
-import PasswordControl from "../password-control";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { withdrawRequest } from "../../redux/actions/withdrawActions";
+import { getWithdrawLoadingSelector, getWithdrawSuccessSelector } from "../../redux/selectors/withdrawSelectors";
+import PasswordControl from "../password-control";
 
 interface WithdrawModalProps {
     onHide: (isSubmit?: boolean) => void
@@ -17,7 +16,6 @@ const WithdrawModal = ({ onHide }: WithdrawModalProps) => {
     const dispatch = useDispatch();
     const loading = useSelector(getWithdrawLoadingSelector);
     const success = useSelector(getWithdrawSuccessSelector);
-    const error = useSelector(getWithdrawErrorSelector);
 
     useEffect(() => {
         if (success) {
@@ -25,12 +23,6 @@ const WithdrawModal = ({ onHide }: WithdrawModalProps) => {
             onHide(true);
         }
     }, [success]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
-    }, [error]);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();

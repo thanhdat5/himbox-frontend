@@ -19,7 +19,6 @@ export const withdrawSuccess = (): WithdrawSuccess => ({
   type: WITHDRAW_SUCCESS,
 });
 
-export const withdrawFailure = (payload: string | null): WithdrawFailure => ({
+export const withdrawFailure = (): WithdrawFailure => ({
   type: WITHDRAW_FAILURE,
-  payload,
 });

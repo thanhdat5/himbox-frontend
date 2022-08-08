@@ -7,7 +7,6 @@ export const WITHDRAW_FAILURE = "WITHDRAW_FAILURE";
 export interface WithdrawState {
   loading: boolean;
   success: boolean;
-  error: string | null;
 }
 
 export interface WithdrawRequest {
@@ -21,7 +20,9 @@ export type WithdrawSuccess = {
 
 export type WithdrawFailure = {
   type: typeof WITHDRAW_FAILURE;
-  payload: string | null;
 };
 
-export type WithdrawActions = WithdrawRequest | WithdrawSuccess | WithdrawFailure;
+export type WithdrawActions =
+  | WithdrawRequest
+  | WithdrawSuccess
+  | WithdrawFailure;

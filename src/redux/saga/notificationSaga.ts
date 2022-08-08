@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ShowErrorMessage } from "../../services/appService";
 import {
   getNotificationsFailure,
   getNotificationsSuccess,
@@ -22,7 +23,8 @@ function* fetchGetNotificationsSaga(action: any) {
     );
     yield put(getNotificationsSuccess(res.data));
   } catch (e: any) {
-    yield put(getNotificationsFailure(e.message));
+    yield put(getNotificationsFailure());
+    ShowErrorMessage(e);
   }
 }
 function* fetchMarkNotificationsAsReadSaga(action: any) {
@@ -35,7 +37,8 @@ function* fetchMarkNotificationsAsReadSaga(action: any) {
     );
     yield put(markNotificationsAsReadSuccess());
   } catch (e: any) {
-    yield put(markNotificationsAsReadFailure(e.message));
+    yield put(markNotificationsAsReadFailure());
+    ShowErrorMessage(e);
   }
 }
 

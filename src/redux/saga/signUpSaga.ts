@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ShowErrorMessage } from "../../services/appService";
 import { signUpFailure, signUpSuccess } from "../actions/signUpActions";
 import { SIGN_UP_REQUEST } from "../types/signUp";
 import { apiCall } from "./api";
@@ -13,7 +14,8 @@ function* fetchSignUpSaga(action: any) {
     );
     yield put(signUpSuccess());
   } catch (e: any) {
-    yield put(signUpFailure(e.message));
+    yield put(signUpFailure());
+    ShowErrorMessage(e);
   }
 }
 

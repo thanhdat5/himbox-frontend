@@ -22,9 +22,7 @@ function* fetchTodoSaga() {
     );
   } catch (e: any) {
     yield put(
-      fetchTodoFailure({
-        error: e.message,
-      })
+      fetchTodoFailure()
     );
   }
 }

@@ -1,5 +1,7 @@
 import {
-  NotificationMarkRequestModel, NotificationRequestModel, NotificationResponseModel
+  NotificationMarkRequestModel,
+  NotificationRequestModel,
+  NotificationResponseModel
 } from "../../models";
 import {
   GetNotificationsFailure,
@@ -23,16 +25,15 @@ export const getNotificationsRequest = (
   payload,
 });
 
-export const getNotificationsSuccess = (payload: NotificationResponseModel[]): GetNotificationsSuccess => ({
+export const getNotificationsSuccess = (
+  payload: NotificationResponseModel[]
+): GetNotificationsSuccess => ({
   type: GET_NOTIFICATIONS_SUCCESS,
-  payload
+  payload,
 });
 
-export const getNotificationsFailure = (
-  payload: string | null
-): GetNotificationsFailure => ({
+export const getNotificationsFailure = (): GetNotificationsFailure => ({
   type: GET_NOTIFICATIONS_FAILURE,
-  payload,
 });
 
 export const markNotificationsAsReadRequest = (
@@ -42,13 +43,12 @@ export const markNotificationsAsReadRequest = (
   payload,
 });
 
-export const markNotificationsAsReadSuccess = (): MarkNotificationsAsReadSuccess => ({
-  type: MARK_NOTIFICATION_AS_READ_SUCCESS,
-});
+export const markNotificationsAsReadSuccess =
+  (): MarkNotificationsAsReadSuccess => ({
+    type: MARK_NOTIFICATION_AS_READ_SUCCESS,
+  });
 
-export const markNotificationsAsReadFailure = (
-  payload: string | null
-): MarkNotificationsAsReadFailure => ({
-  type: MARK_NOTIFICATION_AS_READ_FAILURE,
-  payload,
-});
+export const markNotificationsAsReadFailure =
+  (): MarkNotificationsAsReadFailure => ({
+    type: MARK_NOTIFICATION_AS_READ_FAILURE,
+  });

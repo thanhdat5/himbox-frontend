@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ShowErrorMessage } from "../../services/appService";
 import { depositFailure, depositSuccess } from "../actions/depositActions";
 import { DEPOSIT_REQUEST } from "../types/deposit";
 import { apiCall } from "./api";
@@ -13,7 +14,8 @@ function* fetchDepositSaga(action: any) {
     );
     yield put(depositSuccess());
   } catch (e: any) {
-    yield put(depositFailure(e.message));
+    yield put(depositFailure());
+    ShowErrorMessage(e);
   }
 }
 

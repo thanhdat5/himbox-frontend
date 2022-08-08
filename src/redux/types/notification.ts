@@ -1,7 +1,7 @@
 import {
-  NotificationRequestModel,
   NotificationMarkRequestModel,
-  NotificationResponseModel,
+  NotificationRequestModel,
+  NotificationResponseModel
 } from "../../models";
 
 export const GET_NOTIFICATIONS_REQUEST = "GET_NOTIFICATIONS_REQUEST";
@@ -18,7 +18,6 @@ export const MARK_NOTIFICATION_AS_READ_FAILURE =
 export interface NotificationsState {
   loading: boolean;
   success: boolean;
-  error: string | null;
   notifications: NotificationResponseModel[] | null;
 }
 
@@ -34,7 +33,6 @@ export type GetNotificationsSuccess = {
 
 export type GetNotificationsFailure = {
   type: typeof GET_NOTIFICATIONS_FAILURE;
-  payload: string | null;
 };
 
 export interface MarkNotificationsAsReadRequest {
@@ -48,7 +46,6 @@ export type MarkNotificationsAsReadSuccess = {
 
 export type MarkNotificationsAsReadFailure = {
   type: typeof MARK_NOTIFICATION_AS_READ_FAILURE;
-  payload: string | null;
 };
 
 export type NotificationActions =

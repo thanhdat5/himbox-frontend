@@ -9,7 +9,6 @@ import {
 const initialState: DepositState = {
   loading: false,
   success: false,
-  error: null,
 };
 
 const depositReducer = (state = initialState, action: DepositActions) => {
@@ -24,14 +23,12 @@ const depositReducer = (state = initialState, action: DepositActions) => {
         ...state,
         loading: false,
         success: true,
-        error: null,
       };
     case DEPOSIT_FAILURE:
       return {
         ...state,
         loading: false,
         success: false,
-        error: action.payload,
       };
     default:
       return {

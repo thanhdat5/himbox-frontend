@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
 import VerifyCodeControl from "../../../components/verify-code-control";
 import { ROUTES } from "../../../constants";
 import { recoverPasswordRequest } from "../../../redux/actions/forgotPasswordActions";
-import { getForgotPasswordErrorSelector, getForgotPasswordLoadingSelector, getForgotPasswordSuccessSelector } from "../../../redux/selectors/forgotPasswordSelectors";
+import { getForgotPasswordLoadingSelector, getForgotPasswordSuccessSelector } from "../../../redux/selectors/forgotPasswordSelectors";
 
 const ForgotPassword = () => {
     const dispatch = useDispatch();
     const loading = useSelector(getForgotPasswordLoadingSelector);
     const success = useSelector(getForgotPasswordSuccessSelector);
-    const error = useSelector(getForgotPasswordErrorSelector);
 
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
@@ -29,12 +27,6 @@ const ForgotPassword = () => {
             navigate(ROUTES.LOGIN);
         }
     }, [success]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
-    }, [error]);
 
     return <>
         <div className="hb-auth-form-title">Forgot Password</div>

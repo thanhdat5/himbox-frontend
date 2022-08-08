@@ -1,5 +1,6 @@
 import {
-  RecoverPasswordRequestModel, VerifyCodeRequestModel
+  RecoverPasswordRequestModel,
+  VerifyCodeRequestModel,
 } from "../../models";
 
 export const SEND_VERIFY_CODE_REQUEST = "SEND_VERIFY_CODE_REQUEST";
@@ -13,8 +14,7 @@ export const RECOVER_PASSWORD_FAILURE = "RECOVER_PASSWORD_FAILURE";
 export interface ForgotPasswordState {
   loading: boolean;
   success: boolean;
-  error: string | null;
-  sentVerifyCode: boolean
+  sentVerifyCode: boolean;
 }
 
 export interface SendVerifyCodeRequest {
@@ -28,7 +28,6 @@ export type SendVerifyCodeSuccess = {
 
 export type SendVerifyCodeFailure = {
   type: typeof SEND_VERIFY_CODE_FAILURE;
-  payload: string | null;
 };
 
 export interface RecoverPasswordRequest {
@@ -42,7 +41,6 @@ export type RecoverPasswordSuccess = {
 
 export type RecoverPasswordFailure = {
   type: typeof RECOVER_PASSWORD_FAILURE;
-  payload: string | null;
 };
 
 export type ForgotPasswordActions =

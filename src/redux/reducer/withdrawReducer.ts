@@ -9,7 +9,6 @@ import {
 const initialState: WithdrawState = {
   loading: false,
   success: false,
-  error: null,
 };
 
 const withdrawReducer = (state = initialState, action: WithdrawActions) => {
@@ -24,14 +23,12 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
         ...state,
         loading: false,
         success: true,
-        error: null,
       };
     case WITHDRAW_FAILURE:
       return {
         ...state,
         loading: false,
         success: false,
-        error: action.payload,
       };
     default:
       return {

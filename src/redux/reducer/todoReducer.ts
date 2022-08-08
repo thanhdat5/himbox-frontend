@@ -3,7 +3,6 @@ import { FETCH_TODO_FAILURE, FETCH_TODO_REQUEST, FETCH_TODO_SUCCESS, TodoActions
   const initialState: TodoState = {
     pending: false,
     todos: [],
-    error: null,
   };
   
 const todoResucer = (state = initialState, action: TodoActions) => {
@@ -18,14 +17,12 @@ const todoResucer = (state = initialState, action: TodoActions) => {
           ...state,
           pending: false,
           todos: action.payload.todos,
-          error: null,
         };
       case FETCH_TODO_FAILURE:
         return {
           ...state,
           pending: false,
           todos: [],
-          error: action.payload.error,
         };
       default:
         return {

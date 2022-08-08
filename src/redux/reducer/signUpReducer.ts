@@ -9,7 +9,6 @@ import {
 const initialState: SignUpState = {
   loading: false,
   success: false,
-  error: null,
 };
 
 const signUpReducer = (state = initialState, action: SignUpActions) => {
@@ -24,14 +23,12 @@ const signUpReducer = (state = initialState, action: SignUpActions) => {
         ...state,
         loading: false,
         success: true,
-        error: null,
       };
     case SIGN_UP_FAILURE:
       return {
         ...state,
         loading: false,
         success: false,
-        error: action.payload,
       };
     default:
       return {

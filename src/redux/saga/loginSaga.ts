@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ShowErrorMessage } from "../../services/appService";
 import { loginFailure, loginSuccess } from "../actions/loginActions";
 import { LOGIN_REQUEST } from "../types/login";
 import { apiCall } from "./api";
@@ -13,7 +14,8 @@ function* fetchLoginSaga(action: any) {
     );
     yield put(loginSuccess());
   } catch (e: any) {
-    yield put(loginFailure(e.message));
+    yield put(loginFailure());
+    ShowErrorMessage(e);
   }
 }
 
