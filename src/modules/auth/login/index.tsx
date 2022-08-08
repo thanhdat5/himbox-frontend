@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import PasswordControl from "../../../components/password-control";
 import { HIMBOX_ACCESS_TOKEN, ROUTES } from "../../../constants";
+import { loginRequest } from "../../../redux/actions/loginActions";
+import { getLoginErrorSelector, getLoginLoadingSelector, getLoginSuccessSelector } from "../../../redux/selectors/loginSelectors";
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const loading = useSelector(getLoginLoadingSelector);
+    const success = useSelector(getLoginSuccessSelector);
+    const error = useSelector(getLoginErrorSelector);
+
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -12,10 +21,22 @@ const Login = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        // const postData = { email, password, remember };
-        localStorage.setItem(HIMBOX_ACCESS_TOKEN, 'logged');
-        navigate(ROUTES.DASHBOARD);
+        const postData = { email, password, remember };
+        dispatch(loginRequest(postData));
     }
+
+    useEffect(() => {
+        if (success) {
+            localStorage.setItem(HIMBOX_ACCESS_TOKEN, 'logged');
+            navigate(ROUTES.DASHBOARD);
+        }
+    }, [success]);
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [error]);
 
     return <>
         <div className="hb-auth-form-title">Login</div>
@@ -41,7 +62,7 @@ const Login = () => {
                 </Row>
             </FormGroup>
 
-            <Button type="submit" className="w-100">
+            <Button type="submit" className="w-100" disabled={loading}>
                 <span>Login</span>
             </Button>
         </Form>
