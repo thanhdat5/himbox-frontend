@@ -1,19 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import { depositRequest } from "../../redux/actions/depositActions";
+import { getDepositErrorSelector, getDepositLoadingSelector, getDepositSuccessSelector } from "../../redux/selectors/depositSelectors";
 import PasswordControl from "../password-control";
 
 interface DepositModalProps {
     onHide: (isSubmit?: boolean) => void
 }
 const DepositModal = ({ onHide }: DepositModalProps) => {
-    const [amount, setAmount] = useState<number | undefined>(undefined);
+    const [amount, setAmount] = useState<number>(0);
     const [referralId, setReferralId] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const dispatch = useDispatch();
+    const loading = useSelector(getDepositLoadingSelector);
+    const success = useSelector(getDepositSuccessSelector);
+    const error = useSelector(getDepositErrorSelector);
+
+    useEffect(() => {
+        if (success) {
+            toast.success('Deposit Successfully!');
+            onHide(true);
+        }
+    }, [success]);
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [error]);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        // const postData = { amount, referralId, password };
-        onHide(true);
+        const postData = { userId: '111', amount, referralId, password };
+        dispatch(depositRequest(postData))
     }
 
     return <Modal className="hb-modal" size="sm" centered show onHide={onHide}>
@@ -26,7 +47,7 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
                 <FormGroup className="mb-3">
                     <FormLabel>Deposit amount</FormLabel>
                     <div className="hb-form-control-wrap">
-                        <FormControl required type="number" value={amount} onChange={(e) => setAmount(e ? Number(e.target.value) : undefined)} />
+                        <FormControl required type="number" value={amount} onChange={(e) => setAmount(e ? Number(e.target.value) : 0)} />
                         <span>DOT</span>
                     </div>
                 </FormGroup>
@@ -41,7 +62,7 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
                     <PasswordControl value={password} onChange={(e: any) => setPassword(e.target.value)} required />
                 </FormGroup>
 
-                <Button type="submit">
+                <Button type="submit" disabled={loading}>
                     <span>Confirm</span>
                 </Button>
             </Form>

@@ -3,14 +3,17 @@ import { loginFailure, loginSuccess } from "../actions/loginActions";
 import { LOGIN_REQUEST } from "../types/login";
 import { apiCall } from "./api";
 
-function* fetchLoginSaga() {
+function* fetchLoginSaga(action: any) {
   try {
-    yield call(apiCall, "GET", "https://jsonplaceholder.typicode.com/todos");
+    yield call(
+      apiCall,
+      "POST",
+      "https://jsonplaceholder.typicode.com/todos",
+      action.payload
+    );
     yield put(loginSuccess());
   } catch (e: any) {
-    yield put(
-      loginFailure(e.message)
-    );
+    yield put(loginFailure(e.message));
   }
 }
 
