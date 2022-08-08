@@ -2,6 +2,7 @@ import { all, fork } from "redux-saga/effects";
 import depositSaga from "./depositSaga";
 import forgotPasswordSaga from "./forgotPasswordSaga";
 import loginSaga from "./loginSaga";
+import notificationSaga from "./notificationSaga";
 import signUpSaga from "./signUpSaga";
 import todoSaga from "./todoSaga";
 import withdrawSaga from "./withdrawSaga";
@@ -13,4 +14,5 @@ export function* rootSaga() {
   yield all([fork(forgotPasswordSaga)]);
   yield all([fork(depositSaga)]);
   yield all([fork(withdrawSaga)]);
+  yield all([fork(notificationSaga)]);
 }

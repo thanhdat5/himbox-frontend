@@ -1,7 +1,39 @@
+import { useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import { NotificationResponseModel } from "../../models";
+import { getNotificationsRequest, markNotificationsAsReadRequest } from "../../redux/actions/notificationActions";
+import { getNotificationErrorSelector, getNotificationLoadingSelector, getNotificationsSelector, getNotificationSuccessSelector } from "../../redux/selectors/notificationSelectors";
 
 const HBNotification = () => {
+  const dispatch = useDispatch();
+  const loading = useSelector(getNotificationLoadingSelector);
+  const success = useSelector(getNotificationSuccessSelector);
+  const error = useSelector(getNotificationErrorSelector);
+  const notifications = useSelector(getNotificationsSelector);
+
+  useEffect(() => {
+    dispatch(getNotificationsRequest({ userId: '2222' }))
+  }, [])
+
+  useEffect(() => {
+    if (success) {
+      dispatch(getNotificationsRequest({ userId: '2222' }))
+    }
+  }, [success]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
+  const maskAsRead = (notificationId: string) => {
+    dispatch(markNotificationsAsReadRequest({ userId: '2222', notificationIds: [notificationId] }))
+  }
+
   return (
     <Dropdown className="hb-dropdown hb-notification me-md-4 me-2">
       <Dropdown.Toggle variant="link" className="hb-dropdown-toggle">
@@ -20,9 +52,23 @@ const HBNotification = () => {
       </Dropdown.Toggle>
       <DropdownMenu variant="dark" className="hb-dropdown-menu">
         <div className="hb-dropdown-menu-heading">
-          Notification <span>(0)</span>
+          Notification <span>({notifications ? notifications.length : 0})</span>
         </div>
-        <div className="hb-dropdown-menu-content">No Notification</div>
+        {
+          !loading && (!notifications || notifications.length <= 0) ? <div className="hb-dropdown-menu-content">No Notification</div> : <>
+            {
+              loading ? <>Loading...</> : <ul>
+                {
+                  notifications?.map((n: NotificationResponseModel, idx: number) => {
+                    return <li key={idx} onClick={() => maskAsRead(n.notificationId)}>
+                      <span>{n.content}  <small><i>{n.date.toLocaleDateString()}</i></small></span>
+                    </li>
+                  })
+                }
+              </ul>
+            }
+          </>
+        }
       </DropdownMenu>
     </Dropdown>
   );
