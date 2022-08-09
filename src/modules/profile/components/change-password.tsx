@@ -1,17 +1,26 @@
 import { useState } from "react";
 import { Button, Form, FormGroup, FormLabel } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
 import PasswordControl from "../../../components/password-control";
+import { changePasswordRequest } from "../../../redux/actions/userActions";
+import { getCurrentUserId } from "../../../services/appService";
 
 const HBProfileChangePassword = () => {
+    const dispatch = useDispatch();
     const [currentPassword, setCurrentPassword] = useState<string>('');
     const [newPassword, setNewPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const postData = { currentPassword, newPassword, confirmPassword };
-        console.log(postData);
+        if (currentPassword === newPassword) {
+            const userId = getCurrentUserId();
+            const postData = { userId, currentPassword, newPassword };
+            dispatch(changePasswordRequest(postData));
+        } else {
+            // show error message
+        }
     }
 
     return <HBCard>

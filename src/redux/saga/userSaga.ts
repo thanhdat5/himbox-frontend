@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { ShowErrorMessage } from "../../services/appService";
+import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
 import {
   changePasswordFailure,
   changePasswordSuccess, enable2FAFailure,
@@ -37,6 +37,7 @@ function* fetchChangePasswordSaga(action: any) {
       "https://jsonplaceholder.typicode.com/todos",
       action.payload
     );
+    ShowSuccessMessage('Change password success!')
     yield put(changePasswordSuccess());
   } catch (e: any) {
     yield put(changePasswordFailure());
@@ -51,6 +52,7 @@ function* fetchUpdateInfoSaga(action: any) {
       "https://jsonplaceholder.typicode.com/todos",
       action.payload
     );
+    ShowSuccessMessage('Update success!');
     yield put(updateUserInfoSuccess());
   } catch (e: any) {
     yield put(updateUserInfoFailure());
@@ -65,6 +67,7 @@ function* fetchEnable2FASaga(action: any) {
       "https://jsonplaceholder.typicode.com/todos",
       action.payload
     );
+    ShowSuccessMessage('Update success!');
     yield put(enable2FASuccess());
   } catch (e: any) {
     yield put(enable2FAFailure());

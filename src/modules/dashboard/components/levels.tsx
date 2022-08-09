@@ -1,4 +1,9 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import HBLevelCard from "../../../components/level-card"
+import { DashboardLevelsResponseModel } from "../../../models";
+import { getDashboardLevelsRequest } from "../../../redux/actions/dashboardActions";
+import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardLevels = () => {
     const LEVELS = [
@@ -28,6 +33,13 @@ const HBDashboardLevels = () => {
         { id: 24, level: 'Level 24', members: 0, value: "" },
         { id: 25, level: 'Level 25', members: 0, value: "" },
     ]
+    const dispatch = useDispatch();
+    const [levels, setLevels] = useState<DashboardLevelsResponseModel[]>([]);
+    // Todo
+    useEffect(() => {
+        const userId = getCurrentUserId();
+        dispatch(getDashboardLevelsRequest({ userId }))
+    }, [])
 
     return <div className="hb-dashboard-levels">
         {

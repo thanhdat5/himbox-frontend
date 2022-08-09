@@ -1,4 +1,9 @@
+import { useState } from "react";
 import { Tab, Table, Tabs } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { DepositTransactionsResponseModel, DowngradeTransactionsResponseModel, ProfitTransactionsResponseModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
+import { getDepositTransactionsRequest, getDowngradeTransactionsRequest, getProfitTransactionsRequest, getUpgradeTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
+import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardTransactions = () => {
     const TRANSACTIONS = [
@@ -8,12 +13,62 @@ const HBDashboardTransactions = () => {
         { id: 4, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() },
         { id: 5, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() }
     ]
+    const dispatch = useDispatch();
+    const [depositTransactions, setDepositTransactions] = useState<DepositTransactionsResponseModel[]>([]);
+    const [upgradeTransactions, setUpgradeTransactions] = useState<UpgradeTransactionsResponseModel[]>([]);
+    const [withdrawalTransactions, setWithdrawalTransactions] = useState<WithdrawalTransactionsResponseModel[]>([]);
+    const [downgradeTransactions, setDowngradeTransactions] = useState<DowngradeTransactionsResponseModel[]>([]);
+    const [profitTransactions, setProfitTransactions] = useState<ProfitTransactionsResponseModel[]>([]);
+    const userId = getCurrentUserId();
+    // Todo
+    const getDepositTransactions = () => {
+        dispatch(getDepositTransactionsRequest({ userId }))
+    }
+    const getUpgradeTransactions = () => {
+        dispatch(getUpgradeTransactionsRequest({ userId }))
+    }
+    const getWithdrawalTransactions = () => {
+        dispatch(getWithdrawalTransactionsRequest({ userId }))
+    }
+    const getDowngradeTransactions = () => {
+        dispatch(getDowngradeTransactionsRequest({ userId }))
+    }
+    const getProfitTransactions = () => {
+        dispatch(getProfitTransactionsRequest({ userId }))
+    }
+
+    const handleTabChange = (e: any) => {
+        switch (e) {
+            case 'Deposit': {
+                getDepositTransactions();
+                break;
+            }
+            case 'Upgrade': {
+                getUpgradeTransactions();
+                break;
+            }
+            case 'Withdrawal': {
+                getWithdrawalTransactions();
+                break;
+            }
+            case 'Downgrade': {
+                getDowngradeTransactions();
+                break;
+            }
+            case 'Profit': {
+                getProfitTransactions();
+                break;
+            }
+        }
+    }
+
     return <div className="hb-dashboard-transaction">
         <div className="hb-dashboard-transaction-heading">TRANSACTION</div>
         <Tabs
             defaultActiveKey="Deposit"
             id="TransactionTabs"
             className="hb-dashboard-tabs"
+            onSelect={handleTabChange}
         >
             <Tab eventKey="Deposit" title="Deposit">
                 <Table responsive>

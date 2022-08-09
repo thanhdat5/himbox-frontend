@@ -14,4 +14,5 @@ export interface PackageByProfitResponseModel {
   dotLock: number;
   total: number;
   totalUSD: number;
+  disabled?: boolean | undefined;
 }

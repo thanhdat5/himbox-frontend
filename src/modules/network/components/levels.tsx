@@ -1,5 +1,21 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { NetworkMembersByLevelResponseModel } from "../../../models";
+import { getCurrentUserId } from "../../../services/appService";
+import { getMembersByLevelRequest } from "../../../redux/actions/networkActions";
 
 const HBNetworkLevels = () => {
+    const dispatch = useDispatch();
+    const [statistics, setStatistics] = useState<NetworkMembersByLevelResponseModel[]>([]);
+    const [level, setLevel] = useState(0);
+    // Todo
+    useEffect(() => {
+        if (level) {
+            const userId = getCurrentUserId();
+            dispatch(getMembersByLevelRequest({ userId, level }))
+        }
+    }, [level])
+
     return <div className="hb-network-levels-wrap mb-3 mb-md-4">
         <div className="hb-network-levels">
             <div className="hb-network-level">

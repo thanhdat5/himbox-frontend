@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
+import { updateUserInfoRequest } from "../../../redux/actions/userActions";
+import { getCurrentUserId } from "../../../services/appService";
 
 const HBProfileInfo = () => {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState<string>('nguyenthanhdat.dcna@gmail.com');
-    const [address, setAddress] = useState<string>('0x');
+    const [walletAddress, setWalletAddress] = useState<string>('0x');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const postData = { email, address };
-        console.log(postData);
+        const userId = getCurrentUserId();
+        const postData = {userId, email, walletAddress };
+        dispatch(updateUserInfoRequest(postData));
     }
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(address);
+        navigator.clipboard.writeText(walletAddress);
     }
 
     return <HBCard className="mb-md-4 mb-3">

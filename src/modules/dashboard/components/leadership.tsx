@@ -1,4 +1,9 @@
-import HBRankCard from "../../../components/rank-card"
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import HBRankCard from "../../../components/rank-card";
+import { DashboardRanksResponseModel } from "../../../models";
+import { getDashboardRanksRequest } from "../../../redux/actions/dashboardActions";
+import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardLeadership = () => {
     const RANKS = [
@@ -9,6 +14,13 @@ const HBDashboardLeadership = () => {
         { id: 5, rank: 'Rank 5', commission: '25% reward daily of total team', condition: 'Have 2 qualified rank 4 in 2 different line' },
         { id: 5, rank: 'Rank 6', commission: '30% reward daily of total team', condition: 'Have 2 qualified rank 5 in 2 different line' }
     ]
+    const dispatch = useDispatch();
+    const [ranks, setRanks] = useState<DashboardRanksResponseModel[]>([]);
+    // Todo
+    useEffect(() => {
+        const userId = getCurrentUserId();
+        dispatch(getDashboardRanksRequest({ userId }))
+    }, [])
 
     return <div className="hb-leadership">
         <div className="hb-leadership-heading">Leadership</div>
