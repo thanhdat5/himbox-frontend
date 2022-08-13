@@ -13,8 +13,9 @@ export const loginRequest = (payload: LoginRequestModel): LoginRequest => ({
   payload,
 });
 
-export const loginSuccess = (): LoginSuccess => ({
+export const loginSuccess = (payload: any): LoginSuccess => ({
   type: LOGIN_SUCCESS,
+  payload
 });
 
 export const loginFailure = (): LoginFailure => ({

@@ -1,21 +1,23 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ENDPOINTS } from "../../constants";
 import { ShowErrorMessage } from "../../services/appService";
+import { extractError } from "../../utils/helpers";
 import { loginFailure, loginSuccess } from "../actions/loginActions";
 import { LOGIN_REQUEST } from "../types/login";
 import { apiCall } from "./api";
 
-function* fetchLoginSaga(action: any) {
+function* fetchLoginSaga(action: any): any {
   try {
-    yield call(
+    const data = yield call(
       apiCall,
       "POST",
-      "https://jsonplaceholder.typicode.com/todos",
+      ENDPOINTS.LOGIN,
       action.payload
     );
-    yield put(loginSuccess());
+    yield put(loginSuccess(data));
   } catch (e: any) {
     yield put(loginFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 

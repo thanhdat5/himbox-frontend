@@ -7,6 +7,7 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export interface LoginState {
   loading: boolean;
   success: boolean;
+  userInfo: any;
 }
 
 export interface LoginRequest {
@@ -16,6 +17,7 @@ export interface LoginRequest {
 
 export type LoginSuccess = {
   type: typeof LOGIN_SUCCESS;
+  payload: any;
 };
 
 export type LoginFailure = {

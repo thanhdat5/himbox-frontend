@@ -11,6 +11,9 @@ import Profile from "./modules/profile";
 import { AuthRoute } from "./routes/auth-route";
 import { PrivateRoute } from "./routes/private-route";
 
+import './App.css';
+import VerifyAccount from "./modules/auth/verify";
+
 const App = () => {
   // const dispatch = useDispatch();
   // const pending = useSelector(getPendingSelector);
@@ -27,7 +30,8 @@ const App = () => {
       <Route path="/auth" element={<AuthRoute />}>
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-        <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
+        <Route path={ROUTES.VERIFY} element={<VerifyAccount />} />
+        <Route path={ROUTES.FORGET_PASSWORD} element={<ForgotPassword />} />
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path={'/'} element={<Dashboard />} />

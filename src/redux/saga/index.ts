@@ -8,12 +8,14 @@ import packageSaga from "./packageSaga";
 import signUpSaga from "./signUpSaga";
 import todoSaga from "./todoSaga";
 import userSaga from "./userSaga";
+import verifySaga from "./verifySaga";
 import withdrawSaga from "./withdrawSaga";
 
 export function* rootSaga() {
   yield all([fork(todoSaga)]);
   yield all([fork(loginSaga)]);
   yield all([fork(signUpSaga)]);
+  yield all([fork(verifySaga)]);
   yield all([fork(forgotPasswordSaga)]);
   yield all([fork(depositSaga)]);
   yield all([fork(withdrawSaga)]);

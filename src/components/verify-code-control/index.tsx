@@ -7,8 +7,9 @@ interface VerifyCodeControlProps {
     value: string;
     onChange: any;
     required?: boolean;
+    showCountdown?: boolean;
 }
-const VerifyCodeControl = ({ value, onChange, required }: VerifyCodeControlProps) => {
+const VerifyCodeControl = ({ value, onChange, required, showCountdown = false }: VerifyCodeControlProps) => {
     const dispatch = useDispatch();
     const loading = useSelector(getForgotPasswordLoadingSelector);
 
@@ -20,7 +21,7 @@ const VerifyCodeControl = ({ value, onChange, required }: VerifyCodeControlProps
 
     return <div className="hb-form-control-wrap">
         <FormControl value={value} onChange={onChange} required={required} />
-        <span className="hb-auth-form-link" style={{ cursor: 'pointer', opacity: loading ? 0.5 : 1 }} onClick={handleGetCode}>Get code</span>
+        {showCountdown && <span className="hb-auth-form-link" style={{ cursor: 'pointer', opacity: loading ? 0.5 : 1 }} onClick={handleGetCode}>Resend</span>}
     </div>
 }
 export default VerifyCodeControl;

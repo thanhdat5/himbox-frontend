@@ -8,6 +8,7 @@ import {
 const initialState: LoginState = {
   loading: false,
   success: false,
+  userInfo: null
 };
 
 const loginReducer = (state = initialState, action: LoginActions) => {

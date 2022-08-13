@@ -13,6 +13,7 @@ const instance = (headers?: Record<string, string>) => {
           'Access-Control-Allow-Origin': '*',
           Authentication: `Bearer ${accessToken}`,
           Authorization: `Bearer ${accessToken}`,
+          lang: 'en'
         }
       }
       return config
@@ -29,13 +30,12 @@ const instance = (headers?: Record<string, string>) => {
       return response
     },
     (error) => {
-      if(error.response.status === 401)
-      {
+      if (error.response.status === 401) {
         const url = `https://test-signin.fsoft.com.vn/auth/realms/XOne/protocol/openid-connect/logout?redirect_uri=${baseUrl}Logout`
-      window.open(url, '_self')
-      return Promise.resolve();
+        window.open(url, '_self')
+        return Promise.resolve();
       }
-    return Promise.reject(error);
+      return Promise.reject(error);
       // console.log("<>",error.response)
       // console.log("<>",error)
       // return Promise.reject(error)
@@ -52,6 +52,9 @@ export const apiCall = (
   headers?: Record<string, string>,
   useBody?: boolean
 ): Promise<AxiosResponse<any>> => {
+
+  // console.log(method, url, data, headers);
+
   const config: AxiosRequestConfig = {
     method,
     url,

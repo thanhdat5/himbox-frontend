@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import PasswordControl from "../../../components/password-control";
-import { ROUTES } from "../../../constants";
+import { MESSAGES, ROUTES } from "../../../constants";
 import { signUpRequest } from "../../../redux/actions/signUpActions";
 import { getSignUpLoadingSelector, getSignUpSuccessSelector } from "../../../redux/selectors/signUpSelectors";
+import { validateEmail, validatePwd } from "../../../utils/helpers";
 
 const SignUp = () => {
     const dispatch = useDispatch();
@@ -14,23 +15,37 @@ const SignUp = () => {
     const success = useSelector(getSignUpSuccessSelector);
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [email, setEmail] = useState<string>('tungbt1994@gmail.com');
+    const [password, setPassword] = useState<string>('Abcde12345!');
+    const [confirmPwd, setConfirmPwd] = useState<string>('Abcde12345!');
     const [referralId, setReferralId] = useState<string>('');
-    const [agree, setAgree] = useState<boolean>(false);
+    const [agree, setAgree] = useState<boolean>(true);
+    const [errors, setErrors] = useState<any>(null);
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const postData = { email, password, referralId };
+        await setErrors(null);
+        if (!validateEmail(email)) {
+            setErrors({ email: MESSAGES['EMAIL_INVALID'] });
+            return;
+        }
+        if (!validatePwd(password)) {
+            setErrors({ password: MESSAGES['PASSWORD_FORMAT_INVALID'] });
+            return;
+        }
+        if (password !== confirmPwd) {
+            setErrors({ confirmPwd: MESSAGES['CONFIRM_PASSWORD_INVALID'] });
+            return;
+        }
+        const postData = { email, password, confirmPassword: confirmPwd, referrer: referralId };
         dispatch(signUpRequest(postData));
     }
 
-    useEffect(() => {
-        if (success) {
-            toast.success('Sign Up Successfully!');
-            navigate(ROUTES.LOGIN);
-        }
-    }, [success]);
+    // useEffect(() => {
+    //     if (success) {
+    //         toast.success(MESSAGES.VERIFY_GUIDE);
+    //     }
+    // }, [success]);
 
     return <>
         <div className="hb-auth-form-title">Create an account</div>
@@ -38,11 +53,18 @@ const SignUp = () => {
             <FormGroup className="mb-3">
                 <FormLabel>Your email address</FormLabel>
                 <FormControl value={email} onChange={(e: any) => setEmail(e.target.value)} required type="email" />
+                {errors?.email && <Form.Text className="text-error">{errors?.email}</Form.Text>}
             </FormGroup>
 
             <FormGroup className="mb-3">
                 <FormLabel>Your password</FormLabel>
                 <PasswordControl value={password} onChange={(e: any) => setPassword(e.target.value)} required />
+                {errors?.password && <Form.Text className="text-error">{errors?.password}</Form.Text>}
+            </FormGroup>
+            <FormGroup className="mb-3">
+                <FormLabel>Confirm password</FormLabel>
+                <PasswordControl value={confirmPwd} onChange={(e: any) => setConfirmPwd(e.target.value)} required />
+                {errors?.confirmPwd && <Form.Text className="text-error">{errors?.confirmPwd}</Form.Text>}
             </FormGroup>
 
             <FormGroup className="mb-3">
@@ -51,7 +73,7 @@ const SignUp = () => {
             </FormGroup>
 
             <FormGroup className="mb-4">
-                <Form.Check checked={agree} onChange={(e: any) => setAgree(e.target.checked)} type="checkbox" label="I agree to share data for marketing purposes" />
+                <Form.Check checked={agree} onChange={(e: any) => setAgree(e.target.checked)} type="checkbox" label="I agree to the Terms of Service" />
             </FormGroup>
 
             <Button type="submit" className="w-100" disabled={!agree || loading}>

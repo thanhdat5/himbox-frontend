@@ -13,10 +13,12 @@ export const signUpRequest = (payload: SignUpRequestModel): SignUpRequest => ({
   payload,
 });
 
-export const signUpSuccess = (): SignUpSuccess => ({
+export const signUpSuccess = (payload: any): SignUpSuccess => ({
   type: SIGN_UP_SUCCESS,
+  payload
 });
 
-export const signUpFailure = (): SignUpFailure => ({
+export const signUpFailure = (msg: string = ''): SignUpFailure => ({
   type: SIGN_UP_FAILURE,
+  message: msg
 });

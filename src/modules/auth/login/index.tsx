@@ -3,9 +3,10 @@ import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from "react
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordControl from "../../../components/password-control";
-import { HIMBOX_ACCESS_TOKEN, ROUTES } from "../../../constants";
+import { HIMBOX_ACCESS_TOKEN, MESSAGES, ROUTES } from "../../../constants";
 import { loginRequest } from "../../../redux/actions/loginActions";
 import { getLoginLoadingSelector, getLoginSuccessSelector } from "../../../redux/selectors/loginSelectors";
+import { validateEmail } from "../../../utils/helpers";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -13,13 +14,19 @@ const Login = () => {
     const success = useSelector(getLoginSuccessSelector);
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [email, setEmail] = useState<string>('tungbt1994@gmail.com');
+    const [password, setPassword] = useState<string>('Abcde12345!');
     const [remember, setRemember] = useState<boolean>(true);
+
+    const [errors, setErrors] = useState<any>(null);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const postData = { email, password, remember };
+        if (!validateEmail(email)) {
+            setErrors({ email: MESSAGES['EMAIL_INVALID'] });
+            return;
+        }
+        const postData = { username: email, password };
         dispatch(loginRequest(postData));
     }
 
@@ -36,6 +43,7 @@ const Login = () => {
             <FormGroup className="mb-3">
                 <FormLabel>Your email address</FormLabel>
                 <FormControl value={email} onChange={(e: any) => setEmail(e.target.value)} required type="email" />
+                {errors?.email && <Form.Text className="text-error">{errors?.email}</Form.Text>}
             </FormGroup>
 
             <FormGroup className="mb-3">
@@ -49,7 +57,7 @@ const Login = () => {
                         <Form.Check checked={remember} onChange={(e: any) => setRemember(e.target.checked)} type="checkbox" label="Remember me" />
                     </Col>
                     <Col className="text-end">
-                        <Link to={ROUTES.FORGOT_PASSWORD} className="hb-auth-form-link">Forgot password?</Link>
+                        <Link to={ROUTES.FORGET_PASSWORD} className="hb-auth-form-link">Forgot password?</Link>
                     </Col>
                 </Row>
             </FormGroup>
