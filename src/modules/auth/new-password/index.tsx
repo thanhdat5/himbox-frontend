@@ -18,9 +18,6 @@ import PasswordControl from "../../../components/password-control";
 const NewPassword = (props: any) => {
     const dispatch = useDispatch();
 
-    const payload = get(props, "location.state.forgetPwd", false);
-    console.log('[ayload', payload);
-
     const loading = useSelector(getForgotPasswordLoadingSelector);
     const userInfo = useSelector(getVerifyUserInfo);
 
@@ -31,7 +28,6 @@ const NewPassword = (props: any) => {
     const [confirmPwd, setConfirmPwd] = useState<string>('Abcde12345!');
 
     const [errors, setErrors] = useState<any>(null);
-    const [showResend, setShowResend] = useState<boolean>(false);
 
     useEffect(() => {
         if (!userInfo) {
@@ -79,11 +75,11 @@ const NewPassword = (props: any) => {
                     value={verifyCode}
                     onChange={(e: any) => setVerifyCode(e.target.value)}
                     required
-                    showResend={showResend}
                     handleReset={() => {
                         setVerifyCode('');
                         setErrors(null);
                     }}
+                    isFromResetPwd={true}
                 />
                 {errors?.code && <Form.Text className="text-error">{errors?.code}</Form.Text>}
             </FormGroup>

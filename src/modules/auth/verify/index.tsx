@@ -18,8 +18,6 @@ const VerifyAccount = (props: any) => {
 
     const dispatch = useDispatch();
 
-    const location = useLocation();
-
     const loading = useSelector(getForgotPasswordLoadingSelector);
     const userInfo = useSelector(getVerifyUserInfo);
 
@@ -33,25 +31,6 @@ const VerifyAccount = (props: any) => {
             history.push(ROUTES.LOGIN);
         }
     }, []);
-
-    const handleRequestSendOTP = async () => {
-        try {
-            const data = await apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
-                username: get(userInfo, 'username', '')
-            });
-            ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
-        } catch (e: any) {
-            console.log('eeeee', e);
-            ShowErrorMessage({ message: extractError(e) });
-            navigate(ROUTES.LOGIN);
-        }
-    }
-
-    useEffect(() => {
-        if (get(location, 'state.fromLogin', false)) {
-            handleRequestSendOTP();
-        }
-    }, [location]);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();

@@ -1,4 +1,6 @@
 export const HIMBOX_ACCESS_TOKEN = "HIMBOX_ACCESS_TOKEN";
+export const HIMBOX_REFRESH_TOKEN = "HIMBOX_REFRESH_TOKEN";
+export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
 
 export const BASE_URL = 'http://localhost:6969/api/v1';
 export const ENDPOINTS = {
@@ -11,6 +13,7 @@ export const ENDPOINTS = {
     PROFILE: `${BASE_URL}/user/profile`,
     UPDATE_INFO: `${BASE_URL}/user/profile/update-info`,
     UPLOAD_AVATAR: `${BASE_URL}/user/upload-avatar`,
+    NEW_ACCESS_TOKEN: `${BASE_URL}/user/new-access-token`,
     CHANGE_PASSWORD: `${BASE_URL}/user/profile/change-password`,
     LOGOUT: `${BASE_URL}/user/logout`,
 

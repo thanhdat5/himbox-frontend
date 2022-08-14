@@ -19,9 +19,10 @@ interface VerifyCodeControlProps {
     onChange: any;
     required?: boolean;
     showResend?: boolean;
-    handleReset?: (e: any) => void
+    handleReset?: (e: any) => void;
+    isFromResetPwd?: boolean;
 }
-const VerifyCodeControl = ({ value, onChange, required, showResend, handleReset = () => { } }: VerifyCodeControlProps) => {
+const VerifyCodeControl = ({ value, onChange, required, showResend, isFromResetPwd = false, handleReset = () => { } }: VerifyCodeControlProps) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -48,9 +49,9 @@ const VerifyCodeControl = ({ value, onChange, required, showResend, handleReset 
             ShowSuccessMessage(MESSAGES.OTP_RESEND_OK);
         } catch (e: any) {
             console.log('eeeee', e);
-            // if (get(e, 'response.data.msg', '') === "User account has been verified") {
-            //     navigate(ROUTES.LOGIN);
-            // }
+            if (get(e, 'response.data.msg', '') === "User account has been verified") {
+                navigate(ROUTES.LOGIN);
+            }
             ShowErrorMessage({ message: extractError(e) });
         }
 
@@ -60,7 +61,7 @@ const VerifyCodeControl = ({ value, onChange, required, showResend, handleReset 
         if (completed) {
             return <span></span>
         } else {
-            return <span style={{ cursor: 'pointer', opacity: 0.5 }} onClick={handleResendCode}>
+            return <span style={{ cursor: 'pointer', opacity: 0.5 }}>
                 ({minutes}m:{seconds}s)
             </span>
         }
@@ -77,9 +78,12 @@ const VerifyCodeControl = ({ value, onChange, required, showResend, handleReset 
                 <Countdown onComplete={onComplete} date={timeCd} renderer={rendererCountdown} />
             </span>
             :
-            <span onClick={handleResendCode} className="hb-auth-form-link">
-                Resend
-            </span>
+            !isFromResetPwd ?
+                <span onClick={handleResendCode} className="hb-auth-form-link">
+                    Resend
+                </span>
+                :
+                <span></span>
         }
     </div>
 }

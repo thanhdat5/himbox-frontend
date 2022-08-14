@@ -1,8 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { get } from 'lodash'
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID } from '../../constants'
 
 const instance = (headers?: Record<string, string>) => {
   const returnValue = axios.create()
-  const accessToken: any = sessionStorage.getItem('accessToken')
+  const accessToken: any = localStorage.getItem(HIMBOX_ACCESS_TOKEN)
   const baseUrl = process.env.REACT_APP_API_BACKEND
 
   returnValue.interceptors.request.use(
@@ -26,20 +28,89 @@ const instance = (headers?: Record<string, string>) => {
   returnValue.interceptors.response.use(
     (response) => {
       console.log(response)
-
       return response
     },
-    (error) => {
-      console.log('errrrorr', error);
-      if (error.response.status === 401) {
-        const url = `https://test-signin.fsoft.com.vn/auth/realms/XOne/protocol/openid-connect/logout?redirect_uri=${baseUrl}Logout`
-        window.open(url, '_self')
-        return Promise.resolve();
+    async (error) => {
+      const originalRequest = error.response.config;
+
+      if (!error.response) {
+        localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+        localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+        // localStorage.removeItem(HIMBOX_USER_ID);
+
+        // localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+        // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
+        //   history.replace(ROUTES.LOGIN, { fromBrokenToken: true });
+        // }
+        return Promise.reject(error);
       }
-      return Promise.reject(error);
-      // console.log("<>",error.response)
-      // console.log("<>",error)
-      // return Promise.reject(error)
+
+      // refresh token expired 
+      if (
+        error.response.status === 401 &&
+        originalRequest.url === '/api/v1/user/new-access-token'
+      ) {
+        localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+        localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+        // localStorage.removeItem(HIMBOX_USER_ID);
+        return Promise.reject(error);
+      }
+
+      const accessToken = await localStorage.getItem(HIMBOX_ACCESS_TOKEN);
+
+      if (accessToken && error.response.status === 401 && !originalRequest._retry) {
+
+        originalRequest._retry = true;
+
+        const refreshToken = localStorage.getItem(HIMBOX_REFRESH_TOKEN) || '_';
+        const oldAccessToken = localStorage.getItem(HIMBOX_ACCESS_TOKEN) || '_';
+        const userId = localStorage.getItem(HIMBOX_USER_ID) || '_';
+
+        return axios({
+          method: "POST",
+          url: ENDPOINTS.NEW_ACCESS_TOKEN,
+          headers: {
+            Authorization: `Bear ${oldAccessToken}`,
+          },
+          data: {
+            user_id: userId, refresh_token: refreshToken, old_token: oldAccessToken
+          },
+        })
+          .then(async res => {
+            if (get(res, 'data.data.token.accessToken', '')) {
+              await localStorage.setItem(HIMBOX_ACCESS_TOKEN, get(res, 'data.data.token.accessToken'));
+              await localStorage.setItem(HIMBOX_REFRESH_TOKEN, get(res, 'data.data.refreshToken'));
+              returnValue.defaults.headers.common['Authorization'] = `Bearer ${get(res, 'data.data.token.accessToken')}`;
+              return returnValue(originalRequest);
+            } else {
+              localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+              localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+              localStorage.removeItem(HIMBOX_USER_ID);
+
+              // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
+              //   history.replace(ROUTES.LOGIN, { fromBrokenToken: true });
+              // }
+            }
+          })
+          .catch(err => {
+            // if (get(err, 'response.status', 0) == 499 || get(err, 'response.status', 0) == 500) {
+            //   localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+            //   localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+            //   localStorage.removeItem(LOCAL_STORAGE.ACCOUNT_ID);
+            //   localStorage.removeItem(LOCAL_STORAGE.USER_INFO);
+            //   if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
+            //     history.replace(ROUTES.LOGIN, { fromBrokenToken: true });
+            //   }
+            // }
+            return Promise.reject(err);
+
+          })
+          .finally(() => {
+            return Promise.reject(error);
+          });
+      } else {
+        return Promise.reject(error)
+      };
     }
   )
 

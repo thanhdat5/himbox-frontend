@@ -1,3 +1,4 @@
+import { LOGIN_SUCCESS } from "../types/login";
 import {
   CHANGE_PASSWORD_FAILURE, CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS, ENABLE_2FA_FAILURE, ENABLE_2FA_REQUEST,
@@ -21,19 +22,25 @@ const userReducer = (state = initialState, action: UserActions) => {
       return {
         ...state,
         loading: true,
-        user: null,
+        userInfo: null,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        userInfo: { ...state.userInfo, ...action.payload },
       };
     case GET_USER_INFO_SUCCESS:
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        userInfo: { ...state.userInfo, ...action.payload },
       };
     case GET_USER_INFO_FAILURE:
       return {
         ...state,
         loading: false,
-        user: null,
+        userInfo: null,
       };
 
     case UPDATE_USER_INFO_REQUEST:

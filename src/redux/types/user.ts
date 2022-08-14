@@ -5,6 +5,7 @@ import {
   UserInfoResponseModel,
   UserUpdateInforRequestModel
 } from "../../models";
+import { LOGIN_SUCCESS } from "./login";
 
 export const GET_USER_INFO_REQUEST = "GET_USER_INFO_REQUEST";
 export const GET_USER_INFO_SUCCESS = "GET_USER_INFO_SUCCESS";
@@ -34,6 +35,11 @@ export interface GetUserInfoRequest {
   type: typeof GET_USER_INFO_REQUEST;
   payload: UserInfoRequestModel;
 }
+
+export type LoginSuccess = {
+  type: typeof LOGIN_SUCCESS;
+  payload: any;
+};
 
 export type GetUserInfoSuccess = {
   type: typeof GET_USER_INFO_SUCCESS;
@@ -85,6 +91,7 @@ export type Enable2FAFailure = {
 
 export type UserActions =
   | GetUserInfoRequest
+  | LoginSuccess
   | GetUserInfoSuccess
   | GetUserInfoFailure
   | UpdateUserInfoRequest

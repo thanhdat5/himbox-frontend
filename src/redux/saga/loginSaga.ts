@@ -1,28 +1,51 @@
 import { get } from "lodash";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { ENDPOINTS, ROUTES } from "../../constants";
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, MESSAGES, ROUTES } from "../../constants";
 import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
 import { extractError } from "../../utils/helpers";
 import { history } from "../../utils/history";
 import { loginFailure, loginSuccess } from "../actions/loginActions";
 import { LOGIN_REQUEST } from "../types/login";
+import { VERIFY_REQUEST } from "../types/signUp";
+import { GET_USER_INFO_REQUEST } from "../types/user";
 import { apiCall } from "./api";
 
 function* fetchLoginSaga(action: any): any {
   try {
-    const data = yield call(
+    const res = yield call(
       apiCall,
       "POST",
       ENDPOINTS.LOGIN,
       action.payload
     );
-    yield put(loginSuccess(data));
+    console.log('login data', res);
+    if (res?.data?.code == 407) {
+      yield put({
+        type: VERIFY_REQUEST,
+        payload: { username: action.payload.username, userId: res?.data?.data?.user_id }
+      });
+      ShowErrorMessage({ message: get(res, 'data.msg', '') });
+      // call api resend otp
+      yield apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
+        username: action.payload.username
+      });
+      ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
+      yield put(loginFailure());
+      history.push(ROUTES.VERIFY);
+    } else {
+      // login ok
+      yield localStorage.setItem(HIMBOX_REFRESH_TOKEN, res?.data?.data?.refresh_token);
+      yield localStorage.setItem(HIMBOX_ACCESS_TOKEN, res?.data?.data?.token?.access_token);
+      yield localStorage.setItem(HIMBOX_USER_ID, res?.data?.data?.user_id);
+      yield put({
+        type: GET_USER_INFO_REQUEST
+      });
+      yield put(loginSuccess(res?.data?.data));
+    }
+
   } catch (e: any) {
     console.log('111111111', e)
     yield put(loginFailure());
-    if (get(e, 'response.data.code', 0) == 407) {
-      history.push(ROUTES.VERIFY, { fromLogin: true });
-    }
     ShowErrorMessage({ message: extractError(e) });
   }
 }

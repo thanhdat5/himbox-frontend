@@ -16,7 +16,6 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('tungbt11@gmail.com');
     const [password, setPassword] = useState<string>('Abcde12345!');
-    const [remember, setRemember] = useState<boolean>(true);
 
     const [errors, setErrors] = useState<any>(null);
 
@@ -54,9 +53,9 @@ const Login = () => {
 
             <FormGroup className="mb-4">
                 <Row>
-                    <Col>
+                    {/* <Col>
                         <Form.Check checked={remember} onChange={(e: any) => setRemember(e.target.checked)} type="checkbox" label="Remember me" />
-                    </Col>
+                    </Col> */}
                     <Col className="text-end">
                         <Link to={ROUTES.FORGET_PASSWORD} className="hb-auth-form-link">Forgot password?</Link>
                     </Col>
