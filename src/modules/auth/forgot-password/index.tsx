@@ -1,11 +1,18 @@
+import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import VerifyCodeControl from "../../../components/verify-code-control";
-import { ROUTES } from "../../../constants";
+import { ENDPOINTS, MESSAGES, ROUTES } from "../../../constants";
 import { recoverPasswordRequest } from "../../../redux/actions/forgotPasswordActions";
+import { verifyAccountRequest } from "../../../redux/actions/verifyAccountActions";
+import { apiCall } from "../../../redux/saga/api";
 import { getForgotPasswordLoadingSelector, getForgotPasswordSuccessSelector } from "../../../redux/selectors/forgotPasswordSelectors";
+import { VERIFY_REQUEST } from "../../../redux/types/signUp";
+import { ShowErrorMessage, ShowSuccessMessage } from "../../../services/appService";
+import { extractError, validateEmail } from "../../../utils/helpers";
+import { history } from "../../../utils/history";
 
 const ForgotPassword = () => {
     const dispatch = useDispatch();
@@ -13,13 +20,28 @@ const ForgotPassword = () => {
     const success = useSelector(getForgotPasswordSuccessSelector);
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('');
-    const [verifyCode, setVerifyCode] = useState<string>('');
+    const [email, setEmail] = useState<string>('tungbt2@gmail.com');
+    const [errors, setErrors] = useState<any>(null);
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const postData = { email, verifyCode };
-        dispatch(recoverPasswordRequest(postData));
+        setErrors(null);
+        if (!validateEmail(email)) {
+            setErrors({ email: MESSAGES.EMAIL_INVALID });
+            return;
+        }
+        try {
+            const res = await apiCall('POST', ENDPOINTS.FORGET_PASSWORD, { email });
+            console.log('resss', res);
+            dispatch({
+                type: VERIFY_REQUEST,
+                payload: { userId: get(res, 'data.data.user_id', ''), username: email }
+            });
+            history.push(ROUTES.NEW_PASSWORD);
+            ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
+        } catch (error) {
+            ShowErrorMessage({ message: extractError(error) });
+        }
     }
 
     useEffect(() => {
@@ -34,15 +56,11 @@ const ForgotPassword = () => {
             <FormGroup className="mb-3">
                 <FormLabel>Your email address</FormLabel>
                 <FormControl required value={email} onChange={(e: any) => setEmail(e.target.value)} type="email" />
-            </FormGroup>
-
-            <FormGroup className="mb-4">
-                <FormLabel>Enter veryfication code</FormLabel>
-                <VerifyCodeControl value={verifyCode} onChange={(e: any) => setVerifyCode(e.target.value)} required />
+                {errors?.email && <Form.Text className="text-error">{errors?.email}</Form.Text>}
             </FormGroup>
 
             <Button type="submit" className="w-100" disabled={loading}>
-                <span>Recover</span>
+                <span>Confirm</span>
             </Button>
         </Form>
         <div className="hb-auth-form-note">

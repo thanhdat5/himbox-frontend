@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import VerifyCodeControl from "../../../components/verify-code-control";
 import { ENDPOINTS, MESSAGES, ROUTES } from "../../../constants";
 import { recoverPasswordRequest } from "../../../redux/actions/forgotPasswordActions";
@@ -12,19 +12,24 @@ import { verifyAccountRequest } from "../../../redux/actions/verifyAccountAction
 import { get } from "lodash";
 import { ShowErrorMessage, ShowSuccessMessage } from "../../../services/appService";
 import { apiCall } from "../../../redux/saga/api";
-import { extractError } from "../../../utils/helpers";
+import { extractError, validatePwd } from "../../../utils/helpers";
+import PasswordControl from "../../../components/password-control";
 
-const VerifyAccount = (props: any) => {
-
+const NewPassword = (props: any) => {
     const dispatch = useDispatch();
 
-    const location = useLocation();
+    const payload = get(props, "location.state.forgetPwd", false);
+    console.log('[ayload', payload);
 
     const loading = useSelector(getForgotPasswordLoadingSelector);
     const userInfo = useSelector(getVerifyUserInfo);
 
     const navigate = useNavigate();
+
     const [verifyCode, setVerifyCode] = useState<string>('');
+    const [password, setPassword] = useState<string>('Abcde12345!');
+    const [confirmPwd, setConfirmPwd] = useState<string>('Abcde12345!');
+
     const [errors, setErrors] = useState<any>(null);
     const [showResend, setShowResend] = useState<boolean>(false);
 
@@ -34,25 +39,6 @@ const VerifyAccount = (props: any) => {
         }
     }, []);
 
-    const handleRequestSendOTP = async () => {
-        try {
-            const data = await apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
-                username: get(userInfo, 'username', '')
-            });
-            ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
-        } catch (e: any) {
-            console.log('eeeee', e);
-            ShowErrorMessage({ message: extractError(e) });
-            navigate(ROUTES.LOGIN);
-        }
-    }
-
-    useEffect(() => {
-        if (get(location, 'state.fromLogin', false)) {
-            handleRequestSendOTP();
-        }
-    }, [location]);
-
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setErrors(null);
@@ -60,20 +46,26 @@ const VerifyAccount = (props: any) => {
             setErrors({ code: MESSAGES.OTP_LENGTH_ERROR });
             return;
         }
+        if (!validatePwd(password)) {
+            setErrors({ password: MESSAGES['PASSWORD_FORMAT_INVALID'] });
+            return;
+        }
+        if (password !== confirmPwd) {
+            setErrors({ confirmPwd: MESSAGES['CONFIRM_PASSWORD_INVALID'] });
+            return;
+        }
         try {
-            const res = await apiCall('POST', ENDPOINTS.VERIFY_ACCOUNT, {
-                username: get(userInfo, 'username', ''), user_id: get(userInfo, 'userId', ''), numberVerify: verifyCode
+            const res = await apiCall('POST', ENDPOINTS.CONFIRM_FORGET_PASSWORD, {
+                user_id: get(userInfo, 'userId', ''), 
+                numberVerify: verifyCode,
+                password,
+                confirmPassword: confirmPwd
             });
             console.log('ressss', res);
-            ShowSuccessMessage(MESSAGES.REGISTER_SUCCESS);
+            ShowSuccessMessage(MESSAGES.RESET_PWD_SUCCESS);
             navigate(ROUTES.LOGIN);
         } catch (error) {
             console.log('errrrpr', error);
-            if (get(error, 'response.data.msg', '') === "The verification number is expired") {
-                setShowResend(true);
-            } else if (get(error, 'response.data.msg', '') === "User account has been verified") {
-                navigate(ROUTES.LOGIN);
-            }
             ShowErrorMessage({ message: extractError(error) });
         }
     }
@@ -81,7 +73,7 @@ const VerifyAccount = (props: any) => {
     return <>
         <div className="hb-auth-form-title">Forgot Password</div>
         <Form onSubmit={handleSubmit}>
-            <FormGroup className="mb-4">
+            <FormGroup className="mb-3">
                 <FormLabel>Enter verification code</FormLabel>
                 <VerifyCodeControl
                     value={verifyCode}
@@ -95,6 +87,16 @@ const VerifyAccount = (props: any) => {
                 />
                 {errors?.code && <Form.Text className="text-error">{errors?.code}</Form.Text>}
             </FormGroup>
+            <FormGroup className="mb-3">
+                <FormLabel>Your password</FormLabel>
+                <PasswordControl value={password} onChange={(e: any) => setPassword(e.target.value)} required />
+                {errors?.password && <Form.Text className="text-error">{errors?.password}</Form.Text>}
+            </FormGroup>
+            <FormGroup className="mb-4">
+                <FormLabel>Confirm password</FormLabel>
+                <PasswordControl value={confirmPwd} onChange={(e: any) => setConfirmPwd(e.target.value)} required />
+                {errors?.confirmPwd && <Form.Text className="text-error">{errors?.confirmPwd}</Form.Text>}
+            </FormGroup>
 
             <Button type="submit" className="w-100" disabled={loading}>
                 <span>Verify</span>
@@ -105,4 +107,4 @@ const VerifyAccount = (props: any) => {
         </div>
     </>
 }
-export default VerifyAccount
+export default NewPassword

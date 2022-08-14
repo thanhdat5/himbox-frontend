@@ -14,7 +14,7 @@ const Login = () => {
     const success = useSelector(getLoginSuccessSelector);
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('tungbt1994@gmail.com');
+    const [email, setEmail] = useState<string>('tungbt11@gmail.com');
     const [password, setPassword] = useState<string>('Abcde12345!');
     const [remember, setRemember] = useState<boolean>(true);
 
@@ -22,6 +22,7 @@ const Login = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        setErrors(null);
         if (!validateEmail(email)) {
             setErrors({ email: MESSAGES['EMAIL_INVALID'] });
             return;

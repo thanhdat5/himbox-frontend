@@ -30,6 +30,7 @@ const instance = (headers?: Record<string, string>) => {
       return response
     },
     (error) => {
+      console.log('errrrorr', error);
       if (error.response.status === 401) {
         const url = `https://test-signin.fsoft.com.vn/auth/realms/XOne/protocol/openid-connect/logout?redirect_uri=${baseUrl}Logout`
         window.open(url, '_self')

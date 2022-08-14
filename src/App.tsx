@@ -13,6 +13,7 @@ import { PrivateRoute } from "./routes/private-route";
 
 import './App.css';
 import VerifyAccount from "./modules/auth/verify";
+import NewPassword from "./modules/auth/new-password";
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTES.VERIFY} element={<VerifyAccount />} />
         <Route path={ROUTES.FORGET_PASSWORD} element={<ForgotPassword />} />
+        <Route path={ROUTES.NEW_PASSWORD} element={<NewPassword />} />
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path={'/'} element={<Dashboard />} />

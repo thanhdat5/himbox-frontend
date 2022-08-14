@@ -28,6 +28,7 @@ export const ROUTES = {
     LOGIN: '/auth/login',
     SIGN_UP: '/auth/sign-up',
     FORGET_PASSWORD: '/auth/forgot-password',
+    NEW_PASSWORD: '/auth/new-password',
     VERIFY: '/auth/verify',
     DASHBOARD: '/dashboard',
     NETWORK: '/network',
@@ -59,7 +60,7 @@ export const MESSAGES = {
     "PERMISSION_DENIED": "Permission denied",
     "BLOCKED": "Your account was blocked! Please contact Admin for more information",
     "WAITING_VERIFICATION": "User account must be verified.",
-    "EMAIL_INVALID": "Your email is invalid. You must use a valid one to register",
+    "EMAIL_INVALID": "Your email is invalid.",
     "EMAIL_IN_USE": "Email is in use",
     "USERNAME_IN_USE": "Username is in use",
     "CONFIRM_PASSWORD_INVALID": "Confirm password is incorrect",
@@ -289,6 +290,9 @@ export const MESSAGES = {
     "BRACKET__MAX_GROUP_IS_8": "Maximum Groups allowed: 8",
     "REFERRER_NOT_FOUND": "Referrer not exist",
     "UNKNOWN_ERROR": "Oops! Something wrong happened",
-    "VERIFY_GUIDE": 'To finish creating your account, enter the verification code we sent you in the email. (Please check in Spam, Promotion or Important part for sure)',
-    "REGISTER_SUCCESS": 'Register successfully!'
+    "VERIFY_GUIDE": 'Enter the verification code we sent you in the email. (Please check in Spam, Promotion or Important part for sure)',
+    "REGISTER_SUCCESS": 'Register successfully!',
+    "OTP_LENGTH_ERROR": 'Verification code must have length of 6',
+    "OTP_RESEND_OK": 'Resend verification code successfully',
+    "RESET_PWD_SUCCESS": 'Reset password successfully!'
 };
