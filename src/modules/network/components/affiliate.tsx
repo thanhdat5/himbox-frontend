@@ -10,9 +10,8 @@ const HBNetworkAffiliate = () => {
     const [ref, setRef] = useState<string>('');
 
     useEffect(() => {
-        console.log('111111', refId);
         if (refId) {
-            setRef(`http://localhost:3000/auth/sign-up?ref=${refId}`);
+            setRef(`https://himbox.io/auth/sign-up?ref=${refId}`);
         }
     }, [refId]);
 
@@ -23,7 +22,7 @@ const HBNetworkAffiliate = () => {
     return <>
         <HBSectionTitle title="Affiliate" />
         <div className="hb-network-sharing-card">
-            <p>Share your affiliate link to invite more partners to join Centbox and gain
+            <p>Share your affiliate link to invite more partners to join HimBOX and gain
                 more
                 profits. Follow to see how your network gets bigger!</p>
             <div className="hb-network-sharing-url">
