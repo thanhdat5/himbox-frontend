@@ -23,6 +23,8 @@ export const ENABLE_2FA_REQUEST = "ENABLE_2FA_REQUEST";
 export const ENABLE_2FA_SUCCESS = "ENABLE_2FA_SUCCESS";
 export const ENABLE_2FA_FAILURE = "ENABLE_2FA_FAILURE";
 
+export const LOG_OUT = "LOG_OUT";
+
 export interface UserState {
   loading: boolean;
   updateInfoSuccess: boolean;
@@ -89,6 +91,11 @@ export type Enable2FAFailure = {
   type: typeof ENABLE_2FA_FAILURE;
 };
 
+export type Logout = {
+  type: typeof LOG_OUT;
+  payload: any;
+};
+
 export type UserActions =
   | GetUserInfoRequest
   | LoginSuccess
@@ -102,4 +109,5 @@ export type UserActions =
   | ChangePasswordFailure
   | Enable2FARequest
   | Enable2FASuccess
+  | Logout
   | Enable2FAFailure;

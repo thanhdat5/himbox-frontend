@@ -3,7 +3,7 @@ import {
   CHANGE_PASSWORD_FAILURE, CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS, ENABLE_2FA_FAILURE, ENABLE_2FA_REQUEST,
   ENABLE_2FA_SUCCESS, GET_USER_INFO_FAILURE, GET_USER_INFO_REQUEST,
-  GET_USER_INFO_SUCCESS, UPDATE_USER_INFO_FAILURE, UPDATE_USER_INFO_REQUEST,
+  GET_USER_INFO_SUCCESS, LOG_OUT, UPDATE_USER_INFO_FAILURE, UPDATE_USER_INFO_REQUEST,
   UPDATE_USER_INFO_SUCCESS, UserActions,
   UserState
 } from "../types/user";
@@ -99,6 +99,8 @@ const userReducer = (state = initialState, action: UserActions) => {
         loading: false,
         enable2FASuccess: false,
       };
+    case LOG_OUT:
+      return initialState;
     default:
       return {
         ...state,

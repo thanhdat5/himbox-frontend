@@ -78,8 +78,7 @@ const instance = (headers?: Record<string, string>) => {
         })
           .then(async res => {
             if (get(res, 'data.data.token.accessToken', '')) {
-              await localStorage.setItem(HIMBOX_ACCESS_TOKEN, get(res, 'data.data.token.accessToken'));
-              await localStorage.setItem(HIMBOX_REFRESH_TOKEN, get(res, 'data.data.refreshToken'));
+              await localStorage.setItem(HIMBOX_ACCESS_TOKEN, get(res, 'data.data.token.refresh_token'));
               returnValue.defaults.headers.common['Authorization'] = `Bearer ${get(res, 'data.data.token.accessToken')}`;
               return returnValue(originalRequest);
             } else {

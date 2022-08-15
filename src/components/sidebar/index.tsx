@@ -1,7 +1,10 @@
 import { useEffect } from "react"
 import { Button, Image } from "react-bootstrap"
+import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
-import { HIMBOX_ACCESS_TOKEN, ROUTES } from "../../constants"
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, ROUTES } from "../../constants"
+import { apiCall } from "../../redux/saga/api"
+import { LOG_OUT } from "../../redux/types/user"
 import HBSidebarFooter from "./footer"
 import HBSidebarItem from "./item"
 
@@ -10,13 +13,32 @@ interface HBSidebarProps {
     show: boolean;
 }
 const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
+
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleLogout = (e: any) => {
+    const handleLogout = async (e: any) => {
         e.preventDefault();
-        localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
-        navigate(ROUTES.LOGIN);
+
+        try {
+            const accessToken = await localStorage.getItem(HIMBOX_ACCESS_TOKEN);
+            const res = await apiCall('POST', ENDPOINTS.LOGOUT, {
+                token: accessToken
+            });
+            console.log('res', res);
+            localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+            localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+            localStorage.removeItem(HIMBOX_USER_ID);
+            navigate(ROUTES.LOGIN);
+        } catch (error) {
+            localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+            localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+            localStorage.removeItem(HIMBOX_USER_ID);
+            navigate(ROUTES.LOGIN);
+        }
+        dispatch({ type: LOG_OUT });
     }
 
     useEffect(() => {
