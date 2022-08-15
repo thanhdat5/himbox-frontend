@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { ENDPOINTS } from "../../constants";
 import { ShowErrorMessage } from "../../services/appService";
 import {
   getDashboardLevelsFailure,
@@ -24,10 +25,10 @@ function* fetchDashboardStatisticsSaga(action: any) {
     const res: AxiosResponse<any> = yield call(
       apiCall,
       "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
+      ENDPOINTS.DASHBOARD_INFO
     );
-    yield put(getDashboardStatisticsSuccess(res.data));
+    console.log('fetchDashboardStatisticsSaga', res);
+    yield put(getDashboardStatisticsSuccess(res.data.data));
   } catch (e: any) {
     yield put(getDashboardStatisticsFailure());
     ShowErrorMessage(e);

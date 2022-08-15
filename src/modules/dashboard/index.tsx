@@ -1,6 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import { Col, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import HBCard from "../../components/card";
 import HBPageWrap from "../../components/page-wrap";
+import { GET_DASHBOARD_STATISTICS_REQUEST } from '../../redux/types/dashboard';
 import HBDashboardBlock from "./components/block";
 import HBDashboardLeadership from "./components/leadership";
 import HBDashboardLevels from "./components/levels";
@@ -8,6 +11,9 @@ import HBDashboardStatistics from "./components/statistics";
 import HBDashboardTransactions from "./components/transactions";
 
 const Dashboard = () => {
+
+    const dispatch = useDispatch();
+
     return <HBPageWrap className="hb-dashboard">
         <HBDashboardStatistics />
         <Row>

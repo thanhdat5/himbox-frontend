@@ -30,12 +30,12 @@ const Login = () => {
         dispatch(loginRequest(postData));
     }
 
-    useEffect(() => {
-        if (success) {
-            localStorage.setItem(HIMBOX_ACCESS_TOKEN, 'logged');
-            navigate(ROUTES.DASHBOARD);
-        }
-    }, [success]);
+    // useEffect(() => {
+    //     if (success) {
+    //         localStorage.setItem(HIMBOX_ACCESS_TOKEN, 'logged');
+    //         navigate(ROUTES.DASHBOARD);
+    //     }
+    // }, [success]);
 
     return <>
         <div className="hb-auth-form-title">Login</div>

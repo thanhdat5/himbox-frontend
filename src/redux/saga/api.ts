@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { get } from 'lodash'
-import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID } from '../../constants'
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, ROUTES } from '../../constants'
+import { history } from '../../utils/history'
 
 const instance = (headers?: Record<string, string>) => {
-  const returnValue = axios.create()
+  let returnValue = axios.create()
   const accessToken: any = localStorage.getItem(HIMBOX_ACCESS_TOKEN)
   const baseUrl = process.env.REACT_APP_API_BACKEND
 
@@ -27,7 +28,6 @@ const instance = (headers?: Record<string, string>) => {
   )
   returnValue.interceptors.response.use(
     (response) => {
-      console.log(response)
       return response
     },
     async (error) => {
@@ -52,7 +52,8 @@ const instance = (headers?: Record<string, string>) => {
       ) {
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
-        // localStorage.removeItem(HIMBOX_USER_ID);
+        localStorage.removeItem(HIMBOX_USER_ID);
+        history.push(ROUTES.LOGIN);
         return Promise.reject(error);
       }
 
@@ -77,14 +78,18 @@ const instance = (headers?: Record<string, string>) => {
           },
         })
           .then(async res => {
-            if (get(res, 'data.data.token.accessToken', '')) {
-              await localStorage.setItem(HIMBOX_ACCESS_TOKEN, get(res, 'data.data.token.refresh_token'));
-              returnValue.defaults.headers.common['Authorization'] = `Bearer ${get(res, 'data.data.token.accessToken')}`;
+            console.log('resssssss', res);
+            if (get(res, 'data.code', 0) === 200) {
+              await localStorage.setItem(HIMBOX_ACCESS_TOKEN, get(res, 'data.data.token.access_token'));
+              await localStorage.setItem(HIMBOX_REFRESH_TOKEN, get(res, 'data.data.refresh_token'));
+              returnValue.defaults.headers.common['Authorization'] = `Bearer ${get(res, 'data.data.token.access_token')}`;
+              console.log('return values', returnValue);
               return returnValue(originalRequest);
             } else {
               localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
               localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
               localStorage.removeItem(HIMBOX_USER_ID);
+              history.push(ROUTES.LOGIN);
 
               // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
               //   history.replace(ROUTES.LOGIN, { fromBrokenToken: true });

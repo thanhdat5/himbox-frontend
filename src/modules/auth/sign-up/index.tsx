@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import PasswordControl from "../../../components/password-control";
 import { MESSAGES, ROUTES } from "../../../constants";
@@ -14,6 +14,8 @@ const SignUp = () => {
     const loading = useSelector(getSignUpLoadingSelector);
     const success = useSelector(getSignUpSuccessSelector);
 
+    const location = useLocation();
+
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>('tungbt1994@gmail.com');
     const [password, setPassword] = useState<string>('Abcde12345!');
@@ -21,6 +23,16 @@ const SignUp = () => {
     const [referralId, setReferralId] = useState<string>('');
     const [agree, setAgree] = useState<boolean>(true);
     const [errors, setErrors] = useState<any>(null);
+
+    useEffect(() => {
+        if (location.search && location.search.includes('=')) {
+            console.log('location.sea', location.search);
+            const temp = location.search.split('=');
+            if (temp.length == 2) {
+                setReferralId(temp[1]);
+            }
+        }
+    }, [location.search]);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();

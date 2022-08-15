@@ -1,10 +1,23 @@
+import { get } from "lodash";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import HBSectionTitle from "../../../components/sectrion-title";
 
 const HBNetworkAffiliate = () => {
-    const link = "https://himbox.io/sign-up?ref=a1v0S1KH";
+
+    const refId: string = useSelector(state => get(state, 'dashboard.statistics[0].ref_id', ''));
+
+    const [ref, setRef] = useState<string>('');
+
+    useEffect(() => {
+        console.log('111111', refId);
+        if (refId) {
+            setRef(`http://localhost:3000/auth/sign-up?ref=${refId}`);
+        }
+    }, [refId]);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(link);
+        navigator.clipboard.writeText(ref);
     }
 
     return <>
@@ -14,7 +27,7 @@ const HBNetworkAffiliate = () => {
                 more
                 profits. Follow to see how your network gets bigger!</p>
             <div className="hb-network-sharing-url">
-                <input value={link} readOnly />
+                <input value={ref} readOnly />
                 <button type="button" onClick={handleCopy}>
                     <svg width="24px" height="24px" viewBox="0 0 24 24"
                         id="magicoon-Regular" xmlns="http://www.w3.org/2000/svg">

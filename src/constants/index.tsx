@@ -2,7 +2,7 @@ export const HIMBOX_ACCESS_TOKEN = "HIMBOX_ACCESS_TOKEN";
 export const HIMBOX_REFRESH_TOKEN = "HIMBOX_REFRESH_TOKEN";
 export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
 
-export const BASE_URL = 'http://34.142.200.249:6969/api/v1';//'http://localhost:6969/api/v1';
+export const BASE_URL = 'http://localhost:6969/api/v1';
 export const ENDPOINTS = {
     LOGIN: `${BASE_URL}/user/login`,
     SIGN_UP: `${BASE_URL}/user/register`,
@@ -22,7 +22,7 @@ export const ENDPOINTS = {
     TFA_ACTIVE: `${BASE_URL}/tfa/active`,
     TFA_DEACTIVE: `${BASE_URL}/tfa/deactive`,
 
-    DASHBOARD: '/dashboard',
+    DASHBOARD_INFO: `${BASE_URL}/dashboard/infos`,
     NETWORK: '/network',
     PACKAGE: '/package',
 }

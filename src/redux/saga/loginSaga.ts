@@ -41,6 +41,7 @@ function* fetchLoginSaga(action: any): any {
         type: GET_USER_INFO_REQUEST
       });
       yield put(loginSuccess(res?.data?.data));
+      history.push(ROUTES.DASHBOARD);
     }
 
   } catch (e: any) {

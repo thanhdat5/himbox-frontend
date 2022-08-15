@@ -19,7 +19,7 @@ const HBDashboardLeadership = () => {
     // Todo
     useEffect(() => {
         const userId = getCurrentUserId();
-        dispatch(getDashboardRanksRequest({ userId }))
+        // dispatch(getDashboardRanksRequest({ userId }))
     }, [])
 
     return <div className="hb-leadership">
