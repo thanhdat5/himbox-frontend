@@ -4,9 +4,7 @@ import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
 import HBPackageCard from "../../../components/package-card";
 import ParticipateModal from "../../../components/participate-modal";
-import { PackageByProfitResponseModel } from "../../../models";
 import { getPackagesByProfitRequest } from "../../../redux/actions/packageActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBPackageList = () => {
     const dispatch = useDispatch();
@@ -27,8 +25,7 @@ const HBPackageList = () => {
     }, [profit])
 
     const getPackagesByProfit = (profitValue: number) => {
-        const userId = getCurrentUserId();
-        dispatch(getPackagesByProfitRequest({ userId, profit: profitValue }))
+        dispatch(getPackagesByProfitRequest({ profit: profitValue }))
     }
     const [showParticipate, setShowParticipate] = useState(false);
 

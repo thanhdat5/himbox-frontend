@@ -1,6 +1,5 @@
 import {
   NotificationMarkRequestModel,
-  NotificationRequestModel,
   NotificationResponseModel
 } from "../../models";
 
@@ -23,7 +22,6 @@ export interface NotificationsState {
 
 export interface GetNotificationsRequest {
   type: typeof GET_NOTIFICATIONS_REQUEST;
-  payload: NotificationRequestModel;
 }
 
 export type GetNotificationsSuccess = {

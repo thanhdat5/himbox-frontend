@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import HBRankCard from "../../../components/rank-card";
 import { DashboardRanksResponseModel } from "../../../models";
-import { getDashboardRanksRequest } from "../../../redux/actions/dashboardActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardLeadership = () => {
     const RANKS = [
@@ -18,8 +16,7 @@ const HBDashboardLeadership = () => {
     const [ranks, setRanks] = useState<DashboardRanksResponseModel[]>([]);
     // Todo
     useEffect(() => {
-        const userId = getCurrentUserId();
-        // dispatch(getDashboardRanksRequest({ userId }))
+        // dispatch(getDashboardRanksRequest())
     }, [])
 
     return <div className="hb-leadership">

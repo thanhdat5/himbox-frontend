@@ -1,7 +1,6 @@
 import {
   NetworkMembersByLevelRequestModel,
   NetworkMembersByLevelResponseModel,
-  NetworkStatisticsRequestModel,
   NetworkStatisticsResponseModel
 } from "../../models";
 
@@ -20,11 +19,8 @@ import {
   GET_NETWORK_STATISTICS_SUCCESS
 } from "../types/network";
 
-export const getNetworkStatisticsRequest = (
-  payload: NetworkStatisticsRequestModel
-): GetNetworkStatisticsRequest => ({
+export const getNetworkStatisticsRequest = (): GetNetworkStatisticsRequest => ({
   type: GET_NETWORK_STATISTICS_REQUEST,
-  payload,
 });
 
 export const getNetworkStatisticsSuccess = (

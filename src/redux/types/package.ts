@@ -2,7 +2,6 @@ import {
   ConfirmParticipateRequestModel,
   PackageByProfitRequestModel,
   PackageByProfitResponseModel,
-  PackageStatisticsRequestModel,
   PackageStatisticsResponseModel
 } from "../../models";
 
@@ -27,7 +26,6 @@ export interface PackageState {
 
 export interface GetPackageStatisticsRequest {
   type: typeof GET_PACKAGE_STATISTICS_REQUEST;
-  payload: PackageStatisticsRequestModel;
 }
 
 export type GetPackageStatisticsSuccess = {

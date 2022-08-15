@@ -1,5 +1,5 @@
 import {
-  DashboardLevelsRequestModel, DashboardLevelsResponseModel, DashboardRanksRequestModel, DashboardRanksResponseModel, DashboardStatisticsRequestModel, DashboardStatisticsResponseModel, DepositTransactionsRequestModel, DepositTransactionsResponseModel, DowngradeTransactionsRequestModel, DowngradeTransactionsResponseModel, ProfitTransactionsRequestModel, ProfitTransactionsResponseModel, UpgradeTransactionsRequestModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsRequestModel, WithdrawalTransactionsResponseModel
+  DashboardLevelsResponseModel, DashboardRanksResponseModel, DashboardStatisticsResponseModel, DepositTransactionsResponseModel, DowngradeTransactionsResponseModel, ProfitTransactionsResponseModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsResponseModel
 } from "../../models";
 
 export const GET_DASHBOARD_STATISTICS_REQUEST =
@@ -69,7 +69,6 @@ export interface DashboardState {
 
 export interface GetDashboardStatisticsRequest {
   type: typeof GET_DASHBOARD_STATISTICS_REQUEST;
-  payload: DashboardStatisticsRequestModel;
 }
 
 export type GetDashboardStatisticsSuccess = {
@@ -83,7 +82,6 @@ export type GetDashboardStatisticsFailure = {
 
 export interface GetDashboardLevelsRequest {
   type: typeof GET_DASHBOARD_LEVELS_REQUEST;
-  payload: DashboardLevelsRequestModel;
 }
 
 export type GetDashboardLevelsSuccess = {
@@ -97,7 +95,6 @@ export type GetDashboardLevelsFailure = {
 
 export interface GetDashboardRanksRequest {
   type: typeof GET_DASHBOARD_RANKS_REQUEST;
-  payload: DashboardRanksRequestModel;
 }
 
 export type GetDashboardRanksSuccess = {
@@ -111,7 +108,6 @@ export type GetDashboardRanksFailure = {
 
 export interface GetDepositTransactionsRequest {
   type: typeof GET_DEPOSIT_TRANSACTIONS_REQUEST;
-  payload: DepositTransactionsRequestModel;
 }
 
 export type GetDepositTransactionsSuccess = {
@@ -125,7 +121,6 @@ export type GetDepositTransactionsFailure = {
 
 export interface GetUpgradeTransactionsRequest {
   type: typeof GET_UPGRADE_TRANSACTIONS_REQUEST;
-  payload: UpgradeTransactionsRequestModel;
 }
 
 export type GetUpgradeTransactionsSuccess = {
@@ -139,7 +134,6 @@ export type GetUpgradeTransactionsFailure = {
 
 export interface GetWithdrawalTransactionsRequest {
   type: typeof GET_WITHDRAWAL_TRANSACTIONS_REQUEST;
-  payload: WithdrawalTransactionsRequestModel;
 }
 
 export type GetWithdrawalTransactionsSuccess = {
@@ -153,7 +147,6 @@ export type GetWithdrawalTransactionsFailure = {
 
 export interface GetDowngradeTransactionsRequest {
   type: typeof GET_DOWNGRADE_TRANSACTIONS_REQUEST;
-  payload: DowngradeTransactionsRequestModel;
 }
 
 export type GetDowngradeTransactionsSuccess = {
@@ -167,7 +160,6 @@ export type GetDowngradeTransactionsFailure = {
 
 export interface GetProfitTransactionsRequest {
   type: typeof GET_PROFIT_TRANSACTIONS_REQUEST;
-  payload: ProfitTransactionsRequestModel;
 }
 
 export type GetProfitTransactionsSuccess = {

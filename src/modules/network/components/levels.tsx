@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NetworkMembersByLevelResponseModel } from "../../../models";
-import { getCurrentUserId } from "../../../services/appService";
 import { getMembersByLevelRequest } from "../../../redux/actions/networkActions";
 
 const HBNetworkLevels = () => {
@@ -11,8 +10,7 @@ const HBNetworkLevels = () => {
     // Todo
     useEffect(() => {
         if (level) {
-            const userId = getCurrentUserId();
-            dispatch(getMembersByLevelRequest({ userId, level }))
+            dispatch(getMembersByLevelRequest({ level }))
         }
     }, [level])
 

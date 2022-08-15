@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { Button, Form, FormGroup, FormLabel } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
 import PasswordControl from "../../../components/password-control";
 import { changePasswordRequest } from "../../../redux/actions/userActions";
-import { getCurrentUserId } from "../../../services/appService";
+import { getUserLoadingSelector } from "../../../redux/selectors/userSelectors";
 
 const HBProfileChangePassword = () => {
     const dispatch = useDispatch();
-    const [currentPassword, setCurrentPassword] = useState<string>('');
+    const loading = useSelector(getUserLoadingSelector);
+    const [oldPassword, setOldPassword] = useState<string>('');
     const [newPassword, setNewPassword] = useState<string>('');
-    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        if (currentPassword === newPassword) {
-            const userId = getCurrentUserId();
-            const postData = { userId, currentPassword, newPassword };
+        if (oldPassword === newPassword) {
+            const postData = { oldPassword, newPassword, confirmNewPassword };
             dispatch(changePasswordRequest(postData));
         } else {
             // show error message
@@ -27,7 +28,7 @@ const HBProfileChangePassword = () => {
         <Form onSubmit={handleSubmit}>
             <FormGroup className="mb-3">
                 <FormLabel>Current Password</FormLabel>
-                <PasswordControl required value={currentPassword} onChange={(e: any) => setCurrentPassword(e.target.value)} />
+                <PasswordControl required value={oldPassword} onChange={(e: any) => setOldPassword(e.target.value)} />
             </FormGroup>
 
             <FormGroup className="mb-3">
@@ -37,10 +38,10 @@ const HBProfileChangePassword = () => {
 
             <FormGroup className="mb-4">
                 <FormLabel>Confirm Password</FormLabel>
-                <PasswordControl required value={confirmPassword} onChange={(e: any) => setConfirmPassword(e.target.value)} />
+                <PasswordControl required value={confirmNewPassword} onChange={(e: any) => setConfirmNewPassword(e.target.value)} />
             </FormGroup>
 
-            <Button type="submit">
+            <Button type="submit" disabled={loading}>
                 <span>Change password</span>
             </Button>
         </Form>

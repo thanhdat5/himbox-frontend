@@ -3,7 +3,6 @@ import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap
 import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
 import { updateUserInfoRequest } from "../../../redux/actions/userActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBProfileInfo = () => {
     const dispatch = useDispatch();
@@ -12,8 +11,7 @@ const HBProfileInfo = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const userId = getCurrentUserId();
-        const postData = {userId, email, walletAddress };
+        const postData = {email, walletAddress };
         dispatch(updateUserInfoRequest(postData));
     }
 

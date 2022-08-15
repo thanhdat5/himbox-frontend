@@ -3,7 +3,6 @@ import { Tab, Table, Tabs } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { DepositTransactionsResponseModel, DowngradeTransactionsResponseModel, ProfitTransactionsResponseModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
 import { getDepositTransactionsRequest, getDowngradeTransactionsRequest, getProfitTransactionsRequest, getUpgradeTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardTransactions = () => {
     const TRANSACTIONS = [
@@ -19,22 +18,21 @@ const HBDashboardTransactions = () => {
     const [withdrawalTransactions, setWithdrawalTransactions] = useState<WithdrawalTransactionsResponseModel[]>([]);
     const [downgradeTransactions, setDowngradeTransactions] = useState<DowngradeTransactionsResponseModel[]>([]);
     const [profitTransactions, setProfitTransactions] = useState<ProfitTransactionsResponseModel[]>([]);
-    const userId = getCurrentUserId();
     // Todo
     const getDepositTransactions = () => {
-        dispatch(getDepositTransactionsRequest({ userId }))
+        dispatch(getDepositTransactionsRequest())
     }
     const getUpgradeTransactions = () => {
-        dispatch(getUpgradeTransactionsRequest({ userId }))
+        dispatch(getUpgradeTransactionsRequest())
     }
     const getWithdrawalTransactions = () => {
-        dispatch(getWithdrawalTransactionsRequest({ userId }))
+        dispatch(getWithdrawalTransactionsRequest())
     }
     const getDowngradeTransactions = () => {
-        dispatch(getDowngradeTransactionsRequest({ userId }))
+        dispatch(getDowngradeTransactionsRequest())
     }
     const getProfitTransactions = () => {
-        dispatch(getProfitTransactionsRequest({ userId }))
+        dispatch(getProfitTransactionsRequest())
     }
 
     const handleTabChange = (e: any) => {

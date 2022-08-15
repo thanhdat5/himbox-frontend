@@ -1,6 +1,4 @@
-import { IRequest } from "./IRequest";
-
-export interface WithdrawRequestModel extends IRequest {
+export interface WithdrawRequestModel {
   amount: number;
   toAddress: string;
   password: string;

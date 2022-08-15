@@ -4,15 +4,13 @@ import { useDispatch } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
 import { PackageStatisticsResponseModel } from "../../../models";
 import { getPackageStatisticsRequest } from "../../../redux/actions/packageActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBPackageStatistics = () => {
     const dispatch = useDispatch();
     const [statistics, setStatistics] = useState<PackageStatisticsResponseModel | null>(null);
     // Todo
     useEffect(() => {
-        const userId = getCurrentUserId();
-        dispatch(getPackageStatisticsRequest({ userId }))
+        dispatch(getPackageStatisticsRequest())
     }, [])
 
     return <div className="hb-network-statistics">

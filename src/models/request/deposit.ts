@@ -1,6 +1,4 @@
-import { IRequest } from "./IRequest";
-
-export interface DepositRequestModel extends IRequest {
+export interface DepositRequestModel {
   amount: number;
   referralId?: string;
   password: string;

@@ -1,15 +1,14 @@
-import { IRequest } from "./IRequest";
-
-export interface UserInfoRequestModel extends IRequest {}
-export interface UserUpdateInforRequestModel extends IRequest {
+export interface UserInfoRequestModel {}
+export interface UserUpdateInforRequestModel {
   walletAddress: string;
   email: string;
 }
-export interface UserChangePasswordRequestModel extends IRequest {
-  currentPassword: string;
+export interface UserChangePasswordRequestModel{
+  oldPassword: string;
   newPassword: string;
+  confirmNewPassword: string;
 }
-export interface UserEnable2FARequestModel extends IRequest {
+export interface UserEnable2FARequestModel{
   enable2FA: boolean;
   productKey: string;
   verifyCode: string;

@@ -1,4 +1,3 @@
-export * from './IRequest';
 export * from './login';
 export * from './sign-up';
 export * from './forgot-password';
@@ -6,7 +5,6 @@ export * from './user';
 export * from './deposit';
 export * from './withdraw';
 export * from './notification';
-export * from './dashboard';
 export * from './network';
 export * from './package';
 export * from './verify-password';

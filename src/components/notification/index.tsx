@@ -13,17 +13,17 @@ const HBNotification = () => {
   const notifications = useSelector(getNotificationsSelector);
 
   useEffect(() => {
-    dispatch(getNotificationsRequest({ userId: '2222' }))
+    dispatch(getNotificationsRequest())
   }, [])
 
   useEffect(() => {
     if (success) {
-      dispatch(getNotificationsRequest({ userId: '2222' }))
+      dispatch(getNotificationsRequest())
     }
   }, [success]);
 
   const maskAsRead = (notificationId: string) => {
-    dispatch(markNotificationsAsReadRequest({ userId: '2222', notificationIds: [notificationId] }))
+    dispatch(markNotificationsAsReadRequest({ notificationIds: [notificationId] }))
   }
 
   return (
@@ -53,7 +53,7 @@ const HBNotification = () => {
                 {
                   notifications?.map((n: NotificationResponseModel, idx: number) => {
                     return <li key={idx} onClick={() => maskAsRead(n.notificationId)}>
-                      <span>{n.content}  <small><i>{n.date.toLocaleDateString()}</i></small></span>
+                      <span>{n.content}  <small><i>{n.date?.toLocaleDateString()}</i></small></span>
                     </li>
                   })
                 }

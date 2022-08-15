@@ -2,7 +2,6 @@ import {
   ConfirmParticipateRequestModel,
   PackageByProfitRequestModel,
   PackageByProfitResponseModel,
-  PackageStatisticsRequestModel,
   PackageStatisticsResponseModel
 } from "../../models";
 import {
@@ -26,11 +25,8 @@ import {
   GET_PACKAGE_STATISTICS_SUCCESS
 } from "../types/package";
 
-export const getPackageStatisticsRequest = (
-  payload: PackageStatisticsRequestModel
-): GetPackageStatisticsRequest => ({
+export const getPackageStatisticsRequest = (): GetPackageStatisticsRequest => ({
   type: GET_PACKAGE_STATISTICS_REQUEST,
-  payload,
 });
 
 export const getPackageStatisticsSuccess = (

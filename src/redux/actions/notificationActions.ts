@@ -1,6 +1,5 @@
 import {
   NotificationMarkRequestModel,
-  NotificationRequestModel,
   NotificationResponseModel
 } from "../../models";
 import {
@@ -18,11 +17,8 @@ import {
   MARK_NOTIFICATION_AS_READ_SUCCESS
 } from "../types/notification";
 
-export const getNotificationsRequest = (
-  payload: NotificationRequestModel
-): GetNotificationsRequest => ({
+export const getNotificationsRequest = (): GetNotificationsRequest => ({
   type: GET_NOTIFICATIONS_REQUEST,
-  payload,
 });
 
 export const getNotificationsSuccess = (

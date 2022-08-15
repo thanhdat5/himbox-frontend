@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import HBStatisticCard from "../../../components/statistic-card"
+import HBStatisticCard from "../../../components/statistic-card";
 import { NetworkStatisticsResponseModel } from "../../../models";
 import { getNetworkStatisticsRequest } from "../../../redux/actions/networkActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBNetworkStatistics = () => {
     const dispatch = useDispatch();
     const [statistics, setStatistics] = useState<NetworkStatisticsResponseModel | null>(null);
     // Todo
     useEffect(() => {
-        const userId = getCurrentUserId();
-        dispatch(getNetworkStatisticsRequest({ userId }))
+        dispatch(getNetworkStatisticsRequest())
     }, [])
 
     return <div className="hb-network-statistics">

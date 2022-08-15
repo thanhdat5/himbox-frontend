@@ -1,5 +1,7 @@
 import {
-  NetworkMembersByLevelRequestModel, NetworkMembersByLevelResponseModel, NetworkStatisticsRequestModel, NetworkStatisticsResponseModel
+  NetworkMembersByLevelRequestModel,
+  NetworkMembersByLevelResponseModel,
+  NetworkStatisticsResponseModel
 } from "../../models";
 
 export const GET_NETWORK_STATISTICS_REQUEST = "GET_NETWORK_STATISTICS_REQUEST";
@@ -19,7 +21,6 @@ export interface NetworkState {
 
 export interface GetNetworkStatisticsRequest {
   type: typeof GET_NETWORK_STATISTICS_REQUEST;
-  payload: NetworkStatisticsRequestModel;
 }
 
 export type GetNetworkStatisticsSuccess = {

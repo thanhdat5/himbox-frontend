@@ -3,7 +3,6 @@ import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap
 import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
 import { enable2FARequest } from "../../../redux/actions/userActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBProfileVerify = () => {
     const dispatch = useDispatch();
@@ -11,8 +10,7 @@ const HBProfileVerify = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const userId = getCurrentUserId();
-        dispatch(enable2FARequest({ userId, enable2FA, productKey: '', verifyCode: '' }));
+        dispatch(enable2FARequest({ enable2FA, productKey: '', verifyCode: '' }));
         console.log(enable2FA);
     }
 

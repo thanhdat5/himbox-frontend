@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
+import { HIMBOX_USER_ID } from "../constants";
 
 export const getCurrentUserId = ()=>{
-    return '111';
+    return  localStorage.getItem(HIMBOX_USER_ID);
 }
 export const ShowSuccessMessage = (message: string) => {
     toast.success(message);
