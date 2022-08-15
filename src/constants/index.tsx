@@ -29,6 +29,7 @@ export const ENDPOINTS = {
     ALL_PACKAGES: `${BASE_URL}/package/list`,
     JOIN_PACKAGE: `${BASE_URL}/package/participate`,
     MY_PACKAGE: `${BASE_URL}/package/my-package`,
+    HIMBOX_PRICE: `${BASE_URL}/dashboard/get-prices`,
 }
 
 export const PACKAGE_TYPES = {
@@ -390,5 +391,7 @@ export const MESSAGES = {
     "REGISTER_SUCCESS": 'Register successfully!',
     "OTP_LENGTH_ERROR": 'Verification code must have length of 6',
     "OTP_RESEND_OK": 'Resend verification code successfully',
-    "RESET_PWD_SUCCESS": 'Reset password successfully!'
+    "RESET_PWD_SUCCESS": 'Reset password successfully!',
+    "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
+    "ENTER_PACKAGE_FAIL": 'Enter package failed!',
 };

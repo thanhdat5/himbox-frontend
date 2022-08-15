@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
 import WithdrawModal from "../../../components/withdraw-modal";
 import { getDashboardStatisticsRequest } from "../../../redux/actions/dashboardActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardStatistics = () => {
 
@@ -16,8 +15,7 @@ const HBDashboardStatistics = () => {
 
     // Todo
     useEffect(() => {
-        const userId = getCurrentUserId();
-        dispatch(getDashboardStatisticsRequest({ userId }))
+        dispatch(getDashboardStatisticsRequest({}))
     }, [])
 
     const [showWithdraw, setShowWithdraw] = useState(false);

@@ -37,8 +37,8 @@ import {
 } from "../types/dashboard";
 
 export const getDashboardStatisticsRequest = (
-  payload: DashboardStatisticsRequestModel
-): GetDashboardStatisticsRequest => ({
+  payload: any
+): any => ({
   type: GET_DASHBOARD_STATISTICS_REQUEST,
   payload,
 });

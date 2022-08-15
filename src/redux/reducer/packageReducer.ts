@@ -10,6 +10,7 @@ import {
   CONFIRM_PARTICIPATE_FAILURE,
   PackageActions,
   PackageState,
+  GET_HIMBOX_PRICE,
 } from "../types/package";
 
 const initialState: PackageState = {
@@ -17,6 +18,7 @@ const initialState: PackageState = {
   statistics: null,
   packages: [],
   confirmSuccess: false,
+  price: {}
 };
 
 const packageReducer = (state = initialState, action: PackageActions) => {
@@ -26,6 +28,11 @@ const packageReducer = (state = initialState, action: PackageActions) => {
         ...state,
         loading: true,
         statistics: null,
+      };
+    case GET_HIMBOX_PRICE:
+      return {
+        ...state,
+       price: action.payload
       };
     case GET_PACKAGE_STATISTICS_SUCCESS:
       return {

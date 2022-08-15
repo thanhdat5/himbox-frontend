@@ -22,11 +22,14 @@ export const CONFIRM_PARTICIPATE_REQUEST = "CONFIRM_PARTICIPATE_REQUEST";
 export const CONFIRM_PARTICIPATE_SUCCESS = "CONFIRM_PARTICIPATE_SUCCESS";
 export const CONFIRM_PARTICIPATE_FAILURE = "CONFIRM_PARTICIPATE_FAILURE";
 
+export const GET_HIMBOX_PRICE = 'GET_HIMBOX_PRICE';
+
 export interface PackageState {
   loading: boolean;
   statistics: PackageStatisticsResponseModel | null;
   packages: PackageByProfitResponseModel[];
   confirmSuccess: boolean;
+  price?: any
 }
 
 export interface GetPackageStatisticsRequest {
@@ -84,6 +87,11 @@ export type ConfirmParticipateFailure = {
   type: typeof CONFIRM_PARTICIPATE_FAILURE;
 };
 
+export type FetchHimboxPrice = {
+  type: typeof GET_HIMBOX_PRICE;
+  payload: any
+};
+
 export type PackageActions =
   | GetPackageStatisticsRequest
   | GetPackageStatisticsSuccess
@@ -96,4 +104,5 @@ export type PackageActions =
   | GetPackagesByProfitFailure
   | ConfirmParticipateRequest
   | ConfirmParticipateSuccess
+  | FetchHimboxPrice
   | ConfirmParticipateFailure;

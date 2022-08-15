@@ -27,7 +27,7 @@ function* fetchDashboardStatisticsSaga(action: any) {
       "GET",
       ENDPOINTS.DASHBOARD_INFO
     );
-    console.log('fetchDashboardStatisticsSaga', res);
+    // console.log('fetchDashboardStatisticsSaga', res);
     yield put(getDashboardStatisticsSuccess(res.data.data));
   } catch (e: any) {
     yield put(getDashboardStatisticsFailure());

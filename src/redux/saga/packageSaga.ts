@@ -1,5 +1,5 @@
 import { getMyPackageFailure, getMyPackageSuccess } from './../actions/packageActions';
-import { GET_MY_PACKAGE_REQUEST } from './../types/package';
+import { GET_MY_PACKAGE_REQUEST, GET_HIMBOX_PRICE } from './../types/package';
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS, PACKAGE_TYPES } from "../../constants";
@@ -11,6 +11,7 @@ import {
   CONFIRM_PARTICIPATE_REQUEST, GET_PACKAGES_BY_PROFIT_REQUEST, GET_PACKAGE_STATISTICS_REQUEST
 } from "../types/package";
 import { apiCall } from "./api";
+import { get } from 'lodash';
 
 function* fetchPackageStatisticsSaga(action: any) {
   try {
@@ -44,14 +45,18 @@ function* fetchMyPackageSaga(action: any) {
 }
 
 function* fetchGetPackagesByProfitSaga(action: any) {
+
   try {
-    const res: AxiosResponse<any> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(getPackagesByProfitSuccess(res.data));
+    const priceReq: AxiosResponse<any> = yield call(apiCall, "GET", ENDPOINTS.HIMBOX_PRICE);
+    const packageReq: AxiosResponse<any> = yield call(apiCall, "GET", ENDPOINTS.ALL_PACKAGES, { to_profit: action.payload });
+    const res: AxiosResponse<any> = yield Promise.all([priceReq, packageReq]);
+    const priceRes: any = get(res, '[0].data.data', []);
+    const packageRes: any = get(res, '[1].data.data', []);
+    yield put({
+      type: GET_HIMBOX_PRICE,
+      payload: priceRes
+    });
+    yield put(getPackagesByProfitSuccess(packageRes));
   } catch (e: any) {
     yield put(getPackagesByProfitFailure());
     ShowErrorMessage(e);

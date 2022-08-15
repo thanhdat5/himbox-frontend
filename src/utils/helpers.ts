@@ -26,3 +26,8 @@ export const formatNumberDownRoundWithExtractMax = (number: any, decimal: number
         )
         .toFixed(decimal);
 };
+
+export const convertNumber = (number: any, pow: number = 8) => {
+    number = Number(number)
+    return Math.round(number * 10 ** pow) / 10 ** pow;
+}

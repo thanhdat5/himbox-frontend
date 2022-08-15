@@ -66,8 +66,8 @@ export const getMyPackageFailure = (): any => ({
 });
 
 export const getPackagesByProfitRequest = (
-  payload: PackageByProfitRequestModel
-): GetPackagesByProfitRequest => ({
+  payload: any
+): any => ({
   type: GET_PACKAGES_BY_PROFIT_REQUEST,
   payload,
 });
