@@ -6,7 +6,6 @@ import { history } from '../../utils/history'
 const instance = (headers?: Record<string, string>) => {
   let returnValue = axios.create()
   const accessToken: any = localStorage.getItem(HIMBOX_ACCESS_TOKEN)
-  const baseUrl = process.env.REACT_APP_API_BACKEND
 
   returnValue.interceptors.request.use(
     (config) => {

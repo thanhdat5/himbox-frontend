@@ -30,7 +30,7 @@ const ParticipateModal = ({ onHide, selectedPackage }: ParticipateModalProps) =>
         }
     }
 
-    return <Modal className="hb-modal" size="lg" centered show onHide={onHide}>
+    return <Modal className="hb-modal" size="lg" centered show onHide={onHide} backdrop="static">
         <Modal.Header closeButton>
             <Modal.Title>Confirm Participate</Modal.Title>
         </Modal.Header>
