@@ -10,6 +10,10 @@ export const GET_PACKAGE_STATISTICS_REQUEST = "GET_PACKAGE_STATISTICS_REQUEST";
 export const GET_PACKAGE_STATISTICS_SUCCESS = "GET_PACKAGE_STATISTICS_SUCCESS";
 export const GET_PACKAGE_STATISTICS_FAILURE = "GET_PACKAGE_STATISTICS_FAILURE";
 
+export const GET_MY_PACKAGE_REQUEST = "GET_MY_PACKAGE_REQUEST";
+export const GET_MY_PACKAGE_SUCCESS = "GET_MY_PACKAGE_SUCCESS";
+export const GET_MY_PACKAGE_FAILURE = "GET_MY_PACKAGE_FAILURE";
+
 export const GET_PACKAGES_BY_PROFIT_REQUEST = "GET_PACKAGES_BY_PROFIT_REQUEST";
 export const GET_PACKAGES_BY_PROFIT_SUCCESS = "GET_PACKAGES_BY_PROFIT_SUCCESS";
 export const GET_PACKAGES_BY_PROFIT_FAILURE = "GET_PACKAGES_BY_PROFIT_FAILURE";
@@ -37,6 +41,20 @@ export type GetPackageStatisticsSuccess = {
 
 export type GetPackageStatisticsFailure = {
   type: typeof GET_PACKAGE_STATISTICS_FAILURE;
+};
+
+export interface GetMyPackageRequest_ {
+  type: typeof GET_MY_PACKAGE_REQUEST;
+  payload: any;
+}
+
+export type GetMyPackageSuccess = {
+  type: typeof GET_MY_PACKAGE_SUCCESS;
+  payload: any;
+};
+
+export type GetMyPackageFailure = {
+  type: typeof GET_MY_PACKAGE_FAILURE;
 };
 
 export interface GetPackagesByProfitRequest {
@@ -70,6 +88,9 @@ export type PackageActions =
   | GetPackageStatisticsRequest
   | GetPackageStatisticsSuccess
   | GetPackageStatisticsFailure
+  | GetMyPackageRequest_
+  | GetMyPackageSuccess
+  | GetMyPackageFailure
   | GetPackagesByProfitRequest
   | GetPackagesByProfitSuccess
   | GetPackagesByProfitFailure

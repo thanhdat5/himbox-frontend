@@ -23,12 +23,15 @@ import {
   GET_PACKAGES_BY_PROFIT_SUCCESS,
   GET_PACKAGE_STATISTICS_FAILURE,
   GET_PACKAGE_STATISTICS_REQUEST,
-  GET_PACKAGE_STATISTICS_SUCCESS
+  GET_PACKAGE_STATISTICS_SUCCESS,
+  GET_MY_PACKAGE_REQUEST,
+  GET_MY_PACKAGE_SUCCESS,
+  GET_MY_PACKAGE_FAILURE
 } from "../types/package";
 
 export const getPackageStatisticsRequest = (
-  payload: PackageStatisticsRequestModel
-): GetPackageStatisticsRequest => ({
+  payload: any
+): any => ({
   type: GET_PACKAGE_STATISTICS_REQUEST,
   payload,
 });
@@ -42,6 +45,24 @@ export const getPackageStatisticsSuccess = (
 
 export const getPackageStatisticsFailure = (): GetPackageStatisticsFailure => ({
   type: GET_PACKAGE_STATISTICS_FAILURE,
+});
+
+export const getMyPackageRequest = (
+  payload: any
+): any => ({
+  type: GET_MY_PACKAGE_REQUEST,
+  payload,
+});
+
+export const getMyPackageSuccess = (
+  payload: any
+): any => ({
+  type: GET_MY_PACKAGE_SUCCESS,
+  payload,
+});
+
+export const getMyPackageFailure = (): any => ({
+  type: GET_MY_PACKAGE_FAILURE,
 });
 
 export const getPackagesByProfitRequest = (

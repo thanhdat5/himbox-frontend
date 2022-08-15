@@ -1,7 +1,7 @@
 interface HBRankCardProps {
-    rank: string;
+    rank: number;
     commission?: string;
-    condition?: string;
+    condition?: any;
     active?: boolean;
 }
 const HBRankCard = ({ rank, commission, condition, active }: HBRankCardProps) => {
@@ -19,11 +19,15 @@ const HBRankCard = ({ rank, commission, condition, active }: HBRankCardProps) =>
             </div>
             <div className="hb-rank-description">
                 <span>Commission:</span>
-                <span>{commission}</span>
+                <span>{`${commission}% reward daily of total team`}</span>
             </div>
             <div className="hb-rank-description">
                 <span>Condition:</span>
-                <span>{condition}</span>
+                {rank != 1 ?
+                    <span>{`Volume reaches ${condition.dot} DOT in Team. Have at least ${condition?.f1} F1 qualified Rank ${condition?.rank}`}</span>
+                    :
+                    <span>{`Volume reaches ${condition.dot} DOT in Team`}</span>
+                }
             </div>
         </div>
     </li>

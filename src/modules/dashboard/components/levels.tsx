@@ -1,11 +1,7 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import HBLevelCard from "../../../components/level-card"
-import { DashboardLevelsResponseModel } from "../../../models";
-import { getDashboardLevelsRequest } from "../../../redux/actions/dashboardActions";
-import { getCurrentUserId } from "../../../services/appService";
 
 let LEVELS = [
     { id: 1, level: 'Level 1', members: 1, value: "" },
@@ -34,13 +30,9 @@ const HBDashboardLevels = () => {
 
     const levelTree: any = useSelector(state => get(state, 'dashboard.statistics[0]', null));
 
-
-    const dispatch = useDispatch();
     const [levels, setLevels] = useState<any>([]);
-    // Todo
+
     useEffect(() => {
-        // const userId = getCurrentUserId();
-        // dispatch(getDashboardLevelsRequest({ userId }))
         if (levelTree) {
             const temp = LEVELS.map((item, index) => {
                 return { ...item, members: get(levelTree, `members.fn[${index}]`, '-'), value: get(levelTree, `sales.salers[${index}]`, '-'), };
@@ -52,8 +44,12 @@ const HBDashboardLevels = () => {
     return <div className="hb-dashboard-levels">
         {
             levels.map((item: any, idx: number) => {
-                return <HBLevelCard key={idx} level={item.level} members={item.members} value={item.value}
-                className={item.value ? 'active' : ''} 
+                return <HBLevelCard
+                    key={idx}
+                    level={item.level}
+                    members={item.members}
+                    value={item.value}
+                    className={item.value ? 'active' : ''}
                 />
             })
         }

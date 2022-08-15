@@ -14,7 +14,7 @@ const instance = (headers?: Record<string, string>) => {
         config.headers = {
           'Content-Type': 'application/json;charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
-          Authentication: `Bearer ${accessToken}`,
+          // Authentication: `Bearer ${accessToken}`,
           Authorization: `Bearer ${accessToken}`,
           lang: 'en'
         }

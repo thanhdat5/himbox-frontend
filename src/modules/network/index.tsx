@@ -1,4 +1,6 @@
+import { get } from "lodash"
 import { Col, Row } from "react-bootstrap"
+import { useSelector } from "react-redux"
 import HBCard from "../../components/card"
 import HBPageWrap from "../../components/page-wrap"
 import HBSectionTitle from "../../components/sectrion-title"
@@ -9,6 +11,7 @@ import HBNetworkSharing from "./components/sharing"
 import HBNetworkStatistics from "./components/statistics"
 
 const Network = () => {
+
     return <HBPageWrap className="hb-network" title="My Networks">
         <HBNetworkStatistics />
         <Row>
@@ -24,12 +27,12 @@ const Network = () => {
             <Col xl={3} className="order-xl-2 order-1 mb-xl-0 mb-3 mb-md-4">
                 <div className="hb-network-sharing">
                     <Row>
-                        <Col xl={12} lg={6} className="mb-3 mb-md-4">
+                        <Col xl={12} lg={12} className="mb-3 mb-md-4">
                             <HBNetworkAffiliate />
                         </Col>
-                        <Col xl={12} lg={6}>
+                        {/* <Col xl={12} lg={6}>
                             <HBNetworkSharing />
-                        </Col>
+                        </Col> */}
                     </Row>
                 </div>
             </Col>

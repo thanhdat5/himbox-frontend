@@ -1,15 +1,19 @@
+import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
 import WithdrawModal from "../../../components/withdraw-modal";
-import { DashboardStatisticsResponseModel } from "../../../models";
 import { getDashboardStatisticsRequest } from "../../../redux/actions/dashboardActions";
 import { getCurrentUserId } from "../../../services/appService";
 
 const HBDashboardStatistics = () => {
+
     const dispatch = useDispatch();
-    const [statistics, setStatistics] = useState<DashboardStatisticsResponseModel | null>(null);
+
+    const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
+
     // Todo
     useEffect(() => {
         const userId = getCurrentUserId();
@@ -27,9 +31,9 @@ const HBDashboardStatistics = () => {
 
     return <div className="hb-dashboard-statistics">
         <Row className="row pb-lg-1 mb-4">
-            <Col lg={3} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Balance" value="0.00" subValue="DOT" className="highlight" action={<Button variant="link" className="btn-setting" onClick={() => setShowWithdraw(true)}>
-                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Withdraw">
+            <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
+                <HBStatisticCard label="Balance" value={get(dashboardStatistics, 'balances.dot', 0)} subValue="DOT" className="highlight" action={<Button variant="link" className="btn-setting" onClick={() => setShowWithdraw(true)}>
+                    {/* <span data-bs-toggle="tooltip" data-bs-placement="top" title="Withdraw">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round">
@@ -37,18 +41,18 @@ const HBDashboardStatistics = () => {
                             <polyline points="17 8 12 3 7 8" />
                             <line x1="12" y1="3" x2="12" y2="15" />
                         </svg>
-                    </span>
+                    </span> */}
                 </Button>} />
             </Col>
-            <Col lg={3} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Total Profit" value="0.00" subValue="DOT" />
+            <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
+                <HBStatisticCard label="Total Profit" value={get(dashboardStatistics, 'total_profit', 0)} subValue="DOT" />
             </Col>
-            <Col lg={3} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Total Sales" value="250.00" subValue="DOT" />
+            <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
+                <HBStatisticCard label="Total Sales" value={get(dashboardStatistics, 'sales.total', 0)} subValue="DOT" />
             </Col>
-            <Col lg={3} md={6}>
-                <HBStatisticCard label="Validator" value="0%" subValue="DOT" />
-            </Col>
+            {/* <Col lg={3} md={6}>
+                <HBStatisticCard label="Validator" value={get(dashboardStatistics, )} subValue="DOT" />
+            </Col> */}
         </Row>
         {showWithdraw ? <WithdrawModal onHide={handleCloseWithdraw} /> : <></>}
     </div>

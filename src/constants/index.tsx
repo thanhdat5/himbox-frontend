@@ -24,8 +24,101 @@ export const ENDPOINTS = {
 
     DASHBOARD_INFO: `${BASE_URL}/dashboard/infos`,
     NETWORK: '/network',
-    PACKAGE: '/package',
+
+    // package
+    ALL_PACKAGES: `${BASE_URL}/package/list`,
+    JOIN_PACKAGE: `${BASE_URL}/package/participate`,
+    MY_PACKAGE: `${BASE_URL}/package/my-package`,
 }
+
+export const PACKAGE_TYPES = {
+    TYPE_5: 5,
+    TYPE_10: 10,
+    TYPE_15: 15,
+    TYPE_20: 20,
+    TYPE_25: 25,
+    TYPE_30: 30,
+    TYPE_35: 35,
+    TYPE_40: 40,
+};
+
+export const PACKAGE_RANKING_TYPES: any = {
+    5: 1,
+    10: 2,
+    15: 3,
+    20: 4,
+    25: 5,
+    30: 6,
+    35: 7,
+    40: 8,
+};
+
+export const RAKING_MODEL = [
+    {
+        "rank": 1,
+        "commission": 5,
+        "conditions": {
+            "dot": 5000,
+            "f1": 0,
+            "rank": 0
+        }
+    },
+    {
+        "rank": 2,
+        "commission": 10,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 1
+        }
+    },
+    {
+        "rank": 3,
+        "commission": 15,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 2
+        }
+    },
+    {
+        "rank": 4,
+        "commission": 20,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 3
+        }
+    },
+
+    {
+        "rank": 5,
+        "commission": 25,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 4
+        }
+    },
+    {
+        "rank": 6,
+        "commission": 30,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 5
+        }
+    },
+    {
+        "rank": 7,
+        "commission": 35,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 6
+        }
+    }
+];
 
 export const ROUTES = {
     LOGIN: '/auth/login',
