@@ -1,13 +1,11 @@
 import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import HBCard from "../../../components/card";
-import { getCurrentUserWallet } from "../../../services/appService";
 import { toast } from 'react-toastify';
 
-const HBProfileInfo = ({ userInfo }: any) => {
-    const wallet = getCurrentUserWallet() || '';
+const HBProfileInfo = ({ userInfo, userLogged }: any) => {
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(wallet);
+        navigator.clipboard.writeText(userLogged?.wallet);
         toast.success('Copied successfully!', {
             position: 'bottom-center',
             autoClose: 1000,
@@ -16,9 +14,9 @@ const HBProfileInfo = ({ userInfo }: any) => {
 
     return <HBCard className="mb-md-4 mb-3">
         <FormGroup className="mb-3">
-            <FormLabel>Your address</FormLabel>
+            <FormLabel>Your wallet address</FormLabel>
             <div className="hb-form-control-wrap">
-                <FormControl required readOnly value={wallet} />
+                <FormControl required readOnly value={userLogged?.wallet || ''} />
                 <span style={{ cursor: 'pointer' }} onClick={handleCopy}>
                     <svg width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Regular"
                         xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +32,7 @@ const HBProfileInfo = ({ userInfo }: any) => {
 
         <FormGroup>
             <FormLabel>Your email</FormLabel>
-            <FormControl type="email" value={userInfo?.email} readOnly />
+            <FormControl type="email" value={userInfo?.email || ''} readOnly />
         </FormGroup>
     </HBCard>
 }

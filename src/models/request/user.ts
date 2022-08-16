@@ -9,7 +9,8 @@ export interface UserChangePasswordRequestModel{
   confirmNewPassword: string;
 }
 export interface UserEnable2FARequestModel{
-  enable2FA: boolean;
-  productKey: string;
-  verifyCode: string;
+  token: string;
 }
+export interface UserGenerate2FARequestModel{
+}
+

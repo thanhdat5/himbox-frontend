@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PasswordControl from "../../../components/password-control";
-import { HIMBOX_ACCESS_TOKEN, MESSAGES, ROUTES } from "../../../constants";
+import { MESSAGES, ROUTES } from "../../../constants";
 import { loginRequest } from "../../../redux/actions/loginActions";
 import { getLoginLoadingSelector, getLoginSuccessSelector } from "../../../redux/selectors/loginSelectors";
 import { validateEmail } from "../../../utils/helpers";
+import VeryfyCodeModal from "./verify-code-modal";
 
 const Login = () => {
     const dispatch = useDispatch();
     const loading = useSelector(getLoginLoadingSelector);
     const success = useSelector(getLoginSuccessSelector);
-
-    const navigate = useNavigate();
     const [email, setEmail] = useState<string>('user-test-2-1@gmail.com');
     const [password, setPassword] = useState<string>('Abcde12345-');
-
     const [errors, setErrors] = useState<any>(null);
+    const [showVerifyCodeModal, setShowVerifyCodeModal] = useState(false);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -30,12 +29,19 @@ const Login = () => {
         dispatch(loginRequest(postData));
     }
 
-    // useEffect(() => {
-    //     if (success) {
-    //         localStorage.setItem(HIMBOX_ACCESS_TOKEN, 'logged');
-    //         navigate(ROUTES.DASHBOARD);
-    //     }
-    // }, [success]);
+    const handleVerifyCodeDismiss = (e: string) => {
+        setShowVerifyCodeModal(false);
+        if (e) {
+            const postData = { username: email, password, tfa_code: e };
+            dispatch(loginRequest(postData));
+        }
+    }
+
+    useEffect(() => {
+        if (success === null) {
+            setShowVerifyCodeModal(true);
+        }
+    }, [success])
 
     return <>
         <div className="hb-auth-form-title">Login</div>
@@ -69,6 +75,7 @@ const Login = () => {
         <div className="hb-auth-form-note">
             Don't have an account? <Link className="hb-auth-form-link" to={ROUTES.SIGN_UP}>Sign Up</Link>
         </div>
+        {showVerifyCodeModal ? <VeryfyCodeModal onDismiss={handleVerifyCodeDismiss} /> : <></>}
     </>
 }
 export default Login

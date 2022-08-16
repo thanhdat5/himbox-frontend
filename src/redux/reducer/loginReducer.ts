@@ -1,14 +1,15 @@
 import {
-    LoginActions,
-    LoginState, LOGIN_FAILURE,
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS
+  LoginActions,
+  LoginState,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
 } from "../types/login";
 
 const initialState: LoginState = {
   loading: false,
   success: false,
-  userInfo: null
+  userInfo: null,
 };
 
 const loginReducer = (state = initialState, action: LoginActions) => {
@@ -22,7 +23,7 @@ const loginReducer = (state = initialState, action: LoginActions) => {
       return {
         ...state,
         loading: false,
-        success: true,
+        success: action.payload,
       };
     case LOGIN_FAILURE:
       return {

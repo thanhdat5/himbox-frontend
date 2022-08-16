@@ -6,3 +6,8 @@ export interface UserInfoResponseModel {
   productKey: string;
   verifyCode: string;
 }
+export interface UserEnable2FAResponseModel{
+  path: string;
+  remaining: number;
+  stringQR: string;
+}
