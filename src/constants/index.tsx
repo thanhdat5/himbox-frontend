@@ -1,6 +1,7 @@
 export const HIMBOX_ACCESS_TOKEN = "HIMBOX_ACCESS_TOKEN";
 export const HIMBOX_REFRESH_TOKEN = "HIMBOX_REFRESH_TOKEN";
 export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
+export const HIMBOX_WALLET = "HIMBOX_WALLET";
 
 export const BASE_URL = 'http://34.142.200.249:6969/api/v1';
 export const ENDPOINTS = {
@@ -24,8 +25,102 @@ export const ENDPOINTS = {
 
     DASHBOARD_INFO: `/dashboard/infos`,
     NETWORK: '/network',
-    PACKAGE: '/package',
+
+    // package
+    ALL_PACKAGES: `/package/list`,
+    JOIN_PACKAGE: `/package/participate`,
+    MY_PACKAGE: `/package/my-package`,
+    HIMBOX_PRICE: `/dashboard/get-prices`,
 }
+
+export const PACKAGE_TYPES = {
+    TYPE_5: 5,
+    TYPE_10: 10,
+    TYPE_15: 15,
+    TYPE_20: 20,
+    TYPE_25: 25,
+    TYPE_30: 30,
+    TYPE_35: 35,
+    TYPE_40: 40,
+};
+
+export const PACKAGE_RANKING_TYPES: any = {
+    5: 1,
+    10: 2,
+    15: 3,
+    20: 4,
+    25: 5,
+    30: 6,
+    35: 7,
+    40: 8,
+};
+
+export const RAKING_MODEL = [
+    {
+        "rank": 1,
+        "commission": 5,
+        "conditions": {
+            "dot": 5000,
+            "f1": 0,
+            "rank": 0
+        }
+    },
+    {
+        "rank": 2,
+        "commission": 10,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 1
+        }
+    },
+    {
+        "rank": 3,
+        "commission": 15,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 2
+        }
+    },
+    {
+        "rank": 4,
+        "commission": 20,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 3
+        }
+    },
+
+    {
+        "rank": 5,
+        "commission": 25,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 4
+        }
+    },
+    {
+        "rank": 6,
+        "commission": 30,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 5
+        }
+    },
+    {
+        "rank": 7,
+        "commission": 35,
+        "conditions": {
+            "dot": 5000,
+            "f1": 2,
+            "rank": 6
+        }
+    }
+];
 
 export const ROUTES = {
     LOGIN: '/auth/login',
@@ -298,5 +393,7 @@ export const MESSAGES = {
     "OTP_LENGTH_ERROR": 'Verification code must have length of 6',
     "OTP_RESEND_OK": 'Resend verification code successfully',
     "RESET_PWD_SUCCESS": 'Reset password successfully!',
+    "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
+    "ENTER_PACKAGE_FAIL": 'Enter package failed!',
     "REQUIRED_MESSAGE": 'Cannot leave this blank.'
 };

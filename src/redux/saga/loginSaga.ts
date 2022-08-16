@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, MESSAGES, ROUTES } from "../../constants";
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, HIMBOX_WALLET, MESSAGES, ROUTES } from "../../constants";
 import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
 import { extractError } from "../../utils/helpers";
 import { history } from "../../utils/history";
@@ -37,6 +37,8 @@ function* fetchLoginSaga(action: any): any {
       yield localStorage.setItem(HIMBOX_REFRESH_TOKEN, res?.data?.data?.refresh_token);
       yield localStorage.setItem(HIMBOX_ACCESS_TOKEN, res?.data?.data?.token?.access_token);
       yield localStorage.setItem(HIMBOX_USER_ID, res?.data?.data?.user_id);
+      yield localStorage.setItem(HIMBOX_WALLET, res?.data?.data?.wallet);
+      
       yield put({
         type: GET_USER_INFO_REQUEST
       });

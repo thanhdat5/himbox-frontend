@@ -5,9 +5,9 @@ interface HBPackageCardProps {
     packageValue: string;
     planName: string;
     planValue: string;
-    planValueDOT: string;
+    planValueDOT: any;
     total: string;
-    totalUSD: string;
+    totalUSD: any;
     disabled?: boolean;
     onParticipate: () => void;
 }

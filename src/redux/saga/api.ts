@@ -6,6 +6,7 @@ import {
   HIMBOX_ACCESS_TOKEN,
   HIMBOX_REFRESH_TOKEN,
   HIMBOX_USER_ID,
+  HIMBOX_WALLET,
   ROUTES,
 } from "../../constants";
 import { history } from "../../utils/history";
@@ -20,11 +21,9 @@ const instance = (headers?: Record<string, string>) => {
         config.headers = {
           "Content-Type": "application/json;charset=UTF-8",
           "Access-Control-Allow-Origin": "*",
-          Authentication: `Bearer ${accessToken}`,
           Authorization: `Bearer ${accessToken}`,
           lang: "en",
         };
-        config.baseURL = BASE_URL;
       }
       return config;
     },
@@ -44,6 +43,7 @@ const instance = (headers?: Record<string, string>) => {
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
         // localStorage.removeItem(HIMBOX_USER_ID);
+        // localStorage.removeItem(HIMBOX_WALLET);
 
         // localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
         // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
@@ -60,6 +60,7 @@ const instance = (headers?: Record<string, string>) => {
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
         localStorage.removeItem(HIMBOX_USER_ID);
+        localStorage.removeItem(HIMBOX_WALLET);
         history.push(ROUTES.LOGIN);
         return Promise.reject(error);
       }
@@ -109,6 +110,7 @@ const instance = (headers?: Record<string, string>) => {
               localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
               localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
               localStorage.removeItem(HIMBOX_USER_ID);
+              localStorage.removeItem(HIMBOX_WALLET);
               history.push(ROUTES.LOGIN);
 
               // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
@@ -152,6 +154,7 @@ export const apiCall = (
   const config: AxiosRequestConfig = {
     method,
     url,
+    baseURL: BASE_URL,
   };
   if (method === "GET") {
     config.params = data;

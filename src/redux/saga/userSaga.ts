@@ -30,8 +30,7 @@ function* fetchGetUserInfoSaga(action: any) {
       "GET",
       ENDPOINTS.PROFILE
     );
-    console.log("fetchGetUserInfoSaga", res);
-    yield put(getUserInfoSuccess(res.data?.payload?.data));
+    yield put(getUserInfoSuccess(res.data?.data));
   } catch (e: any) {
     yield put(getUserInfoFailure());
     ShowErrorMessage(e);

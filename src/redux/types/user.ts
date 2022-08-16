@@ -1,8 +1,6 @@
 import {
   UserChangePasswordRequestModel,
-  UserEnable2FARequestModel,
-  UserInfoRequestModel,
-  UserInfoResponseModel,
+  UserEnable2FARequestModel, UserInfoResponseModel,
   UserUpdateInforRequestModel
 } from "../../models";
 import { LOGIN_SUCCESS } from "./login";
@@ -35,7 +33,6 @@ export interface UserState {
 
 export interface GetUserInfoRequest {
   type: typeof GET_USER_INFO_REQUEST;
-  payload: UserInfoRequestModel;
 }
 
 export type LoginSuccess = {

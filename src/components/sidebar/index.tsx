@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Button, Image } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
-import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, ROUTES } from "../../constants"
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, HIMBOX_WALLET, ROUTES } from "../../constants"
 import { apiCall } from "../../redux/saga/api"
 import { LOG_OUT } from "../../redux/types/user"
 import HBSidebarFooter from "./footer"
@@ -31,11 +31,13 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
             localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
             localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
             localStorage.removeItem(HIMBOX_USER_ID);
+            localStorage.removeItem(HIMBOX_WALLET);
             navigate(ROUTES.LOGIN);
         } catch (error) {
             localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
             localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
             localStorage.removeItem(HIMBOX_USER_ID);
+            localStorage.removeItem(HIMBOX_WALLET);
             navigate(ROUTES.LOGIN);
         }
         dispatch({ type: LOG_OUT });

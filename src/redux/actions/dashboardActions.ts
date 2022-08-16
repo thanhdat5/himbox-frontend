@@ -1,5 +1,12 @@
 import {
-  DashboardLevelsResponseModel, DashboardRanksResponseModel, DashboardStatisticsResponseModel, DepositTransactionsResponseModel, DowngradeTransactionsResponseModel, ProfitTransactionsResponseModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsResponseModel
+  DashboardLevelsResponseModel,
+  DashboardRanksResponseModel,
+  DashboardStatisticsResponseModel,
+  DepositTransactionsResponseModel,
+  DowngradeTransactionsResponseModel,
+  ProfitTransactionsResponseModel,
+  UpgradeTransactionsResponseModel,
+  WithdrawalTransactionsResponseModel
 } from "../../models";
 import {
   GetDashboardLevelsFailure,
@@ -8,9 +15,7 @@ import {
   GetDashboardRanksFailure,
   GetDashboardRanksRequest,
   GetDashboardRanksSuccess,
-  GetDashboardStatisticsFailure,
-  GetDashboardStatisticsRequest,
-  GetDashboardStatisticsSuccess,
+  GetDashboardStatisticsFailure, GetDashboardStatisticsSuccess,
   GetDepositTransactionsFailure,
   GetDepositTransactionsRequest,
   GetDepositTransactionsSuccess,
@@ -52,10 +57,10 @@ import {
   GET_WITHDRAWAL_TRANSACTIONS_SUCCESS
 } from "../types/dashboard";
 
-export const getDashboardStatisticsRequest =
-  (): GetDashboardStatisticsRequest => ({
-    type: GET_DASHBOARD_STATISTICS_REQUEST,
-  });
+export const getDashboardStatisticsRequest = (payload: any): any => ({
+  type: GET_DASHBOARD_STATISTICS_REQUEST,
+  payload,
+});
 
 export const getDashboardStatisticsSuccess = (
   payload: DashboardStatisticsResponseModel

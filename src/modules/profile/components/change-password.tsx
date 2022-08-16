@@ -51,7 +51,7 @@ const HBProfileChangePassword = () => {
         }
     }, [success])
 
-    return <HBCard>
+    return <HBCard className="mb-md-4 mb-3">
         <Formik
             innerRef={formRef}
             enableReinitialize

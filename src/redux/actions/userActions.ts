@@ -1,8 +1,6 @@
 import {
   UserChangePasswordRequestModel,
-  UserEnable2FARequestModel,
-  UserInfoRequestModel,
-  UserInfoResponseModel,
+  UserEnable2FARequestModel, UserInfoResponseModel,
   UserUpdateInforRequestModel
 } from "../../models";
 
@@ -33,11 +31,8 @@ import {
   UPDATE_USER_INFO_SUCCESS
 } from "../types/user";
 
-export const getUserInfoRequest = (
-  payload: UserInfoRequestModel
-): GetUserInfoRequest => ({
-  type: GET_USER_INFO_REQUEST,
-  payload,
+export const getUserInfoRequest = (): GetUserInfoRequest => ({
+  type: GET_USER_INFO_REQUEST
 });
 
 export const getUserInfoSuccess = (

@@ -1,5 +1,19 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
+import {
+    FacebookShareButton,
+    InstapaperShareButton,
+    RedditShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+    FacebookIcon,
+    InstapaperIcon,
+    RedditIcon,
+    TelegramIcon,
+    TwitterIcon,
+    WhatsappIcon
+} from "react-share";
 import { useSelector } from "react-redux";
 import HBSectionTitle from "../../../components/sectrion-title";
 
@@ -37,6 +51,35 @@ const HBNetworkAffiliate = () => {
                         </g>
                     </svg>
                 </button>
+            </div>
+            <div className="hb-network-sharing-action">
+                <WhatsappShareButton
+                    url={ref}
+                    className=""
+                >
+                    <WhatsappIcon size={26} borderRadius={8} />
+                </WhatsappShareButton>
+                <FacebookShareButton
+                    url={ref}
+                    quote={''}
+                    hashtag={`#HimBOX`}
+                    className=""
+                >
+                    <FacebookIcon size={26} borderRadius={8} />
+                </FacebookShareButton>
+                <TelegramShareButton
+                    url={ref}
+                    className=""
+                >
+                    <TelegramIcon size={26} borderRadius={8} />
+                </TelegramShareButton>
+                <TwitterShareButton
+                    url={ref}
+                    hashtags={['HimBOX']}
+                    className=""
+                >
+                    <TwitterIcon size={26} borderRadius={8} />
+                </TwitterShareButton>
             </div>
         </div>
     </>
