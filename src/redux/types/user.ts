@@ -1,7 +1,9 @@
 import {
   UserChangePasswordRequestModel,
-  UserEnable2FARequestModel, UserInfoResponseModel,
-  UserUpdateInforRequestModel
+  UserEnable2FARequestModel,
+  UserGenerate2FARequestModel,
+  UserInfoResponseModel,
+  UserUpdateInforRequestModel,
 } from "../../models";
 import { LOGIN_SUCCESS } from "./login";
 
@@ -17,6 +19,10 @@ export const CHANGE_PASSWORD_REQUEST = "CHANGE_PASSWORD_REQUEST";
 export const CHANGE_PASSWORD_SUCCESS = "CHANGE_PASSWORD_SUCCESS";
 export const CHANGE_PASSWORD_FAILURE = "CHANGE_PASSWORD_FAILURE";
 
+export const GENERATE_2FA_REQUEST = "GENERATE_2FA_REQUEST";
+export const GENERATE_2FA_SUCCESS = "GENERATE_2FA_SUCCESS";
+export const GENERATE_2FA_FAILURE = "GENERATE_2FA_FAILURE";
+
 export const ENABLE_2FA_REQUEST = "ENABLE_2FA_REQUEST";
 export const ENABLE_2FA_SUCCESS = "ENABLE_2FA_SUCCESS";
 export const ENABLE_2FA_FAILURE = "ENABLE_2FA_FAILURE";
@@ -29,6 +35,7 @@ export interface UserState {
   changePasswordSuccess: boolean;
   enable2FASuccess: boolean;
   userInfo: UserInfoResponseModel | null;
+  generate2FASuccess: boolean;
 }
 
 export interface GetUserInfoRequest {
@@ -75,6 +82,18 @@ export type ChangePasswordFailure = {
   type: typeof CHANGE_PASSWORD_FAILURE;
 };
 
+export interface Generate2FARequest {
+  type: typeof GENERATE_2FA_REQUEST;
+  payload: UserGenerate2FARequestModel;
+}
+
+export type Generate2FASuccess = {
+  type: typeof GENERATE_2FA_SUCCESS;
+};
+
+export type Generate2FAFailure = {
+  type: typeof GENERATE_2FA_FAILURE;
+};
 export interface Enable2FARequest {
   type: typeof ENABLE_2FA_REQUEST;
   payload: UserEnable2FARequestModel;
@@ -106,5 +125,8 @@ export type UserActions =
   | ChangePasswordFailure
   | Enable2FARequest
   | Enable2FASuccess
+  | Enable2FAFailure
   | Logout
-  | Enable2FAFailure;
+  | Generate2FARequest
+  | Generate2FASuccess
+  | Generate2FAFailure;

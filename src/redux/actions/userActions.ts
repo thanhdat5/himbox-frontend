@@ -1,6 +1,6 @@
 import {
   UserChangePasswordRequestModel,
-  UserEnable2FARequestModel, UserInfoResponseModel,
+  UserEnable2FARequestModel, UserGenerate2FARequestModel, UserInfoResponseModel,
   UserUpdateInforRequestModel
 } from "../../models";
 
@@ -17,6 +17,12 @@ import {
   ENABLE_2FA_FAILURE,
   ENABLE_2FA_REQUEST,
   ENABLE_2FA_SUCCESS,
+  Generate2FAFailure,
+  Generate2FARequest,
+  Generate2FASuccess,
+  GENERATE_2FA_FAILURE,
+  GENERATE_2FA_REQUEST,
+  GENERATE_2FA_SUCCESS,
   GetUserInfoFailure,
   GetUserInfoRequest,
   GetUserInfoSuccess,
@@ -89,4 +95,19 @@ export const enable2FASuccess = (): Enable2FASuccess => ({
 
 export const enable2FAFailure = (): Enable2FAFailure => ({
   type: ENABLE_2FA_FAILURE,
+});
+
+export const generate2FARequest = (
+  payload: UserGenerate2FARequestModel
+): Generate2FARequest => ({
+  type: GENERATE_2FA_REQUEST,
+  payload,
+});
+
+export const generate2FASuccess = (): Generate2FASuccess => ({
+  type: GENERATE_2FA_SUCCESS,
+});
+
+export const generate2FAFailure = (): Generate2FAFailure => ({
+  type: GENERATE_2FA_FAILURE,
 });

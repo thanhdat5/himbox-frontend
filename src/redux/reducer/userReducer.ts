@@ -1,11 +1,23 @@
 import { LOGIN_SUCCESS } from "../types/login";
 import {
-  CHANGE_PASSWORD_FAILURE, CHANGE_PASSWORD_REQUEST,
-  CHANGE_PASSWORD_SUCCESS, ENABLE_2FA_FAILURE, ENABLE_2FA_REQUEST,
-  ENABLE_2FA_SUCCESS, GET_USER_INFO_FAILURE, GET_USER_INFO_REQUEST,
-  GET_USER_INFO_SUCCESS, LOG_OUT, UPDATE_USER_INFO_FAILURE, UPDATE_USER_INFO_REQUEST,
-  UPDATE_USER_INFO_SUCCESS, UserActions,
-  UserState
+  CHANGE_PASSWORD_FAILURE,
+  CHANGE_PASSWORD_REQUEST,
+  CHANGE_PASSWORD_SUCCESS,
+  ENABLE_2FA_FAILURE,
+  ENABLE_2FA_REQUEST,
+  ENABLE_2FA_SUCCESS,
+  GENERATE_2FA_REQUEST,
+  GENERATE_2FA_SUCCESS,
+  GENERATE_2FA_FAILURE,
+  GET_USER_INFO_FAILURE,
+  GET_USER_INFO_REQUEST,
+  GET_USER_INFO_SUCCESS,
+  LOG_OUT,
+  UPDATE_USER_INFO_FAILURE,
+  UPDATE_USER_INFO_REQUEST,
+  UPDATE_USER_INFO_SUCCESS,
+  UserActions,
+  UserState,
 } from "../types/user";
 
 const initialState: UserState = {
@@ -14,6 +26,7 @@ const initialState: UserState = {
   changePasswordSuccess: false,
   enable2FASuccess: false,
   userInfo: null,
+  generate2FASuccess: false,
 };
 
 const userReducer = (state = initialState, action: UserActions) => {
@@ -98,6 +111,24 @@ const userReducer = (state = initialState, action: UserActions) => {
         ...state,
         loading: false,
         enable2FASuccess: false,
+      };
+    case GENERATE_2FA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        generate2FASuccess: false,
+      };
+    case GENERATE_2FA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        generate2FASuccess: true,
+      };
+    case GENERATE_2FA_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        generate2FASuccess: false,
       };
     case LOG_OUT:
       return initialState;

@@ -3,23 +3,26 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
 import {
   ShowErrorMessage,
-  ShowSuccessMessage,
+  ShowSuccessMessage
 } from "../../services/appService";
 import {
   changePasswordFailure,
   changePasswordSuccess,
   enable2FAFailure,
   enable2FASuccess,
+  generate2FAFailure,
+  generate2FASuccess,
   getUserInfoFailure,
   getUserInfoSuccess,
   updateUserInfoFailure,
-  updateUserInfoSuccess,
+  updateUserInfoSuccess
 } from "../actions/userActions";
 import {
   CHANGE_PASSWORD_REQUEST,
   ENABLE_2FA_REQUEST,
+  GENERATE_2FA_REQUEST,
   GET_USER_INFO_REQUEST,
-  UPDATE_USER_INFO_REQUEST,
+  UPDATE_USER_INFO_REQUEST
 } from "../types/user";
 import { apiCall } from "./api";
 
@@ -77,11 +80,22 @@ function* fetchEnable2FASaga(action: any) {
   }
 }
 
+function* fetchGenerate2FASaga(action: any) {
+  try {
+    yield call(apiCall, "POST", ENDPOINTS.TFA_GENERATION, action.payload);
+    yield put(generate2FASuccess());
+  } catch (e: any) {
+    yield put(generate2FAFailure());
+    ShowErrorMessage(e);
+  }
+}
+
 function* forgotPasswordSaga() {
   yield all([takeLatest(GET_USER_INFO_REQUEST, fetchGetUserInfoSaga)]);
   yield all([takeLatest(CHANGE_PASSWORD_REQUEST, fetchChangePasswordSaga)]);
   yield all([takeLatest(UPDATE_USER_INFO_REQUEST, fetchUpdateInfoSaga)]);
   yield all([takeLatest(ENABLE_2FA_REQUEST, fetchEnable2FASaga)]);
+  yield all([takeLatest(GENERATE_2FA_REQUEST, fetchGenerate2FASaga)]);
 }
 
 export default forgotPasswordSaga;

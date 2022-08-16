@@ -13,3 +13,6 @@ export interface UserEnable2FARequestModel{
   productKey: string;
   verifyCode: string;
 }
+export interface UserGenerate2FARequestModel{
+}
+
