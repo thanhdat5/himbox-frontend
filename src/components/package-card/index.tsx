@@ -1,4 +1,5 @@
 import { Button } from "react-bootstrap";
+import { formatCurrency } from "../../utils/helpers";
 
 interface HBPackageCardProps {
     packageName: string;
@@ -23,14 +24,14 @@ const HBPackageCard = ({ packageName, packageValue, planName, planValue, planVal
             <div className="hb-package-item-label">{planName}</div>
             <div className="hb-package-item-value">
                 <b>{planValue}</b>
-                <span>= {planValueDOT} DOT</span>
+                <span>= {formatCurrency(planValueDOT)} DOT</span>
             </div>
         </div>
         <div className="hb-package-item-line hb-package-item-price">
             <div className="hb-package-item-label">Total</div>
             <div className="hb-package-item-value">
-                <b>{total} DOT</b>
-                <span>= {totalUSD} $</span>
+                <b>{formatCurrency(total)} DOT</b>
+                <span>= {formatCurrency(totalUSD)} $</span>
             </div>
         </div>
         <div className="hb-package-item-action">

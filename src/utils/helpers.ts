@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import { get } from 'lodash';
 const exactMath = require("exact-math");
 
@@ -31,3 +32,7 @@ export const convertNumber = (number: any, pow: number = 8) => {
     number = Number(number)
     return Math.round(number * 10 ** pow) / 10 ** pow;
 }
+
+export const formatCurrency = (num: any) => {
+    return numeral(num).format('0,0.0');
+};

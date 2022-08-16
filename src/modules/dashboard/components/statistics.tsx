@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
 import WithdrawModal from "../../../components/withdraw-modal";
+import { formatCurrency } from "../../../utils/helpers";
 
 const HBDashboardStatistics = () => {
 
@@ -24,7 +25,7 @@ const HBDashboardStatistics = () => {
     return <div className="hb-dashboard-statistics">
         <Row className="row pb-lg-1 mb-4">
             <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Balance" value={get(dashboardStatistics, 'balances.dot', 0)} subValue="DOT" className="highlight" action={<Button variant="link" className="btn-setting" onClick={() => setShowWithdraw(true)}>
+                <HBStatisticCard label="Balance" value={formatCurrency(get(dashboardStatistics, 'balances.dot', 0))} subValue="DOT" className="highlight" action={<Button variant="link" className="btn-setting" onClick={() => setShowWithdraw(true)}>
                     {/* <span data-bs-toggle="tooltip" data-bs-placement="top" title="Withdraw">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
@@ -40,7 +41,7 @@ const HBDashboardStatistics = () => {
                 <HBStatisticCard label="Total Profit" value={get(dashboardStatistics, 'total_profit', 0)} subValue="DOT" />
             </Col>
             <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Total Sales" value={get(dashboardStatistics, 'sales.total', 0)} subValue="DOT" />
+                <HBStatisticCard label="Total Sales" value={formatCurrency(get(dashboardStatistics, 'sales.total', 0))} subValue="DOT" />
             </Col>
             {/* <Col lg={3} md={6}>
                 <HBStatisticCard label="Validator" value={get(dashboardStatistics, )} subValue="DOT" />
