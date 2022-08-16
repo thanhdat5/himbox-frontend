@@ -18,6 +18,10 @@ import {
   UPDATE_USER_INFO_SUCCESS,
   UserActions,
   UserState,
+  RESET_USER_STATE,
+  DISABLE_2FA_REQUEST,
+  DISABLE_2FA_SUCCESS,
+  DISABLE_2FA_FAILURE,
 } from "../types/user";
 
 const initialState: UserState = {
@@ -25,12 +29,23 @@ const initialState: UserState = {
   updateInfoSuccess: false,
   changePasswordSuccess: false,
   enable2FASuccess: false,
+  disable2FASuccess: false,
   userInfo: null,
-  generate2FASuccess: false,
+  twoFA: null,
 };
 
 const userReducer = (state = initialState, action: UserActions) => {
   switch (action.type) {
+    case RESET_USER_STATE:
+      return {
+        ...state,
+        loading: false,
+        updateInfoSuccess: false,
+        changePasswordSuccess: false,
+        enable2FASuccess: false,
+        disable2FASuccess: false,
+        twoFA: null,
+      };
     case GET_USER_INFO_REQUEST:
       return {
         ...state,
@@ -112,23 +127,43 @@ const userReducer = (state = initialState, action: UserActions) => {
         loading: false,
         enable2FASuccess: false,
       };
+
+    case DISABLE_2FA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        disable2FASuccess: false,
+      };
+    case DISABLE_2FA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        disable2FASuccess: true,
+      };
+    case DISABLE_2FA_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        disable2FASuccess: false,
+      };
+
     case GENERATE_2FA_REQUEST:
       return {
         ...state,
         loading: true,
-        generate2FASuccess: false,
+        twoFA: null,
       };
     case GENERATE_2FA_SUCCESS:
       return {
         ...state,
         loading: false,
-        generate2FASuccess: true,
+        twoFA: action.payload,
       };
     case GENERATE_2FA_FAILURE:
       return {
         ...state,
         loading: false,
-        generate2FASuccess: false,
+        twoFA: null,
       };
     case LOG_OUT:
       return initialState;

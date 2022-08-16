@@ -3,11 +3,14 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
 import {
   ShowErrorMessage,
-  ShowSuccessMessage
+  ShowSuccessMessage,
 } from "../../services/appService";
+import { extractError } from "../../utils/helpers";
 import {
   changePasswordFailure,
   changePasswordSuccess,
+  disable2FAFailure,
+  disable2FASuccess,
   enable2FAFailure,
   enable2FASuccess,
   generate2FAFailure,
@@ -15,14 +18,15 @@ import {
   getUserInfoFailure,
   getUserInfoSuccess,
   updateUserInfoFailure,
-  updateUserInfoSuccess
+  updateUserInfoSuccess,
 } from "../actions/userActions";
 import {
   CHANGE_PASSWORD_REQUEST,
+  DISABLE_2FA_REQUEST,
   ENABLE_2FA_REQUEST,
   GENERATE_2FA_REQUEST,
   GET_USER_INFO_REQUEST,
-  UPDATE_USER_INFO_REQUEST
+  UPDATE_USER_INFO_REQUEST,
 } from "../types/user";
 import { apiCall } from "./api";
 
@@ -36,7 +40,7 @@ function* fetchGetUserInfoSaga(action: any) {
     yield put(getUserInfoSuccess(res.data?.data));
   } catch (e: any) {
     yield put(getUserInfoFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchChangePasswordSaga(action: any) {
@@ -46,7 +50,7 @@ function* fetchChangePasswordSaga(action: any) {
     yield put(changePasswordSuccess());
   } catch (e: any) {
     yield put(changePasswordFailure());
-    ShowErrorMessage(e.response.data);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchUpdateInfoSaga(action: any) {
@@ -61,32 +65,52 @@ function* fetchUpdateInfoSaga(action: any) {
     yield put(updateUserInfoSuccess());
   } catch (e: any) {
     yield put(updateUserInfoFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
+  }
+}
+function* fetchDisable2FASaga(action: any) {
+  try {
+    const res: AxiosResponse<any> = yield call(
+      apiCall,
+      "POST",
+      ENDPOINTS.TFA_DEACTIVE,
+      action.payload
+    );
+    ShowSuccessMessage(res?.data?.msg);
+    yield put(disable2FASuccess());
+  } catch (e: any) {
+    yield put(disable2FAFailure());
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchEnable2FASaga(action: any) {
   try {
-    yield call(
+    const res: AxiosResponse<any> = yield call(
       apiCall,
       "POST",
-      "https://jsonplaceholder.typicode.com/todos",
+      ENDPOINTS.TFA_ACTIVE,
       action.payload
     );
-    ShowSuccessMessage("Update success!");
+    ShowSuccessMessage(res?.data?.msg);
     yield put(enable2FASuccess());
   } catch (e: any) {
     yield put(enable2FAFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 
 function* fetchGenerate2FASaga(action: any) {
   try {
-    yield call(apiCall, "POST", ENDPOINTS.TFA_GENERATION, action.payload);
-    yield put(generate2FASuccess());
+    const res: AxiosResponse<any> = yield call(
+      apiCall,
+      "POST",
+      ENDPOINTS.TFA_GENERATION,
+      action.payload
+    );
+    yield put(generate2FASuccess(res.data?.data));
   } catch (e: any) {
     yield put(generate2FAFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 
@@ -95,6 +119,7 @@ function* forgotPasswordSaga() {
   yield all([takeLatest(CHANGE_PASSWORD_REQUEST, fetchChangePasswordSaga)]);
   yield all([takeLatest(UPDATE_USER_INFO_REQUEST, fetchUpdateInfoSaga)]);
   yield all([takeLatest(ENABLE_2FA_REQUEST, fetchEnable2FASaga)]);
+  yield all([takeLatest(DISABLE_2FA_REQUEST, fetchDisable2FASaga)]);
   yield all([takeLatest(GENERATE_2FA_REQUEST, fetchGenerate2FASaga)]);
 }
 

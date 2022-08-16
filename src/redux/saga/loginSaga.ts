@@ -1,7 +1,18 @@
 import { get } from "lodash";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, HIMBOX_WALLET, MESSAGES, ROUTES } from "../../constants";
-import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
+import {
+  ENDPOINTS,
+  HIMBOX_ACCESS_TOKEN,
+  HIMBOX_REFRESH_TOKEN,
+  HIMBOX_USER_ID,
+  HIMBOX_USER_INFO,
+  MESSAGES,
+  ROUTES,
+} from "../../constants";
+import {
+  ShowErrorMessage,
+  ShowSuccessMessage,
+} from "../../services/appService";
 import { extractError } from "../../utils/helpers";
 import { history } from "../../utils/history";
 import { loginFailure, loginSuccess } from "../actions/loginActions";
@@ -12,42 +23,48 @@ import { apiCall } from "./api";
 
 function* fetchLoginSaga(action: any): any {
   try {
-    const res = yield call(
-      apiCall,
-      "POST",
-      ENDPOINTS.LOGIN,
-      action.payload
-    );
-    console.log('login data', res);
+    const res = yield call(apiCall, "POST", ENDPOINTS.LOGIN, action.payload);
     if (res?.data?.code == 407) {
       yield put({
         type: VERIFY_REQUEST,
-        payload: { username: action.payload.username, userId: res?.data?.data?.user_id }
+        payload: {
+          username: action.payload.username,
+          userId: res?.data?.data?.user_id,
+        },
       });
-      ShowErrorMessage({ message: get(res, 'data.msg', '') });
+      ShowErrorMessage({ message: get(res, "data.msg", "") });
       // call api resend otp
-      yield apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
-        username: action.payload.username
+      yield apiCall("POST", ENDPOINTS.RESEND_VERIFY_MAIL, {
+        username: action.payload.username,
       });
       ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
       yield put(loginFailure());
       history.push(ROUTES.VERIFY);
+    } else if (res?.data?.code == 202) {
+      yield put(loginSuccess(null));
     } else {
       // login ok
-      yield localStorage.setItem(HIMBOX_REFRESH_TOKEN, res?.data?.data?.refresh_token);
-      yield localStorage.setItem(HIMBOX_ACCESS_TOKEN, res?.data?.data?.token?.access_token);
+      yield localStorage.setItem(
+        HIMBOX_REFRESH_TOKEN,
+        res?.data?.data?.refresh_token
+      );
+      yield localStorage.setItem(
+        HIMBOX_ACCESS_TOKEN,
+        res?.data?.data?.token?.access_token
+      );
       yield localStorage.setItem(HIMBOX_USER_ID, res?.data?.data?.user_id);
-      yield localStorage.setItem(HIMBOX_WALLET, res?.data?.data?.wallet);
-      
+      yield localStorage.setItem(
+        HIMBOX_USER_INFO,
+        JSON.stringify(res?.data?.data)
+      );
+
       yield put({
-        type: GET_USER_INFO_REQUEST
+        type: GET_USER_INFO_REQUEST,
       });
-      yield put(loginSuccess(res?.data?.data));
+      yield put(loginSuccess(true));
       history.push(ROUTES.DASHBOARD);
     }
-
   } catch (e: any) {
-    console.log('111111111', e)
     yield put(loginFailure());
     ShowErrorMessage({ message: extractError(e) });
   }

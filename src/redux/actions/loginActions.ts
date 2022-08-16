@@ -5,7 +5,7 @@ import {
   LoginSuccess,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
 } from "../types/login";
 
 export const loginRequest = (payload: LoginRequestModel): LoginRequest => ({
