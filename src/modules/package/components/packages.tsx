@@ -60,28 +60,33 @@ const HBPackageList = () => {
                 <button type="button" onClick={() => setProfit(0.4)} className={`hb-package-percent ${profit === 0.4 ? 'active' : ''}`}>0.4</button>
             </div>
             <div className="hb-packages-list">
-                <Row>
-                    {
-                        packages.map((item: any, idx: number) => {
-                            return <Col key={idx} xl={3} lg={4} md={6} className="mb-md-4 mb-3">
-                                <HBPackageCard
-                                    packageName={`Package ${idx + 1}`}
-                                    packageValue={item.dot_amount}
-                                    planName={`Plan ${item.plan}`}
-                                    planValue={`Lock ${item.him_amount} HIM`}
-                                    planValueDOT={item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))}
-                                    total={item.dot_amount + item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))}
-                                    totalUSD={(item.dot_amount + item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))) * get(prices, 'dot_price', 0)}
-                                    onParticipate={() => {
-                                        setSelectedPackage({...item, name: `Package ${idx + 1}`});
-                                        setShowParticipate(true);
-                                    }}
-                                    disabled={item.disabled}
-                                />
-                            </Col>
-                        })
-                    }
-                </Row>
+                {packages.length > 0 ?
+                    <Row>
+                        {
+                            packages.map((item: any, idx: number) => {
+                                return <Col key={idx} xl={3} lg={4} md={6} className="mb-md-4 mb-3">
+                                    <HBPackageCard
+                                        packageName={`Package ${idx + 1}`}
+                                        packageValue={item.dot_amount}
+                                        planName={`Plan ${item.plan}`}
+                                        planValue={`Lock ${item.him_amount} HIM`}
+                                        planValueDOT={item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))}
+                                        total={item.dot_amount + item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))}
+                                        totalUSD={(item.dot_amount + item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))) * get(prices, 'dot_price', 0)}
+                                        onParticipate={() => {
+                                            setSelectedPackage({ ...item, name: `Package ${idx + 1}` });
+                                            setShowParticipate(true);
+                                        }}
+                                        disabled={item.disabled}
+                                    />
+                                </Col>
+                            })
+                        }
+                    </Row>
+                    :
+                    <span>No packages available</span>
+                }
+
             </div>
             <div>
                 <small>* (1 DOT = {convertNumber(get(prices, 'dot_price', 0) / get(prices, 'him_price', 1))} HIM)</small>

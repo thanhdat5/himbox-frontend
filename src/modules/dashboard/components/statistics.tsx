@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
 import WithdrawModal from "../../../components/withdraw-modal";
-import { getDashboardStatisticsRequest } from "../../../redux/actions/dashboardActions";
 
 const HBDashboardStatistics = () => {
 

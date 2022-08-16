@@ -44,7 +44,7 @@
     }
     &.active {
       color: $hb-white-color;
-      background: $hb-primary-gradient;
+      background: $hb-primary-gradient !important;
     }
   }
 }

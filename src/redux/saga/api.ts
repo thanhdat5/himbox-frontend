@@ -91,7 +91,7 @@ const instance = (headers?: Record<string, string>) => {
           },
         })
           .then(async (res) => {
-            console.log("resssssss", res);
+            // console.log("resssssss", res);
             if (get(res, "data.code", 0) === 200) {
               await localStorage.setItem(
                 HIMBOX_ACCESS_TOKEN,
@@ -104,7 +104,7 @@ const instance = (headers?: Record<string, string>) => {
               returnValue.defaults.headers.common[
                 "Authorization"
               ] = `Bearer ${get(res, "data.data.token.access_token")}`;
-              console.log("return values", returnValue);
+              // console.log("return values", returnValue);
               return returnValue(originalRequest);
             } else {
               localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
