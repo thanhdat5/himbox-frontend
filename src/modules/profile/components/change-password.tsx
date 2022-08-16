@@ -1,50 +1,88 @@
-import { useState } from "react";
-import { Button, Form, FormGroup, FormLabel } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { ErrorMessage, Form, Formik } from "formik";
+import { useEffect, useRef } from "react";
+import { Button, FormGroup, FormLabel } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import HBCard from "../../../components/card";
-import PasswordControl from "../../../components/password-control";
+import PasswordField from "../../../components/password-field";
+import { MESSAGES } from "../../../constants";
+import { UserChangePasswordRequestModel } from "../../../models";
 import { changePasswordRequest } from "../../../redux/actions/userActions";
-import { getUserLoadingSelector } from "../../../redux/selectors/userSelectors";
+import { getChangePasswordSuccessSelector, getUserLoadingSelector } from "../../../redux/selectors/userSelectors";
+import { validatePwd } from "../../../utils/helpers";
 
 const HBProfileChangePassword = () => {
     const dispatch = useDispatch();
+    const formRef = useRef<any>(null);
     const loading = useSelector(getUserLoadingSelector);
-    const [oldPassword, setOldPassword] = useState<string>('');
-    const [newPassword, setNewPassword] = useState<string>('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
+    const success = useSelector(getChangePasswordSuccessSelector);
+    const initialValues: UserChangePasswordRequestModel = {
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+    };
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        if (oldPassword === newPassword) {
-            const postData = { oldPassword, newPassword, confirmNewPassword };
-            dispatch(changePasswordRequest(postData));
-        } else {
-            // show error message
+    const handleValidateForm = (values: UserChangePasswordRequestModel) => {
+        const errors: any = {};
+        if (!values.oldPassword) {
+            errors.oldPassword = MESSAGES['REQUIRED_MESSAGE'];
+        } else if (!values.newPassword) {
+            errors.newPassword = MESSAGES['REQUIRED_MESSAGE'];
+        } else if (!values.confirmNewPassword) {
+            errors.confirmNewPassword = MESSAGES['REQUIRED_MESSAGE'];
+        } else if (!validatePwd(values.oldPassword)) {
+            errors.oldPassword = MESSAGES['PASSWORD_FORMAT_INVALID'];
+        } else if (!validatePwd(values.newPassword)) {
+            errors.newPassword = MESSAGES['PASSWORD_FORMAT_INVALID'];
+        } else if (!validatePwd(values.confirmNewPassword)) {
+            errors.confirmNewPassword = MESSAGES['PASSWORD_FORMAT_INVALID'];
+        } else if (values.newPassword !== values.confirmNewPassword) {
+            errors.confirmNewPassword = MESSAGES['CONFIRM_PASSWORD_INVALID'];
         }
+        return errors;
     }
 
+    const handleSubmitForm = (values: UserChangePasswordRequestModel) => {
+        dispatch(changePasswordRequest(values));
+    }
+
+    useEffect(() => {
+        if (success) {
+            formRef.current.handleReset();
+        }
+    }, [success])
+
     return <HBCard>
-        <Form onSubmit={handleSubmit}>
-            <FormGroup className="mb-3">
-                <FormLabel>Current Password</FormLabel>
-                <PasswordControl required value={oldPassword} onChange={(e: any) => setOldPassword(e.target.value)} />
-            </FormGroup>
+        <Formik
+            innerRef={formRef}
+            enableReinitialize
+            initialValues={initialValues}
+            validate={handleValidateForm}
+            onSubmit={handleSubmitForm}
+        >
+            <Form>
+                <FormGroup className="mb-3">
+                    <FormLabel>Current Password</FormLabel>
+                    <PasswordField name="oldPassword" />
+                    <ErrorMessage component='div' className="form-error" name="oldPassword" />
+                </FormGroup>
 
-            <FormGroup className="mb-3">
-                <FormLabel>New Password</FormLabel>
-                <PasswordControl required value={newPassword} onChange={(e: any) => setNewPassword(e.target.value)} />
-            </FormGroup>
+                <FormGroup className="mb-3">
+                    <FormLabel>New Password</FormLabel>
+                    <PasswordField name="newPassword" />
+                    <ErrorMessage component='div' className="form-error" name="newPassword" />
+                </FormGroup>
 
-            <FormGroup className="mb-4">
-                <FormLabel>Confirm Password</FormLabel>
-                <PasswordControl required value={confirmNewPassword} onChange={(e: any) => setConfirmNewPassword(e.target.value)} />
-            </FormGroup>
+                <FormGroup className="mb-4">
+                    <FormLabel>Confirm Password</FormLabel>
+                    <PasswordField name="confirmNewPassword" />
+                    <ErrorMessage component='div' className="form-error" name="confirmNewPassword" />
+                </FormGroup>
 
-            <Button type="submit" disabled={loading}>
-                <span>Change password</span>
-            </Button>
-        </Form>
+                <Button type="submit" disabled={loading}>
+                    <span>Change password</span>
+                </Button>
+            </Form>
+        </Formik>
     </HBCard>
 }
 export default HBProfileChangePassword

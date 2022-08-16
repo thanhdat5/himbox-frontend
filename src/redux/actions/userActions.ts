@@ -78,7 +78,7 @@ export const changePasswordSuccess = (): ChangePasswordSuccess => ({
 });
 
 export const changePasswordFailure = (): ChangePasswordFailure => ({
-  type: CHANGE_PASSWORD_FAILURE,
+  type: CHANGE_PASSWORD_FAILURE
 });
 
 export const enable2FARequest = (

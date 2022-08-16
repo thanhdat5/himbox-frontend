@@ -19,6 +19,7 @@
     "@types/redux-saga": "^0.10.5",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",

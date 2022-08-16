@@ -4,25 +4,25 @@ export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
 
 export const BASE_URL = 'http://34.142.200.249:6969/api/v1';
 export const ENDPOINTS = {
-    LOGIN: `${BASE_URL}/user/login`,
-    SIGN_UP: `${BASE_URL}/user/register`,
-    VERIFY_ACCOUNT: `${BASE_URL}/user/verify-user`,
-    RESEND_VERIFY_MAIL: `${BASE_URL}/user/resend-verify-email`,
-    FORGET_PASSWORD: `${BASE_URL}/user/forgot-password`,
-    CONFIRM_FORGET_PASSWORD: `${BASE_URL}/user/confirm-forgot-password`,
-    PROFILE: `${BASE_URL}/user/profile`,
-    UPDATE_INFO: `${BASE_URL}/user/profile/update-info`,
-    UPLOAD_AVATAR: `${BASE_URL}/user/upload-avatar`,
-    NEW_ACCESS_TOKEN: `${BASE_URL}/user/new-access-token`,
-    CHANGE_PASSWORD: `${BASE_URL}/user/profile/change-password`,
-    LOGOUT: `${BASE_URL}/user/logout`,
+    LOGIN: `/user/login`,
+    SIGN_UP: `/user/register`,
+    VERIFY_ACCOUNT: `/user/verify-user`,
+    RESEND_VERIFY_MAIL: `/user/resend-verify-email`,
+    FORGET_PASSWORD: `/user/forgot-password`,
+    CONFIRM_FORGET_PASSWORD: `/user/confirm-forgot-password`,
+    PROFILE: `/user/profile`,
+    UPDATE_INFO: `/user/profile/update-info`,
+    UPLOAD_AVATAR: `/user/upload-avatar`,
+    NEW_ACCESS_TOKEN: `/user/new-access-token`,
+    CHANGE_PASSWORD: `/user/profile/change-password`,
+    LOGOUT: `/user/logout`,
 
     // tfa
-    TFA_GENERATION: `${BASE_URL}/tfa/generate`,
-    TFA_ACTIVE: `${BASE_URL}/tfa/active`,
-    TFA_DEACTIVE: `${BASE_URL}/tfa/deactive`,
+    TFA_GENERATION: `/tfa/generate`,
+    TFA_ACTIVE: `/tfa/active`,
+    TFA_DEACTIVE: `/tfa/deactive`,
 
-    DASHBOARD_INFO: `${BASE_URL}/dashboard/infos`,
+    DASHBOARD_INFO: `/dashboard/infos`,
     NETWORK: '/network',
     PACKAGE: '/package',
 }
@@ -297,5 +297,6 @@ export const MESSAGES = {
     "REGISTER_SUCCESS": 'Register successfully!',
     "OTP_LENGTH_ERROR": 'Verification code must have length of 6',
     "OTP_RESEND_OK": 'Resend verification code successfully',
-    "RESET_PWD_SUCCESS": 'Reset password successfully!'
+    "RESET_PWD_SUCCESS": 'Reset password successfully!',
+    "REQUIRED_MESSAGE": 'Cannot leave this blank.'
 };
