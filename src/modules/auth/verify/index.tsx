@@ -53,7 +53,7 @@ const VerifyAccount = (props: any) => {
             } else if (get(error, 'response.data.msg', '') === "User account has been verified") {
                 navigate(ROUTES.LOGIN);
             }
-            ShowErrorMessage({ message: extractError(error) });
+            ShowErrorMessage({ msg: extractError(error) });
         }
     }
 

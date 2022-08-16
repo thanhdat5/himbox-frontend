@@ -24,7 +24,7 @@ function* fetchLoginSaga(action: any): any {
         type: VERIFY_REQUEST,
         payload: { username: action.payload.username, userId: res?.data?.data?.user_id }
       });
-      ShowErrorMessage({ message: get(res, 'data.msg', '') });
+      ShowErrorMessage({ msg: get(res, 'data.msg', '') });
       // call api resend otp
       yield apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
         username: action.payload.username
@@ -47,9 +47,9 @@ function* fetchLoginSaga(action: any): any {
     }
 
   } catch (e: any) {
-    console.log('111111111', e)
+    console.log('111111111', extractError(e))
     yield put(loginFailure());
-    ShowErrorMessage({ message: extractError(e) });
+    ShowErrorMessage({ msg: extractError(e) });
   }
 }
 

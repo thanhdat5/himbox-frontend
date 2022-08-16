@@ -20,7 +20,7 @@ function* fetchVerifySaga(action: any): any {
     ShowSuccessMessage(MESSAGES.REGISTER_SUCCESS);
   } catch (e: any) {
     yield put(verifyAccountFailure());
-    ShowErrorMessage({ message: extractError(e) });
+    ShowErrorMessage({ msg: extractError(e) });
   }
 }
 

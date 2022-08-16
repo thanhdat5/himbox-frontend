@@ -17,6 +17,7 @@ export const ENDPOINTS = {
     NEW_ACCESS_TOKEN: `/user/new-access-token`,
     CHANGE_PASSWORD: `/user/profile/change-password`,
     LOGOUT: `/user/logout`,
+    GET_CHILD: `/user/get-child`,
 
     // tfa
     TFA_GENERATION: `/tfa/generate`,

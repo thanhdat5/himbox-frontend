@@ -1,5 +1,5 @@
 import { get } from "lodash"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Col, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import HBCard from "../../components/card"
@@ -8,8 +8,6 @@ import HBSectionTitle from "../../components/sectrion-title"
 import { getDashboardStatisticsRequest } from "../../redux/actions/dashboardActions"
 import HBNetworkAffiliate from "./components/affiliate"
 import HBNetworkLevels from "./components/levels"
-import HBNetworkMembers from "./components/members"
-import HBNetworkSharing from "./components/sharing"
 import HBNetworkStatistics from "./components/statistics"
 
 const Network = () => {
@@ -29,7 +27,6 @@ const Network = () => {
                 <HBCard className="py-3 hb-network-member-card d-flex flex-column">
                     <div className="h-100 d-flex flex-column" style={{ flex: 1 }}>
                         <HBNetworkLevels />
-                        <HBNetworkMembers />
                     </div>
                 </HBCard>
             </Col>

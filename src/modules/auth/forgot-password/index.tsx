@@ -40,7 +40,7 @@ const ForgotPassword = () => {
             history.push(ROUTES.NEW_PASSWORD);
             ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
         } catch (error) {
-            ShowErrorMessage({ message: extractError(error) });
+            ShowErrorMessage({ msg: extractError(error) });
         }
     }
 

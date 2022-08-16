@@ -1,6 +1,12 @@
 import { Table } from "react-bootstrap"
+import { PACKAGE_RANKING_TYPES } from "../../../constants";
 
-const HBNetworkMembers = () => {
+interface HBNetworkMembersProps {
+    data: any
+}
+
+const HBNetworkMembers = ({ data = [] }: HBNetworkMembersProps) => {
+    console.log('data', data);
     return <div className="hb-network-members-list">
         <Table responsive className="mb-0">
             <thead>
@@ -13,13 +19,17 @@ const HBNetworkMembers = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>ixwvW0ev</td>
-                    <td>tTGiKyh1</td>
-                    <td>3</td>
-                    <td>1000</td>
-                    <td className="text-end">0</td>
-                </tr>
+                {data.map((row: any, index: number) => {
+                    return (
+                        <tr key={'his' + index}>
+                            <td>{row?.user_id}</td>
+                            <td>{row?.sponsor}</td>
+                            <td>{PACKAGE_RANKING_TYPES[row?.profit_type]}</td>
+                            <td>{row?.him_amount}</td>
+                            <td className="text-end">{row?.rank}</td>
+                        </tr>
+                    );
+                })}
             </tbody>
         </Table>
     </div>
