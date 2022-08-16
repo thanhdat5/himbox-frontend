@@ -2,6 +2,7 @@ import { get } from "lodash";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
+import { formatCurrency } from "../../../utils/helpers";
 
 const HBNetworkStatistics = () => {
     const statistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
@@ -9,7 +10,7 @@ const HBNetworkStatistics = () => {
     return <div className="hb-network-statistics">
         <Row className="pb-lg-1 mb-3 mb-lg-4">
             <Col xl={2} lg={3} md={6} xs={6} className="mb-xl-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Total Sales" value={get(statistics, 'sales.total', 0)} subValue="DOT" />
+                <HBStatisticCard label="Total Sales" value={formatCurrency(get(statistics, 'sales.total', 0))} subValue="DOT" />
             </Col>
             <Col xl={2} lg={3} md={6} xs={6} className="mb-xl-0 mb-md-4 mb-3">
                 <HBStatisticCard label="Total Members" value={get(statistics, 'members.total', 0)} />

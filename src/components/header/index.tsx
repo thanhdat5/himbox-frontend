@@ -37,8 +37,8 @@ const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => 
                     <span>HimBOX</span>
                 </Link>
                 <Breadcrumb aria-label="breadcrumb">
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: ROUTES.DASHBOARD }}>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Dashboard</Breadcrumb.Item>
+                    {/* <Breadcrumb.Item linkAs={Link} linkProps={{ to: ROUTES.DASHBOARD }}>Home</Breadcrumb.Item> */}
+                    {/* <Breadcrumb.Item active>Dashboard</Breadcrumb.Item> */}
                 </Breadcrumb>
             </div>
             <div className="hb-header-menu">
