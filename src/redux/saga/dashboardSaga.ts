@@ -31,7 +31,7 @@ function* fetchDashboardStatisticsSaga(action: any) {
     yield put(getDashboardStatisticsSuccess(res.data.data));
   } catch (e: any) {
     yield put(getDashboardStatisticsFailure());
-    ShowErrorMessage(e);
+    // ShowErrorMessage(e);
   }
 }
 function* fetchDashboardLevelsSaga(action: any) {

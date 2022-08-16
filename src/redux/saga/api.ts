@@ -13,18 +13,18 @@ import { history } from "../../utils/history";
 
 const instance = (headers?: Record<string, string>) => {
   let returnValue = axios.create();
-  const accessToken: any = localStorage.getItem(HIMBOX_ACCESS_TOKEN);
 
   returnValue.interceptors.request.use(
-    (config) => {
-      if (!headers) {
-        config.headers = {
-          "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*",
-          Authorization: `Bearer ${accessToken}`,
-          lang: "en",
-        };
-      }
+    async (config) => {
+      // if (!headers) {
+      const accessToken: any = await localStorage.getItem(HIMBOX_ACCESS_TOKEN);
+      config.headers = {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${accessToken}`,
+        lang: "en",
+      };
+      // }
       return config;
     },
     (error) => {
@@ -80,7 +80,7 @@ const instance = (headers?: Record<string, string>) => {
 
         return axios({
           method: "POST",
-          url: ENDPOINTS.NEW_ACCESS_TOKEN,
+          url: `${BASE_URL}${ENDPOINTS.NEW_ACCESS_TOKEN}`,
           headers: {
             Authorization: `Bear ${oldAccessToken}`,
           },
@@ -91,7 +91,7 @@ const instance = (headers?: Record<string, string>) => {
           },
         })
           .then(async (res) => {
-            console.log("resssssss", res);
+            // console.log("resssssss", res);
             if (get(res, "data.code", 0) === 200) {
               await localStorage.setItem(
                 HIMBOX_ACCESS_TOKEN,
@@ -104,7 +104,7 @@ const instance = (headers?: Record<string, string>) => {
               returnValue.defaults.headers.common[
                 "Authorization"
               ] = `Bearer ${get(res, "data.data.token.access_token")}`;
-              console.log("return values", returnValue);
+              // console.log("return values", returnValue);
               return returnValue(originalRequest);
             } else {
               localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
@@ -149,7 +149,6 @@ export const apiCall = (
   headers?: Record<string, string>,
   useBody?: boolean
 ): Promise<AxiosResponse<any>> => {
-  // console.log(method, url, data, headers);
 
   const config: AxiosRequestConfig = {
     method,

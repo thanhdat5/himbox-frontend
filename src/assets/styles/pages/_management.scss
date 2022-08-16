@@ -44,11 +44,12 @@
     }
     &.active {
       color: $hb-white-color;
-      background: $hb-primary-gradient;
+      background: $hb-primary-gradient !important;
     }
   }
 }
 .hb-packages-list {
+  text-align: center;
   .hb-package-item {
     padding: 20px 24px 24px;
     border-radius: 20px;

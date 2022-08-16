@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import HBCard from "../../components/card";
 import HBPageWrap from "../../components/page-wrap";
 import { PACKAGE_RANKING_TYPES } from '../../constants';
+import { getDashboardStatisticsRequest } from '../../redux/actions/dashboardActions';
 import { GET_DASHBOARD_STATISTICS_REQUEST } from '../../redux/types/dashboard';
 import HBDashboardBlock from "./components/block";
 import HBDashboardLeadership from "./components/leadership";
@@ -16,6 +17,10 @@ import HBDashboardTransactions from "./components/transactions";
 const Dashboard = () => {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getDashboardStatisticsRequest({}))
+    }, [])
 
     const statistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
 

@@ -5,18 +5,12 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import HBStatisticCard from "../../../components/statistic-card";
 import WithdrawModal from "../../../components/withdraw-modal";
-import { getDashboardStatisticsRequest } from "../../../redux/actions/dashboardActions";
 
 const HBDashboardStatistics = () => {
 
     const dispatch = useDispatch();
 
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
-
-    // Todo
-    useEffect(() => {
-        dispatch(getDashboardStatisticsRequest({}))
-    }, [])
 
     const [showWithdraw, setShowWithdraw] = useState(false);
 

@@ -14,8 +14,8 @@ const Login = () => {
     const success = useSelector(getLoginSuccessSelector);
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('tungbt11@gmail.com');
-    const [password, setPassword] = useState<string>('Abcde12345!');
+    const [email, setEmail] = useState<string>('user-test-2-1@gmail.com');
+    const [password, setPassword] = useState<string>('Abcde12345-');
 
     const [errors, setErrors] = useState<any>(null);
 
