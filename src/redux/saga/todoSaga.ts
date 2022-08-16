@@ -32,7 +32,7 @@ function* fetchTodoSaga() {
   Allows concurrent increments.
 */
 function* todoSaga() {
-  yield all([takeLatest(FETCH_TODO_REQUEST, fetchTodoSaga)]);
+  // yield all([takeLatest(FETCH_TODO_REQUEST, fetchTodoSaga)]);
 }
 
 export default todoSaga;

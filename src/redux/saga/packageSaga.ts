@@ -25,7 +25,7 @@ function* fetchPackageStatisticsSaga(action: any) {
     yield put(getPackageStatisticsSuccess(res.data));
   } catch (e: any) {
     yield put(getPackageStatisticsFailure());
-    ShowErrorMessage(e);
+    // ShowErrorMessage(e);
   }
 }
 
@@ -40,7 +40,7 @@ function* fetchMyPackageSaga(action: any) {
     yield put(getMyPackageSuccess(res.data.data));
   } catch (e: any) {
     yield put(getMyPackageFailure());
-    ShowErrorMessage(e);
+    // ShowErrorMessage(e);
   }
 }
 
@@ -59,7 +59,7 @@ function* fetchGetPackagesByProfitSaga(action: any) {
     yield put(getPackagesByProfitSuccess(packageRes));
   } catch (e: any) {
     yield put(getPackagesByProfitFailure());
-    ShowErrorMessage(e);
+    // ShowErrorMessage(e);
   }
 }
 function* fetchConfirmParticipateSaga(action: any) {

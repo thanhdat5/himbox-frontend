@@ -13,11 +13,6 @@ const HBDashboardStatistics = () => {
 
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
 
-    // Todo
-    useEffect(() => {
-        dispatch(getDashboardStatisticsRequest({}))
-    }, [])
-
     const [showWithdraw, setShowWithdraw] = useState(false);
 
     const handleCloseWithdraw = (isSubmit?: boolean) => {

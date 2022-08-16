@@ -1,9 +1,11 @@
 import { get } from "lodash"
+import { useEffect } from "react"
 import { Col, Row } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import HBCard from "../../components/card"
 import HBPageWrap from "../../components/page-wrap"
 import HBSectionTitle from "../../components/sectrion-title"
+import { getDashboardStatisticsRequest } from "../../redux/actions/dashboardActions"
 import HBNetworkAffiliate from "./components/affiliate"
 import HBNetworkLevels from "./components/levels"
 import HBNetworkMembers from "./components/members"
@@ -11,6 +13,13 @@ import HBNetworkSharing from "./components/sharing"
 import HBNetworkStatistics from "./components/statistics"
 
 const Network = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getDashboardStatisticsRequest({}))
+    }, [])
+
 
     return <HBPageWrap className="hb-network" title="My Networks">
         <HBNetworkStatistics />
