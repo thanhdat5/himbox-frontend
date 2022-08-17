@@ -404,5 +404,16 @@ export const MESSAGES = {
     "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
     "ENTER_PACKAGE_FAIL": 'Enter package failed!',
     "REQUIRED_MESSAGE": 'Cannot leave this blank.',
-    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ${0}.'
-};
+    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ${0}.'};
+
+export const ACTION_STATUS = {
+    
+    APPROVING: 'APPROVING',
+    APPROVED: 'APPROVED',
+    APPROVE_FAILS: 'APPROVE_FAILS',
+
+    DEPOSIT_PACKAGE_SUBMITTING: 'DEPOSIT_PACKAGE_SUBMITTING',
+    DEPOSIT_PACKAGE_SUCCESS: 'DEPOSIT_PACKAGE_SUCCESS',
+    DEPOSIT_PACKAGE_FAIL: 'DEPOSIT_PACKAGE_FAIL',
+
+}

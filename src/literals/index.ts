@@ -11,15 +11,15 @@ export enum ConnectorNames {
   BSC = 'bsc',
   // WalletConnect = 'WalletConnect'
 }
-export const NETWORK_CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID ?? `${ChainId.MAINNET}`);
-export const NETWORK_URL = 'https://bsc-dataseed.binance.org/';
-export const NetworkContextName = 'NETWORK';
-
 
 export declare enum ChainId {
   MAINNET = 56,
   TESTNET = 97
 }
+
+export const NETWORK_CHAIN_ID = 97//parseInt(process.env.REACT_APP_CHAIN_ID ?? `${ChainId.MAINNET}`);
+export const NETWORK_URL = 'https://bsc-dataseed.binance.org/';
+export const NetworkContextName = 'NETWORK';
 
 export const CURRENCY_SUPPORT: any = {
   "0x0000000000000000000000000000000000000000": "BNB",
