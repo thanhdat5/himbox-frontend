@@ -26,7 +26,7 @@ const ParticipateModal = ({ onHide, selectedPackage }: ParticipateModalProps) =>
             onHide(true);
             ShowSuccessMessage(MESSAGES.ENTER_PACKAGE_SUCCESS);
         } catch (error) {
-            ShowErrorMessage({ message: extractError(error) });
+            ShowErrorMessage({ msg: extractError(error) });
         }
     }
 

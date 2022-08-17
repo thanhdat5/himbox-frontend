@@ -6,12 +6,12 @@ const VeryfyCodeModal = ({ onDismiss }: any) => {
     const handleSubmit = () => {
         onDismiss(token);
     }
-    return <Modal centered show size="sm" className="hb-modal" onHide={onDismiss}>
+    return <Modal centered show size="sm" className="hb-modal" onHide={onDismiss} backdrop="static">
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
             <Form onSubmit={handleSubmit}>
                 <FormGroup className="mb-4">
-                    <FormLabel>Verify code</FormLabel>
+                    <FormLabel>Verification code</FormLabel>
                     <FormControl required value={token} onChange={(e) => setToken(e.target.value)} />
                 </FormGroup>
 

@@ -99,7 +99,7 @@ const HBProfileVerify = ({ userLogged }: any) => {
                     </FormGroup> : <></>}
 
                     <FormGroup className="mb-4">
-                        <FormLabel>Verify code</FormLabel>
+                        <FormLabel>Verification code</FormLabel>
                         <FormControl required value={token} onChange={(e) => setToken(e.target.value)} />
                     </FormGroup>
 

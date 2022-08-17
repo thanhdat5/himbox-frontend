@@ -22,7 +22,7 @@ const HBNetworkSharing = () => {
 
     useEffect(() => {
         if (refId) {
-            setRef(`https://himbox.io/auth/sign-up?ref=${refId}`);
+            setRef(`https://test.himbox.io/auth/sign-up?ref=${refId}`);
         }
     }, [refId]);
 

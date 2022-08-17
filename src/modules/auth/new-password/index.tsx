@@ -62,7 +62,7 @@ const NewPassword = (props: any) => {
             navigate(ROUTES.LOGIN);
         } catch (error) {
             console.log('errrrpr', error);
-            ShowErrorMessage({ message: extractError(error) });
+            ShowErrorMessage({ msg: extractError(error) });
         }
     }
 

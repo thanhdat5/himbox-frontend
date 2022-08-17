@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     const success = useSelector(getForgotPasswordSuccessSelector);
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('tungbt2@gmail.com');
+    const [email, setEmail] = useState<string>('');
     const [errors, setErrors] = useState<any>(null);
 
     const handleSubmit = async (e: any) => {
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
             history.push(ROUTES.NEW_PASSWORD);
             ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
         } catch (error) {
-            ShowErrorMessage({ message: extractError(error) });
+            ShowErrorMessage({ msg: extractError(error) });
         }
     }
 

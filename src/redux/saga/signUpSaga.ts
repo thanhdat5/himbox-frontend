@@ -20,7 +20,7 @@ function* fetchSignUpSaga(action: any): any {
     history.push(ROUTES.VERIFY);
   } catch (e: any) {
     yield put(signUpFailure(extractError(e)));
-    ShowErrorMessage({ message: extractError(e) });
+    ShowErrorMessage({ msg: extractError(e) });
   }
 }
 

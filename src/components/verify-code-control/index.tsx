@@ -52,7 +52,7 @@ const VerifyCodeControl = ({ value, onChange, required, showResend, isFromResetP
             if (get(e, 'response.data.msg', '') === "User account has been verified") {
                 navigate(ROUTES.LOGIN);
             }
-            ShowErrorMessage({ message: extractError(e) });
+            ShowErrorMessage({ msg: extractError(e) });
         }
 
     }

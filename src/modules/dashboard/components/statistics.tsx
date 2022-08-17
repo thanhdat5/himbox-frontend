@@ -38,7 +38,7 @@ const HBDashboardStatistics = () => {
                 </Button>} />
             </Col>
             <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Total Profit" value={get(dashboardStatistics, 'total_profit', 0)} subValue="DOT" />
+                <HBStatisticCard label="Total Profit" value={formatCurrency(get(dashboardStatistics, 'total_profit', 0))} subValue="DOT" />
             </Col>
             <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
                 <HBStatisticCard label="Total Sales" value={formatCurrency(get(dashboardStatistics, 'sales.total', 0))} subValue="DOT" />
