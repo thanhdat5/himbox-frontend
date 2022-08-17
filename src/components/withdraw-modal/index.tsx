@@ -112,6 +112,7 @@ const WithdrawModal = ({ onHide }: WithdrawModalProps) => {
     useEffect(() => {
         if (success) {
             toast.success('Withdrawal Successfully!');
+            dispatch(resetWithdrawState());
             onHide(true);
             navigate(ROUTES.DASHBOARD);
         }
