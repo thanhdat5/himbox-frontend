@@ -32,12 +32,12 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        // UseApprovePoolContract({ web3Provider: library?.provider, account: account }, (approveResult: any) => {
-        //     console.log('approveResult', approveResult);
-        // });
-        UsePoolDeposit({ ref: '', amount: 10 * 10 ** 10, web3Provider: library?.provider, account }, (res: any) => {
-            console.log('sssssss', res);
-        })
+        UseApprovePoolContract({ web3Provider: library?.provider, account: account }, (approveResult: any) => {
+            console.log('approveResult', approveResult);
+        });
+        // UsePoolDeposit({ ref: '', amount: 10 * 10 ** 10, web3Provider: library?.provider, account }, (res: any) => {
+        //     console.log('sssssss', res);
+        // })
     }
 
     return <Modal className="hb-modal" size="sm" centered show onHide={onHide}>
