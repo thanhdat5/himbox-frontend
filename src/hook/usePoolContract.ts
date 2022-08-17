@@ -1,17 +1,20 @@
+import { getContractV2 } from './../utils/utils';
 import BigNumber from 'bignumber.js';
 import { get } from 'lodash';
 import { Web3Provider } from '@ethersproject/providers';
 import { ACTION_STATUS } from '../constants';
 import { getPoolContract } from '../utils/utils';
+import HimBox_ABI from '../constants/abi/him-box-package.abi.json';
+import { HIMBOX_POOL_CONTRACT } from '../_config';
 export interface IBuyNFT {
     ref?: string;
-    amount: BigNumber;
-    web3Provider: Web3Provider;
-    account: string;
+    amount: any;
+    web3Provider: any;
+    account: any;
     chainId?: number;
 }
 
-export async function usePoolDeposit(
+export async function UsePoolDeposit(
     { ref, amount, web3Provider, account }: IBuyNFT,
     callback: any,
 ) {
@@ -21,7 +24,8 @@ export async function usePoolDeposit(
     }
     const amountInHex = '0x' + amount.toString(16);
 
-    const poolContract = getPoolContract(web3Provider, account);
+    const poolContract = getContractV2(web3Provider, HimBox_ABI, HIMBOX_POOL_CONTRACT);
+    console.log('asasasasas', poolContract);
 
     callback({
         status: ACTION_STATUS.DEPOSIT_PACKAGE_SUBMITTING,

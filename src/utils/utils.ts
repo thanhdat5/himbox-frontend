@@ -8,7 +8,7 @@ import { provider } from 'web3-core';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import ERC20_ABI from '../constants/abi/dot.abi.json';
 import HimBox_ABI from '../constants/abi/him-box-package.abi.json';
-import { HIMBOX_POOL_CONTRACT } from "../_config";
+import { DOT_ADDRESS, HIMBOX_POOL_CONTRACT } from "../_config";
 
 export function isMetamaskAvailable() {
     return !!(get(window, 'ethereum.isMetaMask', null))
@@ -47,6 +47,12 @@ export function isAddress(value: any): string | false {
     }
 }
 
+export const getContractV2 = (provider: any, abi: any, contractAddress: any) => {
+
+    const web3 = new Web3(provider);
+    return new web3.eth.Contract(abi, contractAddress);
+  }
+
 // account is optional
 export function getContract(address: string, ABI: any, library: Web3Provider, account?: string): Contract {
     if (!isAddress(address) || address === AddressZero) {
@@ -56,12 +62,8 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
     return new Contract(address, ABI, getProviderOrSigner(library, account) as any)
 }
 
-export function getDotContract(tokenAddress: string, library: Web3Provider, account?: string): Contract {
-    const parsed = isAddress(tokenAddress)
-    if (!parsed) {
-        throw Error(`Invalid 'address' parameter '${tokenAddress}'.`)
-    }
-    return getContract(tokenAddress, ERC20_ABI, library, account)
+export function getDotContract(library: Web3Provider, account?: string): Contract {
+    return getContract(DOT_ADDRESS, ERC20_ABI, library, account)
 }
 
 export function getPoolContract(library: Web3Provider, account?: string): Contract {
@@ -73,6 +75,6 @@ export function getTokenContractByProvider(tokenAddress: string, library: Web3Pr
     if (!parsed) {
         throw Error(`Invalid 'address' parameter '${tokenAddress}'.`)
     }
-    // const web3 = new Web3(library.provider as provider);
-    // return new web3.eth.Contract(ERC20_ABI as AbiItem[], tokenAddress);
+    const web3 = new Web3(library.provider as provider);
+    return new web3.eth.Contract(ERC20_ABI as AbiItem[], tokenAddress);
 }

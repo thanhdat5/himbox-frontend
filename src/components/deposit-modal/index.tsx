@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
+import { useActiveWeb3React } from "../../hook";
+import { UseApprovePoolContract } from "../../hook/useApprovePoolContract";
+import { UsePoolDeposit } from "../../hook/usePoolContract";
 import { depositRequest } from "../../redux/actions/depositActions";
 import { getDepositLoadingSelector, getDepositSuccessSelector } from "../../redux/selectors/depositSelectors";
 import PasswordControl from "../password-control";
@@ -10,9 +13,13 @@ interface DepositModalProps {
     onHide: (isSubmit?: boolean) => void
 }
 const DepositModal = ({ onHide }: DepositModalProps) => {
+
+    const dispatch = useDispatch();
+
+    const { account, library, chainId } = useActiveWeb3React();
+
     const [amount, setAmount] = useState<number>(0);
     const [referralId, setReferralId] = useState<string>('');
-    const dispatch = useDispatch();
     const loading = useSelector(getDepositLoadingSelector);
     const success = useSelector(getDepositSuccessSelector);
 
@@ -25,7 +32,12 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-       
+        // UseApprovePoolContract({ web3Provider: library?.provider, account: account }, (approveResult: any) => {
+        //     console.log('approveResult', approveResult);
+        // });
+        UsePoolDeposit({ ref: '', amount: 10 * 10 ** 10, web3Provider: library?.provider, account }, (res: any) => {
+            console.log('sssssss', res);
+        })
     }
 
     return <Modal className="hb-modal" size="sm" centered show onHide={onHide}>
