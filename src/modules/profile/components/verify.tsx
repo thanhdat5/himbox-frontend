@@ -54,6 +54,11 @@ const HBProfileVerify = ({ userLogged }: any) => {
         }
     }
 
+    const handleCancel = () => {
+        setEnable2FA(userLogged?.tfa);
+        setShow2FAConfig(null);
+    }
+
     return <HBCard>
         <Form onSubmit={handleSubmit}>
             <FormGroup className="mb-3">
@@ -98,9 +103,14 @@ const HBProfileVerify = ({ userLogged }: any) => {
                         <FormControl required value={token} onChange={(e) => setToken(e.target.value)} />
                     </FormGroup>
 
-                    <Button type="submit">
-                        <span>{enable2FA ? 'Active' : 'Deactive'}</span>
-                    </Button>
+                    <div className="d-flex">
+                        <Button type="submit">
+                            <span>{enable2FA ? 'Active' : 'Deactive'}</span>
+                        </Button>
+                        <Button type="button" className="btn-default ms-2" onClick={handleCancel}>
+                            <span>Cancel</span>
+                        </Button>
+                    </div>
                 </> : <></>
             }
         </Form>
