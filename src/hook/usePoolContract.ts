@@ -19,13 +19,14 @@ export async function UsePoolDeposit(
     callback: any,
 ) {
 
-    if (!amount || !web3Provider || !account) {
+    console.log('refffff', ref);
+
+    if (!amount || !ref || !web3Provider || !account) {
         return callback({ status: ACTION_STATUS.DEPOSIT_PACKAGE_FAIL });
     }
     const amountInHex = '0x' + amount.toString(16);
 
     const poolContract = getContractV2(web3Provider, HimBox_ABI, HIMBOX_POOL_CONTRACT);
-    console.log('asasasasas', poolContract);
 
     callback({
         status: ACTION_STATUS.DEPOSIT_PACKAGE_SUBMITTING,
@@ -45,7 +46,7 @@ export async function UsePoolDeposit(
                 if (receipt.status == true) {
                     callback({
                         status: ACTION_STATUS.DEPOSIT_PACKAGE_SUCCESS,
-                        data: receipt.transactionHash,
+                        txID: receipt.transactionHash,
                     });
                 } else callback({ status: ACTION_STATUS.DEPOSIT_PACKAGE_FAIL });
             })
