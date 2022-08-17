@@ -17,11 +17,11 @@ const SignUp = () => {
     const location = useLocation();
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('tungbt1994@gmail.com');
-    const [password, setPassword] = useState<string>('Abcde12345!');
-    const [confirmPwd, setConfirmPwd] = useState<string>('Abcde12345!');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPwd, setConfirmPwd] = useState<string>('');
     const [referralId, setReferralId] = useState<string>('');
-    const [agree, setAgree] = useState<boolean>(true);
+    const [agree, setAgree] = useState<boolean>(false);
     const [errors, setErrors] = useState<any>(null);
 
     useEffect(() => {

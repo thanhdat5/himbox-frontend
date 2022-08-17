@@ -16,7 +16,7 @@ import {
 import { extractError } from "../../utils/helpers";
 import { history } from "../../utils/history";
 import { loginFailure, loginSuccess } from "../actions/loginActions";
-import { LOGIN_REQUEST } from "../types/login";
+import { LOGIN_REQUEST, TFA_ACTION } from "../types/login";
 import { VERIFY_REQUEST } from "../types/signUp";
 import { GET_USER_INFO_REQUEST } from "../types/user";
 import { apiCall } from "./api";
@@ -41,7 +41,11 @@ function* fetchLoginSaga(action: any): any {
       yield put(loginFailure());
       history.push(ROUTES.VERIFY);
     } else if (res?.data?.code == 202) {
-      yield put(loginSuccess(null));
+      // yield put(loginSuccess(null));
+      yield put({
+        type: TFA_ACTION,
+        payload: true
+      });
     } else {
       // login ok
       yield localStorage.setItem(
