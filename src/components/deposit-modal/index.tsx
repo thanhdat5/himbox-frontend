@@ -1,44 +1,18 @@
 import { useEffect, useState } from "react";
+import BigNumber from 'bignumber.js';
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from 'react-toastify';
-import { useActiveWeb3React } from "../../hook";
-import { UseApprovePoolContract } from "../../hook/useApprovePoolContract";
-import { UsePoolDeposit } from "../../hook/usePoolContract";
-import { depositRequest } from "../../redux/actions/depositActions";
-import { getDepositLoadingSelector, getDepositSuccessSelector } from "../../redux/selectors/depositSelectors";
-import PasswordControl from "../password-control";
+import { useDotBalance } from "../../state/wallet/hook";
 
 interface DepositModalProps {
-    onHide: (isSubmit?: boolean) => void
+    onHide: (isSubmit?: boolean) => void,
+    handleSubmit: any,
+    amount: any,
+    setAmount: any,
 }
-const DepositModal = ({ onHide }: DepositModalProps) => {
+const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalProps) => {
 
-    const dispatch = useDispatch();
-
-    const { account, library, chainId } = useActiveWeb3React();
-
-    const [amount, setAmount] = useState<number>(0);
-    const [referralId, setReferralId] = useState<string>('');
-    const loading = useSelector(getDepositLoadingSelector);
-    const success = useSelector(getDepositSuccessSelector);
-
-    useEffect(() => {
-        if (success) {
-            toast.success('Deposit Successfully!');
-            onHide(true);
-        }
-    }, [success]);
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        UseApprovePoolContract({ web3Provider: library?.provider, account: account }, (approveResult: any) => {
-            console.log('approveResult', approveResult);
-        });
-        // UsePoolDeposit({ ref: '', amount: 10 * 10 ** 10, web3Provider: library?.provider, account }, (res: any) => {
-        //     console.log('sssssss', res);
-        // })
-    }
+    const dotBal = useDotBalance();
 
     return <Modal className="hb-modal" size="sm" centered show onHide={onHide}>
         <Modal.Header closeButton>
@@ -55,12 +29,9 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
                     </div>
                 </FormGroup>
 
-                <FormGroup className="mb-3">
-                    <FormLabel>Referral ID (Optional)</FormLabel>
-                    <FormControl value={referralId} onChange={(e: any) => setReferralId(e.target.value)} />
-                </FormGroup>
-
-                <Button type="submit" disabled={loading}>
+                <Button
+                    disabled={!(parseFloat(amount) > 0 && (BigNumber(dotBal).dividedBy(10 ** 10)).gte(BigNumber(amount)))}
+                    type="submit">
                     <span>Confirm</span>
                 </Button>
             </Form>
