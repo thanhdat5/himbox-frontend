@@ -1,30 +1,104 @@
 import {
+  CANCEL_WITHDRAW_FAILURE,
+  CANCEL_WITHDRAW_REQUEST,
+  CANCEL_WITHDRAW_SUCCESS,
+  CONFIRM_WITHDRAW_FAILURE,
+  CONFIRM_WITHDRAW_REQUEST,
+  CONFIRM_WITHDRAW_SUCCESS,
+  CREATE_WITHDRAW_FAILURE,
+  CREATE_WITHDRAW_REQUEST,
+  CREATE_WITHDRAW_SUCCESS,
+  GET_LIST_WITHDRAW_FAILURE,
+  GET_LIST_WITHDRAW_REQUEST,
+  GET_LIST_WITHDRAW_SUCCESS,
+  RESET_WITHDRAW_STATE,
   WithdrawActions,
-  WithdrawState,
-  WITHDRAW_FAILURE,
-  WITHDRAW_REQUEST,
-  WITHDRAW_SUCCESS,
+  WithdrawState
 } from "../types/withdraw";
 
 const initialState: WithdrawState = {
   loading: false,
   success: false,
+  confirmSuccess: false,
+  cancelSuccess: false,
+  withdrawRequest: null,
 };
 
 const withdrawReducer = (state = initialState, action: WithdrawActions) => {
   switch (action.type) {
-    case WITHDRAW_REQUEST:
+    case RESET_WITHDRAW_STATE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        withdrawRequest: null,
+        confirmSuccess: false,
+        cancelSuccess: false,
+      };
+    case GET_LIST_WITHDRAW_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case WITHDRAW_SUCCESS:
+    case GET_LIST_WITHDRAW_SUCCESS:
       return {
         ...state,
         loading: false,
         success: true,
       };
-    case WITHDRAW_FAILURE:
+    case GET_LIST_WITHDRAW_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+      };
+    case CREATE_WITHDRAW_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        withdrawRequest: null,
+      };
+    case CREATE_WITHDRAW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        withdrawRequest: action.payload,
+      };
+    case CREATE_WITHDRAW_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        withdrawRequest: null,
+      };
+    case CONFIRM_WITHDRAW_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CONFIRM_WITHDRAW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      };
+    case CONFIRM_WITHDRAW_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+      };
+    case CANCEL_WITHDRAW_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CANCEL_WITHDRAW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      };
+    case CANCEL_WITHDRAW_FAILURE:
       return {
         ...state,
         loading: false,

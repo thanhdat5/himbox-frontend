@@ -41,6 +41,11 @@
       border-color: rgba($color: $hb-primary-color, $alpha: 0.4);
     }
   }
+  &.txtbalance{
+    color: $hb-white-color !important;
+    font-weight: bold;
+    opacity: 1;
+  }
   &:focus {
     border-color: rgba($color: $hb-primary-color, $alpha: 0.6);
   }

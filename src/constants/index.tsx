@@ -32,6 +32,13 @@ export const ENDPOINTS = {
     JOIN_PACKAGE: `/package/participate`,
     MY_PACKAGE: `/package/my-package`,
     HIMBOX_PRICE: `/dashboard/get-prices`,
+
+    // withdraw
+    GET_LIST_WITHDRAW: `/withdraw/list`,
+    CREATE_WITHDRAW: `/withdraw/create-withdraw`,
+    CONFIRM_WITHDRAW: `/withdraw/confirm`,
+    CANCEL_WITHDRAW: `/withdraw/cancel`,
+    RESEND_WITHDRAW_VERIFY_NUMBER: `/withdraw/resend-verify-number`,
 }
 
 export const PACKAGE_TYPES = {
@@ -396,8 +403,8 @@ export const MESSAGES = {
     "RESET_PWD_SUCCESS": 'Reset password successfully!',
     "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
     "ENTER_PACKAGE_FAIL": 'Enter package failed!',
-    "REQUIRED_MESSAGE": 'Cannot leave this blank.'
-};
+    "REQUIRED_MESSAGE": 'Cannot leave this blank.',
+    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ${0}.'};
 
 export const ACTION_STATUS = {
     
