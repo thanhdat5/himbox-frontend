@@ -405,7 +405,8 @@ export const MESSAGES = {
     "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
     "ENTER_PACKAGE_FAIL": 'Enter package failed!',
     "REQUIRED_MESSAGE": 'Cannot leave this blank.',
-    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ${0}.'
+    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ',
+    "INVALID_WALLET_ADDRESS": 'Invalid wallet address.'
 };
 
 export const ACTION_STATUS = {

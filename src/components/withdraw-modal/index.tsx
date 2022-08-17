@@ -5,7 +5,6 @@ import { Button, FormControl, FormGroup, FormLabel, Modal } from "react-bootstra
 import Countdown from "react-countdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
 import { ENDPOINTS, MESSAGES, ROUTES } from "../../constants";
 import { ConfirmWithdrawRequestModel, CreateWithdrawRequestModel } from "../../models";
 import { confirmWithdrawRequest, createWithdrawRequest, resetWithdrawState } from "../../redux/actions/withdrawActions";
@@ -19,6 +18,7 @@ interface WithdrawModalProps {
     onHide: (isSubmit?: boolean) => void
 }
 const WithdrawModal = ({ onHide }: WithdrawModalProps) => {
+    const Web3 = require('web3');
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
     const withdrawRequest = useSelector(state => get(state, 'withdraw.withdrawRequest', null));
     const balance = get(dashboardStatistics, 'balances.dot', 0);
@@ -32,12 +32,20 @@ const WithdrawModal = ({ onHide }: WithdrawModalProps) => {
     // Create Withdraw Request
     const handleValidateForm = (values: CreateWithdrawRequestModel) => {
         const errors: any = {};
+        let walletIsValid = false;
+        try {
+            if (values.to) {
+                walletIsValid = Web3.utils.isAddress(Web3.utils.toChecksumAddress(values.to));
+            }
+        } catch (err) { }
         if (!values.amount) {
             errors.amount = MESSAGES['REQUIRED_MESSAGE'];
         } else if (!values.to) {
             errors.to = MESSAGES['REQUIRED_MESSAGE'];
+        } else if (!walletIsValid) {
+            errors.to = MESSAGES['INVALID_WALLET_ADDRESS'];
         } else if (values.amount < 0 || values.amount > balance) {
-            errors.amount = MESSAGES['AMOUNT_INVALID'];
+            errors.amount = MESSAGES['AMOUNT_INVALID'] + balance + '.';
         }
         return errors;
     }
@@ -106,12 +114,11 @@ const WithdrawModal = ({ onHide }: WithdrawModalProps) => {
     }
 
     const handleSubmitFormConfirm = (values: ConfirmWithdrawRequestModel) => {
-        dispatch(confirmWithdrawRequest({ ...values, withdraw_id: currentRequest?.id }))
+        dispatch(confirmWithdrawRequest({ ...values, withdraw_id: currentRequest?._id }))
     }
 
     useEffect(() => {
         if (success) {
-            toast.success('Withdrawal Successfully!');
             dispatch(resetWithdrawState());
             onHide(true);
             navigate(ROUTES.TRANSACTIONS);

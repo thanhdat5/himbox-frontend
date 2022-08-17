@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
 import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
+import { extractError } from "../../utils/helpers";
 import {
   cancelWithdrawFailure,
   cancelWithdrawSuccess,
@@ -32,7 +33,7 @@ function* fetchGetListWithdrawSaga(action: any) {
     yield put(getListWithdrawSuccess(res.data.data));
   } catch (e: any) {
     yield put(getListWithdrawFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchCreateWithdrawSaga(action: any) {
@@ -43,19 +44,20 @@ function* fetchCreateWithdrawSaga(action: any) {
       ENDPOINTS.CREATE_WITHDRAW,
       action.payload
     );
-    yield put(createWithdrawSuccess(res.data));
+    yield put(createWithdrawSuccess(res.data.data));
   } catch (e: any) {
     yield put(createWithdrawFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchConfirmWithdrawSaga(action: any) {
   try {
     yield call(apiCall, "POST", ENDPOINTS.CONFIRM_WITHDRAW, action.payload);
+    ShowSuccessMessage('The request has been confirmed successfully!');
     yield put(confirmWithdrawSuccess());
   } catch (e: any) {
     yield put(confirmWithdrawFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchCancelWithdrawSaga(action: any) {
@@ -66,7 +68,7 @@ function* fetchCancelWithdrawSaga(action: any) {
     yield put(getListWithdrawRequest());
   } catch (e: any) {
     yield put(cancelWithdrawFailure());
-    ShowErrorMessage(e);
+    ShowErrorMessage({ message: extractError(e) });
   }
 }
 

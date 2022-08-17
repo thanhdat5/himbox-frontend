@@ -1,32 +1,32 @@
-import { useState } from "react";
 import BigNumber from 'bignumber.js';
+import { get } from "lodash";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import ConfirmModal from "../components/confirm-modal";
 import DepositModal from "../components/deposit-modal";
 import HBHeader from "../components/header";
+import ProcessingModal from "../components/processing-modal";
 import HBSidebar from "../components/sidebar";
 import WithdrawModal from "../components/withdraw-modal";
+import { ACTION_STATUS, ROUTES } from "../constants";
 import { useActiveWeb3React } from "../hook";
 import { getAllowanceToken } from "../hook/useAllowance";
 import { UseApprovePoolContract } from "../hook/useApprovePoolContract";
 import { UsePoolDeposit } from "../hook/usePoolContract";
-import { DOT_ADDRESS } from "../_config";
-import { MAX_UINT } from "../literals";
-import { ACTION_STATUS } from "../constants";
-import { useDispatch } from "react-redux";
 import { getDashboardStatisticsRequest } from "../redux/actions/dashboardActions";
-import ProcessingModal from "../components/processing-modal";
-import { useSelector } from "react-redux";
-import { get } from "lodash";
-import { ShowErrorMessage } from "../services/appService";
+import { is2FAActive, ShowErrorMessage } from "../services/appService";
+import { DOT_ADDRESS } from "../_config";
 
 const PrivateLayout = ({ children }: any) => {
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const refId = useSelector(state => get(state, 'dashboard.statistics[0].ref_id', null));
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [showDeposit, setShowDeposit] = useState(false);
   const [showWithdraw, setShowWithdraw] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(0);
@@ -115,13 +115,27 @@ const PrivateLayout = ({ children }: any) => {
       ShowErrorMessage('Oops! Please logout and try again');
     }
   }
+  const handleConfirmDismiss = (isConfirmed: boolean) => {
+    if (isConfirmed) {
+      navigate(ROUTES.PROFILE);
+    }
+    setShowConfirmModal(false);
+  }
+  const handleWithdraw = () => {
+    if (!is2FAActive()) {
+      setShowConfirmModal(true);
+    }
+    else {
+      setShowWithdraw(true);
+    }
+  }
 
   return (
     <>
       <HBHeader onDeposit={() => {
         setShowDeposit(true);
         setAmount('');
-      }} onWithdraw={() => setShowWithdraw(true)} onSidebarToggle={() => setShowSidebar(true)} />
+      }} onWithdraw={handleWithdraw} onSidebarToggle={() => setShowSidebar(true)} />
       <main>
         <HBSidebar show={showSidebar} onSidebarToggle={() => setShowSidebar(false)} />
         <div className="hb-content">
@@ -149,6 +163,7 @@ const PrivateLayout = ({ children }: any) => {
         approving={approving}
         hash={hash}
       />
+      {showConfirmModal ? <ConfirmModal message="Must be enable Tfa to withdraw." onDismiss={handleConfirmDismiss} /> : <></>}
     </>
   );
 }

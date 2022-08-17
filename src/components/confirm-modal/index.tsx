@@ -8,7 +8,7 @@ interface ConfirmModalProps {
     onDismiss?: any;
 }
 const ConfirmModal = ({ title, message, buttonOK = 'OK', buttonCancel = 'Cancel', onDismiss }: ConfirmModalProps) => {
-    return <Modal size="sm" className="hb-modal" centered show onHide={onDismiss}>
+    return <Modal size="sm" className="hb-modal" centered show onHide={() => onDismiss(false)}>
         <Modal.Header closeButton>
             {title ? <Modal.Title>{title}</Modal.Title> : <></>}
         </Modal.Header>
@@ -17,7 +17,7 @@ const ConfirmModal = ({ title, message, buttonOK = 'OK', buttonCancel = 'Cancel'
             <div className="mb-5">{message}</div>
             <div>
                 <Button type="button" onClick={() => onDismiss(true)}><span>{buttonOK}</span></Button>
-                <Button type="button" className="btn-default ms-2" onClick={onDismiss}><span>{buttonCancel}</span></Button>
+                <Button type="button" className="btn-default ms-2" onClick={() => onDismiss(false)}><span>{buttonCancel}</span></Button>
             </div>
         </Modal.Body>
     </Modal>
