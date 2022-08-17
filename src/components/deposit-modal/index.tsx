@@ -12,7 +12,6 @@ interface DepositModalProps {
 const DepositModal = ({ onHide }: DepositModalProps) => {
     const [amount, setAmount] = useState<number>(0);
     const [referralId, setReferralId] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
     const dispatch = useDispatch();
     const loading = useSelector(getDepositLoadingSelector);
     const success = useSelector(getDepositSuccessSelector);
@@ -26,8 +25,7 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const postData = { userId: '111', amount, referralId, password };
-        dispatch(depositRequest(postData))
+       
     }
 
     return <Modal className="hb-modal" size="sm" centered show onHide={onHide}>
@@ -40,7 +38,7 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
                 <FormGroup className="mb-3">
                     <FormLabel>Deposit amount</FormLabel>
                     <div className="hb-form-control-wrap">
-                        <FormControl required type="number" value={amount} onChange={(e) => setAmount(e ? Number(e.target.value) : 0)} />
+                        <FormControl required value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
                         <span>DOT</span>
                     </div>
                 </FormGroup>
@@ -48,11 +46,6 @@ const DepositModal = ({ onHide }: DepositModalProps) => {
                 <FormGroup className="mb-3">
                     <FormLabel>Referral ID (Optional)</FormLabel>
                     <FormControl value={referralId} onChange={(e: any) => setReferralId(e.target.value)} />
-                </FormGroup>
-
-                <FormGroup className="mb-4">
-                    <FormLabel>Verified password</FormLabel>
-                    <PasswordControl value={password} onChange={(e: any) => setPassword(e.target.value)} required />
                 </FormGroup>
 
                 <Button type="submit" disabled={loading}>
