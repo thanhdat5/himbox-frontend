@@ -9,8 +9,10 @@ import withdrawReducer from "./withdrawReducer";
 import userReducer from "./userReducer";
 import packageReducer from "./packageReducer";
 import dashboardReducer from "./dashboardReducer";
+import applicationReducer from "./applicationReducer";
 
 const rootReducer = combineReducers({
+  application: applicationReducer,
   todo: todoReducer,
   login: loginReducer,
   signUp: signUpReducer,

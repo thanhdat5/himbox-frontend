@@ -2,20 +2,14 @@ export interface DicOption {
     [key: number]: string;
 }
 
-export const HIMBOX_POOL_CONTRACT: DicOption = {
-    56: '0x68190211006cDE591B177854bF6aAd26b0E37D00', //mainnet
-    97: '0x68190211006cDE591B177854bF6aAd26b0E37D00',//testNet;
-};
+export const HIMBOX_POOL_CONTRACT: string = '0x0C56211b9669aD60dcbb222a7E8B4e674e816197';
 
-export const DOT_ADDRESS: DicOption = {
-    56: '0x08f43498D7870C98501213A9d18EfcdD8f77c42F', //mainnet
-    97: '0x08f43498D7870C98501213A9d18EfcdD8f77c42F',//testNet;
-};
+export const DOT_ADDRESS: string = '0x9FFeb96567065E9b2Bd7DacEbF573d50732ef8BE';
 
 export const BSC_RPC: DicOption = {
     56: "https://bsc-dataseed.binance.org/",
     97: "https://data-seed-prebsc-1-s1.binance.org:8545/"
 }
 
-export const chainIdsSupport = [97]; //mainnet
-export const chainIdDefaults = 97;
+export const chainIdsSupport = [1284]; //mainnet
+export const chainIdDefaults = 1284;
