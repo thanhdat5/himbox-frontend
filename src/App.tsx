@@ -14,6 +14,7 @@ import { PrivateRoute } from "./routes/private-route";
 import './App.css';
 import VerifyAccount from "./modules/auth/verify";
 import NewPassword from "./modules/auth/new-password";
+import Transactions from "./modules/transactions";
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const App = () => {
         <Route path={ROUTES.NETWORK} element={<Network />} />
         <Route path={ROUTES.PACKAGE} element={<Package />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
+        <Route path={ROUTES.TRANSACTIONS} element={<Transactions />} />
       </Route>
     </Routes>
   );

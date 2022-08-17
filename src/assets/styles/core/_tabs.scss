@@ -1,0 +1,37 @@
+.hb-tabs {
+  border: 0 !important;
+  margin-bottom: 8px;
+  .nav-item {
+    @media (max-width: 767px) {
+      width: calc(100% / 3);
+    }
+    .nav-link {
+      background-color: transparent !important;
+      border: 0 !important;
+      border-radius: 10px;
+      color: $hb-text-color;
+      font-size: 15px;
+      padding: 8px 24px;
+      @media (max-width: 767px) {
+        padding-left: 12px;
+        padding-right: 12px;
+        width: 100%;
+        text-align: left;
+      }
+      &.active {
+        background-color: $hb-background-secondary !important;
+        color: $hb-white-color;
+      }
+    }
+  }
+}
+.tab-content {
+  background-color: $hb-background-secondary;
+  padding: 16px;
+  border-radius: 16px;
+}
+.no-data {
+  font-size: 13px;
+  padding: 10px;
+  border: 0;
+}

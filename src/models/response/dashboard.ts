@@ -16,32 +16,32 @@ export interface DashboardLevelsResponseModel {
 }
 
 export interface DepositTransactionsResponseModel {
-  transactionId: string;
+  _id: string;
   address: string;
   value: number;
   date: Date;
 }
 export interface UpgradeTransactionsResponseModel {
-  transactionId: string;
+  _id: string;
   from: string;
   to: string;
   date: Date;
 }
 export interface WithdrawalTransactionsResponseModel {
-  transactionId: string;
+  _id: string;
   day: Date;
   address: string;
   balance: number;
   txHash: string;
 }
 export interface DowngradeTransactionsResponseModel {
-  transactionId: string;
+  _id: string;
   from: string;
   to: string;
   date: Date;
 }
 export interface ProfitTransactionsResponseModel {
-  transactionId: string;
+  _id: string;
   invest: number;
   level: number;
   reank: string;

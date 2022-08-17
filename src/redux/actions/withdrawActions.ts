@@ -2,34 +2,27 @@ import {
   CancelWithdrawRequestModel,
   ConfirmWithdrawRequestModel,
   CreateWithdrawRequestModel,
+  WithdrawalTransactionsResponseModel
 } from "../../models";
 import {
-  GetListWithdrawFailure,
-  GetListWithdrawRequest,
-  GetListWithdrawSuccess,
-  CreateWithdrawFailure,
-  CreateWithdrawRequest,
-  CreateWithdrawSuccess,
-  ConfirmWithdrawFailure,
-  ConfirmWithdrawRequest,
-  ConfirmWithdrawSuccess,
   CancelWithdrawFailure,
   CancelWithdrawRequest,
-  CancelWithdrawSuccess,
-  GET_LIST_WITHDRAW_FAILURE,
-  GET_LIST_WITHDRAW_REQUEST,
-  GET_LIST_WITHDRAW_SUCCESS,
-  CREATE_WITHDRAW_FAILURE,
-  CREATE_WITHDRAW_REQUEST,
-  CREATE_WITHDRAW_SUCCESS,
-  CONFIRM_WITHDRAW_FAILURE,
-  CONFIRM_WITHDRAW_REQUEST,
-  CONFIRM_WITHDRAW_SUCCESS,
-  CANCEL_WITHDRAW_FAILURE,
+  CancelWithdrawSuccess, CANCEL_WITHDRAW_FAILURE,
   CANCEL_WITHDRAW_REQUEST,
-  CANCEL_WITHDRAW_SUCCESS,
-  ResetWithdrawState,
-  RESET_WITHDRAW_STATE,
+  CANCEL_WITHDRAW_SUCCESS, ConfirmWithdrawFailure,
+  ConfirmWithdrawRequest,
+  ConfirmWithdrawSuccess, CONFIRM_WITHDRAW_FAILURE,
+  CONFIRM_WITHDRAW_REQUEST,
+  CONFIRM_WITHDRAW_SUCCESS, CreateWithdrawFailure,
+  CreateWithdrawRequest,
+  CreateWithdrawSuccess, CREATE_WITHDRAW_FAILURE,
+  CREATE_WITHDRAW_REQUEST,
+  CREATE_WITHDRAW_SUCCESS, GetListWithdrawFailure,
+  GetListWithdrawRequest,
+  GetListWithdrawSuccess, GET_LIST_WITHDRAW_FAILURE,
+  GET_LIST_WITHDRAW_REQUEST,
+  GET_LIST_WITHDRAW_SUCCESS, ResetWithdrawState,
+  RESET_WITHDRAW_STATE
 } from "../types/withdraw";
 
 export const resetWithdrawState = (): ResetWithdrawState => ({
@@ -40,8 +33,11 @@ export const getListWithdrawRequest = (): GetListWithdrawRequest => ({
   type: GET_LIST_WITHDRAW_REQUEST,
 });
 
-export const getListWithdrawSuccess = (): GetListWithdrawSuccess => ({
+export const getListWithdrawSuccess = (
+  payload: WithdrawalTransactionsResponseModel[]
+): GetListWithdrawSuccess => ({
   type: GET_LIST_WITHDRAW_SUCCESS,
+  payload,
 });
 
 export const getListWithdrawFailure = (): GetListWithdrawFailure => ({

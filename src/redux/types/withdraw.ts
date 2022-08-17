@@ -2,6 +2,7 @@ import {
   CancelWithdrawRequestModel,
   ConfirmWithdrawRequestModel,
   CreateWithdrawRequestModel,
+  WithdrawalTransactionsResponseModel
 } from "../../models";
 
 export const RESET_WITHDRAW_STATE = "RESET_WITHDRAW_STATE";
@@ -23,11 +24,13 @@ export const CANCEL_WITHDRAW_SUCCESS = "CANCEL_WITHDRAW_SUCCESS";
 export const CANCEL_WITHDRAW_FAILURE = "CANCEL_WITHDRAW_FAILURE";
 
 export interface WithdrawState {
+  loadingList: boolean;
   loading: boolean;
   success: boolean;
   confirmSuccess: boolean;
   cancelSuccess: boolean;
   withdrawRequest: any;
+  withdrawalTransactions: WithdrawalTransactionsResponseModel[];
 }
 
 export interface ResetWithdrawState {
@@ -40,6 +43,7 @@ export interface GetListWithdrawRequest {
 
 export type GetListWithdrawSuccess = {
   type: typeof GET_LIST_WITHDRAW_SUCCESS;
+  payload: WithdrawalTransactionsResponseModel[];
 };
 
 export type GetListWithdrawFailure = {

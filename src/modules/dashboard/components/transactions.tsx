@@ -65,7 +65,7 @@ const HBDashboardTransactions = () => {
         <Tabs
             defaultActiveKey="Deposit"
             id="TransactionTabs"
-            className="hb-dashboard-tabs"
+            className="hb-tabs"
             onSelect={handleTabChange}
         >
             <Tab eventKey="Deposit" title="Deposit">

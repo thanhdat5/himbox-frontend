@@ -18,10 +18,12 @@ import {
 
 const initialState: WithdrawState = {
   loading: false,
+  loadingList: false,
   success: false,
   confirmSuccess: false,
   cancelSuccess: false,
   withdrawRequest: null,
+  withdrawalTransactions: [],
 };
 
 const withdrawReducer = (state = initialState, action: WithdrawActions) => {
@@ -29,6 +31,7 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
     case RESET_WITHDRAW_STATE:
       return {
         ...state,
+        loadingList: false,
         loading: false,
         success: false,
         withdrawRequest: null,
@@ -38,19 +41,22 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
     case GET_LIST_WITHDRAW_REQUEST:
       return {
         ...state,
-        loading: true,
+        loadingList: true,
+        withdrawalTransactions: [],
       };
     case GET_LIST_WITHDRAW_SUCCESS:
       return {
         ...state,
-        loading: false,
+        loadingList: false,
         success: true,
+        withdrawalTransactions: action.payload,
       };
     case GET_LIST_WITHDRAW_FAILURE:
       return {
         ...state,
-        loading: false,
+        loadingList: false,
         success: false,
+        withdrawalTransactions: [],
       };
     case CREATE_WITHDRAW_REQUEST:
       return {
@@ -91,18 +97,19 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
       return {
         ...state,
         loading: true,
+        cancelSuccess: false,
       };
     case CANCEL_WITHDRAW_SUCCESS:
       return {
         ...state,
         loading: false,
-        success: true,
+        cancelSuccess: true,
       };
     case CANCEL_WITHDRAW_FAILURE:
       return {
         ...state,
         loading: false,
-        success: false,
+        cancelSuccess: false,
       };
     default:
       return {

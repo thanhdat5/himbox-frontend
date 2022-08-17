@@ -139,7 +139,8 @@ export const ROUTES = {
     DASHBOARD: '/dashboard',
     NETWORK: '/network',
     PACKAGE: '/package',
-    PROFILE: '/profile'
+    PROFILE: '/profile',
+    TRANSACTIONS: '/transactions',
 }
 
 export const MESSAGES = {
@@ -404,10 +405,11 @@ export const MESSAGES = {
     "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
     "ENTER_PACKAGE_FAIL": 'Enter package failed!',
     "REQUIRED_MESSAGE": 'Cannot leave this blank.',
-    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ${0}.'};
+    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ${0}.'
+};
 
 export const ACTION_STATUS = {
-    
+
     APPROVING: 'APPROVING',
     APPROVED: 'APPROVED',
     APPROVE_FAILS: 'APPROVE_FAILS',
@@ -416,4 +418,12 @@ export const ACTION_STATUS = {
     DEPOSIT_PACKAGE_SUCCESS: 'DEPOSIT_PACKAGE_SUCCESS',
     DEPOSIT_PACKAGE_FAIL: 'DEPOSIT_PACKAGE_FAIL',
 
+}
+export const TRANSACTION_STATUS = {
+    W: "Waiting", //đang đợi user confirm.
+    P: 'Pending', //đang đợi xử lý -> đẩy vào queue
+    PC: 'Processing', //đã lấy từ queue ra và đã ký giao dịch nhưng chưa có kết quả confirm
+    C: "Completed", //đã có confirm giao dịch đã thành công (đợi sau 5 block)
+    F: "Failed", //giao dịch bị huỷ bởi admin (do quá hạn mà pool ko có tiền trả) hoặc do tx bị lỗi
+    CL: 'Cancelled' // user huỷ giao dịch
 }

@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
-import { ShowErrorMessage } from "../../services/appService";
+import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
 import {
   cancelWithdrawFailure,
   cancelWithdrawSuccess,
@@ -10,6 +10,7 @@ import {
   createWithdrawFailure,
   createWithdrawSuccess,
   getListWithdrawFailure,
+  getListWithdrawRequest,
   getListWithdrawSuccess
 } from "../actions/withdrawActions";
 import {
@@ -22,13 +23,13 @@ import { apiCall } from "./api";
 
 function* fetchGetListWithdrawSaga(action: any) {
   try {
-    yield call(
+    const res: AxiosResponse<any> = yield call(
       apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
+      "GET",
+      ENDPOINTS.GET_LIST_WITHDRAW,
       action.payload
     );
-    yield put(getListWithdrawSuccess());
+    yield put(getListWithdrawSuccess(res.data.data));
   } catch (e: any) {
     yield put(getListWithdrawFailure());
     ShowErrorMessage(e);
@@ -59,13 +60,10 @@ function* fetchConfirmWithdrawSaga(action: any) {
 }
 function* fetchCancelWithdrawSaga(action: any) {
   try {
-    yield call(
-      apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
+    yield call(apiCall, "POST", ENDPOINTS.CANCEL_WITHDRAW, action.payload);
+    ShowSuccessMessage('The request has been cancelled successfully!');
     yield put(cancelWithdrawSuccess());
+    yield put(getListWithdrawRequest());
   } catch (e: any) {
     yield put(cancelWithdrawFailure());
     ShowErrorMessage(e);
