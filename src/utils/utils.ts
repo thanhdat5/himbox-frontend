@@ -103,7 +103,7 @@ export function getTokenContractByProvider(
   if (!parsed) {
     throw Error(`Invalid 'address' parameter '${tokenAddress}'.`);
   }
-  const web3 = new Web3(library.provider as provider);
+  const web3 = new Web3(library.provider as any);
   return new web3.eth.Contract(ERC20_ABI as AbiItem[], tokenAddress);
 }
 export function getStatus(str: string) {
