@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
-import { Tab, Table, Tabs } from "react-bootstrap";
+import { OverlayTrigger, Tab, Table, Tabs, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
@@ -71,9 +71,17 @@ const HBDashboardTransactions = () => {
                             depositHistory.slice(0, 10).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{idx + 1}</td>
-                                    <td><span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span></td>
+                                    <td>
+                                        {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.from}</Tooltip>}> */}
+                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
+                                        {/* </OverlayTrigger> */}
+                                    </td>
                                     <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? get(item, 'amount.dot', 0) : get(item, 'amount', 0)}</td>
-                                    <td><span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span></td>
+                                    <td>
+                                        {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
+                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
+                                        {/* </OverlayTrigger> */}
+                                    </td>
                                     <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
                                 </tr>
                             })
