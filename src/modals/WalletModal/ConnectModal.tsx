@@ -20,16 +20,16 @@ function ConnectModal({ login, onDismiss = () => null }: Props) {
       <Modal
         show={true}
         id="connectWalletModal"
-        className="tq_modal"
+        className="hb-modal hb-modal-sm"
         centered={true}
         size="sm"
         onHide={onHide}
       >
-        <Modal.Header>
-          <Modal.Title className="h6">Connect Wallet</Modal.Title>
+        <Modal.Header closeButton>
+          <Modal.Title>Connect Wallet</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className="p-3 pt-4 connect-wallet-body text-center">
+        <Modal.Body className="">
           <ReactPlaceholder type="text" rows={2} ready={true}>
             {config.map(entry => {
               if (entry.enable === true) {

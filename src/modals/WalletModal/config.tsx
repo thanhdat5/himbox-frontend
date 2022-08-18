@@ -9,7 +9,7 @@ const connectors: Config[] = [
     icon: '/images/metamask.svg',
     connectorId: ConnectorNames.Injected,
     enable: isMetamaskAvailable(),
-    className: 'tq_btn_primary mb-4'
+    className: 'mb-3'
   },
   {
     title: 'Binance Chain Wallet',

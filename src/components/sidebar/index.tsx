@@ -76,10 +76,10 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>} />
 
-                    <HBSidebarItem link={ROUTES.TRANSACTIONS} text="Transactions" active={location?.pathname === ROUTES.TRANSACTIONS} icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                        strokeLinejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <HBSidebarItem link={ROUTES.TRANSACTIONS} text="Transactions" active={location?.pathname === ROUTES.TRANSACTIONS} icon={<svg xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" viewBox="0 0 64 64" id="icons">
+                        <path fill="currentColor" d="M52,7H12a6,6,0,0,0-6,6V51a6,6,0,0,0,6,6H52a6,6,0,0,0,6-6V13A6,6,0,0,0,52,7Zm2,44a2,2,0,0,1-2,2H12a2,2,0,0,1-2-2V13a2,2,0,0,1,2-2H52a2,2,0,0,1,2,2Z" />
+                        <path fill="currentColor" d="M45,29a2,2,0,0,0,0-4H22.83l2.58-2.59a2,2,0,0,0-2.82-2.82l-6,6a2,2,0,0,0-.44,2.18A2,2,0,0,0,18,29Z" />
+                        <path fill="currentColor" d="M47,36H20a2,2,0,0,0,0,4H42.17l-2.58,2.59a2,2,0,1,0,2.82,2.82l6-6a2,2,0,0,0,.44-2.18A2,2,0,0,0,47,36Z" />
                     </svg>} />
 
                     {/* <HBSidebarItem link={ROUTES.PROFILE} text="Profile" active={location?.pathname === ROUTES.PROFILE} icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

@@ -30,6 +30,13 @@
             max-width: 500px;
         }
     }
+    .hb-modal-sm {
+        .modal-dialog {
+            &.modal-sm{
+                max-width: 380px;
+            }
+        }
+    }
 }
 @media (max-width: 767px)
 {

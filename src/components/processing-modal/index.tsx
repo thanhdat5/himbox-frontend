@@ -32,7 +32,7 @@ function ProcessingModal({
             centered={true}
             show={visible}
             onHide={onCancel}
-            className='tq_modal'
+            className="hb-modal"
             backdrop="static"
         >
             <Modal.Header closeButton={loading !== 0 ? true : false}></Modal.Header>
