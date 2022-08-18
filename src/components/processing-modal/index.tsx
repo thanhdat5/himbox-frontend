@@ -62,12 +62,12 @@ function ProcessingModal({
                     {loading === 1 &&
                         <div>
                             <div style={{ cursor: 'pointer' }} onClick={handleDirect}><u>View on MoonBeam Scan</u></div>
-                            <button onClick={onCancel} className="tq_btn tq_btn_sm tq_btn_outline tq_btn_outline_primary px-4 mx-auto">Close</button>
+                            <button onClick={onCancel} className="btn btn-primary" style={{ marginTop: 20, padding: '10px 20px' }}>Close</button>
                         </div>
                     }
                     {loading === -1 &&
                         <div className="mt-4">
-                            <button onClick={onCancel} className="tq_btn tq_btn_sm tq_btn_outline tq_btn_outline_primary px-4 mx-auto">Close</button>
+                            <button onClick={onCancel} className="btn btn-primary">Close</button>
                         </div>
                     }
 
