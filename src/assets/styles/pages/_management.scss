@@ -73,6 +73,10 @@
           background: rgba($color: $hb-white-color, $alpha: 0.1);
           cursor: not-allowed;
         }
+        &.current {
+          background: rgba($color: $hb-primary-gradient, $alpha: 1);
+          opacity: 1;
+        }
       }
     }
   }

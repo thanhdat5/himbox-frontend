@@ -10,9 +10,10 @@ interface HBPackageCardProps {
     total: string;
     totalUSD: any;
     disabled?: boolean;
+    current?: boolean;
     onParticipate: () => void;
 }
-const HBPackageCard = ({ packageName, packageValue, planName, planValue, planValueDOT, total, totalUSD, disabled = false, onParticipate }: HBPackageCardProps) => {
+const HBPackageCard = ({ packageName, packageValue, planName, planValue, planValueDOT, total, totalUSD, disabled = false, current = false, onParticipate }: HBPackageCardProps) => {
     return <div className={`hb-package-item ${disabled ? 'disabled' : ''}`}>
         <div className="hb-package-item-line">
             <div className="hb-package-item-label">{packageName}</div>
@@ -35,8 +36,8 @@ const HBPackageCard = ({ packageName, packageValue, planName, planValue, planVal
             </div>
         </div>
         <div className="hb-package-item-action">
-            <Button type="button" className="w-100" onClick={() => disabled ? null : onParticipate()}>
-                <span>Participate</span>
+            <Button disabled={disabled} type="button" className={`${current ? 'current' : ''} w-100`} onClick={() => disabled ? null : onParticipate()}>
+                <span>{current ? 'Current' : 'Participate'}</span>
             </Button>
         </div>
     </div>

@@ -17,6 +17,7 @@ const HBPackageList = () => {
 
     const packages = useSelector(state => get(state, 'package.packages', []));
     const prices = useSelector(state => get(state, 'package.price', {}));
+    const currentPackage = useSelector(state => get(state, 'dashboard.statistics[0].package', null));
 
     const [profit, setProfit] = useState(0.05);
     const [selectedPackage, setSelectedPackage] = useState(null);
@@ -77,7 +78,8 @@ const HBPackageList = () => {
                                             setSelectedPackage({ ...item, name: `Package ${idx + 1}` });
                                             setShowParticipate(true);
                                         }}
-                                        disabled={item.disabled}
+                                        disabled={get(currentPackage, 'dot_amount', 0) >= get(item, 'dot_amount', 1)}
+                                        current={currentPackage?._id === item?._id}
                                     />
                                 </Col>
                             })
