@@ -11,5 +11,10 @@
       color: $hb-white-color;
       white-space: nowrap;
     }
+    td{
+      vertical-align: middle;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 }

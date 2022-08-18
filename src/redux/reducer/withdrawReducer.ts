@@ -78,19 +78,19 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
       return {
         ...state,
         loading: true,
-        success: false,
+        confirmSuccess: false,
       };
     case CONFIRM_WITHDRAW_SUCCESS:
       return {
         ...state,
         loading: false,
-        success: true,
+        confirmSuccess: true,
       };
     case CONFIRM_WITHDRAW_FAILURE:
       return {
         ...state,
         loading: false,
-        success: false,
+        confirmSuccess: false,
       };
     case CANCEL_WITHDRAW_REQUEST:
       return {

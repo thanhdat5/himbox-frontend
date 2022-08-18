@@ -1,0 +1,5 @@
+.badge {
+  &.bg-primary {
+    background-color: rgba($color: $hb-primary-color, $alpha: 0.4) !important;
+  }
+}

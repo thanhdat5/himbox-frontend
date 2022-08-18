@@ -122,3 +122,13 @@ export function getStatus(str: string) {
       return "Cancelled";
   }
 }
+export function formatWalletAddress(address: string, numberOfDisplay = 10) {
+  if (address.length > numberOfDisplay) {
+    return (
+      address.substring(0, numberOfDisplay / 2) +
+      "..." +
+      address.substring(address.length - numberOfDisplay / 2, address.length)
+    );
+  }
+  return address;
+}

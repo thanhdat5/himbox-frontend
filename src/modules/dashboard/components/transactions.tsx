@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tab, Table, Tabs } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import WithdrawalTransactions from "../../../components/transactions/withdrawal";
 import { DepositTransactionsResponseModel, DowngradeTransactionsResponseModel, ProfitTransactionsResponseModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
 import { getDepositTransactionsRequest, getDowngradeTransactionsRequest, getProfitTransactionsRequest, getUpgradeTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
 
@@ -96,7 +97,7 @@ const HBDashboardTransactions = () => {
                 <div className="no-data">No transaction</div>
             </Tab>
             <Tab eventKey="Withdrawal" title="Withdrawal">
-                <div className="no-data">No transaction</div>
+                <WithdrawalTransactions />
             </Tab>
             <Tab eventKey="Downgrade" title="Downgrade">
                 <div className="no-data">No transaction</div>

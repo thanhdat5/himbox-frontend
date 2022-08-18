@@ -52,7 +52,7 @@ const Dashboard = () => {
                             <HBDashboardLevels />
                         </Col>
                     </Row>
-                    {/* <HBDashboardTransactions /> */}
+                    <HBDashboardTransactions />
                 </HBCard>
             </Col>
             <Col cl={3} className="ps-xl-0">

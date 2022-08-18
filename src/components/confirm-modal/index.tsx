@@ -9,12 +9,12 @@ interface ConfirmModalProps {
 }
 const ConfirmModal = ({ title, message, buttonOK = 'OK', buttonCancel = 'Cancel', onDismiss }: ConfirmModalProps) => {
     return <Modal size="sm" className="hb-modal" centered show onHide={() => onDismiss(false)}>
-        <Modal.Header closeButton>
+        <Modal.Header>
             {title ? <Modal.Title>{title}</Modal.Title> : <></>}
         </Modal.Header>
 
         <Modal.Body className="text-center">
-            <div className="mb-5">{message}</div>
+            <div className="mb-5 text-white">{message}</div>
             <div>
                 <Button type="button" onClick={() => onDismiss(true)}><span>{buttonOK}</span></Button>
                 <Button type="button" className="btn-default ms-2" onClick={() => onDismiss(false)}><span>{buttonCancel}</span></Button>
