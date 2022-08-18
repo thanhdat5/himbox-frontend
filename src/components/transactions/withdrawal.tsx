@@ -10,6 +10,7 @@ import { WithdrawalTransactionsResponseModel } from "../../models";
 import { cancelWithdrawRequest, getListWithdrawRequest, resetWithdrawState } from "../../redux/actions/withdrawActions";
 import { is2FAActive } from "../../services/appService";
 import { formatWalletAddress, getStatus } from "../../utils/utils";
+import { NETWORK_SCAN } from "../../_config";
 
 const WithdrawalTransactions = () => {
     const dispatch = useDispatch();
@@ -75,6 +76,10 @@ const WithdrawalTransactions = () => {
         setShowConfirmWithdrawModal(false);
     }
 
+    const handleNavigate = (txID: string, type = 'tx') => {
+        window.open(`${NETWORK_SCAN}/${type}/${txID}`);
+    }
+
     return <>
         {
             loadingList ? <div className="no-data">Loading...</div> : <>
@@ -96,12 +101,16 @@ const WithdrawalTransactions = () => {
                                 {
                                     withdrawalTransactions.slice(0, 10).map((item: any, idx: number) => {
                                         return <tr key={idx}>
-                                            <td>{item.transaction}</td>
+                                            <td>
+                                                {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
+                                                <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.transaction?.tx_hash, 'tx')}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 20)}</span>
+                                                {/* </OverlayTrigger> */}
+                                            </td>
                                             <td className="text-nowrap">{new Date(item.createdAt).toLocaleDateString()} {new Date(item.createdAt).toLocaleTimeString()}</td>
                                             <td>
-                                                <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item.to}</Tooltip>}>
-                                                    <span>{formatWalletAddress(item.to, 20)}</span>
-                                                </OverlayTrigger>
+                                                {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item.to}</Tooltip>}> */}
+                                                <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.to, 'address')}>{formatWalletAddress(item.to, 20)}</span>
+                                                {/* </OverlayTrigger> */}
                                             </td>
                                             <td className="text-nowrap">{item.amount.dot} DOT</td>
                                             <td>{item.fee}</td>
