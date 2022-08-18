@@ -44,6 +44,12 @@
         list-style: none;
         padding-left: 0;
         margin-bottom: 0;
+        .hb-sidebar-balance{
+          margin-top: -10px;
+          border-radius: 20px;
+          background-color: #18182a;
+          margin-bottom: 32px;
+        }
         .hb-sidebar-menu-item {
           .hb-sidebar-menu-link {
             text-decoration: none;

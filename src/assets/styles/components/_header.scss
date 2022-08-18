@@ -100,6 +100,15 @@
         display: inline-flex;
         align-items: center;
         margin-right: 24px;
+        .logout{
+          transition: all ease-in-out .3s;
+          color: $hb-primary-color !important;
+        }
+        &:hover{
+          .logout{
+            color: $hb-white-color !important;
+          }
+        }
         svg {
           width: 20px;
           min-width: 20px;

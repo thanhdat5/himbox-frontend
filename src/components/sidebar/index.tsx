@@ -1,10 +1,15 @@
+import { useWeb3React } from "@web3-react/core"
 import { useEffect } from "react"
 import { Button, Image } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, HIMBOX_USER_INFO, ROUTES } from "../../constants"
+import useAuth from "../../hook/useAuth"
 import { apiCall } from "../../redux/saga/api"
 import { LOG_OUT } from "../../redux/types/user"
+import { useDotBalance } from "../../state/wallet/hook"
+import { getBalanceNumber } from "../../utils/formatBal"
+import { formatCurrency } from "../../utils/helpers"
 import HBSidebarFooter from "./footer"
 import HBSidebarItem from "./item"
 
@@ -13,9 +18,10 @@ interface HBSidebarProps {
     show: boolean;
 }
 const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
-
     const dispatch = useDispatch();
-
+    const { account } = useWeb3React();
+    const { logout } = useAuth();
+    const dotBal = useDotBalance();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -56,6 +62,16 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
                     </Button>
                 </div>
                 <ul className="hb-sidebar-menu">
+                    {account ?
+                        <div className="hb-sidebar-balance d-md-none d-block">
+                            <Button type="button" className="hb-header-btn btn-default w-100 py-3" onClick={logout}>
+                                <span className="text-white" style={{ fontSize: '30px' }}>
+                                    <b>{formatCurrency(getBalanceNumber(dotBal, 10))} DOT</b>
+                                </span>
+                                <div>Disconnect</div>
+                            </Button>
+                        </div> : <></>
+                    }
                     <HBSidebarItem link={ROUTES.DASHBOARD} text="Dashboard" active={location?.pathname === '/' || location?.pathname === ROUTES.DASHBOARD} icon={<svg width="15px" height="15px" viewBox="0 0 15 15" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd"
