@@ -68,10 +68,10 @@ function* fetchDepositTransactionsSaga(action: any) {
     const res: AxiosResponse<any> = yield call(
       apiCall,
       "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
+      ENDPOINTS.GET_LIST_DEPOSIT,
+      { limit: 10000000, page: 1 }
     );
-    yield put(getDepositTransactionsSuccess(res.data));
+    yield put(getDepositTransactionsSuccess(res.data.data));
   } catch (e: any) {
     yield put(getDepositTransactionsFailure());
     ShowErrorMessage(e);
@@ -96,8 +96,8 @@ function* fetchWithdrawalTransactionsSaga(action: any) {
     const res: AxiosResponse<any> = yield call(
       apiCall,
       "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
+      ENDPOINTS.GET_LIST_WITHDRAW,
+      { limit: 10000000, page: 1 }
     );
     yield put(getWithdrawalTransactionsSuccess(res.data));
   } catch (e: any) {

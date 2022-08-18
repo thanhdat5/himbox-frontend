@@ -32,6 +32,9 @@ export const ENDPOINTS = {
     JOIN_PACKAGE: `/package/participate`,
     MY_PACKAGE: `/package/my-package`,
     HIMBOX_PRICE: `/dashboard/get-prices`,
+    
+    // deposit
+    GET_LIST_DEPOSIT: `/wallet/deposit/list`,
 
     // withdraw
     GET_LIST_WITHDRAW: `/withdraw/list`,

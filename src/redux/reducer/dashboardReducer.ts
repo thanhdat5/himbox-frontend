@@ -48,7 +48,7 @@ const dashboardReducer = (state = initialState, action: DashboardActions) => {
       return {
         ...state,
         loadingStatistics: true,
-        statistics: null,
+        // statistics: null,
       };
     case GET_DASHBOARD_STATISTICS_SUCCESS:
       return {
@@ -105,7 +105,7 @@ const dashboardReducer = (state = initialState, action: DashboardActions) => {
       return {
         ...state,
         loadingTransactions: true,
-        depositTransactions: [],
+        // depositTransactions: [],
       };
     case GET_DEPOSIT_TRANSACTIONS_SUCCESS:
       return {

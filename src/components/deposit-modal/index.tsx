@@ -14,7 +14,7 @@ const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalP
 
     const dotBal = useDotBalance();
 
-    return <Modal className="hb-modal" size="sm" centered show onHide={onHide}>
+    return <Modal className="hb-modal" size="sm" backdrop="static" centered show onHide={onHide}>
         <Modal.Header closeButton>
             <Modal.Title>Deposit</Modal.Title>
         </Modal.Header>
@@ -24,7 +24,7 @@ const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalP
                 <FormGroup className="mb-3">
                     <FormLabel>Deposit amount</FormLabel>
                     <div className="hb-form-control-wrap">
-                        <FormControl required value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
+                        <FormControl required value={amount} onChange={(e) => setAmount(e.target.value)} />
                         <span>DOT</span>
                     </div>
                 </FormGroup>

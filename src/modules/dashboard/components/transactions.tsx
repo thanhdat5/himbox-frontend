@@ -1,39 +1,33 @@
-import { useState } from "react";
+import { get } from "lodash";
+import { useEffect, useState } from "react";
 import { Tab, Table, Tabs } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
-import { DepositTransactionsResponseModel, DowngradeTransactionsResponseModel, ProfitTransactionsResponseModel, UpgradeTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
-import { getDepositTransactionsRequest, getDowngradeTransactionsRequest, getProfitTransactionsRequest, getUpgradeTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
+import { DepositTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
+import { getDepositTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
+import { formatWalletAddress } from "../../../utils/utils";
+import { NETWORK_SCAN } from "../../../_config";
 
 const HBDashboardTransactions = () => {
-    const TRANSACTIONS = [
-        { id: 1, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() },
-        { id: 2, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() },
-        { id: 3, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() },
-        { id: 4, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() },
-        { id: 5, address: '0xdAD71b01A3...B76Aa9DCCC', value: '25.00 DOT', date: new Date() }
-    ]
+
     const dispatch = useDispatch();
+
+    const depositHistory = useSelector(state => get(state, 'dashboard.depositTransactions', []));
+
     const [depositTransactions, setDepositTransactions] = useState<DepositTransactionsResponseModel[]>([]);
-    const [upgradeTransactions, setUpgradeTransactions] = useState<UpgradeTransactionsResponseModel[]>([]);
     const [withdrawalTransactions, setWithdrawalTransactions] = useState<WithdrawalTransactionsResponseModel[]>([]);
-    const [downgradeTransactions, setDowngradeTransactions] = useState<DowngradeTransactionsResponseModel[]>([]);
-    const [profitTransactions, setProfitTransactions] = useState<ProfitTransactionsResponseModel[]>([]);
-    // Todo
+
+    useEffect(() => {
+        getDepositTransactions();
+        getWithdrawalTransactions();
+    }, []);
+
     const getDepositTransactions = () => {
         dispatch(getDepositTransactionsRequest())
     }
-    const getUpgradeTransactions = () => {
-        dispatch(getUpgradeTransactionsRequest())
-    }
     const getWithdrawalTransactions = () => {
         dispatch(getWithdrawalTransactionsRequest())
-    }
-    const getDowngradeTransactions = () => {
-        dispatch(getDowngradeTransactionsRequest())
-    }
-    const getProfitTransactions = () => {
-        dispatch(getProfitTransactionsRequest())
     }
 
     const handleTabChange = (e: any) => {
@@ -42,23 +36,15 @@ const HBDashboardTransactions = () => {
                 getDepositTransactions();
                 break;
             }
-            case 'Upgrade': {
-                getUpgradeTransactions();
-                break;
-            }
             case 'Withdrawal': {
                 getWithdrawalTransactions();
                 break;
             }
-            case 'Downgrade': {
-                getDowngradeTransactions();
-                break;
-            }
-            case 'Profit': {
-                getProfitTransactions();
-                break;
-            }
         }
+    }
+
+    const handleNavigate = (txID: string, type = 'tx') => {
+        window.open(`${NETWORK_SCAN}/${type}/${txID}`);
     }
 
     return <div className="hb-dashboard-transaction">
@@ -74,36 +60,29 @@ const HBDashboardTransactions = () => {
                     <thead>
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
-                            <th>Address</th>
+                            <th>From</th>
                             <th>Value</th>
+                            <th>Tx ID</th>
                             <th style={{ width: 180 }}>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            TRANSACTIONS.map((item: any, idx: number) => {
-                                return <tr key={idx}>
+                            depositHistory.slice(0, 10).map((item: any, idx: number) => {
+                                return <tr key={idx + item?._id}>
                                     <td>{idx + 1}</td>
-                                    <td>{item.address}</td>
-                                    <td>{item.value}</td>
-                                    <td>{item.date.toLocaleString()}</td>
+                                    <td><span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span></td>
+                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? get(item, 'amount.dot', 0) : get(item, 'amount', 0)}</td>
+                                    <td><span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span></td>
+                                    <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
                                 </tr>
                             })
                         }
                     </tbody>
                 </Table>
             </Tab>
-            <Tab eventKey="Upgrade" title="Upgrade">
-                <div className="no-data">No transaction</div>
-            </Tab>
             <Tab eventKey="Withdrawal" title="Withdrawal">
                 <WithdrawalTransactions />
-            </Tab>
-            <Tab eventKey="Downgrade" title="Downgrade">
-                <div className="no-data">No transaction</div>
-            </Tab>
-            <Tab eventKey="Profit" title="Profit">
-                <div className="no-data">No transaction</div>
             </Tab>
         </Tabs>
     </div>

@@ -28,7 +28,7 @@ function* fetchGetListWithdrawSaga(action: any) {
       apiCall,
       "GET",
       ENDPOINTS.GET_LIST_WITHDRAW,
-      action.payload
+      { limit: 10000000, page: 1 }
     );
     yield put(getListWithdrawSuccess(res.data.data));
   } catch (e: any) {

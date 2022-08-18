@@ -94,7 +94,7 @@ const WithdrawalTransactions = () => {
                             </thead>
                             <tbody>
                                 {
-                                    withdrawalTransactions.map((item: any, idx: number) => {
+                                    withdrawalTransactions.slice(0, 10).map((item: any, idx: number) => {
                                         return <tr key={idx}>
                                             <td>{item.transaction}</td>
                                             <td className="text-nowrap">{new Date(item.createdAt).toLocaleDateString()} {new Date(item.createdAt).toLocaleTimeString()}</td>

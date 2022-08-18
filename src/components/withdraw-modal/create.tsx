@@ -3,15 +3,18 @@ import { get } from "lodash";
 import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { MESSAGES } from "../../constants";
+import { useActiveWeb3React } from "../../hook";
 import { CreateWithdrawRequestModel } from "../../models";
 import { createWithdrawRequest } from "../../redux/actions/withdrawActions";
 import { getWithdrawLoadingSelector } from "../../redux/selectors/withdrawSelectors";
 import { formatCurrency } from "../../utils/helpers";
 
 const CreateWithdrawRequestForm = () => {
+
     const Web3 = require('web3');
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
     const balance = get(dashboardStatistics, 'balances.dot', 0);
+    const { account } = useActiveWeb3React();
     const dispatch = useDispatch();
     const loading = useSelector(getWithdrawLoadingSelector);
 
@@ -55,7 +58,7 @@ const CreateWithdrawRequestForm = () => {
         </div>
         <Formik
             enableReinitialize
-            initialValues={{ amount: 0, to: '' }}
+            initialValues={{ amount: 0, to: String(account) }}
             validate={handleValidateForm}
             onSubmit={handleSubmitForm}
         >

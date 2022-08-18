@@ -46,7 +46,7 @@ const WithdrawModal = ({ onHide, currentStep = 1, withdraw_id = '' }: WithdrawMo
         }
     }
 
-    return <Modal size="sm" className="hb-modal" centered show onHide={handleOnHide}>
+    return <Modal size="sm" className="hb-modal" backdrop="static" centered show onHide={handleOnHide}>
         <Modal.Header closeButton>
             <Modal.Title>{step === 1 ? 'Create Withdraw Request' : 'Confirm Withdraw Request'}</Modal.Title>
         </Modal.Header>
