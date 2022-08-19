@@ -10,22 +10,12 @@ import Package from "./modules/package";
 import Profile from "./modules/profile";
 import { AuthRoute } from "./routes/auth-route";
 import { PrivateRoute } from "./routes/private-route";
-
 import './App.css';
-import VerifyAccount from "./modules/auth/verify";
 import NewPassword from "./modules/auth/new-password";
+import VerifyAccount from "./modules/auth/verify";
 import Transactions from "./modules/transactions";
 
 const App = () => {
-  // const dispatch = useDispatch();
-  // const pending = useSelector(getPendingSelector);
-  // const todos = useSelector(getTodosSelector);
-  // const error = useSelector(getErrorSelector);
-
-  // useEffect(() => {
-  //   dispatch(fetchTodoRequest());
-  // }, []);
-
   return (
     <Routes>
       <Route path='*' element={<NotFound />} />
