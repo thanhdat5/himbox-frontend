@@ -2,28 +2,12 @@ import { useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { NotificationResponseModel } from "../../models";
-import { getNotificationsRequest, markNotificationsAsReadRequest } from "../../redux/actions/notificationActions";
-import { getNotificationLoadingSelector, getNotificationsSelector, getNotificationSuccessSelector } from "../../redux/selectors/notificationSelectors";
 
 const HBNotification = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(getNotificationLoadingSelector);
-  const success = useSelector(getNotificationSuccessSelector);
-  const notifications = useSelector(getNotificationsSelector);
-
-  useEffect(() => {
-    // dispatch(getNotificationsRequest())
-  }, [])
-
-  useEffect(() => {
-    if (success) {
-      // dispatch(getNotificationsRequest())
-    }
-  }, [success]);
 
   const maskAsRead = (notificationId: string) => {
-    dispatch(markNotificationsAsReadRequest({ notificationIds: [notificationId] }))
+    // dispatch(markNotificationsAsReadRequest({ notificationIds: [notificationId] }))
   }
 
   return (
@@ -44,22 +28,10 @@ const HBNotification = () => {
       </Dropdown.Toggle>
       <DropdownMenu variant="dark" className="hb-dropdown-menu">
         <div className="hb-dropdown-menu-heading">
-          Notification <span>({notifications ? notifications.length : 0})</span>
+          Notification <span>(0)</span>
         </div>
         {
-          !loading && (!notifications || notifications.length <= 0) ? <div className="hb-dropdown-menu-content">No Notification</div> : <>
-            {
-              loading ? <>Loading...</> : <ul>
-                {
-                  notifications?.map((n: NotificationResponseModel, idx: number) => {
-                    return <li key={idx} onClick={() => maskAsRead(n.notificationId)}>
-                      <span>{n.content}  <small><i>{n.date?.toLocaleDateString()}</i></small></span>
-                    </li>
-                  })
-                }
-              </ul>
-            }
-          </>
+          <div className="hb-dropdown-menu-content">No Notification</div>
         }
       </DropdownMenu>
     </Dropdown>
