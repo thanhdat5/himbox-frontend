@@ -40,7 +40,7 @@ function* fetchGetUserInfoSaga(action: any) {
     yield put(getUserInfoSuccess(res.data?.data));
   } catch (e: any) {
     yield put(getUserInfoFailure());
-    ShowErrorMessage({ message: extractError(e) });
+    // ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchChangePasswordSaga(action: any) {
@@ -54,19 +54,19 @@ function* fetchChangePasswordSaga(action: any) {
   }
 }
 function* fetchUpdateInfoSaga(action: any) {
-  try {
-    yield call(
-      apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    ShowSuccessMessage("Update success!");
-    yield put(updateUserInfoSuccess());
-  } catch (e: any) {
-    yield put(updateUserInfoFailure());
-    ShowErrorMessage({ message: extractError(e) });
-  }
+  // try {
+  //   yield call(
+  //     apiCall,
+  //     "POST",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   ShowSuccessMessage("Update success!");
+  //   yield put(updateUserInfoSuccess());
+  // } catch (e: any) {
+  //   yield put(updateUserInfoFailure());
+  //   ShowErrorMessage({ message: extractError(e) });
+  // }
 }
 function* fetchDisable2FASaga(action: any) {
   try {

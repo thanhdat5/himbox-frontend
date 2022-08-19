@@ -30,7 +30,6 @@ export const formatNumberDownRoundWithExtractMax = (number: any, decimal: number
 };
 
 export const formatNumberDownRound = (number: any, decimal = 3) => {
-    console.log('nummmmm', number);
     if (number === null || number === undefined) return 0;
 
     const decimalFormat = `0,0.${'0'.repeat(decimal)}`;

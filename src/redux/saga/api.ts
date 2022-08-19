@@ -38,17 +38,14 @@ const instance = (headers?: Record<string, string>) => {
     },
     async (error) => {
       const originalRequest = error.response.config;
-
+      console.log('originalRequestoriginalRequest', originalRequest);
+      console.log('error', error);
       if (!error.response) {
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
-        // localStorage.removeItem(HIMBOX_USER_ID);
-        // localStorage.removeItem(HIMBOX_USER_INFO);
-
-        // localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
-        // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
-        //   history.replace(ROUTES.LOGIN, { fromBrokenToken: true });
-        // }
+        localStorage.removeItem(HIMBOX_USER_ID);
+        localStorage.removeItem(HIMBOX_USER_INFO);
+        history.push(ROUTES.LOGIN);
         return Promise.reject(error);
       }
 
@@ -57,6 +54,7 @@ const instance = (headers?: Record<string, string>) => {
         error.response.status === 401 &&
         originalRequest.url === "/api/v1/user/new-access-token"
       ) {
+        console.log('1')
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
         localStorage.removeItem(HIMBOX_USER_ID);
@@ -66,7 +64,7 @@ const instance = (headers?: Record<string, string>) => {
       }
 
       const accessToken = await localStorage.getItem(HIMBOX_ACCESS_TOKEN);
-
+      console.log('111111', error.response.status === 401, !originalRequest._retry);
       if (
         accessToken &&
         error.response.status === 401 &&
@@ -91,7 +89,7 @@ const instance = (headers?: Record<string, string>) => {
           },
         })
           .then(async (res) => {
-            // console.log("resssssss", res);
+            console.log("resssssss", res);
             if (get(res, "data.code", 0) === 200) {
               await localStorage.setItem(
                 HIMBOX_ACCESS_TOKEN,
@@ -112,28 +110,25 @@ const instance = (headers?: Record<string, string>) => {
               localStorage.removeItem(HIMBOX_USER_ID);
               localStorage.removeItem(HIMBOX_USER_INFO);
               history.push(ROUTES.LOGIN);
-
-              // if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
-              //   history.replace(ROUTES.LOGIN, { fromBrokenToken: true });
-              // }
             }
           })
           .catch((err) => {
-            // if (get(err, 'response.status', 0) == 499 || get(err, 'response.status', 0) == 500) {
-            //   localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
-            //   localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
-            //   localStorage.removeItem(LOCAL_STORAGE.ACCOUNT_ID);
-            //   localStorage.removeItem(LOCAL_STORAGE.USER_INFO);
-            //   if (window.location.href.indexOf(ROUTES.ACCOUNT) != -1 || window.location.href.indexOf(ROUTES.TRACKING != -1)) {
-            //     history.replace(ROUTES.LOGIN, { fromBrokenToken: true });
-            //   }
-            // }
+            localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+            localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+            localStorage.removeItem(HIMBOX_USER_ID);
+            localStorage.removeItem(HIMBOX_USER_INFO);
+            history.push(ROUTES.LOGIN);
             return Promise.reject(err);
           })
           .finally(() => {
             return Promise.reject(error);
           });
       } else {
+        localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+        localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+        localStorage.removeItem(HIMBOX_USER_ID);
+        localStorage.removeItem(HIMBOX_USER_INFO);
+        history.push(ROUTES.LOGIN);
         return Promise.reject(error);
       }
     }

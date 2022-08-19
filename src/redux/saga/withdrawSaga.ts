@@ -30,10 +30,11 @@ function* fetchGetListWithdrawSaga(action: any) {
       ENDPOINTS.GET_LIST_WITHDRAW,
       { limit: 10000000, page: 1 }
     );
+    console.log('las sao', res);
     yield put(getListWithdrawSuccess(res.data.data));
   } catch (e: any) {
     yield put(getListWithdrawFailure());
-    ShowErrorMessage({ message: extractError(e) });
+    // ShowErrorMessage({ message: extractError(e) });
   }
 }
 function* fetchCreateWithdrawSaga(action: any) {

@@ -42,7 +42,7 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
       return {
         ...state,
         loadingList: true,
-        withdrawalTransactions: [],
+        // withdrawalTransactions: [],
       };
     case GET_LIST_WITHDRAW_SUCCESS:
       return {
@@ -54,7 +54,7 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
       return {
         ...state,
         loadingList: false,
-        withdrawalTransactions: [],
+        // withdrawalTransactions: [],
       };
     case CREATE_WITHDRAW_REQUEST:
       return {

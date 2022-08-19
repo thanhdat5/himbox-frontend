@@ -35,32 +35,32 @@ function* fetchDashboardStatisticsSaga(action: any) {
   }
 }
 function* fetchDashboardLevelsSaga(action: any) {
-  try {
-    const res: AxiosResponse<any> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(getDashboardLevelsSuccess(res.data));
-  } catch (e: any) {
-    yield put(getDashboardLevelsFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   const res: AxiosResponse<any> = yield call(
+  //     apiCall,
+  //     "GET",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(getDashboardLevelsSuccess(res.data));
+  // } catch (e: any) {
+  //   yield put(getDashboardLevelsFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 function* fetchDashboardRanksSaga(action: any) {
-  try {
-    const res: AxiosResponse<any> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(getDashboardRanksSuccess(res.data));
-  } catch (e: any) {
-    yield put(getDashboardRanksFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   const res: AxiosResponse<any> = yield call(
+  //     apiCall,
+  //     "GET",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(getDashboardRanksSuccess(res.data));
+  // } catch (e: any) {
+  //   yield put(getDashboardRanksFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 
 function* fetchDepositTransactionsSaga(action: any) {
@@ -74,22 +74,22 @@ function* fetchDepositTransactionsSaga(action: any) {
     yield put(getDepositTransactionsSuccess(res.data.data));
   } catch (e: any) {
     yield put(getDepositTransactionsFailure());
-    ShowErrorMessage(e);
+    // ShowErrorMessage(e);
   }
 }
 function* fetchUpgradeTransactionsSaga(action: any) {
-  try {
-    const res: AxiosResponse<any> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(getUpgradeTransactionsSuccess(res.data));
-  } catch (e: any) {
-    yield put(getUpgradeTransactionsFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   const res: AxiosResponse<any> = yield call(
+  //     apiCall,
+  //     "GET",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(getUpgradeTransactionsSuccess(res.data));
+  // } catch (e: any) {
+  //   yield put(getUpgradeTransactionsFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 function* fetchWithdrawalTransactionsSaga(action: any) {
   try {
@@ -106,32 +106,32 @@ function* fetchWithdrawalTransactionsSaga(action: any) {
   }
 }
 function* fetchDowngradeTransactionsSaga(action: any) {
-  try {
-    const res: AxiosResponse<any> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(getDowngradeTransactionsSuccess(res.data));
-  } catch (e: any) {
-    yield put(getDowngradeTransactionsFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   const res: AxiosResponse<any> = yield call(
+  //     apiCall,
+  //     "GET",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(getDowngradeTransactionsSuccess(res.data));
+  // } catch (e: any) {
+  //   yield put(getDowngradeTransactionsFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 function* fetchProfitTransactionsSaga(action: any) {
-  try {
-    const res: AxiosResponse<any> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(getProfitTransactionsSuccess(res.data));
-  } catch (e: any) {
-    yield put(getProfitTransactionsFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   const res: AxiosResponse<any> = yield call(
+  //     apiCall,
+  //     "GET",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(getProfitTransactionsSuccess(res.data));
+  // } catch (e: any) {
+  //   yield put(getProfitTransactionsFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 
 function* dashboardSaga() {

@@ -63,18 +63,18 @@ function* fetchGetPackagesByProfitSaga(action: any) {
   }
 }
 function* fetchConfirmParticipateSaga(action: any) {
-  try {
-    yield call(
-      apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(confirmParticipateSuccess());
-  } catch (e: any) {
-    yield put(confirmParticipateFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   yield call(
+  //     apiCall,
+  //     "POST",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(confirmParticipateSuccess());
+  // } catch (e: any) {
+  //   yield put(confirmParticipateFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 
 function* packageSaga() {

@@ -13,32 +13,32 @@ import {
 import { apiCall } from "./api";
 
 function* fetchVerifyCodeSaga(action: any) {
-  try {
-    yield call(
-      apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(sendVerifyCodeSuccess());
-  } catch (e: any) {
-    yield put(sendVerifyCodeFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   yield call(
+  //     apiCall,
+  //     "POST",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(sendVerifyCodeSuccess());
+  // } catch (e: any) {
+  //   yield put(sendVerifyCodeFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 function* fetchRecoverPasswordSaga(action: any) {
-  try {
-    yield call(
-      apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(recoverPasswordSuccess());
-  } catch (e: any) {
-    yield put(recoverPasswordFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   yield call(
+  //     apiCall,
+  //     "POST",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(recoverPasswordSuccess());
+  // } catch (e: any) {
+  //   yield put(recoverPasswordFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 
 function* forgotPasswordSaga() {

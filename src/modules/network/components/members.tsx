@@ -7,7 +7,6 @@ interface HBNetworkMembersProps {
 }
 
 const HBNetworkMembers = ({ data = [] }: HBNetworkMembersProps) => {
-    console.log('data', data);
     return <div className="hb-network-members-list">
         <Table responsive className="mb-0">
             <thead>

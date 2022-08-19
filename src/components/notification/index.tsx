@@ -13,12 +13,12 @@ const HBNotification = () => {
   const notifications = useSelector(getNotificationsSelector);
 
   useEffect(() => {
-    dispatch(getNotificationsRequest())
+    // dispatch(getNotificationsRequest())
   }, [])
 
   useEffect(() => {
     if (success) {
-      dispatch(getNotificationsRequest())
+      // dispatch(getNotificationsRequest())
     }
   }, [success]);
 

@@ -16,9 +16,6 @@ const HBDashboardTransactions = () => {
 
     const depositHistory = useSelector(state => get(state, 'dashboard.depositTransactions', []));
 
-    const [depositTransactions, setDepositTransactions] = useState<DepositTransactionsResponseModel[]>([]);
-    const [withdrawalTransactions, setWithdrawalTransactions] = useState<WithdrawalTransactionsResponseModel[]>([]);
-
     useEffect(() => {
         getDepositTransactions();
         getWithdrawalTransactions();

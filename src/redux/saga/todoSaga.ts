@@ -9,22 +9,22 @@ import { apiCall } from "./api";
   Worker Saga: Fired on FETCH_TODO_REQUEST action
 */
 function* fetchTodoSaga() {
-  try {
-    const response: AxiosResponse<ITodo[]> = yield call(
-      apiCall,
-      "GET",
-      "https://jsonplaceholder.typicode.com/todos"
-    );
-    yield put(
-      fetchTodoSuccess({
-        todos: response.data,
-      })
-    );
-  } catch (e: any) {
-    yield put(
-      fetchTodoFailure()
-    );
-  }
+  // try {
+  //   const response: AxiosResponse<ITodo[]> = yield call(
+  //     apiCall,
+  //     "GET",
+  //     "https://jsonplaceholder.typicode.com/todos"
+  //   );
+  //   yield put(
+  //     fetchTodoSuccess({
+  //       todos: response.data,
+  //     })
+  //   );
+  // } catch (e: any) {
+  //   yield put(
+  //     fetchTodoFailure()
+  //   );
+  // }
 }
 
 /*

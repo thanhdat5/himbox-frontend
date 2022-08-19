@@ -5,18 +5,18 @@ import { DEPOSIT_REQUEST } from "../types/deposit";
 import { apiCall } from "./api";
 
 function* fetchDepositSaga(action: any) {
-  try {
-    yield call(
-      apiCall,
-      "POST",
-      "https://jsonplaceholder.typicode.com/todos",
-      action.payload
-    );
-    yield put(depositSuccess());
-  } catch (e: any) {
-    yield put(depositFailure());
-    ShowErrorMessage(e);
-  }
+  // try {
+  //   yield call(
+  //     apiCall,
+  //     "POST",
+  //     "https://jsonplaceholder.typicode.com/todos",
+  //     action.payload
+  //   );
+  //   yield put(depositSuccess());
+  // } catch (e: any) {
+  //   yield put(depositFailure());
+  //   ShowErrorMessage(e);
+  // }
 }
 
 function* depositSaga() {
