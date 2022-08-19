@@ -1,5 +1,6 @@
 import { Table } from "react-bootstrap"
 import { PACKAGE_RANKING_TYPES } from "../../../constants";
+import { formatNumberDownRound } from "../../../utils/helpers";
 
 interface HBNetworkMembersProps {
     data: any
@@ -12,7 +13,7 @@ const HBNetworkMembers = ({ data = [] }: HBNetworkMembersProps) => {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ID Sponsor</th>
+                    <th>Referrer ID</th>
                     <th>Package</th>
                     <th>HIM (Lock)</th>
                     <th className="text-end">Rank</th>
@@ -25,7 +26,7 @@ const HBNetworkMembers = ({ data = [] }: HBNetworkMembersProps) => {
                             <td>{row?.user_id}</td>
                             <td>{row?.sponsor}</td>
                             <td>{PACKAGE_RANKING_TYPES[row?.profit_type]}</td>
-                            <td>{row?.him_amount}</td>
+                            <td>{formatNumberDownRound(row?.him_amount)}</td>
                             <td className="text-end">{row?.rank}</td>
                         </tr>
                     );

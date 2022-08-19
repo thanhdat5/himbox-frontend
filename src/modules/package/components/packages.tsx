@@ -9,7 +9,7 @@ import ParticipateModal from "../../../components/participate-modal";
 import { PackageByProfitResponseModel } from "../../../models";
 import { getPackagesByProfitRequest } from "../../../redux/actions/packageActions";
 import { getCurrentUserId } from "../../../services/appService";
-import { convertNumber } from "../../../utils/helpers";
+import { convertNumber, formatNumberDownRound } from "../../../utils/helpers";
 
 const HBPackageList = () => {
 
@@ -68,9 +68,9 @@ const HBPackageList = () => {
                                 return <Col key={idx} xl={3} lg={4} md={6} className="mb-md-4 mb-3">
                                     <HBPackageCard
                                         packageName={`Package ${idx + 1}`}
-                                        packageValue={item.dot_amount}
+                                        packageValue={formatNumberDownRound(item.dot_amount)}
                                         planName={`Plan ${item.plan}`}
-                                        planValue={`Lock ${item.him_amount} HIM`}
+                                        planValue={`Lock ${formatNumberDownRound(item.him_amount)} HIM`}
                                         planValueDOT={item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))}
                                         total={item.dot_amount + item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))}
                                         totalUSD={(item.dot_amount + item.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))) * get(prices, 'dot_price', 0)}

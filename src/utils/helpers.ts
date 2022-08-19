@@ -25,8 +25,31 @@ export const formatNumberDownRoundWithExtractMax = (number: any, decimal: number
             exactMath.floor(exactMath.mul(number, exactMath.pow(10, decimal))),
             exactMath.pow(10, decimal)
         )
-        .toFixed(decimal);
+        .toFixed(decimal)
+        .replace(/\.0+$/, '');
 };
+
+export const formatNumberDownRound = (number: any, decimal = 3) => {
+    console.log('nummmmm', number);
+    if (number === null || number === undefined) return 0;
+
+    const decimalFormat = `0,0.${'0'.repeat(decimal)}`;
+
+    if (typeof number === "string") {
+        number = Number(number);
+    }
+
+    const sub = number.toString().split(".");
+    if (sub.length >= 2) {
+        const precision = sub[1].substring(0, decimal);
+        const leading = numeral(sub[0]).format('0,0');;
+        const trailing = String(parseFloat(`0.${precision}`)).toString().slice(2);
+        return `${leading}.${trailing}`
+    }
+    return numeral(number.toFixed(decimal)).format(decimalFormat).replace(/\.0+$/, '').toString();
+};
+
+export const toFixedWithoutZeros = (num: any, precision: number) => `${Number.parseFloat(num.toFixed(precision))}`;
 
 export const convertNumber = (number: any, pow: number = 8) => {
     number = Number(number)
@@ -35,4 +58,8 @@ export const convertNumber = (number: any, pow: number = 8) => {
 
 export const formatCurrency = (num: any) => {
     return numeral(num).format('0,0.0');
+};
+
+export const formatBal = (num: any) => {
+    return parseFloat(numeral(num).format('0,0.000'));
 };

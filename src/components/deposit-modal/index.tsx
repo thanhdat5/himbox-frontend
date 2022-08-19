@@ -24,7 +24,7 @@ const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalP
                 <FormGroup className="mb-3">
                     <FormLabel>Deposit amount</FormLabel>
                     <div className="hb-form-control-wrap">
-                        <FormControl required value={amount} onChange={(e) => setAmount(e.target.value)} />
+                        <FormControl type='number' required value={amount} onChange={(e) => setAmount(e.target.value)} />
                         <span>DOT</span>
                     </div>
                 </FormGroup>

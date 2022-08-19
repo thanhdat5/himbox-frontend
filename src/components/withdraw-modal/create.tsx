@@ -7,7 +7,7 @@ import { useActiveWeb3React } from "../../hook";
 import { CreateWithdrawRequestModel } from "../../models";
 import { createWithdrawRequest } from "../../redux/actions/withdrawActions";
 import { getWithdrawLoadingSelector } from "../../redux/selectors/withdrawSelectors";
-import { formatCurrency } from "../../utils/helpers";
+import { formatNumberDownRound } from "../../utils/helpers";
 
 const CreateWithdrawRequestForm = () => {
 
@@ -65,7 +65,7 @@ const CreateWithdrawRequestForm = () => {
             <Form>
                 <FormGroup className="mb-3">
                     <FormLabel>Your balance</FormLabel>
-                    <FormControl readOnly type='text' value={formatCurrency(balance)} className="txtbalance" />
+                    <FormControl readOnly type='text' value={formatNumberDownRound(balance)} className="txtbalance" />
                 </FormGroup>
 
                 <FormGroup className="mb-3">

@@ -8,6 +8,7 @@ import HBPageWrap from "../../components/page-wrap";
 import { PACKAGE_RANKING_TYPES } from '../../constants';
 import { getDashboardStatisticsRequest } from '../../redux/actions/dashboardActions';
 import { GET_DASHBOARD_STATISTICS_REQUEST } from '../../redux/types/dashboard';
+import { formatNumberDownRound } from '../../utils/helpers';
 import HBDashboardBlock from "./components/block";
 import HBDashboardLeadership from "./components/leadership";
 import HBDashboardLevels from "./components/levels";
@@ -33,10 +34,10 @@ const Dashboard = () => {
                         <Col lg={3} className="mb-lg-0 mb-md-4 mb-3">
                             <Row>
                                 <Col lg={12} md={6}>
-                                    <HBDashboardBlock label="Package Value" value={`${get(statistics, 'package.dot_amount', 0)} DOT`} />
+                                    <HBDashboardBlock label="Package Value" value={`${formatNumberDownRound(get(statistics, 'package.dot_amount', 0))} DOT`} />
                                 </Col>
                                 <Col lg={12} md={6}>
-                                    <HBDashboardBlock label="HIM (Locked)" value={`${get(statistics, 'package.him_amount', 0)} HIM`} />
+                                    <HBDashboardBlock label="HIM (Locked)" value={`${formatNumberDownRound(get(statistics, 'package.him_amount', 0))} HIM`} />
                                 </Col>
 
                                 <Col lg={12} md={6}>

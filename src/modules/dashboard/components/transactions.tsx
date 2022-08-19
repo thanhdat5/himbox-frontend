@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
 import { DepositTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
 import { getDepositTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
+import { formatNumberDownRound } from "../../../utils/helpers";
 import { formatWalletAddress } from "../../../utils/utils";
 import { NETWORK_SCAN } from "../../../_config";
 
@@ -61,9 +62,9 @@ const HBDashboardTransactions = () => {
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
                             <th>From</th>
-                            <th>Value</th>
-                            <th>Tx ID</th>
-                            <th style={{ width: 180 }}>Date</th>
+                            <th>Amount (DOT)</th>
+                            <th>TxHash</th>
+                            <th style={{ width: 180 }}>Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,7 +77,7 @@ const HBDashboardTransactions = () => {
                                         <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
                                         {/* </OverlayTrigger> */}
                                     </td>
-                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? get(item, 'amount.dot', 0) : get(item, 'amount', 0)}</td>
+                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td>
                                     <td>
                                         {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
                                         <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>

@@ -9,6 +9,7 @@ import { ROUTES } from "../../constants";
 import { WithdrawalTransactionsResponseModel } from "../../models";
 import { cancelWithdrawRequest, getListWithdrawRequest, resetWithdrawState } from "../../redux/actions/withdrawActions";
 import { is2FAActive } from "../../services/appService";
+import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
@@ -113,7 +114,7 @@ const WithdrawalTransactions = () => {
                                                 {/* </OverlayTrigger> */}
                                             </td>
                                             <td className="text-nowrap">{item.amount.dot} DOT</td>
-                                            <td>{item.fee}</td>
+                                            <td>{formatNumberDownRound(item.fee)}</td>
                                             <td>
                                                 <Badge bg={
                                                     item.status === 'W' ? 'primary' :

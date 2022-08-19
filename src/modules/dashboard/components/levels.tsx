@@ -2,6 +2,7 @@ import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import HBLevelCard from "../../../components/level-card"
+import { formatNumberDownRound } from "../../../utils/helpers";
 
 let LEVELS = [
     { id: 1, level: 'Level 1', members: 1, value: "" },
@@ -48,7 +49,7 @@ const HBDashboardLevels = () => {
                     key={idx}
                     level={item.level}
                     members={item.members}
-                    value={item.value}
+                    value={formatNumberDownRound(item.value)}
                     className={item.value ? 'active' : ''}
                 />
             })

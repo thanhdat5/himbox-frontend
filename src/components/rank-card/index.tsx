@@ -1,3 +1,5 @@
+import { formatNumberDownRound } from "../../utils/helpers";
+
 interface HBRankCardProps {
     rank: number;
     commission?: string;
@@ -24,9 +26,9 @@ const HBRankCard = ({ rank, commission, condition, active }: HBRankCardProps) =>
             <div className="hb-rank-description">
                 <span>Condition:</span>
                 {rank != 1 ?
-                    <span>{`Volume reaches ${condition.dot} DOT in Team. Have at least ${condition?.f1} F1 qualified Rank ${condition?.rank}`}</span>
+                    <span>{`Volume reaches ${formatNumberDownRound(condition.dot)} DOT in Team. Have at least ${condition?.f1} F1 qualified Rank ${condition?.rank}`}</span>
                     :
-                    <span>{`Volume reaches ${condition.dot} DOT in Team`}</span>
+                    <span>{`Volume reaches ${formatNumberDownRound(condition.dot)} DOT in Team`}</span>
                 }
             </div>
         </div>

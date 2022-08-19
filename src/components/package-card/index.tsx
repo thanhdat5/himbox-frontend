@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
-import { formatCurrency } from "../../utils/helpers";
+import { formatNumberDownRound } from "../../utils/helpers";
 
 interface HBPackageCardProps {
     packageName: string;
-    packageValue: string;
+    packageValue: any;
     planName: string;
     planValue: string;
     planValueDOT: any;
@@ -25,14 +25,14 @@ const HBPackageCard = ({ packageName, packageValue, planName, planValue, planVal
             <div className="hb-package-item-label">{planName}</div>
             <div className="hb-package-item-value">
                 <b>{planValue}</b>
-                <span>= {formatCurrency(planValueDOT)} DOT</span>
+                <span>= {formatNumberDownRound(planValueDOT)} DOT</span>
             </div>
         </div>
         <div className="hb-package-item-line hb-package-item-price">
             <div className="hb-package-item-label">Total</div>
             <div className="hb-package-item-value">
-                <b>{formatCurrency(total)} DOT</b>
-                <span>= {formatCurrency(totalUSD)} $</span>
+                <b>{formatNumberDownRound(total)} DOT</b>
+                <span>= {formatNumberDownRound(totalUSD)} $</span>
             </div>
         </div>
         <div className="hb-package-item-action">

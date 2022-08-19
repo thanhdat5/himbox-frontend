@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 
 interface HBStatisticCardProps {
     label: string;
-    value: string;
+    value: any;
     subValue?: string;
     value2?: string;
     subValue2?: string;

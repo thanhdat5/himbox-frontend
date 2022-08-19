@@ -6,7 +6,7 @@ import { ENDPOINTS, MESSAGES } from "../../constants";
 import { getDashboardStatisticsRequest } from "../../redux/actions/dashboardActions";
 import { apiCall } from "../../redux/saga/api";
 import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService";
-import { convertNumber, extractError, formatCurrency } from "../../utils/helpers";
+import { convertNumber, extractError, formatNumberDownRound } from "../../utils/helpers";
 
 interface ParticipateModalProps {
     onHide: (isSubmit?: boolean) => void;
@@ -78,7 +78,7 @@ const ParticipateModal = ({ onHide, selectedPackage }: ParticipateModalProps) =>
                                             <div className="hb-package-item-label">Plan {get(selectedPackage, 'plan', 1)}</div>
                                             <div className="hb-package-item-value">
                                                 <b>Lock {get(selectedPackage, 'him_amount', 0)} HIM</b>
-                                                <span>= {formatCurrency(selectedPackage.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1)))} DOT</span>
+                                                <span>= {formatNumberDownRound(selectedPackage.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1)))} DOT</span>
                                             </div>
                                         </div>
                                     </Col>
@@ -87,8 +87,8 @@ const ParticipateModal = ({ onHide, selectedPackage }: ParticipateModalProps) =>
                                 <div className="hb-package-item-line hb-package-item-price">
                                     <div className="hb-package-item-label">Total</div>
                                     <div className="hb-package-item-value">
-                                        <b>{formatCurrency(selectedPackage.dot_amount + selectedPackage.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1)))} DOT</b>
-                                        <span>= {formatCurrency((selectedPackage.dot_amount + selectedPackage.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))) * get(prices, 'dot_price', 0))} $</span>
+                                        <b>{formatNumberDownRound(selectedPackage.dot_amount + selectedPackage.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1)))} DOT</b>
+                                        <span>= {formatNumberDownRound((selectedPackage.dot_amount + selectedPackage.him_amount / (get(prices, 'dot_price', 1) / get(prices, 'him_price', 1))) * get(prices, 'dot_price', 0))} $</span>
                                     </div>
                                 </div>
                             </div>

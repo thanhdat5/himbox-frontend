@@ -1,7 +1,7 @@
 interface HBLevelCardProps {
     level: string;
     members?: number;
-    value?: string;
+    value?: any;
     className?: string;
 }
 const HBLevelCard = ({ level, members = 0, value, className }: HBLevelCardProps) => {

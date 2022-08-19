@@ -6,6 +6,7 @@ import HBPageWrap from "../../components/page-wrap";
 import WithdrawalTransactions from "../../components/transactions/withdrawal";
 import { getDepositTransactionsRequest } from "../../redux/actions/dashboardActions";
 import { getListWithdrawRequest } from "../../redux/actions/withdrawActions";
+import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
@@ -57,9 +58,9 @@ const Transactions = () => {
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
                             <th>From</th>
-                            <th>Value</th>
-                            <th>Tx ID</th>
-                            <th style={{ width: 180 }}>Date</th>
+                            <th>Amount (DOT)</th>
+                            <th>TxHash</th>
+                            <th style={{ width: 180 }}>Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +71,7 @@ const Transactions = () => {
                                     <td>
                                         <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
                                     </td>
-                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? get(item, 'amount.dot', 0) : get(item, 'amount', 0)}</td>
+                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td>
                                     <td>
                                         <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
                                     </td>
