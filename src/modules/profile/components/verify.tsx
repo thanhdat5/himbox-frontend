@@ -59,7 +59,7 @@ const HBProfileVerify = ({ userLogged }: any) => {
         setShow2FAConfig(null);
     }
 
-    return <HBCard>
+    return <HBCard className="mb-3">
         <Form onSubmit={handleSubmit}>
             <FormGroup className="mb-3">
                 <Form.Check

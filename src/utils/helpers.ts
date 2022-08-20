@@ -7,6 +7,13 @@ export function validatePwd(str: string): boolean {
     return validatePassword.test(str);
 }
 
+export const validatePhone = (phone: string) => {
+    const regexPhone = new RegExp(
+        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+    );
+    return regexPhone.test(phone);
+};
+
 export const validateEmail = (email: string) => {
     return String(email)
         .toLowerCase()

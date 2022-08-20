@@ -66,7 +66,7 @@ export const getUserInfoFailure = (): GetUserInfoFailure => ({
 });
 
 export const updateUserInfoRequest = (
-  payload: UserUpdateInforRequestModel
+  payload: any
 ): UpdateUserInfoRequest => ({
   type: UPDATE_USER_INFO_REQUEST,
   payload,

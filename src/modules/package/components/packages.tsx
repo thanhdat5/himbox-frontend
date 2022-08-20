@@ -59,6 +59,8 @@ const HBPackageList = () => {
                 <button type="button" onClick={() => setProfit(0.3)} className={`hb-package-percent ${profit === 0.3 ? 'active' : ''}`}>0.3</button>
                 <button type="button" onClick={() => setProfit(0.35)} className={`hb-package-percent ${profit === 0.35 ? 'active' : ''}`}>0.35</button>
                 <button type="button" onClick={() => setProfit(0.4)} className={`hb-package-percent ${profit === 0.4 ? 'active' : ''}`}>0.4</button>
+                <button type="button" onClick={() => setProfit(0.5)} className={`hb-package-percent ${profit === 0.5 ? 'active' : ''}`}>0.5</button>
+                <button type="button" onClick={() => setProfit(0.6)} className={`hb-package-percent ${profit === 0.6 ? 'active' : ''}`}>0.6</button>
             </div>
             <div className="hb-packages-list">
                 {packages.length > 0 ?
@@ -78,7 +80,7 @@ const HBPackageList = () => {
                                             setSelectedPackage({ ...item, name: `Package ${idx + 1}` });
                                             setShowParticipate(true);
                                         }}
-                                        disabled={get(currentPackage, 'dot_amount', 0) >= get(item, 'dot_amount', 1)}
+                                        disabled={get(currentPackage, 'dot_amount', 0) > get(item, 'dot_amount', 1)}
                                         current={currentPackage?._id === item?._id}
                                     />
                                 </Col>

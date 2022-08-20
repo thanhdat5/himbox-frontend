@@ -25,12 +25,12 @@ const Profile = () => {
 
     return <HBPageWrap className="hb-profile" title="Profile Settings">
         <Row className="gx-xl-5">
-            <Col xl={5} lg={6} md={6} className="mb-md-0 mb-3">
+            <Col xl={5} lg={6} md={6} className="mb-md-0">
                 <HBProfileInfo userInfo={userInfo} userLogged={userLogged} />
-                <HBProfileChangePassword />
             </Col>
             <Col xl={5} lg={6} md={6}>
                 <HBProfileVerify userLogged={userLogged} />
+                <HBProfileChangePassword />
             </Col>
         </Row>
     </HBPageWrap>

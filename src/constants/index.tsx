@@ -54,6 +54,8 @@ export const PACKAGE_TYPES = {
     TYPE_30: 30,
     TYPE_35: 35,
     TYPE_40: 40,
+    TYPE_45: 45,
+    TYPE_50: 50,
 };
 
 export const PACKAGE_RANKING_TYPES: any = {
@@ -410,7 +412,8 @@ export const MESSAGES = {
     "ENTER_PACKAGE_FAIL": 'Enter package failed!',
     "REQUIRED_MESSAGE": 'Cannot leave this blank.',
     "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ',
-    "INVALID_WALLET_ADDRESS": 'Invalid wallet address.'
+    "INVALID_WALLET_ADDRESS": 'Invalid wallet address.',
+    "INVALID_PHONE": "Invalid phone number"
 };
 
 export const ACTION_STATUS = {
