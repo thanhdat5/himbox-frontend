@@ -38,8 +38,8 @@ const instance = (headers?: Record<string, string>) => {
     },
     async (error) => {
       const originalRequest = error.response.config;
-      console.log('originalRequestoriginalRequest', originalRequest);
-      console.log('error', error);
+      // console.log('originalRequestoriginalRequest', originalRequest);
+      // console.log('error', error);
       if (!error.response) {
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
@@ -64,7 +64,7 @@ const instance = (headers?: Record<string, string>) => {
       }
 
       const accessToken = await localStorage.getItem(HIMBOX_ACCESS_TOKEN);
-      console.log('111111', error.response.status === 401, !originalRequest._retry);
+      // console.log('111111', error.response.status === 401, !originalRequest._retry);
       if (
         accessToken &&
         error.response.status === 401 &&
@@ -89,7 +89,7 @@ const instance = (headers?: Record<string, string>) => {
           },
         })
           .then(async (res) => {
-            console.log("resssssss", res);
+            // console.log("resssssss", res);
             if (get(res, "data.code", 0) === 200) {
               await localStorage.setItem(
                 HIMBOX_ACCESS_TOKEN,
@@ -105,6 +105,7 @@ const instance = (headers?: Record<string, string>) => {
               // console.log("return values", returnValue);
               return returnValue(originalRequest);
             } else {
+              console.log('2')
               localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
               localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
               localStorage.removeItem(HIMBOX_USER_ID);
@@ -113,6 +114,7 @@ const instance = (headers?: Record<string, string>) => {
             }
           })
           .catch((err) => {
+            console.log('3')
             localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
             localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
             localStorage.removeItem(HIMBOX_USER_ID);
@@ -121,19 +123,20 @@ const instance = (headers?: Record<string, string>) => {
             return Promise.reject(err);
           })
           .finally(() => {
-            return Promise.reject(error);
+            return 1;
           });
       } else {
-        localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
-        localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
-        localStorage.removeItem(HIMBOX_USER_ID);
-        localStorage.removeItem(HIMBOX_USER_INFO);
-        history.push(ROUTES.LOGIN);
+        console.log('4')
+        // localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+        // localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+        // localStorage.removeItem(HIMBOX_USER_ID);
+        // localStorage.removeItem(HIMBOX_USER_INFO);
+        // history.push(ROUTES.LOGIN);
         return Promise.reject(error);
       }
     }
   );
-
+  console.log('5')
   return returnValue;
 };
 
