@@ -117,7 +117,7 @@ const dashboardReducer = (state = initialState, action: DashboardActions) => {
       return {
         ...state,
         loadingTransactions: false,
-        depositTransactions: [],
+        // depositTransactions: [],
       };
 
     case GET_UPGRADE_TRANSACTIONS_REQUEST:
@@ -139,24 +139,24 @@ const dashboardReducer = (state = initialState, action: DashboardActions) => {
         upgradeTransactions: [],
       };
 
-    case GET_WITHDRAWAL_TRANSACTIONS_REQUEST:
-      return {
-        ...state,
-        loadingTransactions: true,
-        withdrawalTransactions: [],
-      };
-    case GET_WITHDRAWAL_TRANSACTIONS_SUCCESS:
-      return {
-        ...state,
-        loadingTransactions: false,
-        withdrawalTransactions: action.payload,
-      };
-    case GET_WITHDRAWAL_TRANSACTIONS_FAILURE:
-      return {
-        ...state,
-        loadingTransactions: false,
-        withdrawalTransactions: [],
-      };
+    // case GET_WITHDRAWAL_TRANSACTIONS_REQUEST:
+    //   return {
+    //     ...state,
+    //     loadingTransactions: true,
+    //     withdrawalTransactions: [],
+    //   };
+    // case GET_WITHDRAWAL_TRANSACTIONS_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loadingTransactions: false,
+    //     withdrawalTransactions: action.payload,
+    //   };
+    // case GET_WITHDRAWAL_TRANSACTIONS_FAILURE:
+    //   return {
+    //     ...state,
+    //     loadingTransactions: false,
+    //     withdrawalTransactions: [],
+    //   };
 
     case GET_DOWNGRADE_TRANSACTIONS_REQUEST:
       return {
