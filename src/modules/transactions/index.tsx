@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { Tab, Tabs, Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import HBPageWrap from "../../components/page-wrap";
+import CommissionTransactions from "../../components/transactions/commission";
+import StakeTransactions from "../../components/transactions/stake";
 import WithdrawalTransactions from "../../components/transactions/withdrawal";
 import { getDepositTransactionsRequest } from "../../redux/actions/dashboardActions";
 import { getListWithdrawRequest } from "../../redux/actions/withdrawActions";
+import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
@@ -23,10 +26,16 @@ const Transactions = () => {
     const getDepositTransactions = () => {
         dispatch(getDepositTransactionsRequest())
     }
-
     const getWithdrawalTransactions = () => {
         dispatch(getListWithdrawRequest());
     }
+    const getStakeTransactions = () => {
+        dispatch({ type: GET_LIST_STAKE_REQUEST })
+    }
+    const getCommissionTransactions = () => {
+        dispatch({ type: GET_LIST_COMMISSION_REQUEST })
+    }
+
 
     const handleTabChange = (e: any) => {
         switch (e) {
@@ -36,6 +45,14 @@ const Transactions = () => {
             }
             case 'Withdrawal': {
                 getWithdrawalTransactions();
+                break;
+            }
+            case 'Commission': {
+                getCommissionTransactions();
+                break;
+            }
+            case 'Stake': {
+                getStakeTransactions();
                 break;
             }
         }
@@ -84,6 +101,12 @@ const Transactions = () => {
             </Tab>
             <Tab eventKey="Withdrawal" title="Withdrawal">
                 <WithdrawalTransactions />
+            </Tab>
+            <Tab eventKey="Commission" title="Commission">
+                <CommissionTransactions />
+            </Tab>
+            <Tab eventKey="Stake" title="Stake">
+                <StakeTransactions />
             </Tab>
         </Tabs>
     </HBPageWrap>

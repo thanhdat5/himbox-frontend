@@ -11,6 +11,14 @@ export const GET_LIST_WITHDRAW_REQUEST = "GET_LIST_WITHDRAW_REQUEST";
 export const GET_LIST_WITHDRAW_SUCCESS = "GET_LIST_WITHDRAW_SUCCESS";
 export const GET_LIST_WITHDRAW_FAILURE = "GET_LIST_WITHDRAW_FAILURE";
 
+export const GET_LIST_COMMISSION_REQUEST = "GET_LIST_COMMISSION_REQUEST";
+export const GET_LIST_COMMISSION_SUCCESS = "GET_LIST_COMMISSION_SUCCESS";
+export const GET_LIST_COMMISSION_FAILURE = "GET_LIST_COMMISSION_FAILURE";
+
+export const GET_LIST_STAKE_REQUEST = "GET_LIST_STAKE_REQUEST";
+export const GET_LIST_STAKE_SUCCESS = "GET_LIST_STAKE_SUCCESS";
+export const GET_LIST_STAKE_FAILURE = "GET_LIST_STAKE_FAILURE";
+
 export const CREATE_WITHDRAW_REQUEST = "CREATE_WITHDRAW_REQUEST";
 export const CREATE_WITHDRAW_SUCCESS = "CREATE_WITHDRAW_SUCCESS";
 export const CREATE_WITHDRAW_FAILURE = "CREATE_WITHDRAW_FAILURE";
@@ -31,6 +39,8 @@ export interface WithdrawState {
   cancelSuccess: boolean;
   withdrawRequest: any;
   withdrawalTransactions: WithdrawalTransactionsResponseModel[];
+  commissionTransactions: any[];
+  stakeTransactions: any[];
 }
 
 export interface ResetWithdrawState {
@@ -86,6 +96,16 @@ export type CancelWithdrawSuccess = {
   type: typeof CANCEL_WITHDRAW_SUCCESS;
 };
 
+export type GetListCommissionSuccess = {
+  type: typeof GET_LIST_COMMISSION_SUCCESS;
+  payload: any
+};
+
+export type GetListStakeSuccess = {
+  type: typeof GET_LIST_STAKE_SUCCESS;
+  payload: any
+};
+
 export type CancelWithdrawFailure = {
   type: typeof CANCEL_WITHDRAW_FAILURE;
 };
@@ -103,4 +123,6 @@ export type WithdrawActions =
   | ConfirmWithdrawFailure
   | CancelWithdrawRequest
   | CancelWithdrawSuccess
+  | GetListCommissionSuccess
+  | GetListStakeSuccess
   | CancelWithdrawFailure;

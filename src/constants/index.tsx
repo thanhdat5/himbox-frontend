@@ -3,8 +3,8 @@ export const HIMBOX_REFRESH_TOKEN = "HIMBOX_REFRESH_TOKEN";
 export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
 export const HIMBOX_USER_INFO = "HIMBOX_USER_INFO";
 
-// export const BASE_URL = 'http://localhost:6969/api/v1'; 
-export const BASE_URL = 'https://test.himbox.io/api/v1';
+export const BASE_URL = 'http://localhost:6969/api/v1'; 
+// export const BASE_URL = 'https://test.himbox.io/api/v1';
 export const ENDPOINTS = {
     LOGIN: `/user/login`,
     SIGN_UP: `/user/register`,
@@ -39,6 +39,8 @@ export const ENDPOINTS = {
 
     // withdraw
     GET_LIST_WITHDRAW: `/withdraw/list`,
+    GET_LIST_COMMISSION: `/commission/list`,
+    GET_LIST_STAKE: `/stake/list`,
     CREATE_WITHDRAW: `/withdraw/create-withdraw`,
     CONFIRM_WITHDRAW: `/withdraw/confirm`,
     CANCEL_WITHDRAW: `/withdraw/cancel`,

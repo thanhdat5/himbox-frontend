@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Tab, Table, Tabs, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import CommissionTransactions from "../../../components/transactions/commission";
+import StakeTransactions from "../../../components/transactions/stake";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
 import { DepositTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
 import { getDepositTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
+import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST } from "../../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../../utils/helpers";
 import { formatWalletAddress } from "../../../utils/utils";
 import { NETWORK_SCAN } from "../../../_config";
@@ -27,6 +30,12 @@ const HBDashboardTransactions = () => {
     const getWithdrawalTransactions = () => {
         dispatch(getWithdrawalTransactionsRequest())
     }
+    const getStakeTransactions = () => {
+        dispatch({ type: GET_LIST_STAKE_REQUEST })
+    }
+    const getCommissionTransactions = () => {
+        dispatch({ type: GET_LIST_COMMISSION_REQUEST })
+    }
 
     const handleTabChange = (e: any) => {
         switch (e) {
@@ -36,6 +45,14 @@ const HBDashboardTransactions = () => {
             }
             case 'Withdrawal': {
                 getWithdrawalTransactions();
+                break;
+            }
+            case 'Commission': {
+                getCommissionTransactions();
+                break;
+            }
+            case 'Stake': {
+                getStakeTransactions();
                 break;
             }
         }
@@ -89,6 +106,12 @@ const HBDashboardTransactions = () => {
             </Tab>
             <Tab eventKey="Withdrawal" title="Withdrawal">
                 <WithdrawalTransactions />
+            </Tab>
+            <Tab eventKey="Commission" title="Commission">
+                <CommissionTransactions isDashboard={true} />
+            </Tab>
+            <Tab eventKey="Stake" title="Stake">
+                <StakeTransactions isDashboard={true} />
             </Tab>
         </Tabs>
     </div>

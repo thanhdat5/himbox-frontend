@@ -18,6 +18,12 @@ import {
   CANCEL_WITHDRAW_REQUEST,
   CONFIRM_WITHDRAW_REQUEST,
   CREATE_WITHDRAW_REQUEST,
+  GET_LIST_COMMISSION_FAILURE,
+  GET_LIST_COMMISSION_REQUEST,
+  GET_LIST_COMMISSION_SUCCESS,
+  GET_LIST_STAKE_FAILURE,
+  GET_LIST_STAKE_REQUEST,
+  GET_LIST_STAKE_SUCCESS,
   GET_LIST_WITHDRAW_REQUEST
 } from "../types/withdraw";
 import { apiCall } from "./api";
@@ -35,6 +41,44 @@ function* fetchGetListWithdrawSaga(action: any) {
   } catch (e: any) {
     yield put(getListWithdrawFailure());
     // ShowErrorMessage({ message: extractError(e) });
+  }
+}
+
+function* fetchGetListCommissionSaga(action: any) {
+  try {
+    const res: AxiosResponse<any> = yield call(
+      apiCall,
+      "GET",
+      ENDPOINTS.GET_LIST_COMMISSION,
+      { limit: 10000000, page: 1 }
+    );
+    // console.log('las sao', res);
+    yield put({
+      type: GET_LIST_COMMISSION_SUCCESS,
+      payload: res.data.data
+    });
+  } catch (e: any) {
+    yield put({
+      type: GET_LIST_COMMISSION_FAILURE
+    });
+  }
+}
+
+function* fetchGetListStakeSaga(action: any) {
+  try {
+    const res: AxiosResponse<any> = yield call(
+      apiCall,
+      "GET",
+      ENDPOINTS.GET_LIST_STAKE,
+      { limit: 10000000, page: 1 }
+    );
+    // console.log('las sao', res);
+    yield put({
+      type: GET_LIST_STAKE_SUCCESS,
+      payload: res.data.data
+    });
+  } catch (e: any) {
+    yield put({ type: GET_LIST_STAKE_FAILURE });
   }
 }
 function* fetchCreateWithdrawSaga(action: any) {
@@ -75,6 +119,8 @@ function* fetchCancelWithdrawSaga(action: any) {
 
 function* withdrawSaga() {
   yield all([takeLatest(GET_LIST_WITHDRAW_REQUEST, fetchGetListWithdrawSaga)]);
+  yield all([takeLatest(GET_LIST_COMMISSION_REQUEST, fetchGetListCommissionSaga)]);
+  yield all([takeLatest(GET_LIST_STAKE_REQUEST, fetchGetListStakeSaga)]);
   yield all([takeLatest(CREATE_WITHDRAW_REQUEST, fetchCreateWithdrawSaga)]);
   yield all([takeLatest(CONFIRM_WITHDRAW_REQUEST, fetchConfirmWithdrawSaga)]);
   yield all([takeLatest(CANCEL_WITHDRAW_REQUEST, fetchCancelWithdrawSaga)]);
