@@ -39,8 +39,8 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
                     <thead>
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
-                            <th>Amount (DOT)</th>
-                            <th style={{ width: 220 }}>Time</th>
+                            <th style={{ width: 240 }}>Amount (DOT)</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>

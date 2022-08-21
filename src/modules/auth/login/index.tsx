@@ -16,8 +16,8 @@ const Login = () => {
     const loading = useSelector(getLoginLoadingSelector);
     const success = useSelector(getLoginSuccessSelector);
     const showTfa = useSelector(state => get(state, 'login.showTfa', false));
-    const [email, setEmail] = useState<string>('user-test-2-1@gmail.com');
-    const [password, setPassword] = useState<string>('Abcde12345-');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const [errors, setErrors] = useState<any>(null);
 
     const handleSubmit = (e: any) => {

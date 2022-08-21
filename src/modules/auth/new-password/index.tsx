@@ -24,8 +24,8 @@ const NewPassword = (props: any) => {
     const navigate = useNavigate();
 
     const [verifyCode, setVerifyCode] = useState<string>('');
-    const [password, setPassword] = useState<string>('Abcde12345!');
-    const [confirmPwd, setConfirmPwd] = useState<string>('Abcde12345!');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPwd, setConfirmPwd] = useState<string>('');
 
     const [errors, setErrors] = useState<any>(null);
 
