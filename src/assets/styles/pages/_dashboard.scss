@@ -4,19 +4,32 @@
   margin-bottom: 15px;
   font-size: 16px;
   text-transform: uppercase;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
+
+.hb-view-more {
+  text-decoration: underline;
+  color: $hb-primary-color;
+  cursor: pointer;
+}
+
 .hb-leadership {
   @media (min-width: 1200px) {
     margin-left: -20px;
-    .hb-leadership-inner{
+
+    .hb-leadership-inner {
       max-height: 770px;
       overflow-y: auto;
       padding-right: 10px;
+
       &::-webkit-scrollbar {
         width: 4px;
       }
     }
   }
+
   .hb-leadership-heading {
     padding-left: 42px;
   }
@@ -27,21 +40,26 @@
   padding: 12px 20px;
   border-radius: 10px;
   margin-bottom: 16px;
+
   @media (max-width: 767px) {
     padding: 16px;
   }
+
   .hb-dashboard-label {
     font-size: 14px;
   }
+
   .hb-dashboard-value {
     font-size: 24px;
     font-weight: 500;
     color: $hb-white-color;
+
     @media (max-width: 767px) {
       font-size: 20px;
     }
   }
 }
+
 .hb-dashboard-levels {
   height: 100%;
   display: flex;
@@ -49,7 +67,8 @@
   justify-content: space-between;
   gap: 12px;
 }
+
 .hb-dashboard-transaction {
   margin-top: 32px;
-  
+
 }

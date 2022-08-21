@@ -1,3 +1,9 @@
 .text-error {
     color: red !important;
 }
+.ant-pagination-item {
+    border-radius: 8px !important;
+}
+.ant-pagination-item-link {
+    border-radius: 8px !important;
+}

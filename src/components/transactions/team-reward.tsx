@@ -1,12 +1,14 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import { Pagination } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { GET_TEAM_REWARD_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
+import { NUMBER_PER_PAGE } from "../../constants";
 
 interface TeamRewardProps {
     isDashboard?: boolean
@@ -14,7 +16,9 @@ interface TeamRewardProps {
 
 const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+
+    const [current, setCurrent] = useState(1);
+
     const teamRewardHistory = useSelector(state => get(state, 'withdraw.teamReward.list', []));
     // console.log('teamRewardHistory', teamRewardHistory);
 
@@ -36,15 +40,15 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
                             <th>Amount (DOT)</th>
-                            <th style={{ width: 180 }}>Time</th>
+                            <th style={{ width: 220 }}>Time</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             (isDashboard ? teamRewardHistory.slice(0, 10) : teamRewardHistory).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
-                                    <td>{idx + 1}</td>
-                                    <td>{get(item, 'dot_amount', '0')}</td>
+                                    <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
+                                    <td>{formatNumberDownRound(get(item, 'dot_amount', '0'))}</td>
                                     <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
                                 </tr>
                             })
@@ -52,6 +56,13 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
                     </tbody>
                 </Table>
         }
+        {!isDashboard && <Pagination
+            current={current}
+            total={teamRewardHistory.length}
+            pageSize={NUMBER_PER_PAGE}
+            showSizeChanger={false}
+            onChange={(page: any, pageSize: any) => setCurrent(page)}
+        />}
     </>
 }
 export default TeamRewardHistory

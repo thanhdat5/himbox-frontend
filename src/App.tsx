@@ -11,6 +11,7 @@ import Profile from "./modules/profile";
 import { AuthRoute } from "./routes/auth-route";
 import { PrivateRoute } from "./routes/private-route";
 import './App.css';
+import 'antd/dist/antd.dark.css';
 import NewPassword from "./modules/auth/new-password";
 import VerifyAccount from "./modules/auth/verify";
 import Transactions from "./modules/transactions";

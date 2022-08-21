@@ -99,6 +99,8 @@ export const PACKAGE_RANKING_TYPES: any = {
     60: 12,
 };
 
+export const NUMBER_PER_PAGE = 10;
+
 export const RAKING_MODEL = [
     {
         "rank": 1,

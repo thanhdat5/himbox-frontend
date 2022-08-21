@@ -2,10 +2,11 @@ import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Badge, Button, OverlayTrigger, Table, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { default as ConfirmCancelModal, default as ConfirmModal } from "../../components/confirm-modal";
 import WithdrawModal from "../../components/withdraw-modal";
-import { ROUTES } from "../../constants";
+import { NUMBER_PER_PAGE, ROUTES } from "../../constants";
 import { WithdrawalTransactionsResponseModel } from "../../models";
 import { cancelWithdrawRequest, getListWithdrawRequest, resetWithdrawState } from "../../redux/actions/withdrawActions";
 import { is2FAActive } from "../../services/appService";
@@ -13,9 +14,17 @@ import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
-const WithdrawalTransactions = () => {
+interface WithdrawTxProps {
+    isDashboard?: boolean
+}
+
+const WithdrawalTransactions = ({ isDashboard = false }: WithdrawTxProps) => {
     const dispatch = useDispatch();
+
     const navigate = useNavigate();
+
+    const [current, setCurrent] = useState(1);
+
     const withdrawalTransactions = useSelector(state => get(state, 'withdraw.withdrawalTransactions', []));
     const cancelSuccess = useSelector(state => get(state, 'withdraw.cancelSuccess', false));
     const loadingList = useSelector(state => get(state, 'withdraw.loadingList', false));
@@ -89,6 +98,7 @@ const WithdrawalTransactions = () => {
                         <Table responsive>
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>TxHash</th>
                                     <th>Time</th>
                                     <th>To Address</th>
@@ -102,6 +112,7 @@ const WithdrawalTransactions = () => {
                                 {
                                     withdrawalTransactions.slice(0, 10).map((item: any, idx: number) => {
                                         return <tr key={idx}>
+                                            <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
                                             <td>
                                                 {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
                                                 <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.transaction?.tx_hash, 'tx')}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 20)}</span>
@@ -144,6 +155,13 @@ const WithdrawalTransactions = () => {
                             </tbody>
                         </Table>
                 }
+                {!isDashboard && <Pagination
+                    current={current}
+                    total={withdrawalTransactions.length}
+                    pageSize={NUMBER_PER_PAGE}
+                    showSizeChanger={false}
+                    onChange={(page: any, pageSize: any) => setCurrent(page)}
+                />}
             </>
         }
         {showWarningModal ? <ConfirmModal message="Must be enable Tfa to withdraw." onDismiss={handleWarningDismiss} /> : <></>}

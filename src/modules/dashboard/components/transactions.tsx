@@ -1,28 +1,24 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tab, Table, Tabs, Tooltip } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CommissionTransactions from "../../../components/transactions/commission";
+import DepositTransactions from "../../../components/transactions/deposit";
 import StakeTransactions from "../../../components/transactions/stake";
 import TeamRewardHistory from "../../../components/transactions/team-reward";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
-import { DepositTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
+import { ROUTES } from "../../../constants";
 import { getDepositTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
 import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../../redux/types/withdraw";
-import { formatNumberDownRound } from "../../../utils/helpers";
-import { formatWalletAddress } from "../../../utils/utils";
-import { NETWORK_SCAN } from "../../../_config";
 
 const HBDashboardTransactions = () => {
 
     const dispatch = useDispatch();
-
-    const depositHistory = useSelector(state => get(state, 'dashboard.depositTransactions', []));
+    const navigate = useNavigate();
 
     useEffect(() => {
         getDepositTransactions();
-        getWithdrawalTransactions();
     }, []);
 
     const getDepositTransactions = () => {
@@ -66,12 +62,11 @@ const HBDashboardTransactions = () => {
         }
     }
 
-    const handleNavigate = (txID: string, type = 'tx') => {
-        window.open(`${NETWORK_SCAN}/${type}/${txID}`);
-    }
-
     return <div className="hb-dashboard-transaction">
-        <div className="hb-dashboard-transaction-heading">TRANSACTION</div>
+        <div className="hb-dashboard-transaction-heading">
+            <span>TRANSACTION</span>
+            <span onClick={() => navigate(ROUTES.TRANSACTIONS)} className="hb-view-more">View more</span>
+        </div>
         <Tabs
             defaultActiveKey="Deposit"
             id="TransactionTabs"
@@ -79,41 +74,10 @@ const HBDashboardTransactions = () => {
             onSelect={handleTabChange}
         >
             <Tab eventKey="Deposit" title="Deposit">
-                <Table responsive>
-                    <thead>
-                        <tr>
-                            <th style={{ width: 50 }}>No.</th>
-                            <th>From</th>
-                            <th>Amount (DOT)</th>
-                            <th>TxHash</th>
-                            <th style={{ width: 180 }}>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            depositHistory.slice(0, 10).map((item: any, idx: number) => {
-                                return <tr key={idx + item?._id}>
-                                    <td>{idx + 1}</td>
-                                    <td>
-                                        {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.from}</Tooltip>}> */}
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
-                                        {/* </OverlayTrigger> */}
-                                    </td>
-                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td>
-                                    <td>
-                                        {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
-                                        {/* </OverlayTrigger> */}
-                                    </td>
-                                    <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
-                                </tr>
-                            })
-                        }
-                    </tbody>
-                </Table>
+                <DepositTransactions isDashboard={true} />
             </Tab>
             <Tab eventKey="Withdrawal" title="Withdrawal">
-                <WithdrawalTransactions />
+                <WithdrawalTransactions isDashboard={true} />
             </Tab>
             <Tab eventKey="Commission" title="Commission">
                 <CommissionTransactions isDashboard={true} />
