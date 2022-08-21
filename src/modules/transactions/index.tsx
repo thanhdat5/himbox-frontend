@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import HBPageWrap from "../../components/page-wrap";
 import CommissionTransactions from "../../components/transactions/commission";
 import DepositTransactions from "../../components/transactions/deposit";
+import LeadershipHistory from "../../components/transactions/leadership-hsitory";
 import StakeTransactions from "../../components/transactions/stake";
 import TeamRewardHistory from "../../components/transactions/team-reward";
 import WithdrawalTransactions from "../../components/transactions/withdrawal";
 import { getDepositTransactionsRequest } from "../../redux/actions/dashboardActions";
 import { getListWithdrawRequest } from "../../redux/actions/withdrawActions";
-import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../redux/types/withdraw";
+import { GET_LEADERSHIP_HISTORY_REQUEST, GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
@@ -38,6 +39,9 @@ const Transactions = () => {
     const getTeamRewardHistory = () => {
         dispatch({ type: GET_TEAM_REWARD_REQUEST })
     }
+    const getLeadershipHistory = () => {
+        dispatch({ type: GET_LEADERSHIP_HISTORY_REQUEST })
+    }
 
 
     const handleTabChange = (e: any) => {
@@ -60,6 +64,10 @@ const Transactions = () => {
             }
             case 'TeamReward': {
                 getTeamRewardHistory();
+                break;
+            }
+            case 'Leadership': {
+                getLeadershipHistory();
                 break;
             }
         }
@@ -86,6 +94,9 @@ const Transactions = () => {
             </Tab>
             <Tab eventKey="TeamReward" title="Team Reward">
                 <TeamRewardHistory />
+            </Tab>
+            <Tab eventKey="Leadership" title="Leadership History">
+                <LeadershipHistory />
             </Tab>
         </Tabs>
     </HBPageWrap>

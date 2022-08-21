@@ -19,6 +19,10 @@ export const GET_TEAM_REWARD_REQUEST = "GET_TEAM_REWARD_REQUEST";
 export const GET_TEAM_REWARD_SUCCESS = "GET_TEAM_REWARD_SUCCESS";
 export const GET_TEAM_REWARD_FAILURE = "GET_TEAM_REWARD_FAILURE";
 
+export const GET_LEADERSHIP_HISTORY_REQUEST = "GET_LEADERSHIP_HISTORY_REQUEST";
+export const GET_LEADERSHIP_HISTORY_SUCCESS = "GET_LEADERSHIP_HISTORY_SUCCESS";
+export const GET_LEADERSHIP_HISTORY_FAILURE = "GET_LEADERSHIP_HISTORY_FAILURE";
+
 export const GET_LIST_STAKE_REQUEST = "GET_LIST_STAKE_REQUEST";
 export const GET_LIST_STAKE_SUCCESS = "GET_LIST_STAKE_SUCCESS";
 export const GET_LIST_STAKE_FAILURE = "GET_LIST_STAKE_FAILURE";
@@ -46,6 +50,7 @@ export interface WithdrawState {
   commissionTransactions: any[];
   stakeTransactions: any[];
   teamReward: any[];
+  leadershipHistory: any[];
 }
 
 export interface ResetWithdrawState {
@@ -116,6 +121,11 @@ export type GetTeamRewardSuccess = {
   payload: any
 };
 
+export type GetLeadershipHistorySuccess = {
+  type: typeof GET_LEADERSHIP_HISTORY_SUCCESS;
+  payload: any
+};
+
 export type CancelWithdrawFailure = {
   type: typeof CANCEL_WITHDRAW_FAILURE;
 };
@@ -136,4 +146,5 @@ export type WithdrawActions =
   | GetListCommissionSuccess
   | GetListStakeSuccess
   | GetTeamRewardSuccess
+  | GetLeadershipHistorySuccess
   | CancelWithdrawFailure;

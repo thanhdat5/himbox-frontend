@@ -5,12 +5,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CommissionTransactions from "../../../components/transactions/commission";
 import DepositTransactions from "../../../components/transactions/deposit";
+import LeadershipHistory from "../../../components/transactions/leadership-hsitory";
 import StakeTransactions from "../../../components/transactions/stake";
 import TeamRewardHistory from "../../../components/transactions/team-reward";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
 import { ROUTES } from "../../../constants";
 import { getDepositTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
-import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../../redux/types/withdraw";
+import { GET_LEADERSHIP_HISTORY_REQUEST, GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../../redux/types/withdraw";
 
 const HBDashboardTransactions = () => {
 
@@ -36,6 +37,9 @@ const HBDashboardTransactions = () => {
     const getTeamRewardHistory = () => {
         dispatch({ type: GET_TEAM_REWARD_REQUEST })
     }
+    const getLeadershipHistory = () => {
+        dispatch({ type: GET_LEADERSHIP_HISTORY_REQUEST })
+    }
 
     const handleTabChange = (e: any) => {
         switch (e) {
@@ -57,6 +61,10 @@ const HBDashboardTransactions = () => {
             }
             case 'TeamReward': {
                 getTeamRewardHistory();
+                break;
+            }
+            case 'Leadership': {
+                getLeadershipHistory();
                 break;
             }
         }
@@ -87,6 +95,9 @@ const HBDashboardTransactions = () => {
             </Tab>
             <Tab eventKey="TeamReward" title="Team Reward">
                 <TeamRewardHistory isDashboard={true} />
+            </Tab>
+            <Tab eventKey="Leadership" title="Leadership History">
+                <LeadershipHistory isDashboard={true} />
             </Tab>
         </Tabs>
     </div>

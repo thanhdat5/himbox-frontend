@@ -1,4 +1,4 @@
-import { GET_TEAM_REWARD_FAILURE, GET_TEAM_REWARD_SUCCESS } from './../types/withdraw';
+import { GET_LEADERSHIP_HISTORY_FAILURE, GET_LEADERSHIP_HISTORY_REQUEST, GET_LEADERSHIP_HISTORY_SUCCESS, GET_TEAM_REWARD_FAILURE, GET_TEAM_REWARD_SUCCESS } from './../types/withdraw';
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
@@ -101,6 +101,24 @@ function* fetchGetListStakeSaga(action: any) {
     yield put({ type: GET_LIST_STAKE_FAILURE });
   }
 }
+
+function* fetchLeadershipHistorySaga(action: any) {
+  try {
+    const res: AxiosResponse<any> = yield call(
+      apiCall,
+      "GET",
+      ENDPOINTS.GET_LEADERSHIP_HISTORY,
+      { limit: 10000000, page: 1 }
+    );
+    // console.log('las sao', res);
+    yield put({
+      type: GET_LEADERSHIP_HISTORY_SUCCESS,
+      payload: res.data.data
+    });
+  } catch (e: any) {
+    yield put({ type: GET_LEADERSHIP_HISTORY_FAILURE });
+  }
+}
 function* fetchCreateWithdrawSaga(action: any) {
   try {
     const res: AxiosResponse<any> = yield call(
@@ -142,6 +160,7 @@ function* withdrawSaga() {
   yield all([takeLatest(GET_LIST_COMMISSION_REQUEST, fetchGetListCommissionSaga)]);
   yield all([takeLatest(GET_LIST_STAKE_REQUEST, fetchGetListStakeSaga)]);
   yield all([takeLatest(GET_TEAM_REWARD_REQUEST, fetchTeamRewardSaga)]);
+  yield all([takeLatest(GET_LEADERSHIP_HISTORY_REQUEST, fetchLeadershipHistorySaga)]);
   yield all([takeLatest(CREATE_WITHDRAW_REQUEST, fetchCreateWithdrawSaga)]);
   yield all([takeLatest(CONFIRM_WITHDRAW_REQUEST, fetchConfirmWithdrawSaga)]);
   yield all([takeLatest(CANCEL_WITHDRAW_REQUEST, fetchCancelWithdrawSaga)]);
