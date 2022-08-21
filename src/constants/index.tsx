@@ -3,7 +3,7 @@ export const HIMBOX_REFRESH_TOKEN = "HIMBOX_REFRESH_TOKEN";
 export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
 export const HIMBOX_USER_INFO = "HIMBOX_USER_INFO";
 
-export const BASE_URL = 'http://localhost:6969/api/v1'; 
+export const BASE_URL = 'http://localhost:6969/api/v1';
 // export const BASE_URL = 'https://test.himbox.io/api/v1';
 export const ENDPOINTS = {
     LOGIN: `/user/login`,
@@ -33,7 +33,7 @@ export const ENDPOINTS = {
     JOIN_PACKAGE: `/package/participate`,
     MY_PACKAGE: `/package/my-package`,
     HIMBOX_PRICE: `/dashboard/get-prices`,
-    
+
     // deposit
     GET_LIST_DEPOSIT: `/wallet/deposit/list`,
 
@@ -59,6 +59,29 @@ export const PACKAGE_TYPES = {
     TYPE_40: 40,
     TYPE_45: 45,
     TYPE_50: 50,
+    TYPE_55: 55,
+    TYPE_60: 60,
+};
+
+export const PACKAGE_NAME_TYPES: any = {
+    0.05: '1',
+    0.1: '2',
+    0.15: '3',
+    0.2: '4',
+    0.25: '5',
+    0.3: '6',
+    0.35: '7',
+    0.4: '8',
+    0.45: '9',
+    0.5: '10',
+    0.55: '11',
+    0.6: '12',
+};
+
+export const PACKAGE_ACTION_TYPES: any = {
+    "U": 'UPGRADE',
+    "D": 'DOWNGRADE',
+    'C': "CHANGE",
 };
 
 export const PACKAGE_RANKING_TYPES: any = {
@@ -70,6 +93,10 @@ export const PACKAGE_RANKING_TYPES: any = {
     30: 6,
     35: 7,
     40: 8,
+    45: 9,
+    50: 10,
+    55: 11,
+    60: 12,
 };
 
 export const RAKING_MODEL = [

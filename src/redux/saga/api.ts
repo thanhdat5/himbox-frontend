@@ -54,7 +54,7 @@ const instance = (headers?: Record<string, string>) => {
         error.response.status === 401 &&
         originalRequest.url === "/api/v1/user/new-access-token"
       ) {
-        console.log('1')
+        // console.log('1')
         localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
         localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
         localStorage.removeItem(HIMBOX_USER_ID);
@@ -136,7 +136,7 @@ const instance = (headers?: Record<string, string>) => {
       }
     }
   );
-  console.log('5')
+  // console.log('5')
   return returnValue;
 };
 

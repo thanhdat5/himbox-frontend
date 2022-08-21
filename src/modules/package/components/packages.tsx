@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import HBCard from "../../../components/card";
 import HBPackageCard from "../../../components/package-card";
 import ParticipateModal from "../../../components/participate-modal";
+import { PACKAGE_NAME_TYPES } from "../../../constants";
 import { PackageByProfitResponseModel } from "../../../models";
 import { getPackagesByProfitRequest } from "../../../redux/actions/packageActions";
 import { getCurrentUserId } from "../../../services/appService";
@@ -29,7 +30,7 @@ const HBPackageList = () => {
     }, [profit])
 
     const getPackagesByProfit = (profitValue: number) => {
-        dispatch(getPackagesByProfitRequest(profitValue * 100))
+        dispatch(getPackagesByProfitRequest(parseInt((profitValue * 100).toString())))
     }
 
     const [showParticipate, setShowParticipate] = useState(false);
@@ -59,7 +60,9 @@ const HBPackageList = () => {
                 <button type="button" onClick={() => setProfit(0.3)} className={`hb-package-percent ${profit === 0.3 ? 'active' : ''}`}>0.3</button>
                 <button type="button" onClick={() => setProfit(0.35)} className={`hb-package-percent ${profit === 0.35 ? 'active' : ''}`}>0.35</button>
                 <button type="button" onClick={() => setProfit(0.4)} className={`hb-package-percent ${profit === 0.4 ? 'active' : ''}`}>0.4</button>
+                <button type="button" onClick={() => setProfit(0.45)} className={`hb-package-percent ${profit === 0.45 ? 'active' : ''}`}>0.45</button>
                 <button type="button" onClick={() => setProfit(0.5)} className={`hb-package-percent ${profit === 0.5 ? 'active' : ''}`}>0.5</button>
+                <button type="button" onClick={() => setProfit(0.55)} className={`hb-package-percent ${profit === 0.55 ? 'active' : ''}`}>0.55</button>
                 <button type="button" onClick={() => setProfit(0.6)} className={`hb-package-percent ${profit === 0.6 ? 'active' : ''}`}>0.6</button>
             </div>
             <div className="hb-packages-list">
@@ -69,7 +72,7 @@ const HBPackageList = () => {
                             packages.map((item: any, idx: number) => {
                                 return <Col key={idx} xl={3} lg={4} md={6} className="mb-md-4 mb-3">
                                     <HBPackageCard
-                                        packageName={`Package ${idx + 1}`}
+                                        packageName={`Package ${PACKAGE_NAME_TYPES[profit]}`}
                                         packageValue={formatNumberDownRound(item.dot_amount)}
                                         planName={`Plan ${item.plan}`}
                                         planValue={`Lock ${formatNumberDownRound(item.him_amount)} HIM`}

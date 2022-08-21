@@ -16,7 +16,7 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const teamRewardHistory = useSelector(state => get(state, 'withdraw.teamReward.list', []));
-    console.log('teamRewardHistory', teamRewardHistory);
+    // console.log('teamRewardHistory', teamRewardHistory);
 
     useEffect(() => {
         dispatch({ type: GET_TEAM_REWARD_REQUEST });
@@ -35,9 +35,7 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
                     <thead>
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
-                            <th>From</th>
                             <th>Amount (DOT)</th>
-                            <th>TxHash</th>
                             <th style={{ width: 180 }}>Time</th>
                         </tr>
                     </thead>
@@ -46,13 +44,7 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
                             (isDashboard ? teamRewardHistory.slice(0, 10) : teamRewardHistory).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{idx + 1}</td>
-                                    {/* <td>
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
-                                    </td> */}
-                                    {/* <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td> */}
-                                    {/* <td>
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
-                                    </td> */}
+                                    <td>{get(item, 'dot_amount', '0')}</td>
                                     <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
                                 </tr>
                             })

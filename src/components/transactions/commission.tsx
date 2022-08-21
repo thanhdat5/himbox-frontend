@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { PACKAGE_NAME_TYPES } from "../../constants";
 import { GET_LIST_COMMISSION_REQUEST } from "../../redux/types/withdraw";
-import { formatNumberDownRound } from "../../utils/helpers";
-import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
 interface CommissionTransactionsProps {
@@ -16,7 +15,6 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const commissionTransactions = useSelector(state => get(state, 'withdraw.commissionTransactions.list', []));
-    console.log('commissionTransactions', commissionTransactions);
 
     useEffect(() => {
         dispatch({ type: GET_LIST_COMMISSION_REQUEST });
@@ -35,10 +33,9 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
                     <thead>
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
-                            <th>From</th>
-                            <th>Amount (DOT)</th>
-                            <th>TxHash</th>
-                            <th style={{ width: 180 }}>Time</th>
+                            <th>Package</th>
+                            <th>Interest (DOT / day)</th>
+                            <th style={{ width: 220 }}>Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,13 +43,10 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
                             (isDashboard ? commissionTransactions.slice(0, 10) : commissionTransactions).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{idx + 1}</td>
-                                    {/* <td>
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
-                                    </td> */}
-                                    {/* <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td> */}
-                                    {/* <td>
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
-                                    </td> */}
+                                    <td>
+                                        <span>Package {PACKAGE_NAME_TYPES[item?.package_invest?.profit]}</span>
+                                    </td>
+                                    <td>{item?.dot_amount}</td>
                                     <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
                                 </tr>
                             })
