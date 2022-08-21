@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import CommissionTransactions from "../../../components/transactions/commission";
 import StakeTransactions from "../../../components/transactions/stake";
+import TeamRewardHistory from "../../../components/transactions/team-reward";
 import WithdrawalTransactions from "../../../components/transactions/withdrawal";
 import { DepositTransactionsResponseModel, WithdrawalTransactionsResponseModel } from "../../../models";
 import { getDepositTransactionsRequest, getWithdrawalTransactionsRequest } from "../../../redux/actions/dashboardActions";
-import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST } from "../../../redux/types/withdraw";
+import { GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../../utils/helpers";
 import { formatWalletAddress } from "../../../utils/utils";
 import { NETWORK_SCAN } from "../../../_config";
@@ -36,6 +37,9 @@ const HBDashboardTransactions = () => {
     const getCommissionTransactions = () => {
         dispatch({ type: GET_LIST_COMMISSION_REQUEST })
     }
+    const getTeamRewardHistory = () => {
+        dispatch({ type: GET_TEAM_REWARD_REQUEST })
+    }
 
     const handleTabChange = (e: any) => {
         switch (e) {
@@ -53,6 +57,10 @@ const HBDashboardTransactions = () => {
             }
             case 'Stake': {
                 getStakeTransactions();
+                break;
+            }
+            case 'TeamReward': {
+                getTeamRewardHistory();
                 break;
             }
         }
@@ -112,6 +120,9 @@ const HBDashboardTransactions = () => {
             </Tab>
             <Tab eventKey="Stake" title="Stake">
                 <StakeTransactions isDashboard={true} />
+            </Tab>
+            <Tab eventKey="TeamReward" title="Team Reward">
+                <TeamRewardHistory isDashboard={true} />
             </Tab>
         </Tabs>
     </div>

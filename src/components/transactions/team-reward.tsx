@@ -3,23 +3,23 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GET_LIST_COMMISSION_REQUEST } from "../../redux/types/withdraw";
+import { GET_TEAM_REWARD_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
-interface CommissionTransactionsProps {
+interface TeamRewardProps {
     isDashboard?: boolean
 }
 
-const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsProps) => {
+const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const commissionTransactions = useSelector(state => get(state, 'withdraw.commissionTransactions.list', []));
-    console.log('commissionTransactions', commissionTransactions);
+    const teamRewardHistory = useSelector(state => get(state, 'withdraw.teamReward.list', []));
+    console.log('teamRewardHistory', teamRewardHistory);
 
     useEffect(() => {
-        dispatch({ type: GET_LIST_COMMISSION_REQUEST });
+        dispatch({ type: GET_TEAM_REWARD_REQUEST });
     }, [])
 
     const handleNavigate = (txID: string, type = 'tx') => {
@@ -28,7 +28,7 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
 
     return <>
         {
-            !commissionTransactions || commissionTransactions.length <= 0 ?
+            !teamRewardHistory || teamRewardHistory.length <= 0 ?
                 <div className="no-data">No transaction</div>
                 :
                 <Table responsive>
@@ -43,7 +43,7 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
                     </thead>
                     <tbody>
                         {
-                            (isDashboard ? commissionTransactions.slice(0, 10) : commissionTransactions).map((item: any, idx: number) => {
+                            (isDashboard ? teamRewardHistory.slice(0, 10) : teamRewardHistory).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{idx + 1}</td>
                                     {/* <td>
@@ -62,4 +62,4 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
         }
     </>
 }
-export default CommissionTransactions
+export default TeamRewardHistory

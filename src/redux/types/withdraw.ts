@@ -15,6 +15,10 @@ export const GET_LIST_COMMISSION_REQUEST = "GET_LIST_COMMISSION_REQUEST";
 export const GET_LIST_COMMISSION_SUCCESS = "GET_LIST_COMMISSION_SUCCESS";
 export const GET_LIST_COMMISSION_FAILURE = "GET_LIST_COMMISSION_FAILURE";
 
+export const GET_TEAM_REWARD_REQUEST = "GET_TEAM_REWARD_REQUEST";
+export const GET_TEAM_REWARD_SUCCESS = "GET_TEAM_REWARD_SUCCESS";
+export const GET_TEAM_REWARD_FAILURE = "GET_TEAM_REWARD_FAILURE";
+
 export const GET_LIST_STAKE_REQUEST = "GET_LIST_STAKE_REQUEST";
 export const GET_LIST_STAKE_SUCCESS = "GET_LIST_STAKE_SUCCESS";
 export const GET_LIST_STAKE_FAILURE = "GET_LIST_STAKE_FAILURE";
@@ -41,6 +45,7 @@ export interface WithdrawState {
   withdrawalTransactions: WithdrawalTransactionsResponseModel[];
   commissionTransactions: any[];
   stakeTransactions: any[];
+  teamReward: any[];
 }
 
 export interface ResetWithdrawState {
@@ -106,6 +111,11 @@ export type GetListStakeSuccess = {
   payload: any
 };
 
+export type GetTeamRewardSuccess = {
+  type: typeof GET_TEAM_REWARD_SUCCESS;
+  payload: any
+};
+
 export type CancelWithdrawFailure = {
   type: typeof CANCEL_WITHDRAW_FAILURE;
 };
@@ -125,4 +135,5 @@ export type WithdrawActions =
   | CancelWithdrawSuccess
   | GetListCommissionSuccess
   | GetListStakeSuccess
+  | GetTeamRewardSuccess
   | CancelWithdrawFailure;

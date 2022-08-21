@@ -39,8 +39,9 @@ export const ENDPOINTS = {
 
     // withdraw
     GET_LIST_WITHDRAW: `/withdraw/list`,
-    GET_LIST_COMMISSION: `/commission/list`,
-    GET_LIST_STAKE: `/stake/list`,
+    GET_LIST_COMMISSION: `/package/my-commissions`,
+    GET_LIST_STAKE: `/package/stakes-his`,
+    GET_LIST_TEAM_REWARD: `/package/team-rewards-his`,
     CREATE_WITHDRAW: `/withdraw/create-withdraw`,
     CONFIRM_WITHDRAW: `/withdraw/confirm`,
     CANCEL_WITHDRAW: `/withdraw/cancel`,

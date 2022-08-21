@@ -1,4 +1,4 @@
-import { GET_LIST_COMMISSION_SUCCESS, GET_LIST_STAKE_SUCCESS } from './../types/withdraw';
+import { GET_LIST_COMMISSION_SUCCESS, GET_LIST_STAKE_SUCCESS, GET_TEAM_REWARD_SUCCESS } from './../types/withdraw';
 import {
   CANCEL_WITHDRAW_FAILURE,
   CANCEL_WITHDRAW_REQUEST,
@@ -26,7 +26,8 @@ const initialState: WithdrawState = {
   withdrawRequest: null,
   withdrawalTransactions: [],
   commissionTransactions: [],
-  stakeTransactions: []
+  stakeTransactions: [],
+  teamReward: []
 };
 
 const withdrawReducer = (state = initialState, action: WithdrawActions) => {
@@ -62,6 +63,11 @@ const withdrawReducer = (state = initialState, action: WithdrawActions) => {
       return {
         ...state,
         stakeTransactions: action.payload,
+      };
+    case GET_TEAM_REWARD_SUCCESS:
+      return {
+        ...state,
+        teamReward: action.payload,
       };
     case GET_LIST_WITHDRAW_FAILURE:
       return {

@@ -1,3 +1,4 @@
+import { GET_TEAM_REWARD_FAILURE, GET_TEAM_REWARD_SUCCESS } from './../types/withdraw';
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
@@ -24,7 +25,8 @@ import {
   GET_LIST_STAKE_FAILURE,
   GET_LIST_STAKE_REQUEST,
   GET_LIST_STAKE_SUCCESS,
-  GET_LIST_WITHDRAW_REQUEST
+  GET_LIST_WITHDRAW_REQUEST,
+  GET_TEAM_REWARD_REQUEST
 } from "../types/withdraw";
 import { apiCall } from "./api";
 
@@ -61,6 +63,24 @@ function* fetchGetListCommissionSaga(action: any) {
     yield put({
       type: GET_LIST_COMMISSION_FAILURE
     });
+  }
+}
+
+function* fetchTeamRewardSaga(action: any) {
+  try {
+    const res: AxiosResponse<any> = yield call(
+      apiCall,
+      "GET",
+      ENDPOINTS.GET_LIST_TEAM_REWARD,
+      { limit: 10000000, page: 1 }
+    );
+    // console.log('las sao', res);
+    yield put({
+      type: GET_TEAM_REWARD_SUCCESS,
+      payload: res.data.data
+    });
+  } catch (e: any) {
+    yield put({ type: GET_TEAM_REWARD_FAILURE });
   }
 }
 
@@ -121,6 +141,7 @@ function* withdrawSaga() {
   yield all([takeLatest(GET_LIST_WITHDRAW_REQUEST, fetchGetListWithdrawSaga)]);
   yield all([takeLatest(GET_LIST_COMMISSION_REQUEST, fetchGetListCommissionSaga)]);
   yield all([takeLatest(GET_LIST_STAKE_REQUEST, fetchGetListStakeSaga)]);
+  yield all([takeLatest(GET_TEAM_REWARD_REQUEST, fetchTeamRewardSaga)]);
   yield all([takeLatest(CREATE_WITHDRAW_REQUEST, fetchCreateWithdrawSaga)]);
   yield all([takeLatest(CONFIRM_WITHDRAW_REQUEST, fetchConfirmWithdrawSaga)]);
   yield all([takeLatest(CANCEL_WITHDRAW_REQUEST, fetchCancelWithdrawSaga)]);
