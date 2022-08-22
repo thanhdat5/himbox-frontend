@@ -2,8 +2,8 @@ export interface DicOption {
     [key: number]: string;
 }
 
-export const HIMBOX_POOL_CONTRACT: string = '0x0C56211b9669aD60dcbb222a7E8B4e674e816197';
-export const DOT_ADDRESS: string = '0x9FFeb96567065E9b2Bd7DacEbF573d50732ef8BE';
+export const HIMBOX_POOL_CONTRACT: string = '0x81293FAF9b2C8EcCD66D0C278F9E8605bBbC1c21';
+export const DOT_ADDRESS: string = '0x0D93fCF0F9786Dfc6E75e13044a5dA3fd3e52f24';
 export const NETWORK_SCAN: string = 'https://moonbeam.moonscan.io';
 
 // export const HIMBOX_POOL_CONTRACT: string = '0x8D4313413b8Af1467900EcA394A89237E35f8cD8';
