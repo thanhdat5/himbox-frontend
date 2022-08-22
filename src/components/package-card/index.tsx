@@ -36,7 +36,7 @@ const HBPackageCard = ({ packageName, packageValue, planName, planValue, planVal
             </div>
         </div>
         <div className="hb-package-item-action">
-            <Button disabled={disabled} type="button" className={`${current ? 'current' : ''} w-100`} onClick={() => disabled ? null : onParticipate()}>
+            <Button disabled={disabled || current} type="button" className={`${current ? 'current' : ''} w-100`} onClick={() => disabled ? null : onParticipate()}>
                 <span>{current ? 'Current' : 'Participate'}</span>
             </Button>
         </div>

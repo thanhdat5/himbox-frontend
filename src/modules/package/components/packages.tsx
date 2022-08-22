@@ -7,9 +7,7 @@ import HBCard from "../../../components/card";
 import HBPackageCard from "../../../components/package-card";
 import ParticipateModal from "../../../components/participate-modal";
 import { PACKAGE_NAME_TYPES } from "../../../constants";
-import { PackageByProfitResponseModel } from "../../../models";
 import { getPackagesByProfitRequest } from "../../../redux/actions/packageActions";
-import { getCurrentUserId } from "../../../services/appService";
 import { convertNumber, formatNumberDownRound } from "../../../utils/helpers";
 
 const HBPackageList = () => {
