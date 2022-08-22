@@ -81,7 +81,7 @@ const HBPackageList = () => {
                                             setSelectedPackage({ ...item, name: `Package ${idx + 1}` });
                                             setShowParticipate(true);
                                         }}
-                                        disabled={get(currentPackage, 'dot_amount', 0) > get(item, 'dot_amount', 1) || profit > 0.4}
+                                        disabled={get(currentPackage, 'dot_amount', 0) > get(item, 'dot_amount', 1)}
                                         current={currentPackage?._id === item?._id}
                                     />
                                 </Col>
