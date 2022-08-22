@@ -25,7 +25,7 @@ const HBNetworkAffiliate = () => {
 
     useEffect(() => {
         if (refId) {
-            setRef(`https://test.himbox.io/auth/sign-up?ref=${refId}`);
+            setRef(`https://himbox.io/auth/sign-up?ref=${refId}`);
         }
     }, [refId]);
 
