@@ -13,6 +13,8 @@ const HBDashboardStatistics = () => {
 
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
 
+    // console.log('dashboardStatistics', dashboardStatistics);
+
     const [showWithdraw, setShowWithdraw] = useState(false);
 
     const handleCloseWithdraw = (isSubmit?: boolean) => {
@@ -38,7 +40,7 @@ const HBDashboardStatistics = () => {
                 </Button>} />
             </Col>
             <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
-                <HBStatisticCard label="Total Profit" value={formatNumberDownRound(get(dashboardStatistics, 'total_profit', 0), 3)} subValue="DOT" />
+                <HBStatisticCard label="Total Profit" value={formatNumberDownRound(get(dashboardStatistics, 'balances.dot_received', 0), 3)} subValue="DOT" />
             </Col>
             <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
                 <HBStatisticCard label="Total Sales" value={formatNumberDownRound(get(dashboardStatistics, 'sales.total', 0), 3)} subValue="DOT" />

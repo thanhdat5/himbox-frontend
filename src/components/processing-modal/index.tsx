@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Modal } from 'react-bootstrap';
+import { NETWORK_SCAN } from '../../_config';
 
 
 interface Props {
@@ -24,7 +25,7 @@ function ProcessingModal({
 }: Props) {
 
     const handleDirect = () => {
-        window.open(`https://testnet.snowtrace.io/tx/${hash}`);
+        window.open(`${NETWORK_SCAN}/tx/${hash}`);
     }
 
     return (

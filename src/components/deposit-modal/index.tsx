@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js';
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useDotBalance } from "../../state/wallet/hook";
+import { formatNumberDownRound } from "../../utils/helpers";
 
 interface DepositModalProps {
     onHide: (isSubmit?: boolean) => void,
@@ -27,6 +28,7 @@ const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalP
                         <FormControl type='number' required value={amount} onChange={(e) => setAmount(e.target.value)} />
                         <span>DOT</span>
                     </div>
+                    <Form.Text className="text-error">{`Max: ${formatNumberDownRound(BigNumber(dotBal).dividedBy(10 ** 10))}`}</Form.Text>
                 </FormGroup>
 
                 <Button

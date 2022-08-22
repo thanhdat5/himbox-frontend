@@ -87,6 +87,7 @@ export const PACKAGE_ACTION_TYPES: any = {
 };
 
 export const PACKAGE_RANKING_TYPES: any = {
+    1: 0,
     5: 1,
     10: 2,
     15: 3,

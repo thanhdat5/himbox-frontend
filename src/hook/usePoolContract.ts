@@ -19,7 +19,7 @@ export async function UsePoolDeposit(
     callback: any,
 ) {
 
-    console.log('refffff', ref);
+    // console.log('refffff', amount);
 
     if (!amount || !ref || !web3Provider || !account) {
         return callback({ status: ACTION_STATUS.DEPOSIT_PACKAGE_FAIL });

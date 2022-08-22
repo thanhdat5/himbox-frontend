@@ -7,7 +7,6 @@ import HBCard from "../../components/card";
 import HBPageWrap from "../../components/page-wrap";
 import { PACKAGE_RANKING_TYPES } from '../../constants';
 import { getDashboardStatisticsRequest } from '../../redux/actions/dashboardActions';
-import { GET_DASHBOARD_STATISTICS_REQUEST } from '../../redux/types/dashboard';
 import { formatNumberDownRound } from '../../utils/helpers';
 import HBDashboardBlock from "./components/block";
 import HBDashboardLeadership from "./components/leadership";
@@ -45,7 +44,7 @@ const Dashboard = () => {
                                 </Col>
 
                                 <Col lg={12} md={6}>
-                                    <HBDashboardBlock label="Level" value={PACKAGE_RANKING_TYPES[get(statistics, 'package.profit_type', 5)]} className="mb-0" />
+                                    <HBDashboardBlock label="Level" value={PACKAGE_RANKING_TYPES[get(statistics, 'package.profit_type', 1)]} className="mb-0" />
                                 </Col>
                             </Row>
                         </Col>

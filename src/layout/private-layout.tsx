@@ -61,6 +61,9 @@ const PrivateLayout = ({ children }: any) => {
           setLoading(1);
           dispatch(getDashboardStatisticsRequest({}));
         }, 30000);
+        setTimeout(() => {
+          dispatch(getDashboardStatisticsRequest({}));
+        }, 60000);
       }
       if (result.status === ACTION_STATUS.DEPOSIT_PACKAGE_FAIL) {
         // console.log('enter package fail', result?.message);
