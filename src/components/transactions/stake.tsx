@@ -51,8 +51,8 @@ const StakeTransactions = ({ isDashboard = false }: StakeTransactionsProps) => {
                             (isDashboard ? stakeTransactions.slice(0, 10) : stakeTransactions).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
-                                    <td>{get(item, 'amount_locked.dot', '')}</td>
-                                    <td>{get(item, 'amount_locked.him', '')}</td>
+                                    <td>{formatNumberDownRound(get(item, 'amount_locked.dot', 0))}</td>
+                                    <td>{formatNumberDownRound(get(item, 'amount_locked.him', 0))}</td>
                                     <td>{PACKAGE_ACTION_TYPES[item?.type]}</td>
                                     <td>Package {PACKAGE_NAME_TYPES[get(item, 'package_from.profit', '')]}</td>
                                     <td>Package {PACKAGE_NAME_TYPES[get(item, 'package_to.profit', '')]}</td>
