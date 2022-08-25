@@ -48,17 +48,22 @@ const StakeTransactions = ({ isDashboard = false }: StakeTransactionsProps) => {
                     </thead>
                     <tbody>
                         {
-                            (isDashboard ? stakeTransactions.slice(0, 10) : stakeTransactions).map((item: any, idx: number) => {
-                                return <tr key={idx + item?._id}>
-                                    <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
-                                    <td>{formatNumberDownRound(get(item, 'amount_locked.dot', 0))}</td>
-                                    <td>{formatNumberDownRound(get(item, 'amount_locked.him', 0))}</td>
-                                    <td>{PACKAGE_ACTION_TYPES[item?.type]}</td>
-                                    <td>Package {PACKAGE_NAME_TYPES[get(item, 'package_from.profit', '')]}</td>
-                                    <td>Package {PACKAGE_NAME_TYPES[get(item, 'package_to.profit', '')]}</td>
-                                    <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
-                                </tr>
-                            })
+                            (isDashboard ?
+                                stakeTransactions.slice(0, 10)
+                                :
+                                stakeTransactions.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                            )
+                                .map((item: any, idx: number) => {
+                                    return <tr key={idx + item?._id}>
+                                        <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
+                                        <td>{formatNumberDownRound(get(item, 'amount_locked.dot', 0))}</td>
+                                        <td>{formatNumberDownRound(get(item, 'amount_locked.him', 0))}</td>
+                                        <td>{PACKAGE_ACTION_TYPES[item?.type]}</td>
+                                        <td>Package {PACKAGE_NAME_TYPES[get(item, 'package_from.profit', '')]}</td>
+                                        <td>Package {PACKAGE_NAME_TYPES[get(item, 'package_to.profit', '')]}</td>
+                                        <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
+                                    </tr>
+                                })
                         }
                     </tbody>
                 </Table>

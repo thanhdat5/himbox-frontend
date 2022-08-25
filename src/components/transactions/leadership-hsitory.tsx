@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NUMBER_PER_PAGE } from "../../constants";
 import { GET_LIST_STAKE_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
-import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
 interface LeadershipHistoryProps {
@@ -48,17 +47,22 @@ const LeadershipHistory = ({ isDashboard = false }: LeadershipHistoryProps) => {
                     </thead>
                     <tbody>
                         {
-                            leadershipHis.map((item: any, idx: number) => {
-                                return <tr key={idx + item?._id}>
-                                    <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
-                                    <td>Rank {item?.rank}</td>
-                                    <td>{item?.type}</td>
-                                    <td>{formatNumberDownRound(item?.reward)}</td>
-                                    <td>{formatNumberDownRound(item?.total_reward_team)}</td>
-                                    <td>{formatNumberDownRound(item?.total_vol)}</td>
-                                    <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
-                                </tr>
-                            })
+                            (isDashboard ?
+                                leadershipHis.slice(0, 10)
+                                :
+                                leadershipHis.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                            )
+                                .map((item: any, idx: number) => {
+                                    return <tr key={idx + item?._id}>
+                                        <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
+                                        <td>Rank {item?.rank}</td>
+                                        <td>{item?.type}</td>
+                                        <td>{formatNumberDownRound(item?.reward)}</td>
+                                        <td>{formatNumberDownRound(item?.total_reward_team)}</td>
+                                        <td>{formatNumberDownRound(item?.total_vol)}</td>
+                                        <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
+                                    </tr>
+                                })
                         }
                     </tbody>
                 </Table>

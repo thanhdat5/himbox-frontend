@@ -46,7 +46,11 @@ const DepositTransactions = ({ isDashboard = false }: DepositTransactionsProps) 
                     </thead>
                     <tbody>
                         {
-                            depositHistory.map((item: any, idx: number) => {
+                            (isDashboard ?
+                                depositHistory.slice(0, 10)
+                                :
+                                depositHistory.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                            ).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
                                     <td>

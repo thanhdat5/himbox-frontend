@@ -45,7 +45,11 @@ const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
                     </thead>
                     <tbody>
                         {
-                            (isDashboard ? teamRewardHistory.slice(0, 10) : teamRewardHistory).map((item: any, idx: number) => {
+                            (isDashboard ?
+                                teamRewardHistory.slice(0, 10)
+                                :
+                                teamRewardHistory.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                            ).map((item: any, idx: number) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
                                     <td>{formatNumberDownRound(get(item, 'dot_amount', '0'))}</td>

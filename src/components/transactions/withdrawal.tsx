@@ -110,7 +110,11 @@ const WithdrawalTransactions = ({ isDashboard = false }: WithdrawTxProps) => {
                             </thead>
                             <tbody>
                                 {
-                                    withdrawalTransactions.slice(0, 10).map((item: any, idx: number) => {
+                                    (isDashboard ?
+                                        withdrawalTransactions.slice(0, 10)
+                                        :
+                                        withdrawalTransactions.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                                    ).map((item: any, idx: number) => {
                                         return <tr key={idx}>
                                             <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
                                             <td>
