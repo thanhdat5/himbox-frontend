@@ -39,6 +39,7 @@ const LeadershipHistory = ({ isDashboard = false }: LeadershipHistoryProps) => {
                         <tr>
                             <th style={{ width: 50 }}>No.</th>
                             <th>Rank</th>
+                            <th>Type</th>
                             <th>Reward (DOT)</th>
                             <th>Total Team Reward</th>
                             <th>Total Volume</th>
@@ -51,6 +52,7 @@ const LeadershipHistory = ({ isDashboard = false }: LeadershipHistoryProps) => {
                                 return <tr key={idx + item?._id}>
                                     <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
                                     <td>Rank {item?.rank}</td>
+                                    <td>{item?.type}</td>
                                     <td>{formatNumberDownRound(item?.reward)}</td>
                                     <td>{formatNumberDownRound(item?.total_reward_team)}</td>
                                     <td>{formatNumberDownRound(item?.total_vol)}</td>
