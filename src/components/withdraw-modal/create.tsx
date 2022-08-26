@@ -33,7 +33,7 @@ const CreateWithdrawRequestForm = () => {
             errors.to = MESSAGES['REQUIRED_MESSAGE'];
         } else if (!walletIsValid) {
             errors.to = MESSAGES['INVALID_WALLET_ADDRESS'];
-        } else if (values.amount < 0 || values.amount > balance) {
+        } else if (values.amount <= 0 || values.amount > balance) {
             errors.amount = MESSAGES['AMOUNT_INVALID'] + balance + '.';
         }
         return errors;

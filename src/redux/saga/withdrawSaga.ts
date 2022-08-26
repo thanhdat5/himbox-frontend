@@ -29,6 +29,7 @@ import {
   GET_TEAM_REWARD_REQUEST
 } from "../types/withdraw";
 import { apiCall } from "./api";
+import { getDashboardStatisticsRequest } from '../actions/dashboardActions';
 
 function* fetchGetListWithdrawSaga(action: any) {
   try {
@@ -128,6 +129,7 @@ function* fetchCreateWithdrawSaga(action: any) {
       action.payload
     );
     yield put(createWithdrawSuccess(res.data.data));
+    yield put(getDashboardStatisticsRequest({}));
   } catch (e: any) {
     yield put(createWithdrawFailure());
     ShowErrorMessage({ message: extractError(e) });
@@ -138,6 +140,7 @@ function* fetchConfirmWithdrawSaga(action: any) {
     yield call(apiCall, "POST", ENDPOINTS.CONFIRM_WITHDRAW, action.payload);
     ShowSuccessMessage('The request has been confirmed successfully!');
     yield put(confirmWithdrawSuccess());
+    yield put(getDashboardStatisticsRequest({}));
   } catch (e: any) {
     yield put(confirmWithdrawFailure());
     ShowErrorMessage({ message: extractError(e) });
@@ -149,6 +152,7 @@ function* fetchCancelWithdrawSaga(action: any) {
     ShowSuccessMessage('The request has been cancelled successfully!');
     yield put(cancelWithdrawSuccess());
     yield put(getListWithdrawRequest());
+    yield put(getDashboardStatisticsRequest({}));
   } catch (e: any) {
     yield put(cancelWithdrawFailure());
     ShowErrorMessage({ message: extractError(e) });
