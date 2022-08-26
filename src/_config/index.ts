@@ -2,7 +2,7 @@ export interface DicOption {
     [key: number]: string;
 }
 
-export const HIMBOX_POOL_CONTRACT: string = '0x81293FAF9b2C8EcCD66D0C278F9E8605bBbC1c21';
+export const HIMBOX_POOL_CONTRACT: string = '0xa98C029bE421E25f9CA74A4E1C774a08bd670260';
 export const DOT_ADDRESS: string = '0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080';
 export const NETWORK_SCAN: string = 'https://moonbeam.moonscan.io';
 

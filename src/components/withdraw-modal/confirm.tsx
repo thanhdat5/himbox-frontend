@@ -55,12 +55,12 @@ const ConfirmWithdraw = ({ withdraw_id }: ConfirmWithdrawProps) => {
 
     const handleValidateFormConfirm = (values: ConfirmWithdrawRequestModel) => {
         const errors: any = {};
-        if (!values.tfa_code) {
-            errors.tfa_code = MESSAGES['REQUIRED_MESSAGE'];
-        } else if (!values.password) {
+        if (!values.password) {
             errors.password = MESSAGES['REQUIRED_MESSAGE'];
         } else if (!values.number_verify) {
             errors.number_verify = MESSAGES['REQUIRED_MESSAGE'];
+        } else if (!values.tfa_code) {
+            errors.tfa_code = MESSAGES['REQUIRED_MESSAGE'];
         }
         return errors;
     }
@@ -77,12 +77,6 @@ const ConfirmWithdraw = ({ withdraw_id }: ConfirmWithdrawProps) => {
     >
         <Form>
             <FormGroup className="mb-4">
-                <FormLabel>Verification code</FormLabel>
-                <Field type='text' id="tfa_code" name="tfa_code" className="form-control" placeholder='2FA Verify Code' />
-                <ErrorMessage component='div' className="form-error" name="tfa_code" />
-            </FormGroup>
-
-            <FormGroup className="mb-3">
                 <FormLabel>Password</FormLabel>
                 <PasswordField name="password" />
                 <ErrorMessage component='div' className="form-error" name="password" />
@@ -97,6 +91,11 @@ const ConfirmWithdraw = ({ withdraw_id }: ConfirmWithdrawProps) => {
                     }
                 </div>
                 <ErrorMessage component='div' className="form-error" name="number_verify" />
+            </FormGroup>
+            <FormGroup className="mb-4">
+                <FormLabel>2FA Code</FormLabel>
+                <Field type='text' id="tfa_code" name="tfa_code" className="form-control" placeholder='2FA Verify Code' />
+                <ErrorMessage component='div' className="form-error" name="tfa_code" />
             </FormGroup>
 
             <Button type="submit" disabled={loading}>
