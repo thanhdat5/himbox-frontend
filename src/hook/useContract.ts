@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 
 import HimBox_ABI from '../constants/abi/him-box-package.abi.json';
 import DOT_ABI from '../constants/abi/dot.abi.json';
+import USDT_ABI from '../constants/abi/usdt.abi.json';
 import { getContract } from '../utils/utils'
 import { useActiveWeb3React } from './index'
 
@@ -24,6 +25,10 @@ function useContract(address: string | undefined, ABI: any, withSignerIfPossible
 
 export function useDotContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
     return useContract(tokenAddress, DOT_ABI, withSignerIfPossible)
+}
+
+export function useUsdtContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+    return useContract(tokenAddress, USDT_ABI, withSignerIfPossible)
 }
 
 export function useHimBoxContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {

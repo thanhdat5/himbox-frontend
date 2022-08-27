@@ -2,10 +2,10 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useActiveWeb3React } from '../../hook'
 import useIsWindowVisible from '../../hook/useIsWindowVisible'
-import { useDotContract } from '../../hook/useContract'
-import { DOT_ADDRESS } from '../../_config'
+import { useDotContract, useUsdtContract } from '../../hook/useContract'
+import { DOT_ADDRESS, USDT_ADDRESS } from '../../_config'
 import { useBlockNumber } from '../application/hooks'
-import { SET_DOT_BALANCE } from '../../redux/types/application'
+import { SET_DOT_BALANCE, SET_USDT_BALANCE } from '../../redux/types/application'
 
 
 export default function Updater(): null {
@@ -66,6 +66,20 @@ export default function Updater(): null {
         }
 
     }, [library, chainId, blockNumber, dispatch, dotContract])
+   
+    const usdtContract = useUsdtContract(USDT_ADDRESS)
+    //update MAT Balance
+    useEffect(() => {
+        if (usdtContract) {
+            usdtContract.balanceOf(account).then((data: any) => {
+                dispatch({
+                    type: SET_USDT_BALANCE,
+                    payload: data?.toString()
+                });
+            })
+        }
+
+    }, [library, chainId, blockNumber, dispatch, usdtContract])
 
     return null
 }

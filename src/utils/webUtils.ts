@@ -6,7 +6,7 @@ import { SUPPORTED_CHAIN_RPC } from "../_config";
 export const createWeb3WithNode = async (bscURI: string) => {
     let web3;
     try {
-        // console.log("provider URI==>", bscURI);
+        console.log("provider URI==>", bscURI);
         const check = await axios.post(bscURI);
         if (check.status === 200) {
             web3 = new Web3(bscURI);

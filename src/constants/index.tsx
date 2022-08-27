@@ -181,6 +181,7 @@ export const ROUTES = {
     NETWORK: '/network',
     PACKAGE: '/package',
     PROFILE: '/profile',
+    HIM_PRIVATE_SALE: '/him-private-sale',
     TRANSACTIONS: '/transactions',
 }
 

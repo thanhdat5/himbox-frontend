@@ -101,19 +101,6 @@ const PrivateLayout = ({ children }: any) => {
           }
         });
       }
-      // setApproving(true);
-      // UseApprovePoolContract({ web3Provider: library?.provider, account: account }, (approveResult: any) => {
-      //   console.log('approveResult', approveResult);
-      //   if (approveResult.status === ACTION_STATUS.APPROVED) {
-      //     setApproving(false);
-      //     handelDepositInternal();
-      //   }
-      //   if (approveResult.status === ACTION_STATUS.APPROVE_FAILS) {
-      //     setVisible(false);
-      //     setApproving(false);
-      //     return;
-      //   }
-      // });
     } else {
       ShowErrorMessage('Oops! Please logout and try again');
     }
@@ -154,7 +141,6 @@ const PrivateLayout = ({ children }: any) => {
       {showWithdraw ? <WithdrawModal onHide={handleCloseWithdraw} /> : <></>}
       <ProcessingModal
         visible={visible}
-        setVisible={setVisible}
         onCancel={() => {
           setVisible(false);
           setHash(null);

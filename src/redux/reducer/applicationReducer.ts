@@ -1,7 +1,8 @@
-import { SET_DOT_BALANCE, SET_LATEST_BLOCK_NUMBER } from './../types/application';
+import { SET_DOT_BALANCE, SET_LATEST_BLOCK_NUMBER, SET_USDT_BALANCE } from './../types/application';
 
 const initialState: any = {
     dotBalance: 0,
+    usdtBalance: 0,
     latestBlockNumber: 0
 };
 
@@ -16,6 +17,11 @@ const applicationReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 dotBalance: action.payload
+            };
+        case SET_USDT_BALANCE:
+            return {
+                ...state,
+                usdtBalance: action.payload
             };
         default:
             return {

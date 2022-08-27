@@ -6,17 +6,17 @@ import { NETWORK_SCAN } from '../../_config';
 
 interface Props {
     visible: boolean,
-    setVisible: (val: any) => void,
     onCancel?: () => void,
     loading: number,
     approving?: boolean,
     hash?: string,
     error?: string,
+    action?: string,
 }
 
 function ProcessingModal({
     visible,
-    setVisible,
+    action = 'Depositing',
     onCancel,
     loading,
     approving,
@@ -39,7 +39,7 @@ function ProcessingModal({
             <Modal.Header closeButton={loading !== 0 ? true : false}></Modal.Header>
             <Modal.Body>
                 <div className="text-center">
-                    <h2 id="transition-modal-title">{loading === 0 ? approving ? 'Approving' : 'Depositing' : 'Done'}</h2>
+                    <h2 id="transition-modal-title">{loading === 0 ? approving ? 'Approving' : action : (loading === -1) ? 'Rejected' : 'Done'}</h2>
                     <p id="transition-modal-description">{
                         loading === 0 ? 'Your request is being processed. Please wait...' :
                             loading === 1 ?
