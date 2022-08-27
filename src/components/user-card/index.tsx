@@ -1,8 +1,10 @@
 import { get } from "lodash";
 import { Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { PACKAGE_RANKING_TYPES } from "../../constants";
 
-const PACKAGE_MAPPING : any = {
+const PACKAGE_MAPPING: any = {
+    0: 'noRank.png',
     1: 'rank1.png',
     2: 'rank2.png',
     3: 'rank3.png',
@@ -13,16 +15,22 @@ const PACKAGE_MAPPING : any = {
     8: 'rank8.png',
     9: 'rank9.png',
     10: 'rank10.png',
+    11: 'rank10.png',
+    12: 'rank10.png',
 };
 
 const HBUserCard = ({ userLogged }: any) => {
 
     const username = useSelector(state => get(state, 'user.userInfo.username', 'HimBox'));
-    const currentPackage = useSelector(state => get(state, 'dashboard.statistics[0].package', null));
+    const myPackage = useSelector(state => get(state, 'dashboard.statistics[0].package', null));
 
+    console.log('asasasasas', PACKAGE_RANKING_TYPES[get(myPackage, 'profit_type', 1)]);
     return <div className="mb-md-4 mb-3">
         <div className="hb-user-card">
-            <Image src={`/images/cards/${PACKAGE_MAPPING[3]}`} alt={PACKAGE_MAPPING[1]} />
+            <Image
+                src={`/images/cards/${PACKAGE_MAPPING[PACKAGE_RANKING_TYPES[get(myPackage, 'profit_type', 1)]]}`}
+                alt={PACKAGE_MAPPING[PACKAGE_RANKING_TYPES[get(myPackage, 'profit_type', 1)]]}
+            />
             <span>{username}</span>
         </div>
     </div>
