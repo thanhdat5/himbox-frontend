@@ -1,27 +1,9 @@
-import { FormControl, FormGroup, FormLabel, Button, Form } from "react-bootstrap";
-import HBCard from "../../../components/card";
+import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { toast } from 'react-toastify';
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { getUserLoadingSelector } from "../../../redux/selectors/userSelectors";
-import { validatePhone } from "../../../utils/helpers";
-import { MESSAGES } from "../../../constants";
-import { useDispatch } from "react-redux";
-import { updateUserInfoRequest } from "../../../redux/actions/userActions";
+import HBCard from "../../../components/card";
+import HBUserCard from "../../../components/user-card";
 
-const HBProfileInfo = ({ userInfo, userLogged }: any) => {
-
-    const dispatch = useDispatch();
-
-    const loading = useSelector(getUserLoadingSelector);
-
-    const [phone, setPhone] = useState(userInfo?.phone || '');
-    const [twitter, setTwitter] = useState(userInfo?.twitter || '');
-    const [telegram, setTelegram] = useState(userInfo?.telegram || '');
-    const [instagram, setInstagram] = useState(userInfo?.instagram || '');
-
-    const [errors, setErrors] = useState<any>(null);
-
+const HBProfileInfo = ({ userLogged }: any) => {
     const handleCopy = () => {
         navigator.clipboard.writeText(userLogged?.wallet);
         toast.success('Copied successfully!', {
@@ -30,17 +12,9 @@ const HBProfileInfo = ({ userInfo, userLogged }: any) => {
         })
     }
 
-    const handleUpdateProfile = async (e: any) => {
-        e.preventDefault();
-        setErrors(null);
-        if (!validatePhone(phone)) {
-            setErrors({ phone: MESSAGES.INVALID_PHONE });
-            return;
-        }
-        dispatch(updateUserInfoRequest({ phone, telegram, instagram, twitter }));
-    }
-
     return <HBCard className="mb-md-4 mb-3">
+        <HBUserCard />
+
         <FormGroup className="mb-3">
             <FormLabel>Your wallet address</FormLabel>
             <div className="hb-form-control-wrap">
@@ -57,31 +31,6 @@ const HBProfileInfo = ({ userInfo, userLogged }: any) => {
                 </span>
             </div>
         </FormGroup>
-
-        <FormGroup className="mb-3">
-            <FormLabel>Your email</FormLabel>
-            <FormControl type="email" value={userInfo?.email || ''} readOnly />
-        </FormGroup>
-        <FormGroup className="mb-3">
-            <FormLabel>Phone</FormLabel>
-            <FormControl type="text" placeholder="+14899999999" onChange={(e: any) => setPhone(e.target.value)} value={phone} />
-            {errors?.phone && <Form.Text className="text-error">{errors?.phone}</Form.Text>}
-        </FormGroup>
-        <FormGroup className="mb-3">
-            <FormLabel>Telegram</FormLabel>
-            <FormControl type="text" onChange={(e: any) => setTelegram(e.target.value)} value={telegram} />
-        </FormGroup>
-        <FormGroup className="mb-3">
-            <FormLabel>Twitter</FormLabel>
-            <FormControl type="text" onChange={(e: any) => setTwitter(e.target.value)} value={twitter} />
-        </FormGroup>
-        <FormGroup className="mb-4">
-            <FormLabel>Instagram</FormLabel>
-            <FormControl type="text" onChange={(e: any) => setInstagram(e.target.value)} value={instagram} />
-        </FormGroup>
-        <Button type="submit" onClick={handleUpdateProfile} disabled={loading}>
-            <span>Update</span>
-        </Button>
     </HBCard>
 }
 export default HBProfileInfo
