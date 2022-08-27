@@ -48,8 +48,8 @@ const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => 
         <div className="hb-header-inner">
             <div className="hb-header-heading">
                 <Link to={ROUTES.DASHBOARD} className="hb-logo">
-                    <Image src="/images/logo.png" alt="HimBOX" />
-                    <span>HimBOX</span>
+                    <Image className="d-none d-md-block" src="/images/logo-f.png" alt="HimBOX" />
+                    <Image className="d-block d-md-none" src="/images/logo.png" alt="HimBOX" />
                 </Link>
                 <Breadcrumb aria-label="breadcrumb">
                     {/* <Breadcrumb.Item linkAs={Link} linkProps={{ to: ROUTES.DASHBOARD }}>Home</Breadcrumb.Item> */}
