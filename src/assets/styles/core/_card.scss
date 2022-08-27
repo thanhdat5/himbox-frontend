@@ -8,4 +8,10 @@
     &.secondary{
         background-color: $hb-background;
     }
+    &.h-100-md-4-3{
+        height: calc(100% - 1rem);
+        @media (min-width: 768px){
+            height: calc(100% - 1.5rem);
+        }
+    }
 }

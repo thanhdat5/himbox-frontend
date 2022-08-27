@@ -10,6 +10,7 @@ import { LOG_OUT } from "../../redux/types/user"
 import { useDotBalance } from "../../state/wallet/hook"
 import { getBalanceNumber } from "../../utils/formatBal"
 import { formatCurrency, formatNumberDownRound } from "../../utils/helpers"
+import HBUserCard from "../user-card"
 import HBSidebarFooter from "./footer"
 import HBSidebarItem from "./item"
 
@@ -56,10 +57,13 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
     return <div className={`hb-sidebar ${show ? 'show' : ''}`}>
         <div className="hb-sidebar-inner">
             <div className="hb-sidebar-menu-wrap">
-                <div className="pt-3 pb-5 text-end d-block d-md-none">
+                <div className="pt-3 pb-4 text-end d-block d-md-none">
                     <Button variant="link" type="button" className="hb-btn-toggle-sidebar" onClick={onSidebarToggle}>
                         <Image src="/images/btn-close.svg" alt="Close" />
                     </Button>
+                </div>
+                <div className="d-block d-md-none mx-4">
+                    <HBUserCard />
                 </div>
                 <ul className="hb-sidebar-menu">
                     {account ?
