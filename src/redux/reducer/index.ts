@@ -7,6 +7,7 @@ import userReducer from "./userReducer";
 import packageReducer from "./packageReducer";
 import dashboardReducer from "./dashboardReducer";
 import applicationReducer from "./applicationReducer";
+import himPoolReducer from "./himPoolReducer";
 
 const rootReducer = combineReducers({
   application: applicationReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   withdraw: withdrawReducer,
   user: userReducer,
   package: packageReducer,
-  dashboard: dashboardReducer
+  dashboard: dashboardReducer,
+  himPool: himPoolReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

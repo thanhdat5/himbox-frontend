@@ -7,7 +7,11 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { get } from 'lodash';
+import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import { formatEpochTime } from '../../../utils';
 
 ChartJS.register(
     CategoryScale,
@@ -18,41 +22,53 @@ ChartJS.register(
     Legend
 );
 
-const HIMPriceHistory = () => {
-    const labels = ['Q4/2022 - Q2/2023', 'Q3/2023', 'Q4/2023', 'Q1/2024', 'Q2/2024', 'Q3/2024', '2025', '2026'];
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'bottom' as const,
-            },
-            title: {
-                display: false,
-            },
+const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'bottom' as const,
         },
-    };
-    const data = {
-        labels,
-        datasets: [
-            {
+        title: {
+            display: false,
+        },
+    },
+};
+
+const HIMPriceHistory = () => {
+
+    const himPoolConfig = useSelector(state => get(state, 'himPool.himPoolConfig', null));
+
+    const [data, setData] = useState<any>({
+        labels: [],
+        datasets: []
+    });
+
+    useEffect(() => {
+        if (himPoolConfig) {
+            let tempLabels = [];
+            let tempDatasets: any = {
                 label: 'Price',
-                data: [1, 3, 5, 10, 20, 50, 80, 150],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                borderRadius : 10 
-            },
-            {
-                label: 'Users',
-                data: [1, 2, 5, 10, 25, 50, 100, 200],
+                data: [],
                 backgroundColor: '#e6007a',
-                borderRadius : 10 
-            },
-        ],
-    }
+                borderRadius: 10
+
+            };
+            for (let i = 0; i < himPoolConfig[0].length; i++) {
+                if (himPoolConfig[3][i]) {
+                    tempLabels.push(formatEpochTime(himPoolConfig[0][i], himPoolConfig[1][i]));
+                    tempDatasets.data.push(Number(himPoolConfig[2][i]) / 10 ** 2);
+                }
+            }
+            setData({ labels: tempLabels, datasets: [tempDatasets] });
+        }
+    }, [himPoolConfig]);
 
     return <div className="hb-price-history">
-        <div className="hb-section-title">HIM Price History</div>
+        <div className="hb-section-title">HIM Price Roadmap</div>
         <div>
-            <Bar options={options} data={data} />
+            {data && data?.labels && data?.datasets &&
+                <Bar options={options} data={data} />
+            }
         </div>
     </div>
 }

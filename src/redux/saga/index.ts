@@ -4,7 +4,7 @@ import forgotPasswordSaga from "./forgotPasswordSaga";
 import loginSaga from "./loginSaga";
 import packageSaga from "./packageSaga";
 import signUpSaga from "./signUpSaga";
-import todoSaga from "./todoSaga";
+import himPoolSaga from "./himPoolSaga";
 import userSaga from "./userSaga";
 import verifySaga from "./verifySaga";
 import withdrawSaga from "./withdrawSaga";
@@ -18,4 +18,5 @@ export function* rootSaga() {
   yield all([fork(userSaga)]);
   yield all([fork(packageSaga)]);
   yield all([fork(dashboardSaga)]);
+  yield all([fork(himPoolSaga)]);
 }

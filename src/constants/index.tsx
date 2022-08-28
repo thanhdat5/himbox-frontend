@@ -447,7 +447,7 @@ export const MESSAGES = {
     "ENTER_PACKAGE_SUCCESS": 'Enter package successfully!',
     "ENTER_PACKAGE_FAIL": 'Enter package failed!',
     "REQUIRED_MESSAGE": 'Cannot leave this blank.',
-    "AMOUNT_INVALID": 'Amount must me greater than 0 and less than or equal ',
+    "AMOUNT_INVALID": 'Amount > 0 and <= ',
     "INVALID_WALLET_ADDRESS": 'Invalid wallet address.',
     "INVALID_PHONE": "Invalid phone number"
 };
