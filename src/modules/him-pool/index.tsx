@@ -9,6 +9,7 @@ import { useActiveWeb3React } from "../../hook"
 import { getAllowanceHIMToken, getAllowanceToken } from "../../hook/useAllowance"
 import { getPrivateSaleConfigs, getPrivateSaleHimInfo, getPrivateSaleUserInfo, UseApprovePoolHIMContract, UseBuyHim } from "../../hook/useHimContract"
 import { USDT_ADDRESS } from "../../_config"
+import HBHimPurchase from "./components/him-purchase";
 
 const HimPool = () => {
 
@@ -93,7 +94,15 @@ const HimPool = () => {
 
     return <HBPageWrap className="hb-profile" title="HIM Private Sale">
         <Row className="justify-content-md-end">
-            <button onClick={handleBuyHIM}>Buy 10 HIM</button>
+            <Col xl={4} lg={6} md={6} className="mb-md-0">
+                <HBHimPurchase />
+            </Col>
+            <Col xl={4} lg={6} md={6} className="mb-md-0">
+               
+            </Col>
+            <Col xl={4} lg={6} md={6}>
+               
+            </Col>
         </Row>
         <ProcessingModal
             action="Buying"
