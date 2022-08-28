@@ -10,6 +10,10 @@ import { getAllowanceHIMToken, getAllowanceToken } from "../../hook/useAllowance
 import { getPrivateSaleConfigs, getPrivateSaleHimInfo, getPrivateSaleUserInfo, UseApprovePoolHIMContract, UseBuyHim } from "../../hook/useHimContract"
 import { USDT_ADDRESS } from "../../_config"
 import HBHimPurchase from "./components/him-purchase";
+import HBPoolStatistics from "./components/statistics";
+import HBPoolStatistics2 from "./components/statistics-2";
+import HIMPriceHistory from "./components/him-price";
+import HBCard from "../../components/card";
 
 const HimPool = () => {
 
@@ -93,17 +97,33 @@ const HimPool = () => {
     }
 
     return <HBPageWrap className="hb-profile" title="HIM Private Sale">
-        <Row className="justify-content-md-end">
-            <Col xl={4} lg={6} md={6} className="mb-md-0">
+        {/* Style 1 */}
+        <div className="mb-5">
+            <HBPoolStatistics2 />
+            <Row>
+                <Col xl={4} lg={5} className="mb-md-0">
+                    <HBHimPurchase />
+                </Col>
+                <Col xl={8} lg={7} className="mb-md-0">
+                    <HBCard className="mb-md-4 mb-3 h-100-md-4-3">
+                        <HIMPriceHistory />
+                    </HBCard>
+                </Col>
+            </Row>
+        </div>
+
+        {/* Style 2 */}
+        <hr/>
+        <Row className="mb-lg-3">
+            <Col xxl={3} xl={4} lg={6} md={6} className="mb-md-0">
+                <HBPoolStatistics />
+            </Col>
+            <Col xxl={4} xl={5} lg={6} md={6} className="mb-md-0">
                 <HBHimPurchase />
             </Col>
-            <Col xl={4} lg={6} md={6} className="mb-md-0">
-               
-            </Col>
-            <Col xl={4} lg={6} md={6}>
-               
-            </Col>
         </Row>
+        <HIMPriceHistory />
+
         <ProcessingModal
             action="Buying"
             visible={visible}

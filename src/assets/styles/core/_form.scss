@@ -41,7 +41,7 @@
       border-color: rgba($color: $hb-primary-color, $alpha: 0.4);
     }
   }
-  &.txtbalance{
+  &.txtbalance {
     color: $hb-white-color !important;
     font-weight: bold;
     opacity: 1;
@@ -84,4 +84,13 @@
   color: #ff006a;
   font-weight: 500;
   padding-top: 3px;
-}  
+}
+.form-description {
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 5px;
+  b{
+    color: rgba($color: $hb-white-color, $alpha: 0.8);
+    font-weight: 500;
+  }
+}

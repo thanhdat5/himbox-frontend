@@ -38,7 +38,7 @@ const HBHimPurchase = () => {
 
     }
 
-    return <HBCard className="mb-md-4 mb-3">
+    return <HBCard className="mb-md-4 mb-3 h-100-md-4-3">
         <Formik
             innerRef={formRef}
             enableReinitialize
@@ -54,6 +54,7 @@ const HBHimPurchase = () => {
                         <FormControl readOnly type='text' value={formatNumberDownRound(usdtBal)} className="txtbalance" />
                         <span>USDT</span>
                     </div>
+                    <div className="form-description">Price: <b>1 HIM</b> = <b>0.1 USDT</b></div>
                 </FormGroup>
 
                 <FormGroup className="mb-3">
@@ -62,12 +63,17 @@ const HBHimPurchase = () => {
                         <Field type='number' id="amount" name="amount" className="form-control" />
                         <span>DOT</span>
                     </div>
+                    <div className="form-description">= <b>10 HIM</b></div>
                     <ErrorMessage component='div' className="form-error" name="amount" />
                 </FormGroup>
 
                 <Button type="submit" disabled={false}>
                     <span>Purchase</span>
                 </Button>
+
+                <div className="form-note mb-0 mt-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque eaque, provident reiciendis...
+                </div>
             </Form>
         </Formik>
     </HBCard>
