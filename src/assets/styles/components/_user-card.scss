@@ -10,7 +10,12 @@
     text-transform: uppercase;
     font-weight: bold;
     color: #fff;
-    font-size: 30px;
+    font-size: 24px;
+    display: inline-flex;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     @media(max-width:1399px){
         font-size: 20px;
     }
