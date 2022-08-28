@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Col, Image, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import HBPageWrap from "../../components/page-wrap"
@@ -12,11 +12,19 @@ import { GET_HIM_SALE_CONFIGS_REQUEST, GET_HIM_SALE_INFO_REQUEST, GET_HIM_SALE_U
 const HimPool = () => {
 
     const dispatch = useDispatch();
+    const interval = useRef<any>();
     const { account, library, chainId } = useActiveWeb3React();
 
     useEffect(() => {
         dispatch({ type: GET_HIM_SALE_CONFIGS_REQUEST, data: { library, account } });
         dispatch({ type: GET_HIM_SALE_INFO_REQUEST, data: { library, account } });
+        interval.current = setInterval(() => {
+            dispatch({ type: GET_HIM_SALE_CONFIGS_REQUEST, data: { library, account } });
+            dispatch({ type: GET_HIM_SALE_INFO_REQUEST, data: { library, account } });
+        }, 15000);
+        return () => {
+            if (interval) clearInterval(interval.current);
+        }
     }, []);
 
     useEffect(() => {

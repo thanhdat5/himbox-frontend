@@ -6,5 +6,5 @@ export function formatDate(dateString: string): string {
 }
 
 export function formatEpochTime(start: any, end: any): any {
-    return `${new Date(Number(start) * 1000).toLocaleDateString()} - ${new Date(Number(end) * 1000).toLocaleTimeString()}`;
+    return `${new Date(Number(start) * 1000).toLocaleDateString()} ${new Date(Number(start) * 1000).toLocaleTimeString()} - ${new Date(Number(end) * 1000).toLocaleDateString()} ${new Date(Number(end) * 1000).toLocaleTimeString()}`;
 }
