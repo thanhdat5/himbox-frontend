@@ -108,14 +108,14 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
                         <path fill="currentColor" d="M47,36H20a2,2,0,0,0,0,4H42.17l-2.58,2.59a2,2,0,1,0,2.82,2.82l6-6a2,2,0,0,0,.44-2.18A2,2,0,0,0,47,36Z" />
                     </svg>} />
 
-                    <HBSidebarItem link={ROUTES.PROFILE} text="Profile" active={location?.pathname === ROUTES.PROFILE} icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    <HBSidebarItem className="d-block d-md-none" link={ROUTES.PROFILE} text="Profile" active={location?.pathname === ROUTES.PROFILE} icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
                         strokeLinecap="round" strokeLinejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>} />
 
-                    <li className="hb-sidebar-menu-item">
+                    <li className="hb-sidebar-menu-item d-block d-md-none">
                         <a href="#signout" onClick={handleLogout} className="hb-sidebar-menu-link">
                             <span className="hb-sidebar-menu-icon">
                                 <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"

@@ -1,10 +1,13 @@
 import { useWeb3React } from "@web3-react/core";
 import { useCallback, useEffect, useState } from "react";
-import { Breadcrumb, Button, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../constants";
+import { Breadcrumb, Button, Dropdown, Image } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { ENDPOINTS, HIMBOX_ACCESS_TOKEN, HIMBOX_REFRESH_TOKEN, HIMBOX_USER_ID, HIMBOX_USER_INFO, ROUTES } from "../../constants";
 import useAuth from "../../hook/useAuth";
 import { useWalletModal } from "../../modals/WalletModal";
+import { apiCall } from "../../redux/saga/api";
+import { LOG_OUT } from "../../redux/types/user";
 import { useDotBalance } from "../../state/wallet/hook";
 import { getBalanceNumber } from "../../utils/formatBal";
 import { formatNumberDownRound } from "../../utils/helpers";
@@ -17,15 +20,12 @@ interface HBHeaderProps {
 }
 
 const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => {
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { login, logout } = useAuth();
     const { onPresentConnectModal } = useWalletModal(login, logout);
-
     const dotBal = useDotBalance();
-
     const { account, chainId, library } = useWeb3React();
-    // console.log('aaaaaaa', account);
-
     const [sticky, setSticky] = useState(false);
 
     const handleStikyHeader = () => {
@@ -43,6 +43,30 @@ const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => 
             window.removeEventListener('scroll', onScroll)
         }
     }, [onScroll])
+
+    const handleLogout = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            const accessToken = await localStorage.getItem(HIMBOX_ACCESS_TOKEN);
+            const res = await apiCall('POST', ENDPOINTS.LOGOUT, {
+                token: accessToken
+            });
+            console.log('res', res);
+            localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+            localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+            localStorage.removeItem(HIMBOX_USER_ID);
+            localStorage.removeItem(HIMBOX_USER_INFO);
+            navigate(ROUTES.LOGIN);
+        } catch (error) {
+            localStorage.removeItem(HIMBOX_ACCESS_TOKEN);
+            localStorage.removeItem(HIMBOX_REFRESH_TOKEN);
+            localStorage.removeItem(HIMBOX_USER_ID);
+            localStorage.removeItem(HIMBOX_USER_INFO);
+            navigate(ROUTES.LOGIN);
+        }
+        dispatch({ type: LOG_OUT });
+    }
 
     return <header className={`hb-header ${sticky ? 'sticky' : ''}`}>
         <div className="hb-header-inner">
@@ -91,11 +115,27 @@ const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => 
                     <span>Withdraw</span>
                 </Button>
                 <HBNotification />
-                <Link to={ROUTES.PROFILE} className="hb-user-logged">
-                    <div className="hb-user-avatar me-0">
-                        <Image src="/images/avatar.png" alt="" />
-                    </div>
-                </Link>
+                <Dropdown className="hb-user-logged">
+                    <Dropdown.Toggle variant="link" id="dropdown-basic">
+                        <span className="hb-user-avatar">
+                            <Image src="/images/avatar.png" alt="" />
+                        </span>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu align="end">
+                        <Dropdown.Item as={Link} to={ROUTES.PROFILE}>
+                            <span className="hb-topbar-menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </span>
+                            <span className="hb-topbar-menu-text">Profile</span>
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout}>
+                            <span className="hb-topbar-menu-icon">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 12H22M22 12L18.6667 8M22 12L18.6667 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 7V5.1736C14 4.00352 12.9999 3.08334 11.8339 3.18051L3.83391 3.84717C2.79732 3.93356 2 4.80009 2 5.84027V18.1597C2 19.1999 2.79733 20.0664 3.83391 20.1528L11.8339 20.8195C12.9999 20.9167 14 19.9965 14 18.8264V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            </span>
+                            <span className="hb-topbar-menu-text">Sign Out</span>
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 <Button type="button" variant="link" className="hb-btn-toggle-sidebar" onClick={onSidebarToggle}>
                     <Image src="/images/btn-hamburger.svg" alt="" />
                 </Button>
