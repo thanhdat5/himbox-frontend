@@ -5,6 +5,11 @@
                 "internalType": "uint256",
                 "name": "_amount",
                 "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "_ref",
+                "type": "address"
             }
         ],
         "name": "buy",
@@ -96,7 +101,7 @@
     },
     {
         "inputs": [],
-        "name": "getConfigs",
+        "name": "getPriceConfigs",
         "outputs": [
             {
                 "internalType": "uint256[]",

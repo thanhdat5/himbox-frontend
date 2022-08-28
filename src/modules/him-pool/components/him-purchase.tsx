@@ -39,12 +39,12 @@ const HBHimPurchase = () => {
         return errors;
     }
 
-    const handleBuyHIMInternal = async (amount: any) => {
-        UseBuyHim({ web3Provider: library?.provider, amount: Number(amount) * 10 ** 6, account }, async (result: any) => {
+    const handleBuyHIMInternal = async (amount: any, ref: any) => {
+        UseBuyHim({ web3Provider: library?.provider, amount: Number(amount) * 10 ** 6, ref, account }, async (result: any) => {
             console.log('result 1 ==>>', result);
             if (result.status === ACTION_STATUS.BUY_HIM_SUCCESS) {
                 setHash(result?.txID);
-                formRef.current.setValues({ amount: '' });
+                formRef.current.setValues({ amount: '', ref: '' });
                 setTimeout(() => {
                     setLoading(1);
                     dispatch({ type: GET_HIM_SALE_CONFIGS_REQUEST, data: { library, account } });
@@ -69,14 +69,14 @@ const HBHimPurchase = () => {
         const bigAllowance = new BigNumber(allowance);
         if (bigAllowance.gte(new BigNumber(Number(values?.amount) * 10 ** 6))) {
             setApproving(false);
-            handleBuyHIMInternal(values?.amount);
+            handleBuyHIMInternal(values?.amount, values?.ref);
         } else {
             setApproving(true);
             UseApprovePoolHIMContract({ web3Provider: library?.provider, account: account }, (approveResult: any) => {
                 console.log('approveResult', approveResult);
                 if (approveResult.status === ACTION_STATUS.APPROVED) {
                     setApproving(false);
-                    handleBuyHIMInternal(values?.amount);
+                    handleBuyHIMInternal(values?.amount, values?.ref);
                 }
                 if (approveResult.status === ACTION_STATUS.APPROVE_FAILS) {
                     setVisible(false);
@@ -106,7 +106,7 @@ const HBHimPurchase = () => {
                     <div className="form-description">Price: <b>1 HIM</b> = <b>{Number(get(himSaleInfo, '7', 0)) / 10 ** 2} USDT</b></div>
                 </FormGroup>
 
-                <FormGroup className="mb-4">
+                <FormGroup className="mb-3">
                     <FormLabel>Amount</FormLabel>
                     <div className="hb-form-control-wrap">
                         <Field type='number' id="amount" name="amount" className="form-control" />
@@ -114,6 +114,13 @@ const HBHimPurchase = () => {
                     </div>
                     {/* <div className="form-description">= <b>{Number(formRef?.current?.values?.amount)} HIM</b></div> */}
                     <ErrorMessage component='div' className="form-error" name="amount" />
+                </FormGroup>
+
+                <FormGroup className="mb-4">
+                    <FormLabel>Referral ID (Optional)</FormLabel>
+                    <div className="hb-form-control-wrap">
+                        <Field type='text' id="ref" name="ref" className="form-control" />
+                    </div>
                 </FormGroup>
 
                 <Button type="submit" disabled={!(account && usdtBal / 10 ** 6 > 0)}>

@@ -1,3 +1,4 @@
+import { AddressZero } from '@ethersproject/constants';
 import { getContractV2 } from './../utils/utils';
 import BigNumber from 'bignumber.js';
 import { get } from 'lodash';
@@ -13,6 +14,7 @@ export interface IBuyHIM {
     amount: any;
     web3Provider: any;
     account: any;
+    ref?: any;
 }
 
 export interface IApproveToken {
@@ -63,7 +65,7 @@ export const UseApprovePoolHIMContract = (
 };
 
 export async function UseBuyHim(
-    { amount, web3Provider, account }: IBuyHIM,
+    { amount, ref, web3Provider, account }: IBuyHIM,
     callback: any,
 ) {
 
@@ -79,7 +81,7 @@ export async function UseBuyHim(
     });
     try {
 
-        const method = privateHimContract.methods.buy(amountInHex);
+        const method = privateHimContract.methods.buy(amountInHex, ref ? ref : AddressZero);
 
         return method.send({ from: account }).on('error', (error: any) => {
             console.log(error);
@@ -130,11 +132,11 @@ export const getPrivateSaleConfigs = async ({ web3Provider, account }: any) => {
     try {
         if (account) {
             const privateHimContract = getContractV2(web3Provider, Private_Him_ABI, HIM_PRIVATE_SALE_CONTRACT);
-            return await privateHimContract.methods.getConfigs().call();
+            return await privateHimContract.methods.getPriceConfigs().call();
         } else {
             const web3Node: any = await createWeb3WithNode(SUPPORTED_CHAIN_RPC[0]);
             const privateHimContract = new web3Node.eth.Contract(Private_Him_ABI, HIM_PRIVATE_SALE_CONTRACT);
-            const contractInfo = await privateHimContract.methods.getConfigs().call();
+            const contractInfo = await privateHimContract.methods.getPriceConfigs().call();
             return contractInfo;
         }
     } catch (error) {

@@ -11,18 +11,18 @@ const connectors: Config[] = [
     enable: isMetamaskAvailable(),
     className: 'mb-3'
   },
-  {
-    title: 'Binance Chain Wallet',
-    icon: '/images/bscwallet.svg',
-    connectorId: ConnectorNames.BSC,
-    enable: isBinanceExtensionAvailable()
-  },
-  {
-    title: 'TrustWallet',
-    icon: '/images/trust.svg',
-    connectorId: ConnectorNames.Injected,
-    enable: isTrustWalletAvailable()
-  },
+  // {
+  //   title: 'Binance Chain Wallet',
+  //   icon: '/images/bscwallet.svg',
+  //   connectorId: ConnectorNames.BSC,
+  //   enable: isBinanceExtensionAvailable()
+  // },
+  // {
+  //   title: 'TrustWallet',
+  //   icon: '/images/trust.svg',
+  //   connectorId: ConnectorNames.Injected,
+  //   enable: isTrustWalletAvailable()
+  // },
 ];
 
 export default connectors;
