@@ -1,34 +1,92 @@
-.hb-user-logged{
+.hb-user-logged {
+  display: inline-flex;
+  align-items: center;
+  transition: all ease-in-out 0.3s;
+  text-decoration: none;
+  color: $hb-text-color;
+  font-size: 15px;
+  font-weight: 500;
+  &:hover {
+    color: $hb-white-color;
+  }
+  @media (max-width: 767px) {
+    .hb-user-avatar {
+      img {
+        margin-right: 0;
+      }
+    }
+    span {
+      display: none;
+    }
+  }
+  .dropdown-toggle {
+    padding: 0 16px 0 0;
     display: inline-flex;
-    align-items: center;
-    transition: all ease-in-out .3s;
-    text-decoration: none;
+    position: relative;
     color: $hb-text-color;
-    font-size: 15px;
-    font-weight: 500;
-    &:hover{
-        color: $hb-white-color;
+    transition: color ease-in-out 0.3s;
+    &:active {
+      color: $hb-white-color;
     }
-    @media(max-width:767px){
-        .hb-user-avatar{
-            img{
-                margin-right: 0;
-            }
-        }
-        span{
-            display: none;
-        }
+    &::after {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0;
+      right: 0;
     }
-    .hb-user-avatar{
-        width: 32px;
-        height: 32px;
-        overflow: hidden;
-        border-radius: 50%;
-        margin-right: 8px;
-        img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+  }
+  .hb-user-avatar {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
+  }
+  .dropdown-menu {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    background-color: $hb-background-secondary;
+    box-shadow: 1px 2px 20px rgba($color: #000000, $alpha: 0.2);
+    &::before {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid $hb-background-secondary;
+      top: -8px;
+      right: 25px;
+    }
+    .dropdown-item {
+      text-decoration: none;
+      color: $hb-text-color;
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      margin-bottom: 4px;
+      border-radius: 16px;
+      transition: all ease-in-out 0.3s;
+      font-weight: 500;
+      font-size: 16px;
+      background-color: transparent !important;
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.2) !important;
+        color: #fff;
+      }
+      .hb-topbar-menu-icon {
+        margin-right: 12px;
+        display: inherit;
+        width: 20px;
+        min-width: 20px;
+      }
+    }
+  }
 }
