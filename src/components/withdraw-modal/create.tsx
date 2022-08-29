@@ -31,10 +31,10 @@ const CreateWithdrawRequestForm = () => {
             errors.amount = MESSAGES['REQUIRED_MESSAGE'];
         } else if (!values.to) {
             errors.to = MESSAGES['REQUIRED_MESSAGE'];
-        } else if (!walletIsValid) {
-            errors.to = MESSAGES['INVALID_WALLET_ADDRESS'];
         } else if (values.amount <= 0 || values.amount > balance) {
             errors.amount = MESSAGES['AMOUNT_INVALID'] + balance + '.';
+        } else if (!walletIsValid) {
+            errors.to = MESSAGES['INVALID_WALLET_ADDRESS'];
         }
         return errors;
     }
@@ -69,7 +69,7 @@ const CreateWithdrawRequestForm = () => {
                 </FormGroup>
 
                 <FormGroup className="mb-3">
-                    <FormLabel>Minimum amount</FormLabel>
+                    <FormLabel>Amount</FormLabel>
                     <div className="hb-form-control-wrap">
                         <Field type='number' id="amount" name="amount" className="form-control" />
                         <span>DOT</span>
