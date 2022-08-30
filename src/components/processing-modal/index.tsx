@@ -62,7 +62,7 @@ function ProcessingModal({
                     {loading === -1 && <p style={{ color: 'red', marginTop: 10 }}>{error}</p>}
                     {loading === 1 &&
                         <div>
-                            <div style={{ cursor: 'pointer' }} onClick={handleDirect}><u>View on MoonBeam Scan</u></div>
+                            <div style={{ cursor: 'pointer' }} onClick={handleDirect}><u>View on Bsc Scan</u></div>
                             <button onClick={onCancel} className="btn btn-primary" style={{ marginTop: 20, padding: '10px 20px' }}>Close</button>
                         </div>
                     }
