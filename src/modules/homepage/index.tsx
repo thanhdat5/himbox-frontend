@@ -1,3 +1,6 @@
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import PublicFooter from "./components/footer";
 import PublicHeader from "./components/header";
 import PublicScrollToTop from "./components/to-top";
@@ -13,6 +16,10 @@ import PublicWhatIsHimBox from "./sections/what-is-himbox";
 import PublicWhatWeCanDo from "./sections/what-we-can-do";
 
 const Homepage = () => {
+    useEffect(function () {
+        Aos.init();
+    }, []);
+
     return <>
         <PublicHeader />
         <main className="hb-main p-0 no-before">
