@@ -2,9 +2,8 @@
   outline: 0 !important;
   box-shadow: none !important;
   &.btn-primary {
-    background: $hb-primary-gradient;
+    background: $hb-primary-color;
     border: 0;
-    // border-color: #524eee;
     padding: 14px 32px;
     border-radius: 20px;
     font-size: 18px;
@@ -45,7 +44,7 @@
     }
   }
   &.btn-default {
-    color: $hb-primary-gradient;
+    color: $hb-primary-color;
     background-color: transparent !important;
     border: 0;
     border-color: transparent !important;

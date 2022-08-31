@@ -21,6 +21,8 @@
 @import "components/level-card";
 @import "components/user-logged";
 @import "components/user-card";
+@import "components/footer";
+@import "components/section";
 // Pages
 @import "pages/auth";
 @import "pages/dashboard";
@@ -28,6 +30,17 @@
 @import "pages/management";
 @import "pages/profile";
 @import "pages/not-found";
+// Sections
+@import "sections/banner";
+@import "sections/tokens";
+@import "sections/what-is-himbox";
+@import "sections/features";
+@import "sections/we-can";
+@import "sections/polkadot";
+@import "sections/get-himbox";
+@import "sections/omi-channel";
+@import "sections/faq";
+@import "sections/create-an-account";
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -55,19 +68,21 @@ main {
   padding: $hb-header-height 24px 32px $hb-sidebar-width;
   position: relative;
   min-height: 100vh;
-  &::before {
-    width: 100%;
-    height: 100%;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: url(/assets/images/decor-2.png) right top;
-    background-position: right top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
-    opacity: 0.5;
+  &:not(.no-before) {
+    &::before {
+      width: 100%;
+      height: 100%;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url(/assets/images/decor-2.png) right top;
+      background-position: right top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      z-index: -1;
+      opacity: 0.5;
+    }
   }
   @media (max-width: 991px) {
     padding-left: $hb-sidebar-mb-width;
@@ -93,7 +108,7 @@ main {
   }
 }
 
-.hb-section-title {
+.hb-sect-title {
   margin-bottom: 10px;
   font-size: 16px;
   text-transform: uppercase;
@@ -111,5 +126,24 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+}
+.hb-to-top {
+  position: fixed !important; 
+  bottom: -40px;
+  right: 20px;
+  opacity: 0 !important;
+  width: 50px;
+  height: 50px;
+  min-width: 50px !important;
+  padding: 0 !important;
+  border-radius: 10px !important;
+  svg{
+    height: 24px;
+    width: auto;
+  }
+  &.show {
+    opacity: 1 !important;
+    bottom: 20px !important;
   }
 }

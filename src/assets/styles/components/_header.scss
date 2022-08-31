@@ -139,3 +139,96 @@
     }
   }
 }
+.hbl-header {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: all ease-in-out 0.3s;
+  &.sticky {
+    background-color: $hb-background;
+    background-color: #10101eeb;
+    backdrop-filter: blur(10px);
+  }
+  .hbl-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    height: $hb-header-height;
+    .hbl-header-logo {
+      margin-right: 20px;
+      @media (max-width: 991px) {
+        margin-right: 0;
+        img{
+          height: 55px;
+        }
+      }
+    }
+    .hbl-header-actions {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: space-between;
+      .hbl-toggle-header{
+        position: absolute;
+        top: 24px;
+        right: 32px;
+      }
+      @media (max-width: 991px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        transition: all ease-in-out 0.3s;
+        background-color: $hb-background;
+        padding:80px 32px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        transform: translateX(100%);
+        &.show {
+          transform: translateX(0);
+        }
+        .hbl-header-menu,
+        .hbl-header-buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .btn-default{
+           margin-bottom: 16px;
+        }
+      }
+    }
+    .hbl-header-menu {
+      .hbl-header-menu-item {
+        font-size: 18px;
+        color: $hb-white-color;
+        font-weight: 500;
+        padding: 14px 20px;
+        transition: all ease-in-out 0.3s;
+        &:hover {
+          color: $hb-primary-color;
+        }
+      }
+    }
+    .hbl-toggle-header {
+      display: none;
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      border-radius: 4px;
+      margin-left: 6px;
+      padding: 10px;
+      border-radius: 4px;
+      @media (max-width: 991px) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

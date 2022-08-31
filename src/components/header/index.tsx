@@ -25,7 +25,7 @@ const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => 
     const { login, logout } = useAuth();
     const { onPresentConnectModal } = useWalletModal(login, logout);
     const dotBal = useDotBalance();
-    const { account, chainId, library } = useWeb3React();
+    const { account } = useWeb3React();
     const [sticky, setSticky] = useState(false);
 
     const handleStikyHeader = () => {
@@ -71,7 +71,7 @@ const HBHeader = ({ onDeposit, onWithdraw, onSidebarToggle }: HBHeaderProps) => 
     return <header className={`hb-header ${sticky ? 'sticky' : ''}`}>
         <div className="hb-header-inner">
             <div className="hb-header-heading">
-                <Link to={ROUTES.DASHBOARD} className="hb-logo">
+                <Link to="/" className="hb-logo">
                     <Image className="d-none d-md-block" src="/images/logo-f.png" alt="HimBOX" />
                     <Image className="d-block d-md-none" src="/images/logo.png" alt="HimBOX" />
                 </Link>

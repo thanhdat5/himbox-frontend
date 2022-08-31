@@ -1,0 +1,46 @@
+.hb-omi-channel {
+  padding-bottom: 80px;
+  text-align: center;
+  background-image: url(/assets/images/wel-map.png);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  .hb-card {
+    padding: 0 !important;
+    background-color: transparent !important;
+    background-color: $hb-background-secondary;
+    a {
+      svg {
+        height: 18px;
+        width: auto;
+      }
+      &.btn-secondary{
+        background-color: $hb-background-secondary;
+        border-color: $hb-background-secondary;
+        &:hover {
+          background-color: $hb-primary-color;
+          border-color: $hb-primary-color;
+        }
+      }
+    }
+  }
+  .hb-omi-channel-image {
+    text-align: center;
+    padding-bottom: 40px;
+    img {
+      animation-name: spin;
+      animation-duration: 8000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      width: 300px;
+    }
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

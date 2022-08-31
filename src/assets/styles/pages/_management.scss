@@ -44,7 +44,7 @@
     }
     &.active {
       color: $hb-white-color;
-      background: $hb-primary-gradient !important;
+      background: $hb-primary-color !important;
     }
   }
 }
@@ -74,7 +74,7 @@
           cursor: not-allowed;
         }
         &.current {
-          background: rgba($color: $hb-primary-gradient, $alpha: 1);
+          background: rgba($color: $hb-primary-color, $alpha: 1);
           opacity: 1;
         }
       }

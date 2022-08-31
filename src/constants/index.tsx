@@ -177,12 +177,12 @@ export const ROUTES = {
     FORGET_PASSWORD: '/auth/forgot-password',
     NEW_PASSWORD: '/auth/new-password',
     VERIFY: '/auth/verify',
-    DASHBOARD: '/dashboard',
-    NETWORK: '/network',
-    PACKAGE: '/package',
-    PROFILE: '/profile',
-    HIM_PRIVATE_SALE: '/him-private-sale',
-    TRANSACTIONS: '/transactions',
+    DASHBOARD: '/app/dashboard',
+    NETWORK: '/app/network',
+    PACKAGE: '/app/package',
+    PROFILE: '/app/profile',
+    HIM_PRIVATE_SALE: '/app/him-private-sale',
+    TRANSACTIONS: '/app/transactions',
 }
 
 export const MESSAGES = {

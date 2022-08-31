@@ -64,7 +64,7 @@ const HIMPriceHistory = () => {
     }, [himPoolConfig]);
 
     return <div className="hb-price-history">
-        <div className="hb-section-title">HIM Price Roadmap</div>
+        <div className="hb-sect-title">HIM Price Roadmap</div>
         <div>
             {data && data?.labels && data?.datasets &&
                 <Bar options={options} data={data} />

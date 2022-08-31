@@ -3,6 +3,6 @@ interface HBSectionTitleProps {
     className?: string;
 }
 const HBSectionTitle = ({ title, className }: HBSectionTitleProps) => {
-    return <div className={`hb-section-title ${className || ''}`}>{title}</div>
+    return <div className={`hb-sect-title ${className || ''}`}>{title}</div>
 }
 export default HBSectionTitle;
