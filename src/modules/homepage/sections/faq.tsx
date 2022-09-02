@@ -8,7 +8,7 @@ const PublicFaq = () => {
                 <Col xl="6" md="12" className="pe-lg-5">
                     <h2 data-aos="fade-up" className="hb-section-title">HAVE ANY QUESTION?</h2>
                     <div data-aos="fade-up" data-aos-delay="100" className="hb-section-description">Below you'll find answers to the questions we get asked the
-                        most about applying for HimBOX.</div>
+                        most about applying for HIMBOX.</div>
                     <div className="hb-section-body">
                         <Accordion defaultActiveKey="0">
                             <Accordion.Item eventKey="0" data-aos="fade-up">

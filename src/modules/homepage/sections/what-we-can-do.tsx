@@ -4,7 +4,8 @@ import Section from "../components/section";
 const PublicWhatWeCanDo = () => {
     const WE_CAN = [
         { image: '/images/cta_thumb.png', text: 'DOT' },
-        { image: '/images/cta_thumb.png', text: 'HIM' },
+        { image: '/images/cta_thumb.png', text: 'DOT' },
+        { image: '/images/cta_thumb.png', text: 'Play Game' },
         { image: '/images/cta_thumb.png', text: 'Trading' },
         { image: '/images/cta_thumb.png', text: 'Open NFT Box' },
         { image: '/images/cta_thumb.png', text: 'Liquidity Providers' },

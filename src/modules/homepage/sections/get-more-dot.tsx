@@ -8,8 +8,7 @@ const PublicGetMoreDot = () => {
             <Col lg="8">
                 <h2 data-aos="fade-up" className="hb-section-title">HOW CAN I GET MORE DOT ON HIMBOX?</h2>
                 <div data-aos="fade-up" data-aos-delay="100" className="hb-section-description">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti dolor vel amet corporis
-                    magnam harum labore. <br />Eos dolores, nulla saepe doloribus, corporis dolorem...
+                    5 easy steps to earn more DOT with HIMBOX
                 </div>
             </Col>
         </Row>

@@ -7,14 +7,13 @@ const PublicOmiChannel = () => {
         <Container>
             <HBCard className="px-5 py-4">
                 <h2 data-aos="fade-up" className="hb-section-title mb-2">OMI-CHANNEL</h2>
-                <div data-aos="fade-up" data-aos-delay="100" className="hb-section-description mb-5">Lorem ipsum, dolor
-                    sit amet consectetur adipisicing elit.
+                <div data-aos="fade-up" data-aos-delay="100" className="hb-section-description mb-5">Join the HIMBOX community and information channel to stay up to date on news and to learn more about the Polkadot ecosystem.
                 </div>
                 <div className="hb-omi-channel-image">
                     <Image data-aos="fade-up" data-aos-delay="100" src="/images/omi.png" alt="" />
                 </div>
                 <Row className="justify-content-center">
-                    <Col xl="2" lg="3" xs="6" className="mb-3 mb-lg-0">
+                    {/* <Col xl="2" lg="3" xs="6" className="mb-3 mb-lg-0">
                         <a data-aos="fade-up" className="btn btn-primary w-100 d-flex align-items-center justify-content-center" href="#"
                             target="_blank">
                             <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="8px" height="8px"
@@ -24,10 +23,10 @@ const PublicOmiChannel = () => {
                             </svg>
                             <span className="ms-2">Website</span>
                         </a>
-                    </Col>
+                    </Col> */}
                     <Col xl="2" lg="3" xs="6" className="mb-3 mb-lg-0">
                         <a data-aos="fade-up" data-aos-delay="100" className="btn btn-primary btn-secondary w-100 d-flex align-items-center justify-content-center"
-                            href="#" target="_blank">
+                            href="https://t.me/HimBoxglobal" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 48 48"
                                 fill="none">
                                 <path
@@ -39,7 +38,7 @@ const PublicOmiChannel = () => {
                     </Col>
                     <Col xl="2" lg="3" xs="6">
                         <a data-aos="fade-up" data-aos-delay="200" className="btn btn-primary btn-secondary w-100 d-flex align-items-center justify-content-center"
-                            href="#" target="_blank">
+                            href="https://twitter.com/himboxglobal" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 416.32"
                                 role="img">
                                 <path fill="currentColor"
@@ -49,7 +48,7 @@ const PublicOmiChannel = () => {
                             <span className="ms-2">Twitter</span>
                         </a>
                     </Col>
-                    <Col xl="2" lg="3" xs="6">
+                    {/* <Col xl="2" lg="3" xs="6">
                         <a data-aos="fade-up" data-aos-delay="300" className="btn btn-primary btn-secondary w-100 d-flex align-items-center justify-content-center"
                             href="#" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 310 310">
@@ -59,7 +58,7 @@ const PublicOmiChannel = () => {
                             </svg>
                             <span className="ms-2">Youtube</span>
                         </a>
-                    </Col>
+                    </Col> */}
                 </Row>
             </HBCard>
         </Container>

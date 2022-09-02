@@ -31,9 +31,10 @@ const App = () => {
           <Route path={ROUTES.VERIFY} element={<VerifyAccount />} />
           <Route path={ROUTES.FORGET_PASSWORD} element={<ForgotPassword />} />
           <Route path={ROUTES.NEW_PASSWORD} element={<NewPassword />} />
+          {/* <Route path={ROUTES.DASHBOARD} element={<Dashboard />} /> */}
         </Route>
         <Route path="/app" element={<PrivateRoute />}>
-          <Route path={'/app'} element={<Dashboard />} />
+          {/* <Route path={'/'} element={<Dashboard />} /> */}
           <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.NETWORK} element={<Network />} />
           <Route path={ROUTES.PACKAGE} element={<Package />} />

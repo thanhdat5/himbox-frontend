@@ -36,7 +36,7 @@ const HBNetworkAffiliate = () => {
     return <>
         <HBSectionTitle title="Affiliate" />
         <div className="hb-network-sharing-card">
-            <p>Share your affiliate link to invite more partners to join HimBOX and gain
+            <p>Share your affiliate link to invite more partners to join HIMBOX and gain
                 more
                 profits. Follow to see how your network gets bigger!</p>
             <div className="hb-network-sharing-url">
@@ -62,7 +62,7 @@ const HBNetworkAffiliate = () => {
                 <FacebookShareButton
                     url={ref}
                     quote={''}
-                    hashtag={`#HimBOX`}
+                    hashtag={`#HIMBOX`}
                     className=""
                 >
                     <FacebookIcon size={26} borderRadius={8} />
@@ -75,7 +75,7 @@ const HBNetworkAffiliate = () => {
                 </TelegramShareButton>
                 <TwitterShareButton
                     url={ref}
-                    hashtags={['HimBOX']}
+                    hashtags={['HIMBOX']}
                     className=""
                 >
                     <TwitterIcon size={26} borderRadius={8} />

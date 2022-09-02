@@ -44,8 +44,8 @@ const HBPackageList = () => {
                 <p className="mb-lg-4">We provide investors with diverse and suitable investment packages. Users
                     only need to make a
                     decision on which investment package to invest in.<br />Users can also consider holding
-                    HimBOX, as it
-                    is estimated that the value of HimBOX can increase by 1000%.</p>
+                    HIMBOX, as it
+                    is estimated that the value of HIMBOX can increase by 1000%.</p>
                 <p>Select level of profit you'd like to receive. <span className="hb-badge">Daily reward (%)</span>
                 </p>
             </div>
