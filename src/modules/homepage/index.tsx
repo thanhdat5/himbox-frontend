@@ -14,6 +14,7 @@ import PublicTheEraOfPolkadot from "./sections/the-era-of-polkadot";
 import PublicTokens from "./sections/tokens";
 import PublicWhatIsHimBox from "./sections/what-is-himbox";
 import PublicWhatWeCanDo from "./sections/what-we-can-do";
+import WhyChooseHimbox from "./sections/why-me";
 
 const Homepage = () => {
     useEffect(function () {
@@ -30,6 +31,7 @@ const Homepage = () => {
             <PublicWhatWeCanDo />
             <PublicTheEraOfPolkadot />
             <PublicGetMoreDot />
+            <WhyChooseHimbox />
             <PublicOmiChannel />
             <PublicFaq />
             <PublicCTA />
