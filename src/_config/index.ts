@@ -3,6 +3,8 @@ export interface DicOption {
 }
 
 export const SUPPORT_EMAIL: string = 'support@himbox.io';
+export const DOT_DECIMALS: any = 18;
+export const USDT_DECIMALS: any = 18;
 
 // #PROD
 // export const HIMBOX_POOL_CONTRACT: string = '0x3C9a6D4917c13E5CaF4A8c09FBBC4c21b0a8B7Cb';

@@ -16,7 +16,7 @@ import { UseApprovePoolContract } from "../hook/useApprovePoolContract";
 import { UsePoolDeposit } from "../hook/usePoolContract";
 import { getDashboardStatisticsRequest } from "../redux/actions/dashboardActions";
 import { is2FAActive, ShowErrorMessage } from "../services/appService";
-import { DOT_ADDRESS } from "../_config";
+import { DOT_ADDRESS, DOT_DECIMALS } from "../_config";
 
 const PrivateLayout = ({ children }: any) => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const PrivateLayout = ({ children }: any) => {
   }
 
   const handelDepositInternal = () => {
-    UsePoolDeposit({ ref: refId, amount: Number(amount) * 10 ** 10, web3Provider: library?.provider, account }, (result: any) => {
+    UsePoolDeposit({ ref: refId, amount: Number(amount) * 10 ** DOT_DECIMALS, web3Provider: library?.provider, account }, (result: any) => {
       console.log('result 1 ==>>', result);
       if (result.status === ACTION_STATUS.DEPOSIT_PACKAGE_SUCCESS) {
         setHash(result?.txID);
@@ -83,7 +83,7 @@ const PrivateLayout = ({ children }: any) => {
       setApproving(true);
       const allowance = await getAllowanceToken({ web3Provider: library, currencyAddress: DOT_ADDRESS, account });
       const bigAllowance = new BigNumber(allowance);
-      if (bigAllowance.gte(new BigNumber(Number(amount) * 10 ** 10))) {
+      if (bigAllowance.gte(new BigNumber(Number(amount) * 10 ** DOT_DECIMALS))) {
         setApproving(false);
         handelDepositInternal();
       } else {

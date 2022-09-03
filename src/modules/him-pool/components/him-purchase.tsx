@@ -13,7 +13,7 @@ import { UseApprovePoolHIMContract, UseBuyHim } from "../../../hook/useHimContra
 import { GET_HIM_SALE_CONFIGS_REQUEST, GET_HIM_SALE_INFO_REQUEST, GET_HIM_SALE_USER_INFO_REQUEST } from "../../../redux/types/himPool";
 import { useUsdtBalance } from "../../../state/wallet/hook";
 import { formatNumberDownRound } from "../../../utils/helpers";
-import { USDT_ADDRESS } from "../../../_config";
+import { DOT_DECIMALS, USDT_ADDRESS, USDT_DECIMALS } from "../../../_config";
 
 const HBHimPurchase = () => {
 
@@ -33,14 +33,14 @@ const HBHimPurchase = () => {
 
     const handleValidateForm = (values: any) => {
         const errors: any = {};
-        if (!values.amount || values.amount < Number(get(himSaleInfo, '8', 10 ** 6)) / 10 ** 6) {
-            errors.amount = `${Number(get(himSaleInfo, '8', 10 ** 6)) / 10 ** 6} <= amount <= ${formatNumberDownRound(usdtBal / 10 ** 6)}`;
+        if (!values.amount || values.amount < Number(get(himSaleInfo, '8', 10 ** USDT_DECIMALS)) / 10 ** USDT_DECIMALS) {
+            errors.amount = `${Number(get(himSaleInfo, '8', 10 ** USDT_DECIMALS)) / 10 ** USDT_DECIMALS} <= amount <= ${formatNumberDownRound(usdtBal / 10 ** USDT_DECIMALS)}`;
         }
         return errors;
     }
 
     const handleBuyHIMInternal = async (amount: any, ref: any) => {
-        UseBuyHim({ web3Provider: library?.provider, amount: Number(amount) * 10 ** 6, ref, account }, async (result: any) => {
+        UseBuyHim({ web3Provider: library?.provider, amount: Number(amount) * 10 ** USDT_DECIMALS, ref, account }, async (result: any) => {
             console.log('result 1 ==>>', result);
             if (result.status === ACTION_STATUS.BUY_HIM_SUCCESS) {
                 setHash(result?.txID);
@@ -67,7 +67,7 @@ const HBHimPurchase = () => {
         setApproving(true);
         const allowance = await getAllowanceHIMToken({ web3Provider: library, currencyAddress: USDT_ADDRESS, account });
         const bigAllowance = new BigNumber(allowance);
-        if (bigAllowance.gte(new BigNumber(Number(values?.amount) * 10 ** 6))) {
+        if (bigAllowance.gte(new BigNumber(Number(values?.amount) * 10 ** USDT_DECIMALS))) {
             setApproving(false);
             handleBuyHIMInternal(values?.amount, values?.ref);
         } else {
@@ -100,7 +100,7 @@ const HBHimPurchase = () => {
                     <FormLabel>Your USDT balance</FormLabel>
                     {/* <FormControl readOnly type='text' value={formatNumberDownRound(usdtBal)} className="txtbalance" /> */}
                     <div className="hb-form-control-wrap">
-                        <FormControl readOnly type='text' value={formatNumberDownRound(usdtBal / 10 ** 6)} className="txtbalance" />
+                        <FormControl readOnly type='text' value={formatNumberDownRound(usdtBal / 10 ** USDT_DECIMALS)} className="txtbalance" />
                         <span>USDT</span>
                     </div>
                     <div className="form-description">Price: <b>1 HIM</b> = <b>{Number(get(himSaleInfo, '7', 0)) / 10 ** 2} USDT</b></div>
@@ -123,7 +123,7 @@ const HBHimPurchase = () => {
                     </div>
                 </FormGroup>
 
-                <Button type="submit" disabled={!(account && usdtBal / 10 ** 6 > 0)}>
+                <Button type="submit" disabled={!(account && usdtBal / 10 ** USDT_DECIMALS > 0)}>
                     <span>Purchase</span>
                 </Button>
 

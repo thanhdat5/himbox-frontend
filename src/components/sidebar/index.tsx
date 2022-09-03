@@ -70,7 +70,7 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
                         <div className="hb-sidebar-balance d-md-none d-block">
                             <Button type="button" className="hb-header-btn btn-default w-100 py-3" onClick={logout}>
                                 <span className="text-white" style={{ fontSize: '30px' }}>
-                                    <b>{formatNumberDownRound(getBalanceNumber(dotBal, 10))} DOT</b>
+                                    <b>{formatNumberDownRound(getBalanceNumber(dotBal, 18))} DOT</b>
                                 </span>
                                 <div>Disconnect</div>
                             </Button>

@@ -63,10 +63,10 @@ const HBDashboardStatistics = () => {
                     </Button>}
                 />
             </Col> */}
-            <Col lg={3} md={6} className="mb-lg-0 mb-md-4 mb-3">
+            <Col lg={3} md={6} className="mb-md-4 mb-3">
                 <HBStatisticCard label="Received Profit" value={formatNumberDownRound(get(dashboardStatistics, 'balances.dot_received', 0), 3)} subValue="DOT" />
             </Col>
-            <Col lg={3} md={6}>
+            <Col lg={3} md={6} className="mb-md-4 mb-3">
                 <HBStatisticCard label="Max Profit" value={formatNumberDownRound(get(dashboardStatistics, 'max_reward_profit', 0), 3)} subValue="DOT" />
             </Col>
         </Row>

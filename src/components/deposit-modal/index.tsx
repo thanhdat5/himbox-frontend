@@ -4,6 +4,7 @@ import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bo
 import { useDispatch, useSelector } from "react-redux";
 import { useDotBalance } from "../../state/wallet/hook";
 import { formatNumberDownRound } from "../../utils/helpers";
+import { DOT_DECIMALS } from "../../_config";
 
 interface DepositModalProps {
     onHide: (isSubmit?: boolean) => void,
@@ -28,11 +29,11 @@ const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalP
                         <FormControl type='number' required value={amount} onChange={(e) => setAmount(e.target.value)} />
                         <span>DOT</span>
                     </div>
-                    <Form.Text className="text-error">{`Max: ${formatNumberDownRound(BigNumber(dotBal).dividedBy(10 ** 10))}`}</Form.Text>
+                    <Form.Text className="text-error">{`Max: ${formatNumberDownRound(BigNumber(dotBal).dividedBy(10 ** DOT_DECIMALS))}`}</Form.Text>
                 </FormGroup>
 
                 <Button
-                    disabled={!(parseFloat(amount) > 0 && (BigNumber(dotBal).dividedBy(10 ** 10)).gte(BigNumber(amount)))}
+                    disabled={!(parseFloat(amount) > 0 && (BigNumber(dotBal).dividedBy(10 ** DOT_DECIMALS)).gte(BigNumber(amount)))}
                     type="submit">
                     <span>Confirm</span>
                 </Button>
