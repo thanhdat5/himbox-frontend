@@ -39,7 +39,7 @@ const App = () => {
           <Route path={ROUTES.NETWORK} element={<Network />} />
           <Route path={ROUTES.PACKAGE} element={<Package />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
-          <Route path={ROUTES.HIM_PRIVATE_SALE} element={<HimPool />} />
+          {/* <Route path={ROUTES.HIM_PRIVATE_SALE} element={<HimPool />} /> */}
           <Route path={ROUTES.TRANSACTIONS} element={<Transactions />} />
         </Route>
       </Routes>
