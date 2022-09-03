@@ -27,6 +27,7 @@
   .hb-omi-channel-image {
     text-align: center;
     padding-bottom: 40px;
+    overflow: hidden;
     img {
       animation-name: spin;
       animation-duration: 8000ms;

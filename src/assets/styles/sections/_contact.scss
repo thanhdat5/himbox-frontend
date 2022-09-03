@@ -1,0 +1,125 @@
+.hb-contact {
+  .hb-contact-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(/assets/images/contact-bg.png) no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    padding: 180px 0;
+    .hb-contact-list {
+      margin-top: -7.5px;
+      margin-bottom: -7.5px;
+      position: relative;
+      z-index: 2;
+      list-style: none;
+      padding-left: 0;
+      li {
+        a{
+            display: flex;
+            padding-top: 7.5px;
+            padding-bottom: 7.5px;
+            font-size: 0.94rem;
+            align-items: center;
+            text-decoration: none;
+            transition: all ease-in-out 0.3s;
+            color: $hb-text-color;
+            &:hover{
+                color: $hb-primary-color;
+                .contact-icon {
+                    color: $hb-primary-color;
+                }
+            }
+        }
+        .contact-icon {
+          margin-right: 10px;
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          color: $hb-white-color;
+          transition: all ease-in-out 0.3s;
+          padding: 10px;
+          border-radius: 6px;
+          background-color: $hb-background-secondary;
+          svg {
+            height: 16px;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotatecw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateacw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.hb-circle-animation {
+  height: 300px;
+  width: 300px;
+  z-index: 1;
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    border: 2px solid rgba(151, 175, 213, 0.3);
+    border-radius: 50%;
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-top-color: $hb-white-color;
+    border-right-color: $hb-white-color;
+    animation: rotatecw 30s linear infinite 0s;
+  }
+  &:after {
+    top: 25px;
+    left: 25px;
+    bottom: 25px;
+    right: 25px;
+    border-top-color: $hb-white-color;
+    border-bottom-color: $hb-white-color;
+    animation: rotateacw 24s linear infinite 0s;
+  }
+}
+
+.hb-circle-animation + * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 576px) {
+  .hb-circle-animation {
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    &:after {
+      top: 35px;
+      left: 35px;
+      bottom: 35px;
+      right: 35px;
+    }
+  }
+}

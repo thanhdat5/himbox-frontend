@@ -5,6 +5,7 @@ import PublicFooter from "./components/footer";
 import PublicHeader from "./components/header";
 import PublicScrollToTop from "./components/to-top";
 import PublicBanner from "./sections/banner";
+import PublicContact from "./sections/contact";
 import PublicCTA from "./sections/cta";
 import PublicFaq from "./sections/faq";
 import PublicFeatures from "./sections/features";
@@ -35,6 +36,7 @@ const Homepage = () => {
             <PublicOmiChannel />
             <PublicFaq />
             <PublicCTA />
+            <PublicContact />
         </main>
         <PublicFooter />
         <PublicScrollToTop />

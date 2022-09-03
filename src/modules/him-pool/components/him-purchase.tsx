@@ -1,24 +1,24 @@
-import { ErrorMessage, Form, Formik, Field } from "formik";
-import { useEffect, useRef, useState } from "react";
-import { Button, FormGroup, FormLabel, FormControl } from "react-bootstrap";
+import BigNumber from 'bignumber.js';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { get } from "lodash";
+import { useRef, useState } from "react";
+import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import HBCard from "../../../components/card";
-import BigNumber from 'bignumber.js';
-import { ACTION_STATUS, MESSAGES } from "../../../constants";
-import { useUsdtBalance } from "../../../state/wallet/hook";
-import { formatNumberDownRound, validatePwd } from "../../../utils/helpers";
-import { UseApprovePoolHIMContract, UseBuyHim } from "../../../hook/useHimContract";
-import { useActiveWeb3React } from "../../../hook";
-import { getAllowanceHIMToken, getAllowanceToken } from "../../../hook/useAllowance";
-import { USDT_ADDRESS } from "../../../_config";
 import ProcessingModal from "../../../components/processing-modal";
-import { get } from "lodash";
+import { ACTION_STATUS } from "../../../constants";
+import { useActiveWeb3React } from "../../../hook";
+import { getAllowanceHIMToken } from "../../../hook/useAllowance";
+import { UseApprovePoolHIMContract, UseBuyHim } from "../../../hook/useHimContract";
 import { GET_HIM_SALE_CONFIGS_REQUEST, GET_HIM_SALE_INFO_REQUEST, GET_HIM_SALE_USER_INFO_REQUEST } from "../../../redux/types/himPool";
+import { useUsdtBalance } from "../../../state/wallet/hook";
+import { formatNumberDownRound } from "../../../utils/helpers";
+import { USDT_ADDRESS } from "../../../_config";
 
 const HBHimPurchase = () => {
 
     const dispatch = useDispatch();
-    const { account, library, chainId } = useActiveWeb3React();
+    const { account, library } = useActiveWeb3React();
 
     const formRef = useRef<any>(null);
 
