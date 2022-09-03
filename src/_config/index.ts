@@ -2,6 +2,8 @@ export interface DicOption {
     [key: number]: string;
 }
 
+export const SUPPORT_EMAIL: string = 'info@himbox.io';
+
 export const HIMBOX_POOL_CONTRACT: string = '0x3C9a6D4917c13E5CaF4A8c09FBBC4c21b0a8B7Cb';
 export const DOT_ADDRESS: string = '0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402';
 export const NETWORK_SCAN: string = 'https://bscscan.com';
