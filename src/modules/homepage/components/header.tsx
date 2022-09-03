@@ -39,8 +39,8 @@ const PublicHeader = () => {
                         </svg>
                     </Button>
                     <div className="hbl-header-menu">
-                        <Link className="hbl-header-menu-item" to="/">Home</Link>
-                        <Link className="hbl-header-menu-item" to="/">Documents</Link>
+                        {/* <Link className="hbl-header-menu-item" to="/">Home</Link>
+                        <Link className="hbl-header-menu-item" to="/">Documents</Link> */}
                     </div>
                     <div className="hbl-header-buttons">
                         {
@@ -52,11 +52,12 @@ const PublicHeader = () => {
                     </div>
                 </div>
                 <Button variant="link" type="button" className="hbl-toggle-header">
-                    <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="21" height="3" rx="1.5" fill="white"></rect>
                         <rect y="6" width="21" height="3" rx="1.5" fill="white"></rect>
                         <rect y="12" width="21" height="3" rx="1.5" fill="white"></rect>
-                    </svg>
+                    </svg> */}
+                    <Link to={ROUTES.LOGIN} className="btn btn-primary">Login</Link>
                 </Button>
             </div>
         </Container>
