@@ -9,7 +9,7 @@ const PublicWhatIsHimBox = () => {
         <Container>
             <Row className="gx-xl-5 align-items-center">
                 <Col lg="6" className="mb-lg-0 mb-4">
-                    <Image data-aos="fade-up" src="/images/create-account-bg.png" alt="" className="w-100" />
+                    <Image data-aos="fade-up" src="/images/banner2.gif" alt="" className="w-100" />
                 </Col>
                 <Col lg="6" className="pe-lg-5">
                     <h2 data-aos="fade-up" className="hb-section-title">WHAT IS HIMBOX?</h2>

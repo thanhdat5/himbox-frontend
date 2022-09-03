@@ -15,7 +15,7 @@ const WhyChooseHimbox = () => {
                     <span>Token HIMBOX's growth potential is correlated with the expansion of the DOT ecosystem and its user base.</span><br/>
                 </div>
                 <div className="hb-why-channel-image">
-                    <Image data-aos="fade-up" data-aos-delay="100" src="/images/omi.png" alt="" />
+                    <Image data-aos="fade-up" data-aos-delay="100" src="/images/why-him.png" alt="" />
                 </div>
             </HBCard>
         </Container>

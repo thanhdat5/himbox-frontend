@@ -3,13 +3,13 @@ import Section from "../components/section";
 
 const PublicWhatWeCanDo = () => {
     const WE_CAN = [
-        { image: '/images/cta_thumb.png', text: 'DOT' },
-        { image: '/images/cta_thumb.png', text: 'DOT' },
-        { image: '/images/cta_thumb.png', text: 'Play Game' },
-        { image: '/images/cta_thumb.png', text: 'Trading' },
-        { image: '/images/cta_thumb.png', text: 'Open NFT Box' },
-        { image: '/images/cta_thumb.png', text: 'Liquidity Providers' },
-        { image: '/images/cta_thumb.png', text: 'Contribute' }
+        { image: '/images/actions/stake-dot.png', text: 'DOT' },
+        { image: '/images/actions/him.png', text: 'HIM' },
+        { image: '/images/actions/game.png', text: 'Play Game' },
+        { image: '/images/actions/trading.png', text: 'Trading' },
+        { image: '/images/actions/nft.png', text: 'Open NFT Box' },
+        { image: '/images/actions/liquidity-providers.png', text: 'Liquidity Providers' },
+        { image: '/images/actions/contribute.png', text: 'Contribute' }
     ];
 
     return <Section className="hb-we-can" id="WhatWeCanDo">

@@ -28,20 +28,20 @@
       text-align: center;
       padding-bottom: 40px;
       img {
-        animation-name: spin;
-        animation-duration: 8000ms;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+        // animation-name: spin;
+        // animation-duration: 8000ms;
+        // animation-iteration-count: infinite;
+        // animation-timing-function: linear;
         width: 300px;
       }
     }
   }
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+  // @keyframes spin {
+  //   from {
+  //     transform: rotate(0deg);
+  //   }
+  //   to {
+  //     transform: rotate(360deg);
+  //   }
+  // }
   
