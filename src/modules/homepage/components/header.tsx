@@ -57,7 +57,11 @@ const PublicHeader = () => {
                         <rect y="6" width="21" height="3" rx="1.5" fill="white"></rect>
                         <rect y="12" width="21" height="3" rx="1.5" fill="white"></rect>
                     </svg> */}
-                    <Link to={ROUTES.LOGIN} className="btn btn-primary">Login</Link>
+                    {logged ?
+                        <Link to={ROUTES.DASHBOARD} className="btn btn-primary">Dashboard</Link>
+                        :
+                        <Link to={ROUTES.LOGIN} className="btn btn-primary">Login</Link>
+                    }
                 </Button>
             </div>
         </Container>
