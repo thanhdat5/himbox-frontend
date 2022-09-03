@@ -5,6 +5,15 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    .hb-section-description {
+      text-align: left;
+      @media (min-width: 992px) {
+        text-align: center;
+        ul {
+          list-style-type: none;
+        }
+      }
+    }
     .hb-card {
       padding: 0 !important;
       background-color: transparent !important;
