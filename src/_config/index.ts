@@ -24,6 +24,13 @@ export const SUPPORTED_CHAIN_RPC: any = [
 // export const NETWORK_SCAN: string = 'https://testnet.snowtrace.io';
 // export const USDT_ADDRESS: string = '0x3dA82dDEAf8b6a06F261Bc2CBe417dF7D62a5059';
 // export const HIM_PRIVATE_SALE_CONTRACT: string = '0xD014CF3c60f879bc8B88DbF13e9706A98ce50059';
-// export const chainIdsSupport = [43113]; //testnet avax
-// export const chainIdDefaults = 43113;
-// export const SUPPORTED_CHAIN_RPC: any = ['https://api.avax-test.network/ext/bc/C/rpc'];
+// export const chainIdDefaults = 97;
+// export const chainIdsSupport = [chainIdDefaults]; //testnet bsc
+// export const SUPPORTED_CHAIN_RPC: any = [
+//     'https://data-seed-prebsc-1-s1.binance.org:8545/',
+//     'https://data-seed-prebsc-2-s1.binance.org:8545/',
+//     'http://data-seed-prebsc-1-s2.binance.org:8545/',
+//     'http://data-seed-prebsc-2-s2.binance.org:8545/',
+//     'https://data-seed-prebsc-1-s3.binance.org:8545/',
+//     'https://data-seed-prebsc-2-s3.binance.org:8545/',
+// ];
