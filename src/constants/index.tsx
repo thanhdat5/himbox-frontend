@@ -34,6 +34,7 @@ export const ENDPOINTS = {
     JOIN_PACKAGE: `/package/participate`,
     MY_PACKAGE: `/package/my-package`,
     HIMBOX_PRICE: `/dashboard/get-prices`,
+    LOCK_DOT: `/package/lock-dot`,
 
     // deposit
     GET_LIST_DEPOSIT: `/wallet/deposit/list`,
@@ -449,7 +450,8 @@ export const MESSAGES = {
     "REQUIRED_MESSAGE": 'Cannot leave this blank.',
     "AMOUNT_INVALID": 'Amount > 0 and <= ',
     "INVALID_WALLET_ADDRESS": 'Invalid wallet address.',
-    "INVALID_PHONE": "Invalid phone number"
+    "INVALID_PHONE": "Invalid phone number",
+    "LOCK_DOT_SUCCESS": "Lock DOT successfully!"
 };
 
 export const ACTION_STATUS = {
