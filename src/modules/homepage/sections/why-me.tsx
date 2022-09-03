@@ -17,7 +17,7 @@ const WhyChooseHimbox = () => {
                     </ul>
                 </div>
                 <div className="hb-why-channel-image">
-                    <Image data-aos="fade-up" data-aos-delay="100" src="/images/why-him.png" alt="" />
+                    <Image data-aos="fade-up" data-aos-delay="100" src="/images/why-me.gif" alt="" />
                 </div>
             </HBCard>
         </Container>

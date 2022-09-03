@@ -33,7 +33,7 @@ const HBDashboardStatistics = () => {
 
     return <div className="hb-dashboard-statistics">
         <Row className="row pb-lg-1 mb-4">
-            <Col lg={4} md={6} className="mb-md-4 mb-3">
+            <Col lg={3} md={6} className="mb-md-4 mb-3">
                 <HBStatisticCard label="Balance" value={formatNumberDownRound(get(dashboardStatistics, 'balances.dot', 0), 3)} subValue="DOT" className="highlight"
                     action={<Button variant="link" className="btn-setting" onClick={() => setShowWithdraw(true)}>
                         <span data-bs-toggle="tooltip" data-bs-placement="top" title="Withdraw">
@@ -48,10 +48,10 @@ const HBDashboardStatistics = () => {
                     </Button>}
                 />
             </Col>
-            <Col lg={4} md={6} className="mb-md-4 mb-3">
+            <Col lg={3} md={6} className="mb-md-4 mb-3">
                 <HBStatisticCard label="Total Sales" value={formatNumberDownRound(get(dashboardStatistics, 'sales.total', 0), 3)} subValue="DOT" />
             </Col>
-            <Col lg={4} md={6} className="mb-lg-4 mb-3">
+            {/* <Col lg={4} md={6} className="mb-lg-4 mb-3">
                 <HBStatisticCard label="Locked DOT" value={formatNumberDownRound(get(dashboardStatistics, 'balances.dot_locked', 0), 3)} subValue="DOT"
                     action={<Button variant="link" className="btn-setting" onClick={requestLockDOTMore}>
                         <span data-bs-toggle="tooltip" data-bs-placement="top" title="Lock DOT">
@@ -62,11 +62,11 @@ const HBDashboardStatistics = () => {
                         </span>
                     </Button>}
                 />
-            </Col>
-            <Col lg={4} md={6} className="mb-lg-0 mb-md-4 mb-3">
+            </Col> */}
+            <Col lg={3} md={6} className="mb-lg-0 mb-md-4 mb-3">
                 <HBStatisticCard label="Received Profit" value={formatNumberDownRound(get(dashboardStatistics, 'balances.dot_received', 0), 3)} subValue="DOT" />
             </Col>
-            <Col lg={4} md={6}>
+            <Col lg={3} md={6}>
                 <HBStatisticCard label="Max Profit" value={formatNumberDownRound(get(dashboardStatistics, 'max_reward_profit', 0), 3)} subValue="DOT" />
             </Col>
         </Row>

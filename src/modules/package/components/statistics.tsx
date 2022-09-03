@@ -34,7 +34,7 @@ const HBPackageStatistics = () => {
             <Col xl={3} lg={4} md={6}>
                 <HBStatisticCard label="Profit" value={`${get(myPackage, 'profit', 0)}%`} subValue="Day" className="h-100" />
             </Col>
-            <Col xl={3} lg={4} md={6}>
+            {/* <Col xl={3} lg={4} md={6}>
                 <HBStatisticCard label="Locked DOT" value={`${formatNumberDownRound(get(dashboardStatistics, 'balances.dot_locked', 0))} DOT`} subValue="Day" className="h-100"
                     action={<Button variant="link" className="btn-setting" onClick={requestLockDOTMore}>
                         <span data-bs-toggle="tooltip" data-bs-placement="top" title="Lock DOT">
@@ -45,7 +45,7 @@ const HBPackageStatistics = () => {
                         </span>
                     </Button>}
                 />
-            </Col>
+            </Col> */}
         </Row>
         <LockDotModal
             visible={lockVisible}

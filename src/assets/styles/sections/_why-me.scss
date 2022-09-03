@@ -41,7 +41,11 @@
         // animation-duration: 8000ms;
         // animation-iteration-count: infinite;
         // animation-timing-function: linear;
-        width: 300px;
+        width: 340px;
+        border-radius: 12px;
+        @media (min-width: 768px) {
+          width: 500px;
+        }
       }
     }
   }

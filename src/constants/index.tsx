@@ -4,7 +4,11 @@ export const HIMBOX_USER_ID = "HIMBOX_USER_ID";
 export const HIMBOX_USER_INFO = "HIMBOX_USER_INFO";
 
 // export const BASE_URL = 'http://localhost:6969/api/v1';
-export const BASE_URL = 'https://test.himbox.io/api/v1';
+// #DEV
+// export const BASE_URL = 'https://test.himbox.io/api/v1';
+// #STAGING
+export const BASE_URL = 'https://staging.himbox.io/api/v1';
+// #PROD
 // export const BASE_URL = 'https://himbox.io/api/v1';
 export const ENDPOINTS = {
     LOGIN: `/user/login`,
