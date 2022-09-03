@@ -1,15 +1,22 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Section from "../components/section";
+import stakeDot from '../../../assets/images/actions/stake-dot.png';
+import him from '../../../assets/images/actions/him.png';
+import game from '../../../assets/images/actions/game.png';
+import trading from '../../../assets/images/actions/trading.png';
+import nft from '../../../assets/images/actions/nft.png';
+import liquidity from '../../../assets/images/actions/liquidity-providers.png';
+import contribute from '../../../assets/images/actions/contribute.png';
 
 const PublicWhatWeCanDo = () => {
     const WE_CAN = [
-        { image: '/images/actions/stake-dot.png', text: 'DOT' },
-        { image: '/images/actions/him.png', text: 'HIM' },
-        { image: '/images/actions/game.png', text: 'Play Game' },
-        { image: '/images/actions/trading.png', text: 'Trading' },
-        { image: '/images/actions/nft.png', text: 'Open NFT Box' },
-        { image: '/images/actions/liquidity-providers.png', text: 'Liquidity Providers' },
-        { image: '/images/actions/contribute.png', text: 'Contribute' }
+        { image: stakeDot, text: 'DOT' },
+        { image: him, text: 'HIM' },
+        { image: game, text: 'Play Game' },
+        { image: trading, text: 'Trading' },
+        { image: nft, text: 'Open NFT Box' },
+        { image: liquidity, text: 'Liquidity Providers' },
+        { image: contribute, text: 'Contribute' }
     ];
 
     return <Section className="hb-we-can" id="WhatWeCanDo">
