@@ -1,15 +1,7 @@
-import { useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
-import { useDispatch, useSelector } from "react-redux";
 
 const HBNotification = () => {
-  const dispatch = useDispatch();
-
-  const maskAsRead = (notificationId: string) => {
-    // dispatch(markNotificationsAsReadRequest({ notificationIds: [notificationId] }))
-  }
-
   return (
     <Dropdown className="hb-dropdown hb-notification me-md-4 me-2">
       <Dropdown.Toggle variant="link" className="hb-dropdown-toggle">

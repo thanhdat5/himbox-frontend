@@ -1,6 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { get } from "lodash";
-import { useState } from "react";
 import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ENDPOINTS, MESSAGES } from "../../constants";
@@ -11,14 +10,11 @@ import { ShowErrorMessage, ShowSuccessMessage } from "../../services/appService"
 import { extractError, formatNumberDownRound } from "../../utils/helpers";
 
 const CreateWithdrawRequestForm = () => {
-
     const dispatch = useDispatch();
 
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
     const balance = get(dashboardStatistics, 'balances.dot', 0);
     const { account } = useActiveWeb3React();
-
-    const [loading, setLoading] = useState(false);
 
     // Create Withdraw Request
     const handleValidateForm = (values: any) => {
@@ -33,7 +29,7 @@ const CreateWithdrawRequestForm = () => {
 
     const handleSubmitForm = async (values: any) => {
         try {
-            const res = await apiCall('POST', ENDPOINTS.LOCK_DOT, {
+            await apiCall('POST', ENDPOINTS.LOCK_DOT, {
                 amount: Number(values?.amount)
             })
             dispatch(getDashboardStatisticsRequest({}));

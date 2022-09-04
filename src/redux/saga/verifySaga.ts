@@ -9,7 +9,7 @@ import { apiCall } from "./api";
 
 function* fetchVerifySaga(action: any): any {
   try {
-    const res = yield call(
+    yield call(
       apiCall,
       "POST",
       ENDPOINTS.VERIFY_ACCOUNT,

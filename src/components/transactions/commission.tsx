@@ -1,12 +1,10 @@
+import { Pagination } from 'antd';
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Pagination } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { NUMBER_PER_PAGE, PACKAGE_NAME_TYPES } from "../../constants";
 import { GET_LIST_COMMISSION_REQUEST } from "../../redux/types/withdraw";
-import { NETWORK_SCAN } from "../../_config";
 
 interface CommissionTransactionsProps {
     isDashboard?: boolean
@@ -23,10 +21,6 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
     useEffect(() => {
         dispatch({ type: GET_LIST_COMMISSION_REQUEST });
     }, [])
-
-    const handleNavigate = (txID: string, type = 'tx') => {
-        window.open(`${NETWORK_SCAN}/${type}/${txID}`);
-    }
 
     return <>
         {

@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import BigNumber from 'bignumber.js';
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { useDotBalance } from "../../state/wallet/hook";
 import { formatNumberDownRound } from "../../utils/helpers";
 import { DOT_DECIMALS } from "../../_config";
@@ -13,7 +11,6 @@ interface DepositModalProps {
     setAmount: any,
 }
 const DepositModal = ({ onHide, handleSubmit, amount, setAmount }: DepositModalProps) => {
-
     const dotBal = useDotBalance();
 
     return <Modal className="hb-modal" size="sm" backdrop="static" centered show onHide={onHide}>

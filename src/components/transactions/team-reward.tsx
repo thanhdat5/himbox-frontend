@@ -1,14 +1,11 @@
+import { Pagination } from 'antd';
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Pagination } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NUMBER_PER_PAGE } from "../../constants";
 import { GET_TEAM_REWARD_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
-import { formatWalletAddress, getStatus } from "../../utils/utils";
-import { NETWORK_SCAN } from "../../_config";
-import { NUMBER_PER_PAGE } from "../../constants";
 
 interface TeamRewardProps {
     isDashboard?: boolean
@@ -16,19 +13,12 @@ interface TeamRewardProps {
 
 const TeamRewardHistory = ({ isDashboard = false }: TeamRewardProps) => {
     const dispatch = useDispatch();
-
     const [current, setCurrent] = useState(1);
-
     const teamRewardHistory = useSelector(state => get(state, 'withdraw.teamReward.list', []));
-    // console.log('teamRewardHistory', teamRewardHistory);
 
     useEffect(() => {
         dispatch({ type: GET_TEAM_REWARD_REQUEST });
     }, [])
-
-    const handleNavigate = (txID: string, type = 'tx') => {
-        window.open(`${NETWORK_SCAN}/${type}/${txID}`);
-    }
 
     return <>
         {

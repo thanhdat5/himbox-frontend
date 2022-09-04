@@ -4,7 +4,7 @@ interface TokenCardProps {
     href?: string;
 }
 const TokenCard = ({ image, altText = '', href = '' }: TokenCardProps) => {
-    return <a href={href} target="_blank" className="hb-token"><img data-aos="fade-up" src={image} alt={altText} />
+    return <a href={href} target="_blank" className="hb-token" rel="noreferrer"><img data-aos="fade-up" src={image} alt={altText} />
     </a>
 }
 export default TokenCard

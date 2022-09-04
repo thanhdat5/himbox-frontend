@@ -11,6 +11,9 @@ const AuthLayout = ({ children }: any) => {
           </Link>
           {children}
         </div>
+        <div className="text-center pt-4">
+          ← Back to <Link to="/">Homepage</Link>
+        </div>
       </Container>
     </div>
   );

@@ -1,8 +1,8 @@
+import { Pagination } from 'antd';
 import { get } from "lodash";
 import { useEffect, useState } from "react";
-import { Badge, Button, OverlayTrigger, Table, Tooltip } from "react-bootstrap";
+import { Badge, Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Pagination } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { default as ConfirmCancelModal, default as ConfirmModal } from "../../components/confirm-modal";
 import WithdrawModal from "../../components/withdraw-modal";

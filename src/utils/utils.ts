@@ -1,11 +1,10 @@
-import { get } from "lodash";
-import { Contract } from "@ethersproject/contracts";
 import { getAddress } from "@ethersproject/address";
-import { AbiItem } from "web3-utils";
-import Web3 from "web3";
 import { AddressZero } from "@ethersproject/constants";
-import { provider } from "web3-core";
+import { Contract } from "@ethersproject/contracts";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { get } from "lodash";
+import Web3 from "web3";
+import { AbiItem } from "web3-utils";
 import ERC20_ABI from "../constants/abi/dot.abi.json";
 import HimBox_ABI from "../constants/abi/him-box-package.abi.json";
 import { DOT_ADDRESS, HIMBOX_POOL_CONTRACT } from "../_config";

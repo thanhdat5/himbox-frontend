@@ -1,16 +1,8 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
-import { ShowErrorMessage } from "../../services/appService";
-import {
-  recoverPasswordFailure,
-  recoverPasswordSuccess,
-  sendVerifyCodeFailure,
-  sendVerifyCodeSuccess
-} from "../actions/forgotPasswordActions";
+import { all, takeLatest } from "redux-saga/effects";
 import {
   RECOVER_PASSWORD_REQUEST,
   SEND_VERIFY_CODE_REQUEST
 } from "../types/forgotPassword";
-import { apiCall } from "./api";
 
 function* fetchVerifyCodeSaga(action: any) {
   // try {

@@ -3,8 +3,7 @@ import {
   UserEnable2FARequestModel,
   UserEnable2FAResponseModel,
   UserGenerate2FARequestModel,
-  UserInfoResponseModel,
-  UserUpdateInforRequestModel,
+  UserInfoResponseModel
 } from "../../models";
 
 import {
@@ -44,7 +43,7 @@ import {
   UpdateUserInfoSuccess,
   UPDATE_USER_INFO_FAILURE,
   UPDATE_USER_INFO_REQUEST,
-  UPDATE_USER_INFO_SUCCESS,
+  UPDATE_USER_INFO_SUCCESS
 } from "../types/user";
 
 export const resetUserState = () => ({

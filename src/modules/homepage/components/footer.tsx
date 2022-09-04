@@ -45,8 +45,8 @@ const PublicFooter = () => {
                                 <ul className="hb-footer-menu">
                                     <li><Link to="/">Home</Link></li>
                                     <li>{logged ? <Link to={ROUTES.DASHBOARD}>Dashboard</Link> : <Link to={ROUTES.SIGN_UP}>Create an account</Link>}</li>
-                                    <li><a href="https://www.binance.com/en/trade/DOT_USDT" target="_blank">Buy DOT</a></li>
-                                    <li><a href="#">Contact </a></li>
+                                    <li><a rel="noreferrer" href="https://www.binance.com/en/trade/DOT_USDT" target="_blank">Buy DOT</a></li>
+                                    <li><a href="#Contact">Contact </a></li>
                                 </ul>
                             </div>
                         </Col>

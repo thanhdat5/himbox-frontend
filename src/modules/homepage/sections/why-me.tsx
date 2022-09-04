@@ -1,4 +1,4 @@
-import { Container, Row, Col, Image } from "react-bootstrap"
+import { Container, Image } from "react-bootstrap"
 import HBCard from "../../../components/card"
 import Section from "../components/section"
 

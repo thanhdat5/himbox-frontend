@@ -1,21 +1,14 @@
 import { get } from "lodash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import LockDotModal from "../../../components/lock-dot-modal";
 import HBStatisticCard from "../../../components/statistic-card";
 import WithdrawModal from "../../../components/withdraw-modal";
 import { formatNumberDownRound } from "../../../utils/helpers";
 
 const HBDashboardStatistics = () => {
-
-    const dispatch = useDispatch();
-
     const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
-
-    // console.log('dashboardStatistics', dashboardStatistics);
-
     const [showWithdraw, setShowWithdraw] = useState(false);
     const [lockVisible, setLockVisible] = useState(false);
 
@@ -26,10 +19,10 @@ const HBDashboardStatistics = () => {
         setShowWithdraw(false);
     }
 
-    const requestLockDOTMore = (e: any) => {
-        e.preventDefault();
-        setLockVisible(true);
-    }
+    // const requestLockDOTMore = (e: any) => {
+    //     e.preventDefault();
+    //     setLockVisible(true);
+    // }
 
     return <div className="hb-dashboard-statistics">
         <Row className="row pb-lg-1 mb-4">

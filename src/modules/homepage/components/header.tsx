@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom"
-import { HIMBOX_ACCESS_TOKEN, ROUTES } from "../../../constants"
+import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { HIMBOX_ACCESS_TOKEN, ROUTES } from "../../../constants";
 
 const PublicHeader = () => {
     const logged = localStorage.getItem(HIMBOX_ACCESS_TOKEN);

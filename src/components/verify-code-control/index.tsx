@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Countdown from 'react-countdown';
-import { sendVerifyCodeRequest } from "../../redux/actions/forgotPasswordActions";
-import { getForgotPasswordLoadingSelector } from "../../redux/selectors/forgotPasswordSelectors";
-import { apiCall } from '../../redux/saga/api';
-import { ENDPOINTS, MESSAGES, ROUTES } from '../../constants';
-import { getVerifyUserInfo } from '../../redux/selectors/signUpSelectors';
 import { get } from 'lodash';
+import { useEffect, useState } from 'react';
+import { FormControl } from "react-bootstrap";
+import Countdown from 'react-countdown';
+import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { ENDPOINTS, MESSAGES, ROUTES } from '../../constants';
+import { apiCall } from '../../redux/saga/api';
+import { getVerifyUserInfo } from '../../redux/selectors/signUpSelectors';
 import { ShowErrorMessage, ShowSuccessMessage } from '../../services/appService';
 import { extractError } from '../../utils/helpers';
-import { useNavigate } from 'react-router-dom';
-
 
 const COUNTDOWN_DURATION = 600 * 1000;
 interface VerifyCodeControlProps {
@@ -23,12 +20,8 @@ interface VerifyCodeControlProps {
     isFromResetPwd?: boolean;
 }
 const VerifyCodeControl = ({ value, onChange, required, showResend, isFromResetPwd = false, handleReset = () => { } }: VerifyCodeControlProps) => {
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const userInfo = useSelector(getVerifyUserInfo);
-
     const [showCountdown, setShowCountdown] = useState<boolean>(true);
     const [timeCd, setTimeCd] = useState<number>(Date.now() + COUNTDOWN_DURATION);
 
@@ -40,7 +33,7 @@ const VerifyCodeControl = ({ value, onChange, required, showResend, isFromResetP
     const handleResendCode = async (e: any) => {
         e.preventDefault();
         try {
-            const data = await apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
+            await apiCall('POST', ENDPOINTS.RESEND_VERIFY_MAIL, {
                 username: get(userInfo, 'username', '')
             });
             handleReset(0);

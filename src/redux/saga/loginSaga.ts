@@ -24,7 +24,7 @@ import { apiCall } from "./api";
 function* fetchLoginSaga(action: any): any {
   try {
     const res = yield call(apiCall, "POST", ENDPOINTS.LOGIN, action.payload);
-    if (res?.data?.code == 407) {
+    if (res?.data?.code === 407) {
       yield put({
         type: VERIFY_REQUEST,
         payload: {
@@ -40,7 +40,7 @@ function* fetchLoginSaga(action: any): any {
       ShowSuccessMessage(MESSAGES.VERIFY_GUIDE);
       yield put(loginFailure());
       history.push(ROUTES.VERIFY);
-    } else if (res?.data?.code == 202) {
+    } else if (res?.data?.code === 202) {
       // yield put(loginSuccess(null));
       yield put({
         type: TFA_ACTION,

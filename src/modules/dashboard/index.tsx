@@ -1,8 +1,7 @@
 import { get } from 'lodash';
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Col, Row } from "react-bootstrap";
-import { useSelector } from 'react-redux';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import HBCard from "../../components/card";
 import HBPageWrap from "../../components/page-wrap";
 import { PACKAGE_RANKING_TYPES } from '../../constants';

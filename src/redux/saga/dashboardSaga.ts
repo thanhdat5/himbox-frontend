@@ -3,14 +3,9 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { ENDPOINTS } from "../../constants";
 import { ShowErrorMessage } from "../../services/appService";
 import {
-  getDashboardLevelsFailure,
-  getDashboardLevelsSuccess,
-  getDashboardRanksFailure,
-  getDashboardRanksSuccess, getDashboardStatisticsFailure,
+  getDashboardStatisticsFailure,
   getDashboardStatisticsSuccess, getDepositTransactionsFailure,
-  getDepositTransactionsSuccess, getDowngradeTransactionsFailure, getDowngradeTransactionsSuccess, getProfitTransactionsFailure, getProfitTransactionsSuccess, getUpgradeTransactionsFailure,
-  getUpgradeTransactionsSuccess,
-  getWithdrawalTransactionsFailure,
+  getDepositTransactionsSuccess, getWithdrawalTransactionsFailure,
   getWithdrawalTransactionsSuccess
 } from "../actions/dashboardActions";
 import {

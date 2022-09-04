@@ -1,21 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useActiveWeb3React } from '../../hook'
-import useIsWindowVisible from '../../hook/useIsWindowVisible'
 import { useDotContract, useUsdtContract } from '../../hook/useContract'
+import useIsWindowVisible from '../../hook/useIsWindowVisible'
+import { SET_DOT_BALANCE, SET_USDT_BALANCE } from '../../redux/types/application'
 import { DOT_ADDRESS, USDT_ADDRESS } from '../../_config'
 import { useBlockNumber } from '../application/hooks'
-import { SET_DOT_BALANCE, SET_USDT_BALANCE } from '../../redux/types/application'
-
 
 export default function Updater(): null {
-
     const { library, chainId, account } = useActiveWeb3React()
     const dispatch = useDispatch()
-
-
     const windowVisible = useIsWindowVisible()
-
     const [state, setState] = useState<{ chainId: number | undefined; balance: number | null }>({
         chainId,
         balance: null,

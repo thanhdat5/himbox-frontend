@@ -60,4 +60,16 @@
       }
     }
   }
+
+  a {
+    color: $hb-primary-color;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all ease-in-out 0.3s;
+    font-size: 15px;
+    &:hover {
+      text-decoration: underline;
+      color: #ef589d;
+    }
+  }
 }

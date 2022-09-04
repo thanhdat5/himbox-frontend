@@ -1,32 +1,25 @@
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { NoBscProviderError } from '@binance-chain/bsc-connector';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import {
     NoEthereumProviderError,
-    UserRejectedRequestError as UserRejectedRequestErrorInjected,
+    UserRejectedRequestError as UserRejectedRequestErrorInjected
 } from '@web3-react/injected-connector';
+import { useCallback } from 'react';
 
 import { bscConnector, injected } from '../connectors';
-import { ShowErrorMessage } from '../services/appService';
 import { connectorLocalStorageKey, ConnectorNames } from '../literals';
-
+import { ShowErrorMessage } from '../services/appService';
 
 function useAuth() {
-    const dispatch = useDispatch();
     const { activate, deactivate } = useWeb3React();
-
 
     const connectorsByName: { [connectorName in ConnectorNames]: any } = {
         [ConnectorNames.Injected]: injected,
         [ConnectorNames.BSC]: bscConnector,
     };
 
-
-
     const login = useCallback((connectorID: ConnectorNames) => {
         const connector = connectorsByName[connectorID];
-
         if (connector) {
             activate(connector, async (error: Error) => {
                 window.localStorage.removeItem(connectorLocalStorageKey);

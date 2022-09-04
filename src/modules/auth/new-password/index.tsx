@@ -1,32 +1,25 @@
+import { get } from "lodash";
 import { useEffect, useState } from "react";
-import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { Button, Form, FormGroup, FormLabel } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import PasswordControl from "../../../components/password-control";
 import VerifyCodeControl from "../../../components/verify-code-control";
 import { ENDPOINTS, MESSAGES, ROUTES } from "../../../constants";
-import { recoverPasswordRequest } from "../../../redux/actions/forgotPasswordActions";
-import { getForgotPasswordLoadingSelector, getForgotPasswordSuccessSelector } from "../../../redux/selectors/forgotPasswordSelectors";
-import { getVerifyUserInfo } from "../../../redux/selectors/signUpSelectors";
-import { history } from "../../../utils/history";
-import { verifyAccountRequest } from "../../../redux/actions/verifyAccountActions";
-import { get } from "lodash";
-import { ShowErrorMessage, ShowSuccessMessage } from "../../../services/appService";
 import { apiCall } from "../../../redux/saga/api";
+import { getForgotPasswordLoadingSelector } from "../../../redux/selectors/forgotPasswordSelectors";
+import { getVerifyUserInfo } from "../../../redux/selectors/signUpSelectors";
+import { ShowErrorMessage, ShowSuccessMessage } from "../../../services/appService";
 import { extractError, validatePwd } from "../../../utils/helpers";
-import PasswordControl from "../../../components/password-control";
+import { history } from "../../../utils/history";
 
-const NewPassword = (props: any) => {
-    const dispatch = useDispatch();
-
+const NewPassword = () => {
     const loading = useSelector(getForgotPasswordLoadingSelector);
     const userInfo = useSelector(getVerifyUserInfo);
-
     const navigate = useNavigate();
-
     const [verifyCode, setVerifyCode] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPwd, setConfirmPwd] = useState<string>('');
-
     const [errors, setErrors] = useState<any>(null);
 
     useEffect(() => {

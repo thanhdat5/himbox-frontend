@@ -1,7 +1,4 @@
-import { get } from "lodash";
-import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import CreateWithdrawRequestForm from "./create";
 
 interface LockDotModalProps {
@@ -9,9 +6,6 @@ interface LockDotModalProps {
     onHide: (isSubmit?: boolean) => void
 }
 const LockDotModal = ({ onHide, visible }: LockDotModalProps) => {
-    
-    const dispatch = useDispatch();
-
     const handleOnHide = () => {
         onHide(false);
     }

@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { Link, useLocation } from "react-router-dom";
 import PasswordControl from "../../../components/password-control";
 import { MESSAGES, ROUTES } from "../../../constants";
 import { signUpRequest } from "../../../redux/actions/signUpActions";
-import { getSignUpLoadingSelector, getSignUpSuccessSelector } from "../../../redux/selectors/signUpSelectors";
+import { getSignUpLoadingSelector } from "../../../redux/selectors/signUpSelectors";
 import { validateEmail, validatePwd } from "../../../utils/helpers";
 
 const SignUp = () => {
     const dispatch = useDispatch();
     const loading = useSelector(getSignUpLoadingSelector);
-    const success = useSelector(getSignUpSuccessSelector);
-
     const location = useLocation();
-
-    const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPwd, setConfirmPwd] = useState<string>('');
@@ -28,7 +23,7 @@ const SignUp = () => {
         if (location.search && location.search.includes('=')) {
             console.log('location.sea', location.search);
             const temp = location.search.split('=');
-            if (temp.length == 2) {
+            if (temp.length === 2) {
                 setReferralId(temp[1]);
             }
         }

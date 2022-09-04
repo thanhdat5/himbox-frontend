@@ -1,7 +1,6 @@
 import { get } from "lodash";
-import { Button, Col, Form, FormControl, FormGroup, Image, Modal, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { ENDPOINTS, MESSAGES } from "../../constants";
 import { getDashboardStatisticsRequest } from "../../redux/actions/dashboardActions";
 import { apiCall } from "../../redux/saga/api";
@@ -13,15 +12,13 @@ interface ParticipateModalProps {
     selectedPackage?: any
 }
 const ParticipateModal = ({ onHide, selectedPackage }: ParticipateModalProps) => {
-
     const dispatch = useDispatch();
-
     const prices = useSelector(state => get(state, 'package.price', {}));
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const res = await apiCall("POST", ENDPOINTS.JOIN_PACKAGE, { to_package: selectedPackage?._id });
+            await apiCall("POST", ENDPOINTS.JOIN_PACKAGE, { to_package: selectedPackage?._id });
             dispatch(getDashboardStatisticsRequest({}))
             onHide(true);
             ShowSuccessMessage(MESSAGES.ENTER_PACKAGE_SUCCESS);

@@ -1,12 +1,9 @@
-import { Web3Provider } from '@ethersproject/providers';
-
-import { getContractV2, getDotContract } from '../utils/utils';
-import { MAX_UINT } from '../literals';
-import { ACTION_STATUS } from '../constants';
-import { DOT_ADDRESS, HIMBOX_POOL_CONTRACT } from '../_config';
-import ERC20_ABI from '../constants/abi/dot.abi.json';
-import Web3 from 'web3';
 import { get } from 'lodash';
+import { ACTION_STATUS } from '../constants';
+import ERC20_ABI from '../constants/abi/dot.abi.json';
+import { MAX_UINT } from '../literals';
+import { getContractV2 } from '../utils/utils';
+import { DOT_ADDRESS, HIMBOX_POOL_CONTRACT } from '../_config';
 
 export interface IApproveToken {
     web3Provider: any;
@@ -36,7 +33,7 @@ export const UseApprovePoolContract = (
                 });
             })
             .then((receipt: any) => {
-                if (receipt.status == true) {
+                if (receipt.status) {
                     callback({
                         status: ACTION_STATUS.APPROVED,
                         data: receipt.transactionHash,

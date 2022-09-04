@@ -10,12 +10,12 @@ import Package from "./modules/package";
 import Profile from "./modules/profile";
 import { AuthRoute } from "./routes/auth-route";
 import { PrivateRoute } from "./routes/private-route";
-import './App.css';
-import 'antd/dist/antd.dark.css';
+import './App.scss';
+import 'antd/dist/antd.dark.less';
 import NewPassword from "./modules/auth/new-password";
 import VerifyAccount from "./modules/auth/verify";
 import Transactions from "./modules/transactions";
-import HimPool from "./modules/him-pool";
+// import HimPool from "./modules/him-pool";
 import Homepage from "./modules/homepage";
 import ScrollToTop from "./components/scroll-to-top";
 

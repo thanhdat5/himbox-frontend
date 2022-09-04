@@ -1,15 +1,14 @@
 import { AddressZero } from '@ethersproject/constants';
-import { getContractV2 } from './../utils/utils';
-import BigNumber from 'bignumber.js';
 import { get } from 'lodash';
-import { Web3Provider } from '@ethersproject/providers';
 import { ACTION_STATUS } from '../constants';
 import Private_Him_ABI from '../constants/abi/him-private-sale.abi.json';
 import Usdt_ABI from '../constants/abi/usdt.abi.json';
-import { USDT_ADDRESS, HIM_PRIVATE_SALE_CONTRACT, SUPPORTED_CHAIN_RPC } from '../_config';
 import { MAX_UINT } from '../literals';
-import { createWeb3WithNode } from '../utils/webUtils';
 import { extractError } from '../utils/helpers';
+import { createWeb3WithNode } from '../utils/webUtils';
+import { HIM_PRIVATE_SALE_CONTRACT, SUPPORTED_CHAIN_RPC, USDT_ADDRESS } from '../_config';
+import { getContractV2 } from './../utils/utils';
+
 export interface IBuyHIM {
     amount: any;
     web3Provider: any;
@@ -45,7 +44,7 @@ export const UseApprovePoolHIMContract = (
                 });
             })
             .then((receipt: any) => {
-                if (receipt.status == true) {
+                if (receipt.status) {
                     callback({
                         status: ACTION_STATUS.APPROVED,
                         data: receipt.transactionHash,
@@ -91,7 +90,7 @@ export async function UseBuyHim(
             });
         })
             .then((receipt: any) => {
-                if (receipt.status == true) {
+                if (receipt.status) {
                     callback({
                         status: ACTION_STATUS.BUY_HIM_SUCCESS,
                         txID: receipt.transactionHash,

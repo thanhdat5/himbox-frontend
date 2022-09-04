@@ -1,12 +1,12 @@
 import { get } from "lodash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Col, Form, FormControl, FormGroup, FormLabel, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PasswordControl from "../../../components/password-control";
 import { MESSAGES, ROUTES } from "../../../constants";
 import { loginRequest } from "../../../redux/actions/loginActions";
-import { getLoginLoadingSelector, getLoginSuccessSelector } from "../../../redux/selectors/loginSelectors";
+import { getLoginLoadingSelector } from "../../../redux/selectors/loginSelectors";
 import { TFA_ACTION } from "../../../redux/types/login";
 import { validateEmail } from "../../../utils/helpers";
 import VeryfyCodeModal from "./verify-code-modal";
@@ -14,7 +14,6 @@ import VeryfyCodeModal from "./verify-code-modal";
 const Login = () => {
     const dispatch = useDispatch();
     const loading = useSelector(getLoginLoadingSelector);
-    const success = useSelector(getLoginSuccessSelector);
     const showTfa = useSelector(state => get(state, 'login.showTfa', false));
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');

@@ -1,12 +1,12 @@
+import { Pagination } from 'antd';
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Pagination } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
-import { NUMBER_PER_PAGE, PACKAGE_ACTION_TYPES, PACKAGE_NAME_TYPES } from "../../constants";
+import { NUMBER_PER_PAGE } from "../../constants";
 import { GET_LIST_STAKE_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
-import { formatWalletAddress, getStatus } from "../../utils/utils";
+import { formatWalletAddress } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
 interface DepositTransactionsProps {

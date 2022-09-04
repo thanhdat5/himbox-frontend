@@ -1,12 +1,11 @@
+import { Pagination } from 'antd';
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Pagination } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { NUMBER_PER_PAGE } from "../../constants";
 import { GET_LIST_STAKE_REQUEST } from "../../redux/types/withdraw";
 import { formatNumberDownRound } from "../../utils/helpers";
-import { NETWORK_SCAN } from "../../_config";
 
 interface LeadershipHistoryProps {
     isDashboard?: boolean
@@ -23,10 +22,6 @@ const LeadershipHistory = ({ isDashboard = false }: LeadershipHistoryProps) => {
     useEffect(() => {
         dispatch({ type: GET_LIST_STAKE_REQUEST });
     }, [])
-
-    const handleNavigate = (txID: string, type = 'tx') => {
-        window.open(`${NETWORK_SCAN}/${type}/${txID}`);
-    }
 
     return <>
         {

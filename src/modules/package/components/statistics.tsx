@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import { useState } from "react";
-import { Col, Row, Button } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import LockDotModal from "../../../components/lock-dot-modal";
 import HBStatisticCard from "../../../components/statistic-card";
@@ -8,16 +8,13 @@ import { PACKAGE_RANKING_TYPES } from "../../../constants";
 import { formatNumberDownRound } from "../../../utils/helpers";
 
 const HBPackageStatistics = () => {
-
     const myPackage = useSelector(state => get(state, 'dashboard.statistics[0].package', null));
-    const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
-
+    // const dashboardStatistics = useSelector(state => get(state, 'dashboard.statistics[0]', null));
     const [lockVisible, setLockVisible] = useState(false);
-
-    const requestLockDOTMore = (e: any) => {
-        e.preventDefault();
-        setLockVisible(true);
-    }
+    // const requestLockDOTMore = (e: any) => {
+    //     e.preventDefault();
+    //     setLockVisible(true);
+    // }
 
     return <div className="hb-network-statistics">
         <Row className="row pb-lg-1 mb-3 mb-lg-4">

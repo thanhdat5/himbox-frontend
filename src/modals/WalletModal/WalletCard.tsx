@@ -1,5 +1,4 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { connectorLocalStorageKey } from '../../literals';
 
 
@@ -26,7 +25,7 @@ function WalletCard({ login, walletConfig, onDismiss, className }: Props) {
       id={`wallet-connect-${title.toLocaleLowerCase()}`}
       className={`btn-secondary w-100 ${className}`}
     >
-      <img src={icon} width="30px" className="me-2" />
+      <Image src={icon} width="30px" className="me-2" alt={title} />
       <span>{title}</span>
     </Button>
   );

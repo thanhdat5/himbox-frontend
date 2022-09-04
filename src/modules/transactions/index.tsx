@@ -1,7 +1,6 @@
-import { get } from "lodash";
-import { useEffect, useState } from "react";
-import { Tab, Tabs, Table, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import HBPageWrap from "../../components/page-wrap";
 import CommissionTransactions from "../../components/transactions/commission";
 import DepositTransactions from "../../components/transactions/deposit";
@@ -12,9 +11,6 @@ import WithdrawalTransactions from "../../components/transactions/withdrawal";
 import { getDepositTransactionsRequest } from "../../redux/actions/dashboardActions";
 import { getListWithdrawRequest } from "../../redux/actions/withdrawActions";
 import { GET_LEADERSHIP_HISTORY_REQUEST, GET_LIST_COMMISSION_REQUEST, GET_LIST_STAKE_REQUEST, GET_TEAM_REWARD_REQUEST } from "../../redux/types/withdraw";
-import { formatNumberDownRound } from "../../utils/helpers";
-import { formatWalletAddress } from "../../utils/utils";
-import { NETWORK_SCAN } from "../../_config";
 
 const Transactions = () => {
 

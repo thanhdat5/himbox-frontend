@@ -41,6 +41,7 @@ function ConnectModal({ login, onDismiss = () => null }: Props) {
                   className={entry.className}
                 />
               }
+              return <></>
             })}
           </ReactPlaceholder>
         </Modal.Body>

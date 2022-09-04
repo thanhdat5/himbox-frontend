@@ -1,17 +1,12 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { ENDPOINTS } from "../../../constants";
 import { apiCall } from "../../../redux/saga/api";
 import HBNetworkMembers from "./members";
 
 const HBNetworkLevels = () => {
-
-    const dispatch = useDispatch();
-
     const myRef = useSelector(state => get(state, 'dashboard.statistics[0].ref_id', ''));
-
     const [data, setData] = useState<any>({});
     const [selectedChild, setSelectedChild] = useState<any>({});
     const [childPackage, setChildPackage] = useState([]);

@@ -1,6 +1,5 @@
 import { ConnectorNames } from '../../literals';
-import { isBinanceExtensionAvailable, isMetamaskAvailable, isTrustWalletAvailable } from '../../utils/utils';
-
+import { isMetamaskAvailable } from '../../utils/utils';
 import { Config } from './types';
 
 const connectors: Config[] = [

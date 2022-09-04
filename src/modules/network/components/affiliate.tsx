@@ -1,20 +1,9 @@
 import { get } from "lodash";
 import { useEffect, useState } from "react";
-import {
-    FacebookShareButton,
-    InstapaperShareButton,
-    RedditShareButton,
-    TelegramShareButton,
-    TwitterShareButton,
-    WhatsappShareButton,
-    FacebookIcon,
-    InstapaperIcon,
-    RedditIcon,
-    TelegramIcon,
-    TwitterIcon,
-    WhatsappIcon
-} from "react-share";
 import { useSelector } from "react-redux";
+import {
+    FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton
+} from "react-share";
 import HBSectionTitle from "../../../components/sectrion-title";
 
 const HBNetworkAffiliate = () => {

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Col, Image, Row } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import HBPageWrap from "../../components/page-wrap"
 import { getUserInfoRequest, resetUserState } from "../../redux/actions/userActions"

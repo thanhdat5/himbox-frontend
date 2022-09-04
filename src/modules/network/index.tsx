@@ -1,7 +1,6 @@
-import { get } from "lodash"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Col, Row } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import HBCard from "../../components/card"
 import HBPageWrap from "../../components/page-wrap"
 import HBSectionTitle from "../../components/sectrion-title"
@@ -11,7 +10,6 @@ import HBNetworkLevels from "./components/levels"
 import HBNetworkStatistics from "./components/statistics"
 
 const Network = () => {
-
     const dispatch = useDispatch();
 
     useEffect(() => {
