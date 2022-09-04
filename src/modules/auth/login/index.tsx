@@ -40,7 +40,7 @@ const Login = () => {
     }
 
     return <>
-        <div className="hb-auth-form-title">Login</div>
+        <div className="hb-auth-form-title">&nbsp;</div>
         <Form onSubmit={handleSubmit}>
             <FormGroup className="mb-3">
                 <FormLabel>Your email address</FormLabel>
