@@ -6,10 +6,10 @@ const PublicFooter = () => {
     const logged = localStorage.getItem(HIMBOX_ACCESS_TOKEN);
     return <footer className="hb-footer">
         <Container>
-            <Row>
+            <Row className="justify-content-between">
                 <Col lg="4" className="mb-lg-0 mb-4">
                     <div className="hb-footer-logo">
-                        <Image src="/images/logo-f.png" alt="HimBOX" />
+                        <Image src="/images/logo.svg" alt="HimBOX" height={65} />
                     </div>
                     <div className="hb-footer-text">HIMBOX - A DECENTRALIZED FINANCE PLATFORM ON POLKADOT</div>
                     <div className="hb-footer-socials">
@@ -37,9 +37,9 @@ const PublicFooter = () => {
                         </a> */}
                     </div>
                 </Col>
-                <Col lg="8">
-                    <div className="row">
-                        <div className="col-md-4">
+                <Col xl="7" lg="7">
+                    <Row>
+                        <Col xs="4">
                             <div className="hb-footer-block">
                                 <div className="hb-footer-block-title">General</div>
                                 <ul className="hb-footer-menu">
@@ -49,8 +49,8 @@ const PublicFooter = () => {
                                     <li><a href="#">Contact </a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div className="col-md-4">
+                        </Col>
+                        <Col xs="4">
                             <div className="hb-footer-block">
                                 <div className="hb-footer-block-title">Community</div>
                                 <ul className="hb-footer-menu">
@@ -59,8 +59,8 @@ const PublicFooter = () => {
                                     {/* <li><a target="_blank" rel="noreferrer" href="#">Youtube</a></li> */}
                                 </ul>
                             </div>
-                        </div>
-                        <div className="col-md-4">
+                        </Col>
+                        <Col xs="4">
                             <div className="hb-footer-block">
                                 <div className="hb-footer-block-title">Other</div>
                                 <ul className="hb-footer-menu">
@@ -72,8 +72,8 @@ const PublicFooter = () => {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </Container>
