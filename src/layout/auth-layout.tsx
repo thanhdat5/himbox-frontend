@@ -1,13 +1,14 @@
 import { Container, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const AuthLayout = ({ children }: any) => {
   return (
     <div className="hb-auth-page">
       <Container>
         <div className="hb-auth-form">
-          <div className="hb-auth-form-logo">
+          <Link to='/' className="hb-auth-form-logo d-block mb-4">
             <Image src="/images/logo.svg" height="60" alt="HimBOX" />
-          </div>
+          </Link>
           {children}
         </div>
       </Container>

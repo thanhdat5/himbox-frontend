@@ -32,7 +32,7 @@ const Login = () => {
     }
 
     const handleVerifyCodeDismiss = (e: string) => {
-        dispatch({type: TFA_ACTION, payload: false});
+        dispatch({ type: TFA_ACTION, payload: false });
         if (e) {
             const postData = { username: email, password, tfa_code: e };
             dispatch(loginRequest(postData));
@@ -40,7 +40,7 @@ const Login = () => {
     }
 
     return <>
-        <div className="hb-auth-form-title">&nbsp;</div>
+        <div className="hb-auth-form-title"></div>
         <Form onSubmit={handleSubmit}>
             <FormGroup className="mb-3">
                 <FormLabel>Your email address</FormLabel>
