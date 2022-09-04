@@ -169,6 +169,10 @@
     }
     .hbl-header-logo {
       margin-right: 20px;
+      img{
+        height: 65px;
+        width: auto;
+      }
       @media (max-width: 576px) {
         margin-right: 0;
         img {

@@ -27,7 +27,7 @@ const PublicHeader = () => {
         <Container>
             <div className="hbl-header-inner">
                 <Link to="/" className="hbl-header-logo">
-                    <img src="/images/logo-f.png" alt="HimBOX" />
+                    <img src="/images/logo.svg" alt="HimBOX" />
                 </Link>
                 <div className="hbl-header-actions">
                     <div className="hbl-header-buttons">

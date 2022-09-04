@@ -6,7 +6,7 @@ const AuthLayout = ({ children }: any) => {
       <Container>
         <div className="hb-auth-form">
           <div className="hb-auth-form-logo">
-            <Image src="/images/logo-f.png" height="60" alt="HimBOX" />
+            <Image src="/images/logo.svg" height="60" alt="HimBOX" />
           </div>
           {children}
         </div>
