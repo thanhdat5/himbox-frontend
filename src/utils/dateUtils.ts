@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function formatDate(dateString: string): string {
     const obj = new Date(dateString);
     const aux = (obj.getMonth() + 1);
@@ -6,5 +8,7 @@ export function formatDate(dateString: string): string {
 }
 
 export function formatEpochTime(start: any, end: any): any {
-    return `${new Date(Number(start) * 1000).toUTCString()} ${new Date(Number(start) * 1000).toUTCString()} - ${new Date(Number(end) * 1000).toUTCString()} ${new Date(Number(end) * 1000).toUTCString()}`;
+    const sDate = moment(new Date(Number(start) * 1000)).utc();
+    const eDate = moment(new Date(Number(end) * 1000)).utc();
+    return `${sDate.format("YYYY-MM")} - ${eDate.format("YYYY-MM")}`;
 }
