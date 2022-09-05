@@ -102,12 +102,12 @@ const HBSidebar = ({ show, onSidebarToggle }: HBSidebarProps) => {
                         <path fill="currentColor" d="M47,36H20a2,2,0,0,0,0,4H42.17l-2.58,2.59a2,2,0,1,0,2.82,2.82l6-6a2,2,0,0,0,.44-2.18A2,2,0,0,0,47,36Z" />
                     </svg>} />
 
-                    {/* <HBSidebarItem link={ROUTES.HIM_PRIVATE_SALE} text="HIM Sale" active={location?.pathname === ROUTES.HIM_PRIVATE_SALE} icon={<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                    <HBSidebarItem link={ROUTES.HIM_PRIVATE_SALE} text="HIM Sale" active={location?.pathname === ROUTES.HIM_PRIVATE_SALE} icon={<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                         <path d="M5 7H13H18.79C19.9733 7 20.8978 8.02164 20.7801 9.19901L20.1801 15.199C20.0779 16.2214 19.2175 17 18.19 17H8.63961C7.68625 17 6.86542 16.3271 6.67845 15.3922L5 7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                         <path d="M5 7L4.18937 3.75746C4.07807 3.3123 3.67809 3 3.21922 3H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8 21H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 21H18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>} /> */}
+                    </svg>} />
 
                     <HBSidebarItem className="d-block d-md-none" link={ROUTES.PROFILE} text="Profile" active={location?.pathname === ROUTES.PROFILE} icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"

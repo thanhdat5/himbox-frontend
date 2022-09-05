@@ -15,7 +15,7 @@ import 'antd/dist/antd.dark.less';
 import NewPassword from "./modules/auth/new-password";
 import VerifyAccount from "./modules/auth/verify";
 import Transactions from "./modules/transactions";
-// import HimPool from "./modules/him-pool";
+import HimPool from "./modules/him-pool";
 import Homepage from "./modules/homepage";
 import ScrollToTop from "./components/scroll-to-top";
 
@@ -39,7 +39,7 @@ const App = () => {
           <Route path={ROUTES.NETWORK} element={<Network />} />
           <Route path={ROUTES.PACKAGE} element={<Package />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
-          {/* <Route path={ROUTES.HIM_PRIVATE_SALE} element={<HimPool />} /> */}
+          <Route path={ROUTES.HIM_PRIVATE_SALE} element={<HimPool />} />
           <Route path={ROUTES.TRANSACTIONS} element={<Transactions />} />
         </Route>
       </Routes>
