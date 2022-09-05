@@ -27,44 +27,46 @@ const CommissionTransactions = ({ isDashboard = false }: CommissionTransactionsP
             !commissionTransactions || commissionTransactions.length <= 0 ?
                 <div className="no-data">No transaction</div>
                 :
-                <Table responsive>
-                    <thead>
-                        <tr>
-                            <th style={{ width: 50 }}>No.</th>
-                            <th>Package</th>
-                            <th>Interest (DOT / day)</th>
-                            <th style={{ width: 220 }}>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            (isDashboard ?
-                                commissionTransactions.slice(0, 10)
-                                :
-                                commissionTransactions.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
-                            )
-                                .map((item: any, idx: number) => {
-                                    return <tr key={idx + item?._id}>
-                                        <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
-                                        <td>
-                                            <span>Package {PACKAGE_NAME_TYPES[item?.package_invest?.profit]}</span>
-                                        </td>
-                                        <td>{item?.dot_amount}</td>
-                                        <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
-                                    </tr>
-                                })
-                        }
-                    </tbody>
+                <>
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th style={{ width: 50 }}>No.</th>
+                                <th>Package</th>
+                                <th>Interest (DOT / day)</th>
+                                <th style={{ width: 220 }}>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (isDashboard ?
+                                    commissionTransactions.slice(0, 10)
+                                    :
+                                    commissionTransactions.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                                )
+                                    .map((item: any, idx: number) => {
+                                        return <tr key={idx + item?._id}>
+                                            <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
+                                            <td>
+                                                <span>Package {PACKAGE_NAME_TYPES[item?.package_invest?.profit]}</span>
+                                            </td>
+                                            <td>{item?.dot_amount}</td>
+                                            <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
+                                        </tr>
+                                    })
+                            }
+                        </tbody>
+                    </Table>
 
-                </Table>
+                    {!isDashboard && <Pagination
+                        current={current}
+                        total={commissionTransactions.length}
+                        pageSize={NUMBER_PER_PAGE}
+                        showSizeChanger={false}
+                        onChange={(page: any, pageSize: any) => setCurrent(page)}
+                    />}
+                </>
         }
-        {!isDashboard && <Pagination
-            current={current}
-            total={commissionTransactions.length}
-            pageSize={NUMBER_PER_PAGE}
-            showSizeChanger={false}
-            onChange={(page: any, pageSize: any) => setCurrent(page)}
-        />}
     </>
 }
 export default CommissionTransactions

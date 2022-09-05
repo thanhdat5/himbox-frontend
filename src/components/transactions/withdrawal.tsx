@@ -95,77 +95,79 @@ const WithdrawalTransactions = ({ isDashboard = false }: WithdrawTxProps) => {
             loadingList ? <div className="no-data">Loading...</div> : <>
                 {
                     !withdrawalTransactions || withdrawalTransactions.length <= 0 ? <div className="no-data">No transaction</div> :
-                        <Table responsive>
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>TxHash</th>
-                                    <th>Time</th>
-                                    <th>To Address</th>
-                                    <th>Amount (DOT)</th>
-                                    <th>Fee</th>
-                                    <th>Status</th>
-                                    <th style={{ width: 202 }}>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    (isDashboard ?
-                                        withdrawalTransactions.slice(0, 10)
-                                        :
-                                        withdrawalTransactions.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
-                                    ).map((item: any, idx: number) => {
-                                        return <tr key={idx}>
-                                            <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
-                                            <td>
-                                                {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
-                                                <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.transaction?.tx_hash, 'tx')}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 20)}</span>
-                                                {/* </OverlayTrigger> */}
-                                            </td>
-                                            <td className="text-nowrap">{new Date(item.createdAt).toLocaleDateString()} {new Date(item.createdAt).toLocaleTimeString()}</td>
-                                            <td>
-                                                {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item.to}</Tooltip>}> */}
-                                                <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.to, 'address')}>{formatWalletAddress(item.to, 20)}</span>
-                                                {/* </OverlayTrigger> */}
-                                            </td>
-                                            <td className="text-nowrap">{item.amount.dot} DOT</td>
-                                            <td>{formatNumberDownRound(item.fee)}</td>
-                                            <td>
-                                                <Badge bg={
-                                                    item.status === 'W' ? 'primary' :
-                                                        item.status === 'P' ? 'warning' :
-                                                            item.status === 'PC' ? 'info' :
-                                                                item.status === 'C' ? 'success' :
-                                                                    item.status === 'F' ? 'danger' :
-                                                                        item.status === 'CL' ? 'secondary' : ''
-                                                }>{getStatus(item.status)}</Badge>
-                                            </td>
-                                            <td className="text-nowrap">
-                                                {
-                                                    (item.status === 'W') ?
-                                                        <>
-                                                            <Button className="btn-listing" onClick={() => handleConfirmWithdraw(item)} type="button" size="sm">
-                                                                <span>Confirm</span>
-                                                            </Button>
-                                                            <Button className="btn-listing btn-secondary ms-2" onClick={() => handleCancelWithdraw(item)} type="button" size="sm">
-                                                                <span>Cancel</span>
-                                                            </Button>
-                                                        </> : <></>
-                                                }
-                                            </td>
-                                        </tr>
-                                    })
-                                }
-                            </tbody>
-                        </Table>
+                        <>
+                            <Table responsive>
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>TxHash</th>
+                                        <th>Time</th>
+                                        <th>To Address</th>
+                                        <th>Amount (DOT)</th>
+                                        <th>Fee</th>
+                                        <th>Status</th>
+                                        <th style={{ width: 202 }}>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        (isDashboard ?
+                                            withdrawalTransactions.slice(0, 10)
+                                            :
+                                            withdrawalTransactions.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                                        ).map((item: any, idx: number) => {
+                                            return <tr key={idx}>
+                                                <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
+                                                <td>
+                                                    {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item?.transaction?.tx_hash}</Tooltip>}> */}
+                                                    <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.transaction?.tx_hash, 'tx')}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 20)}</span>
+                                                    {/* </OverlayTrigger> */}
+                                                </td>
+                                                <td className="text-nowrap">{new Date(item.createdAt).toLocaleDateString()} {new Date(item.createdAt).toLocaleTimeString()}</td>
+                                                <td>
+                                                    {/* <OverlayTrigger placement="top" overlay={(props) => <Tooltip id="button-tooltip" {...props}>{item.to}</Tooltip>}> */}
+                                                    <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.to, 'address')}>{formatWalletAddress(item.to, 20)}</span>
+                                                    {/* </OverlayTrigger> */}
+                                                </td>
+                                                <td className="text-nowrap">{item.amount.dot} DOT</td>
+                                                <td>{formatNumberDownRound(item.fee)}</td>
+                                                <td>
+                                                    <Badge bg={
+                                                        item.status === 'W' ? 'primary' :
+                                                            item.status === 'P' ? 'warning' :
+                                                                item.status === 'PC' ? 'info' :
+                                                                    item.status === 'C' ? 'success' :
+                                                                        item.status === 'F' ? 'danger' :
+                                                                            item.status === 'CL' ? 'secondary' : ''
+                                                    }>{getStatus(item.status)}</Badge>
+                                                </td>
+                                                <td className="text-nowrap">
+                                                    {
+                                                        (item.status === 'W') ?
+                                                            <>
+                                                                <Button className="btn-listing" onClick={() => handleConfirmWithdraw(item)} type="button" size="sm">
+                                                                    <span>Confirm</span>
+                                                                </Button>
+                                                                <Button className="btn-listing btn-secondary ms-2" onClick={() => handleCancelWithdraw(item)} type="button" size="sm">
+                                                                    <span>Cancel</span>
+                                                                </Button>
+                                                            </> : <></>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        })
+                                    }
+                                </tbody>
+                            </Table>
+                            {!isDashboard && <Pagination
+                                current={current}
+                                total={withdrawalTransactions.length}
+                                pageSize={NUMBER_PER_PAGE}
+                                showSizeChanger={false}
+                                onChange={(page: any, pageSize: any) => setCurrent(page)}
+                            />}
+                        </>
                 }
-                {!isDashboard && <Pagination
-                    current={current}
-                    total={withdrawalTransactions.length}
-                    pageSize={NUMBER_PER_PAGE}
-                    showSizeChanger={false}
-                    onChange={(page: any, pageSize: any) => setCurrent(page)}
-                />}
             </>
         }
         {showWarningModal ? <ConfirmModal message="Must be enable Tfa to withdraw." onDismiss={handleWarningDismiss} /> : <></>}

@@ -34,46 +34,48 @@ const DepositTransactions = ({ isDashboard = false }: DepositTransactionsProps) 
             !depositHistory || depositHistory.length <= 0 ?
                 <div className="no-data">No transaction</div>
                 :
-                <Table responsive>
-                    <thead>
-                        <tr>
-                            <th style={{ width: 50 }}>No.</th>
-                            <th>From</th>
-                            <th>Amount (DOT)</th>
-                            <th>TxHash</th>
-                            <th style={{ width: 180 }}>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            (isDashboard ?
-                                depositHistory.slice(0, 10)
-                                :
-                                depositHistory.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
-                            ).map((item: any, idx: number) => {
-                                return <tr key={idx + item?._id}>
-                                    <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
-                                    <td>
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
-                                    </td>
-                                    <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td>
-                                    <td>
-                                        <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
-                                    </td>
-                                    <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
-                                </tr>
-                            })
-                        }
-                    </tbody>
-                </Table>
+                <>
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th style={{ width: 50 }}>No.</th>
+                                <th>From</th>
+                                <th>Amount (DOT)</th>
+                                <th>TxHash</th>
+                                <th style={{ width: 180 }}>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (isDashboard ?
+                                    depositHistory.slice(0, 10)
+                                    :
+                                    depositHistory.slice((current - 1) * NUMBER_PER_PAGE, current * NUMBER_PER_PAGE)
+                                ).map((item: any, idx: number) => {
+                                    return <tr key={idx + item?._id}>
+                                        <td>{(current - 1) * NUMBER_PER_PAGE + idx + 1}</td>
+                                        <td>
+                                            <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(item?.from, 'address')}>{formatWalletAddress(item?.from, 20)}</span>
+                                        </td>
+                                        <td>{typeof (get(item, 'amount.dot', undefined)) !== 'undefined' ? formatNumberDownRound(get(item, 'amount.dot', 0)) : formatNumberDownRound(get(item, 'amount', 0))}</td>
+                                        <td>
+                                            <span style={{ cursor: 'pointer' }} onClick={() => handleNavigate(get(item, 'transaction.tx_hash', ''))}>{formatWalletAddress(get(item, 'transaction.tx_hash', ''), 26)}</span>
+                                        </td>
+                                        <td>{new Date(item?.time).toLocaleDateString()} {new Date(item?.time).toLocaleTimeString()}</td>
+                                    </tr>
+                                })
+                            }
+                        </tbody>
+                    </Table>
+                    {!isDashboard && <Pagination
+                        current={current}
+                        total={depositHistory.length}
+                        pageSize={NUMBER_PER_PAGE}
+                        showSizeChanger={false}
+                        onChange={(page: any, pageSize: any) => setCurrent(page)}
+                    />}
+                </>
         }
-        {!isDashboard && <Pagination
-            current={current}
-            total={depositHistory.length}
-            pageSize={NUMBER_PER_PAGE}
-            showSizeChanger={false}
-            onChange={(page: any, pageSize: any) => setCurrent(page)}
-        />}
     </>
 }
 export default DepositTransactions
