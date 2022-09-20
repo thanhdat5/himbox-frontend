@@ -7,7 +7,7 @@ const PublicWhatIsHimBox = () => {
     }
     return <Section className="hb-what-is-himbox" id="WhatIsHimBox">
         <Container>
-            <Row className="gx-xl-5 align-items-center">
+            <Row className="gx-xl-5 align-items-center mb-5">
                 <Col lg="6" className="mb-lg-0 mb-4">
                     <Image data-aos="fade-up" src="/images/banner2.gif" alt="" className="w-100" />
                 </Col>
@@ -22,6 +22,9 @@ const PublicWhatIsHimBox = () => {
                     <Button type="button" variant="primary" data-aos="fade-up" data-aos-delay="200" onClick={handleLearnMore}>Learn More</Button>
                 </Col>
             </Row>
+            <div className="hb-video-intro">
+                <iframe style={{ width: '100%', border: '0', height: '100%' }} src="https://www.youtube.com/embed/_KIWC3D1vwg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+            </div>
         </Container>
     </Section>
 }
