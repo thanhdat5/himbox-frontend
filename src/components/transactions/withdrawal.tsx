@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { default as ConfirmCancelModal, default as ConfirmModal } from "../../components/confirm-modal";
 import WithdrawModal from "../../components/withdraw-modal";
-import { NUMBER_PER_PAGE, ROUTES } from "../../constants";
+import { ENDPOINTS, NUMBER_PER_PAGE, ROUTES } from "../../constants";
 import { WithdrawalTransactionsResponseModel } from "../../models";
 import { cancelWithdrawRequest, getListWithdrawRequest, resetWithdrawState } from "../../redux/actions/withdrawActions";
-import { is2FAActive } from "../../services/appService";
-import { formatNumberDownRound } from "../../utils/helpers";
+import { apiCall } from '../../redux/saga/api';
+import { is2FAActive, ShowErrorMessage } from "../../services/appService";
+import { extractError, formatNumberDownRound } from "../../utils/helpers";
 import { formatWalletAddress, getStatus } from "../../utils/utils";
 import { NETWORK_SCAN } from "../../_config";
 
@@ -69,12 +70,17 @@ const WithdrawalTransactions = ({ isDashboard = false }: WithdrawTxProps) => {
     }, [cancelSuccess])
 
     // Confirm withdraw
-    const handleConfirmWithdraw = (item: WithdrawalTransactionsResponseModel) => {
+    const handleConfirmWithdraw = async (item: WithdrawalTransactionsResponseModel) => {
         if (!is2FAActive()) {
             setShowWarningModal(true);
         } else {
-            setWithdrawId(item._id);
-            setShowConfirmWithdrawModal(true);
+            try {
+                await apiCall('POST', ENDPOINTS.RESEND_WITHDRAW_VERIFY_NUMBER, { withdraw_id: item?._id });
+                setWithdrawId(item._id);
+                setShowConfirmWithdrawModal(true);
+            } catch (e: any) {
+                ShowErrorMessage({ msg: extractError(e) });
+            }
         }
     }
 
