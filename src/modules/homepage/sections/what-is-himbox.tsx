@@ -23,7 +23,7 @@ const PublicWhatIsHimBox = () => {
                 </Col>
             </Row>
             <div className="hb-video-intro">
-                <iframe style={{ width: '100%', border: '0', height: '100%' }} src="https://www.youtube.com/embed/_KIWC3D1vwg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+                <iframe style={{ width: '100%', border: '0', height: '100%' }} src="https://www.youtube.com/embed/lEpllxY3SFE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
             </div>
         </Container>
     </Section>
